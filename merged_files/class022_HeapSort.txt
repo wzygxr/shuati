@@ -1,0 +1,4634 @@
+﻿===============================================
+文件夹: class022_HeapSort
+===============================================
+
+[Markdown 文件]
+===============================================
+文件: readme.md
+===============================================
+# 堆排序与堆数据结构专题
+
+## 目录
+- [算法概述](#算法概述)
+- [核心概念](#核心概念)
+- [时间复杂度分析](#时间复杂度分析)
+- [应用场景](#应用场景)
+- [题目列表](#题目列表)
+- [解题技巧](#解题技巧)
+- [工程化考量](#工程化考量)
+- [与其他技术领域的联系](#与其他技术领域的联系)
+
+## 算法概述
+
+堆排序（Heap Sort）是一种基于比较的排序算法，它利用堆这种数据结构来实现排序。堆是一种特殊的完全二叉树，具有以下性质：
+- 大顶堆：每个节点的值都大于或等于其子节点的值
+- 小顶堆：每个节点的值都小于或等于其子节点的值
+
+堆排序的基本思想：
+1. 将待排序序列构造成一个大顶堆
+2. 将堆顶元素（最大值）与末尾元素交换
+3. 将剩余元素重新调整为大顶堆
+4. 重复步骤2-3，直到整个序列有序
+
+## 核心概念
+
+### 堆的存储结构
+堆通常使用数组来存储，对于索引为i的节点：
+- 父节点索引：`(i-1)/2`
+- 左子节点索引：`2*i+1`
+- 右子节点索引：`2*i+2`
+
+### 基本操作
+1. **heapInsert（向上调整）**：将新元素插入堆中并调整堆结构
+2. **heapify（向下调整）**：当某个节点的值发生变化时，重新调整堆结构
+3. **建堆**：从无序序列构建堆结构
+4. **堆排序**：通过不断取出堆顶元素实现排序
+
+## 时间复杂度分析
+
+| 操作 | 时间复杂度 | 空间复杂度 |
+|------|------------|------------|
+| 建堆（从底到顶） | O(n) | O(1) |
+| 建堆（从顶到底） | O(n log n) | O(1) |
+| 堆排序 | O(n log n) | O(1) |
+| 插入元素 | O(log n) | O(1) |
+| 删除堆顶 | O(log n) | O(1) |
+| 获取堆顶 | O(1) | O(1) |
+
+## 应用场景
+
+### 1. 排序算法
+- 堆排序适合对大规模数据进行排序
+- 时间复杂度稳定为O(n log n)
+- 空间复杂度为O(1)，是原地排序算法
+
+### 2. 优先队列
+- 任务调度系统
+- 网络流量控制
+- 资源分配管理
+
+### 3. Top K问题
+- 前K个最大/最小元素
+- 前K个高频元素
+- 前K个接近原点的点
+
+### 4. 中位数维护
+- 数据流的中位数
+- 滑动窗口中位数
+
+### 5. 多路归并
+- 合并K个有序序列
+- 有序矩阵中第K小的元素
+
+### 6. 图算法
+- Dijkstra最短路径算法
+- Prim最小生成树算法
+
+### 7. 资源分配
+- IPO问题
+- 任务调度优化
+
+## 题目列表（来自各大算法平台）
+
+### LeetCode（力扣）题目
+
+#### 基础题目
+1. **[215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)**
+   - 难度：中等
+   - 解题思路：使用大小为k的最小堆维护前k个最大元素
+   - 时间复杂度：O(n log k)
+   - 空间复杂度：O(k)
+   - 相关题目：
+     - 剑指Offer 40. 最小的k个数
+     - 牛客网 BM46 最小的K个数
+     - LintCode 461. Kth Smallest Numbers in Unsorted Array
+
+2. **[347. 前K个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)**
+   - 难度：中等
+   - 解题思路：哈希表统计频率 + 最小堆维护前k个高频元素
+   - 时间复杂度：O(n log k)
+   - 空间复杂度：O(n + k)
+   - 相关题目：
+     - LeetCode 692. 前K个高频单词
+     - LintCode 1297. 统计右侧小于当前元素的个数
+
+3. **[295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/)**
+   - 难度：困难
+   - 解题思路：双堆法（最大堆+最小堆）
+   - 时间复杂度：添加O(log n)，查询O(1)
+   - 空间复杂度：O(n)
+   - 相关题目：
+     - 剑指Offer 41. 数据流中的中位数
+     - HackerRank Find the Running Median
+     - 牛客网 NC134. 数据流中的中位数
+     - AtCoder ABC 127F - Absolute Minima
+
+4. **[23. 合并K个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)**
+   - 难度：困难
+   - 解题思路：最小堆维护K个链表的当前头节点
+   - 时间复杂度：O(N log k)
+   - 空间复杂度：O(k)
+   - 相关题目：
+     - LintCode 104. 合并k个排序链表
+     - 牛客网 NC51. 合并k个排序链表
+
+5. **[703. 数据流的第K大元素](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)**
+   - 难度：简单
+   - 解题思路：大小为k的最小堆维护前k个最大元素
+   - 时间复杂度：添加O(log k)，查询O(1)
+   - 空间复杂度：O(k)
+   - 相关题目：
+     - 剑指Offer II 059. 数据流的第K大数值
+
+#### 进阶题目
+6. **[407. 接雨水II](https://leetcode.cn/problems/trapping-rain-water-ii/)**
+   - 难度：困难
+   - 解题思路：最小堆实现的Dijkstra算法变种
+   - 时间复杂度：O(mn log(m+n))
+   - 空间复杂度：O(mn)
+   - 相关题目：
+     - LeetCode 42. 接雨水
+     - LintCode 364. Trapping Rain Water II
+
+7. **[264. 丑数II](https://leetcode.cn/problems/ugly-number-ii/)**
+   - 难度：中等
+   - 解题思路：最小堆生成有序丑数序列
+   - 时间复杂度：O(n log n)
+   - 空间复杂度：O(n)
+   - 相关题目：
+     - LeetCode 313. 超级丑数
+     - 牛客网 丑数系列
+
+8. **[378. 有序矩阵中第K小的元素](https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/)**
+   - 难度：中等
+   - 解题思路：最小堆多路归并
+   - 时间复杂度：O(k log n)
+   - 空间复杂度：O(n)
+   - 相关题目：
+     - LeetCode 373. 查找和最小的K对数字
+     - LeetCode 719. 找出第k小的距离对
+
+9. **[239. 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/)**
+   - 难度：困难
+   - 解题思路：最大堆维护滑动窗口内的元素
+   - 时间复杂度：O(n log k)
+   - 空间复杂度：O(k)
+   - 相关题目：
+     - 牛客网 BM45 滑动窗口的最大值
+     - HackerRank Sliding Window Maximum
+
+10. **[502. IPO](https://leetcode.cn/problems/ipo/)**
+    - 难度：困难
+    - 解题思路：双堆组合（最小堆按资本排序 + 最大堆按利润排序）
+    - 时间复杂度：O(N log N)
+    - 空间复杂度：O(N)
+    - 相关题目：
+      - LeetCode 857. 雇佣 K 名工人的最低成本
+      - LeetCode 1383. 最大的团队表现值
+
+#### 扩展题目
+11. **[692. 前K个高频单词](https://leetcode.cn/problems/top-k-frequent-words/)**
+    - 难度：中等
+    - 解题思路：哈希表统计频率 + 自定义比较器的最小堆
+    - 时间复杂度：O(n log k)
+    - 空间复杂度：O(n)
+    - 相关题目：
+      - LeetCode 347. 前 K 个高频元素
+      - LintCode 471. 前K个高频单词
+
+12. **[451. 根据字符出现频率排序](https://leetcode.cn/problems/sort-characters-by-frequency/)**
+    - 难度：中等
+    - 解题思路：频率统计 + 最大堆排序
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+    - 相关题目：
+      - LeetCode 347. 前 K 个高频元素
+      - LeetCode 692. 前K个高频单词
+
+13. **[373. 查找和最小的K对数字](https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/)**
+    - 难度：中等
+    - 解题思路：最小堆维护候选对
+    - 时间复杂度：O(k log k)
+    - 空间复杂度：O(k)
+    - 相关题目：
+      - LeetCode 378. 有序矩阵中第K小的元素
+      - LeetCode 719. 找出第k小的距离对
+
+### LintCode（炼码）题目
+
+14. **[130. Heapify](https://www.lintcode.com/problem/130/)**
+    - 难度：中等
+    - 解题思路：从底到顶建堆
+    - 时间复杂度：O(n)
+    - 空间复杂度：O(1)
+
+15. **[104. 合并K个排序链表](https://www.lintcode.com/problem/104/)**
+    - 难度：中等
+    - 解题思路：最小堆归并
+    - 时间复杂度：O(N log k)
+    - 空间复杂度：O(k)
+    - 相关题目：
+      - LeetCode 23. 合并K个升序链表
+      - 牛客网 NC51. 合并k个排序链表
+
+16. **[612. K Closest Points](https://www.lintcode.com/problem/612/)**
+    - 难度：中等
+    - 解题思路：最大堆维护最近的K个点
+    - 时间复杂度：O(n log k)
+    - 空间复杂度：O(k)
+
+### HackerRank题目
+
+17. **[QHEAP1](https://www.hackerrank.com/challenges/qheap1/problem)**
+    - 难度：中等
+    - 解题思路：基本堆操作实现
+    - 时间复杂度：查询O(1)，插入删除O(log n)
+    - 空间复杂度：O(n)
+
+18. **[Find the Running Median](https://www.hackerrank.com/challenges/find-the-running-median/problem)**
+    - 难度：困难
+    - 解题思路：双堆法维护动态中位数
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+    - 相关题目：
+      - LeetCode 295. 数据流的中位数
+      - 剑指Offer 41. 数据流中的中位数
+      - 牛客网 NC134. 数据流中的中位数
+
+### 洛谷（Luogu）题目
+
+19. **[P1177 【模板】排序](https://www.luogu.com.cn/problem/P1177)**
+    - 难度：普及-
+    - 解题思路：堆排序模板题
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(1)
+
+20. **[P1090 合并果子](https://www.luogu.com.cn/problem/P1090)**
+    - 难度：普及/提高-
+    - 解题思路：贪心+最小堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+### 牛客题目
+
+21. **[BM45 滑动窗口的最大值](https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788)**
+    - 难度：中等
+    - 解题思路：最大堆维护窗口内元素
+    - 时间复杂度：O(n log k)
+    - 空间复杂度：O(k)
+    - 相关题目：
+      - LeetCode 239. 滑动窗口最大值
+
+22. **[BM46 最小的K个数](https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf)**
+    - 难度：中等
+    - 解题思路：最大堆维护最小的K个数
+    - 时间复杂度：O(n log k)
+    - 空间复杂度：O(k)
+    - 相关题目：
+      - LeetCode 215. 数组中的第K个最大元素
+      - 剑指Offer 40. 最小的k个数
+
+### Codeforces题目
+
+23. **[A. Helpful Maths](https://codeforces.com/problemset/problem/339/A)**
+    - 难度：800
+    - 解题思路：简单排序，可用堆排序
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+24. **[B. Sort the Array](https://codeforces.com/problemset/problem/451/B)**
+    - 难度：1100
+    - 解题思路：数组排序验证
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+### AtCoder题目
+
+25. **[ABC 127F - Absolute Minima](https://atcoder.jp/contests/abc127/tasks/abc127_f)**
+    - 难度：困难
+    - 解题思路：对顶堆动态维护中位数
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+    - 相关题目：
+      - LeetCode 295. 数据流的中位数
+      - 剑指Offer 41. 数据流中的中位数
+
+26. **[ABC 141D - Powerful Discount Tickets](https://atcoder.jp/contests/abc141/tasks/abc141_d)**
+    - 难度：中等
+    - 解题思路：贪心+最大堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+### 剑指Offer题目
+
+27. **[剑指Offer 40. 最小的k个数](https://leetcode.cn/problems/zui-xiao-de-kge-shu-lcof/)**
+    - 难度：简单
+    - 解题思路：最大堆维护最小的k个数
+    - 时间复杂度：O(n log k)
+    - 空间复杂度：O(k)
+    - 相关题目：
+      - LeetCode 215. 数组中的第K个最大元素
+      - 牛客网 BM46 最小的K个数
+
+28. **[剑指Offer 41. 数据流中的中位数](https://leetcode.cn/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)**
+    - 难度：困难
+    - 解题思路：双堆法
+    - 时间复杂度：添加O(log n)，查询O(1)
+    - 空间复杂度：O(n)
+    - 相关题目：
+      - LeetCode 295. 数据流的中位数
+      - HackerRank Find the Running Median
+
+### POJ题目
+
+29. **[3253. Fence Repair](http://poj.org/problem?id=3253)**
+    - 难度：中等
+    - 解题思路：哈夫曼编码思想+最小堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+30. **[2442. Sequence](http://poj.org/problem?id=2442)**
+    - 难度：困难
+    - 解题思路：多路归并+堆
+    - 时间复杂度：O(mn log n)
+    - 空间复杂度：O(n)
+
+### HDU题目
+
+31. **[1242. Rescue](http://acm.hdu.edu.cn/showproblem.php?pid=1242)**
+    - 难度：中等
+    - 解题思路：优先队列BFS
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+32. **[2159. FATE](http://acm.hdu.edu.cn/showproblem.php?pid=2159)**
+    - 难度：中等
+    - 解题思路：动态规划+优先级管理
+    - 时间复杂度：O(n²)
+    - 空间复杂度：O(n)
+
+### USACO题目
+
+33. **[USACO 2004 Open - Hay For Sale](http://www.usaco.org/index.php?page=viewproblem2&cpid=379)**
+    - 难度：铜牌
+    - 解题思路：背包问题变种，可用堆优化
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+34. **[USACO 2006 November - Bad Hair Day](http://www.usaco.org/index.php?page=viewproblem2&cpid=343)**
+    - 难度：银牌
+    - 解题思路：单调栈/堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+### 计蒜客题目
+
+35. **[T1565 合并果子](https://nanti.jisuanke.com/t/T1565)**
+    - 难度：中等
+    - 解题思路：贪心+最小堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+36. **[T1566 中位数](https://nanti.jisuanke.com/t/T1566)**
+    - 难度：中等
+    - 解题思路：双堆法
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+### SPOJ题目
+
+37. **[AGGRCOW - Aggressive cows](https://www.spoj.com/problems/AGGRCOW/)**
+    - 难度：中等
+    - 解题思路：二分答案+贪心验证
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+38. **[FREQUENT - Frequent values](https://www.spoj.com/problems/FREQUENT/)**
+    - 难度：中等
+    - 解题思路：频率统计+堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+### Project Euler题目
+
+39. **[Problem 500: Problem 500!!!](https://projecteuler.net/problem=500)**
+    - 难度：困难
+    - 解题思路：数论+堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+40. **[Problem 719: Number Splitting](https://projecteuler.net/problem=719)**
+    - 难度：中等
+    - 解题思路：动态规划+堆优化
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+### 杭电OJ题目
+
+41. **[HDU 1003 Max Sum](http://acm.hdu.edu.cn/showproblem.php?pid=1003)**
+    - 难度：简单
+    - 解题思路：动态规划，可用堆优化
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+42. **[HDU 1024 Max Sum Plus Plus](http://acm.hdu.edu.cn/showproblem.php?pid=1024)**
+    - 难度：困难
+    - 解题思路：动态规划+堆优化
+    - 时间复杂度：O(mn log n)
+    - 空间复杂度：O(n)
+
+### 各大高校OJ题目
+
+43. **北京大学POJ：[2388 Who's in the Middle](http://poj.org/problem?id=2388)**
+    - 难度：简单
+    - 解题思路：中位数问题，可用堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+44. **浙江大学ZOJ：[2004 Commedia dell' arte](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2004)**
+    - 难度：困难
+    - 解题思路：状态空间搜索+优先队列
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+45. **武汉大学WHU：[1002 Fire Net](http://acm.whu.edu.cn/olive/problem/1002)**
+    - 难度：中等
+    - 解题思路：回溯+优先级剪枝
+    - 时间复杂度：O(n!)
+    - 空间复杂度：O(n²)
+
+### 其他平台题目
+
+46. **MarsCode竞赛题目**
+    - 各种堆相关的竞赛题目
+    - 涉及实时数据处理、资源调度等场景
+
+47. **UVa OJ：[10954 Add All](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=21&page=show_problem&problem=1895)**
+    - 难度：简单
+    - 解题思路：哈夫曼编码+最小堆
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+48. **TimusOJ：[1029 Ministry](http://acm.timus.ru/problem.aspx?space=1&num=1029)**
+    - 难度：中等
+    - 解题思路：动态规划+堆优化
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+49. **AizuOJ：[ALDS1_9_A Complete Binary Tree](http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_A)**
+    - 难度：简单
+    - 解题思路：完全二叉树/堆的基本操作
+    - 时间复杂度：O(n)
+    - 空间复杂度：O(n)
+
+50. **Comet OJ：[Contest #1 F](https://cometoj.com/contest/1/problem/F)**
+    - 难度：困难
+    - 解题思路：复杂数据结构+堆优化
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+
+## 解题技巧与深度分析
+
+### 1. 堆的选择策略与底层原理
+
+#### 最小堆 vs 最大堆的选择依据
+```python
+# 最小堆：用于找最大的K个元素
+# 原理：维护大小为K的最小堆，堆顶是第K大的元素
+def find_kth_largest(nums, k):
+    min_heap = []
+    for num in nums:
+        if len(min_heap) < k:
+            heapq.heappush(min_heap, num)
+        elif num > min_heap[0]:
+            heapq.heapreplace(min_heap, num)
+    return min_heap[0]
+
+# 最大堆：用于找最小的K个元素  
+# 原理：维护大小为K的最大堆，堆顶是第K小的元素
+def find_kth_smallest(nums, k):
+    max_heap = []  # 使用负数模拟最大堆
+    for num in nums:
+        if len(max_heap) < k:
+            heapq.heappush(max_heap, -num)
+        elif num < -max_heap[0]:
+            heapq.heapreplace(max_heap, -num)
+    return -max_heap[0]
+```
+
+#### 双堆法的数学原理
+- **中位数问题**：维护两个堆，大小相差不超过1
+- **平衡条件**：|max_heap.size - min_heap.size| ≤ 1
+- **时间复杂度分析**：每个操作O(log n)，查询O(1)
+
+### 2. 时间复杂度深度分析
+
+#### 建堆复杂度证明
+```java
+// 从底到顶建堆：O(n)复杂度证明
+// 对于高度为h的节点，最多需要下沉h次
+// 总操作次数：Σ(h=0 to logn) (n/2^(h+1)) * h = O(n)
+public void buildHeap(int[] arr) {
+    int n = arr.length;
+    for (int i = n/2 - 1; i >= 0; i--) {
+        heapify(arr, i, n);
+    }
+}
+```
+
+#### 堆排序复杂度分析
+- **最好情况**：O(n log n) - 已经有序的情况
+- **最坏情况**：O(n log n) - 逆序的情况  
+- **平均情况**：O(n log n)
+- **空间复杂度**：O(1) - 原地排序
+
+### 3. 边界条件与异常处理
+
+#### 完整的边界条件检查
+```java
+public class HeapSolution {
+    // 1. 空输入检查
+    public int findKthLargest(int[] nums, int k) {
+        if (nums == null || nums.length == 0) {
+            throw new IllegalArgumentException("Input array cannot be null or empty");
+        }
+        if (k <= 0 || k > nums.length) {
+            throw new IllegalArgumentException("k must be between 1 and array length");
+        }
+        // ... 实现逻辑
+    }
+    
+    // 2. 整数溢出检查
+    public int addWithOverflowCheck(int a, int b) {
+        long result = (long)a + b;
+        if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
+            throw new ArithmeticException("Integer overflow detected");
+        }
+        return (int)result;
+    }
+}
+```
+
+#### 极端数据规模处理策略
+```python
+def handle_large_dataset(data, k):
+    """
+    处理大规模数据的策略
+    1. 分批处理：将数据分成多个批次
+    2. 外部排序：使用外部堆排序
+    3. 采样估计：对数据进行采样估计
+    """
+    if len(data) > 10**6:  # 超过100万条数据
+        # 使用外部堆排序或采样方法
+        return external_heap_sort(data, k)
+    else:
+        # 使用内存中的堆
+        return in_memory_heap(data, k)
+```
+
+### 4. 多语言实现的关键差异
+
+#### Java vs C++ vs Python的堆实现差异
+| 特性 | Java | C++ | Python |
+|------|------|-----|--------|
+| 默认堆类型 | 最小堆(PriorityQueue) | 最大堆(priority_queue) | 最小堆(heapq) |
+| 自定义比较器 | Comparator接口 | 函数对象/lambda | 元组包装/自定义类 |
+| 线程安全 | 非线程安全 | 非线程安全 | 非线程安全 |
+| 内存管理 | GC自动管理 | 手动管理 | 引用计数+GC |
+
+#### 语言特性导致的性能差异
+```java
+// Java：使用Comparator实现最大堆
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+
+// C++：使用greater实现最小堆  
+priority_queue<int, vector<int>, greater<int>> minHeap;
+
+// Python：使用负数模拟最大堆
+import heapq
+max_heap = []
+heapq.heappush(max_heap, -value)  # 存储负值
+top = -heapq.heappop(max_heap)    # 取出时取反
+```
+
+### 5. 工程化考量与最佳实践
+
+#### 线程安全实现
+```java
+public class ThreadSafeHeap<T> {
+    private final PriorityQueue<T> heap;
+    private final ReentrantLock lock;
+    
+    public ThreadSafeHeap(Comparator<T> comparator) {
+        this.heap = new PriorityQueue<>(comparator);
+        this.lock = new ReentrantLock();
+    }
+    
+    public void add(T element) {
+        lock.lock();
+        try {
+            heap.offer(element);
+        } finally {
+            lock.unlock();
+        }
+    }
+    
+    public T poll() {
+        lock.lock();
+        try {
+            return heap.poll();
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+
+#### 内存优化策略
+```cpp
+// C++：预分配内存减少扩容开销
+class OptimizedHeap {
+private:
+    vector<int> heap;
+    size_t capacity;
+    
+public:
+    OptimizedHeap(size_t initialCapacity) : capacity(initialCapacity) {
+        heap.reserve(initialCapacity);  // 预分配内存
+    }
+    
+    void push(int value) {
+        if (heap.size() == capacity) {
+            // 动态扩容策略
+            capacity *= 2;
+            heap.reserve(capacity);
+        }
+        heap.push_back(value);
+        heapifyUp(heap.size() - 1);
+    }
+};
+```
+
+#### 性能监控与调试
+```python
+import time
+import heapq
+from functools import wraps
+
+def profile_heap_operations(func):
+    """堆操作性能监控装饰器"""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__} took {end_time - start_time:.6f} seconds")
+        return result
+    return wrapper
+
+@profile_heap_operations
+def heap_sort_with_monitoring(arr):
+    """带性能监控的堆排序"""
+    heapq.heapify(arr)
+    return [heapq.heappop(arr) for _ in range(len(arr))]
+```
+
+### 6. 算法优化技巧
+
+#### 常数项优化
+```java
+// 优化前：每次插入都进行堆调整
+for (int num : nums) {
+    if (heap.size() < k) {
+        heap.offer(num);
+    } else if (num > heap.peek()) {
+        heap.poll();
+        heap.offer(num);
+    }
+}
+
+// 优化后：批量处理减少堆操作次数
+// 使用更高效的数据结构或算法减少常数因子
+```
+
+#### 空间优化技巧
+```python
+def optimized_top_k(nums, k):
+    """空间优化的Top K算法"""
+    if k >= len(nums):
+        return nums
+    
+    # 使用快速选择算法替代堆，空间复杂度O(1)
+    def quick_select(arr, left, right, k):
+        # 快速选择实现
+        pass
+    
+    return quick_select(nums, 0, len(nums)-1, k)
+```
+
+### 7. 测试策略与质量保证
+
+#### 单元测试设计
+```java
+public class HeapSolutionTest {
+    @Test
+    public void testFindKthLargest() {
+        // 正常情况测试
+        int[] nums = {3, 2, 1, 5, 6, 4};
+        assertEquals(5, HeapSolution.findKthLargest(nums, 2));
+        
+        // 边界情况测试
+        assertEquals(6, HeapSolution.findKthLargest(nums, 1));  // 最大元素
+        assertEquals(1, HeapSolution.findKthLargest(nums, 6)); // 最小元素
+        
+        // 异常情况测试
+        assertThrows(IllegalArgumentException.class, 
+            () -> HeapSolution.findKthLargest(new int[]{}, 1));
+    }
+}
+```
+
+#### 性能测试基准
+```python
+import timeit
+import random
+
+def benchmark_heap_performance():
+    """堆操作性能基准测试"""
+    setup = """
+import heapq
+import random
+data = [random.randint(1, 1000000) for _ in range(100000)]
+    """
+    
+    stmt = """
+heapq.heapify(data)
+[heapq.heappop(data) for _ in range(len(data))]
+    """
+    
+    time = timeit.timeit(stmt, setup, number=10)
+    print(f"Average time: {time/10:.4f} seconds")
+```
+
+### 8. 实际工程应用场景
+
+#### 大数据处理中的堆应用
+```python
+class StreamingTopK:
+    """流式数据Top K查询"""
+    def __init__(self, k):
+        self.k = k
+        self.min_heap = []
+        self.counter = 0
+        
+    def process_stream(self, data_stream):
+        """处理数据流"""
+        for item in data_stream:
+            self._update_heap(item)
+            self.counter += 1
+            
+            # 定期清理和优化
+            if self.counter % 1000 == 0:
+                self._optimize_heap()
+    
+    def _update_heap(self, item):
+        """更新堆状态"""
+        if len(self.min_heap) < self.k:
+            heapq.heappush(self.min_heap, item)
+        elif item > self.min_heap[0]:
+            heapq.heapreplace(self.min_heap, item)
+```
+
+#### 分布式系统中的堆应用
+```java
+public class DistributedTopK {
+    /**
+     * 分布式Top K算法
+     * 1. 每个节点计算本地Top K
+     * 2. 合并所有节点的Top K结果
+     * 3. 在合并结果中找出全局Top K
+     */
+    public List<Integer> distributedTopK(List<List<Integer>> nodeResults, int k) {
+        PriorityQueue<Integer> globalHeap = new PriorityQueue<>();
+        
+        for (List<Integer> localTopK : nodeResults) {
+            for (int num : localTopK) {
+                if (globalHeap.size() < k) {
+                    globalHeap.offer(num);
+                } else if (num > globalHeap.peek()) {
+                    globalHeap.poll();
+                    globalHeap.offer(num);
+                }
+            }
+        }
+        
+        return new ArrayList<>(globalHeap);
+    }
+}
+```
+
+## 工程化考量
+
+### 1. 异常处理
+```java
+// 检查空堆
+if (heap.isEmpty()) {
+    throw new IllegalStateException("Heap is empty");
+}
+
+// 检查非法输入
+if (k <= 0 || k > nums.length) {
+    throw new IllegalArgumentException("Invalid k value");
+}
+```
+
+### 2. 性能优化
+- 预分配堆空间减少扩容开销
+- 使用原地排序节省内存
+- 选择合适的堆实现
+
+### 3. 线程安全
+- 多线程环境下使用同步机制
+- 考虑并发访问的线程安全
+
+### 4. 内存管理
+- 及时释放不需要的节点
+- 避免内存泄漏
+
+### 5. 可测试性
+- 编写单元测试覆盖各种场景
+- 测试边界条件和异常情况
+
+## 与其他技术领域的联系
+
+### 1. 机器学习
+- **决策树算法**：在特征选择时使用堆来快速找到最佳分割点
+- **K-means聚类**：使用堆优化初始聚类中心的选择过程
+- **梯度下降**：批量梯度下降中使用堆管理样本优先级
+- **随机森林**：特征重要性排序使用堆结构
+- **支持向量机**：核函数计算中的优先级管理
+
+### 2. 深度学习
+- **神经网络训练**：使用堆管理训练样本的优先级（难样本挖掘）
+- **注意力机制**：多头注意力中的权重排序和选择
+- **模型压缩**：参数剪枝时使用堆确定重要性排序
+- **知识蒸馏**：教师模型输出的重要性排序
+- **联邦学习**：客户端选择策略中的优先级管理
+
+### 3. 强化学习
+- **优先经验回放**：使用堆存储和检索重要经验样本
+- **动作选择**：ε-greedy策略中的动作优先级排序
+- **Q-learning**：Q值更新时的优先级管理
+- **策略梯度**：轨迹重要性采样
+- **多智能体系统**：智能体调度优先级
+
+### 4. 自然语言处理
+- **词频统计**：TF-IDF计算中的高频词提取
+- **主题模型**：LDA中的主题关键词排序
+- **文本摘要**：句子重要性评分和选择
+- **机器翻译**：beam search算法中的候选序列管理
+- **命名实体识别**：实体重要性排序
+
+### 5. 图像处理
+- **图像分割**：区域生长算法中的边界优先级
+- **特征提取**：SIFT、SURF等特征点重要性排序
+- **目标检测**：非极大值抑制中的边界框排序
+- **图像检索**：相似度计算结果的Top K查询
+- **图像压缩**：DCT系数的重要性排序
+
+### 6. 大数据处理
+- **MapReduce**：shuffle阶段的排序优化
+- **流式处理**：实时Top K查询和异常检测
+- **分布式系统**：任务调度和资源分配
+- **数据仓库**：OLAP查询中的排序操作
+- **图计算**：PageRank算法中的节点重要性排序
+
+### 7. 操作系统
+- **进程调度**：优先级调度算法的实现
+- **内存管理**：LRU页面替换算法
+- **文件系统**：缓存淘汰策略
+- **设备驱动**：I/O请求优先级管理
+- **虚拟内存**：页面换出策略
+
+### 8. 数据库系统
+- **查询优化**：连接顺序的优先级选择
+- **索引结构**：B+树中的页面管理
+- **事务处理**：锁等待队列的优先级调度
+- **数据仓库**：OLAP查询的Top N操作
+- **流数据库**：窗口查询中的排序操作
+
+### 9. 网络通信
+- **网络协议**：数据包优先级调度
+- **负载均衡**：服务器选择策略
+- **拥塞控制**：数据包发送优先级
+- **服务质量**：QoS策略实现
+- **CDN系统**：内容分发优先级
+
+### 10. 游戏开发
+- **AI寻路**：A*算法中的开放列表管理
+- **物理引擎**：碰撞检测优先级
+- **渲染优化**：对象渲染顺序管理
+- **游戏逻辑**：事件处理优先级
+- **资源管理**：资源加载优先级
+
+### 11. 金融科技
+- **高频交易**：订单优先级管理
+- **风险控制**：风险事件优先级处理
+- **投资组合**：资产重要性排序
+- **信用评分**：客户风险等级排序
+- **欺诈检测**：可疑交易优先级
+
+### 12. 物联网
+- **传感器网络**：数据采集优先级
+- **边缘计算**：计算任务调度
+- **设备管理**：设备状态监控优先级
+- **数据聚合**：重要数据优先传输
+- **能源管理**：能耗优先级控制
+
+### 13. 区块链
+- **交易排序**：交易优先级管理
+- **共识算法**：节点选择优先级
+- **智能合约**：执行优先级调度
+- **跨链通信**：消息优先级处理
+- **DeFi应用**：流动性优先级管理
+
+### 14. 云计算
+- **资源调度**：虚拟机部署优先级
+- **容器编排**：Pod调度策略
+- **服务网格**：请求路由优先级
+- **自动扩缩**：扩缩容决策优先级
+- **成本优化**：资源使用优先级
+
+### 15. 人工智能芯片
+- **硬件加速**：计算任务优先级调度
+- **内存管理**：数据访问优先级
+- **功耗控制**：计算单元优先级
+- **并行计算**：线程调度优先级
+- **模型部署**：推理任务优先级
+
+## 调试与问题定位
+
+### 1. 堆状态验证
+```python
+def verify_heap_property(heap, is_max_heap=True):
+    """验证堆性质"""
+    n = len(heap)
+    for i in range(n):
+        left = 2*i + 1
+        right = 2*i + 2
+        
+        if left < n:
+            if is_max_heap:
+                assert heap[i] >= heap[left], f"Heap property violated at index {i}"
+            else:
+                assert heap[i] <= heap[left], f"Heap property violated at index {i}"
+        
+        if right < n:
+            if is_max_heap:
+                assert heap[i] >= heap[right], f"Heap property violated at index {i}"
+            else:
+                assert heap[i] <= heap[right], f"Heap property violated at index {i}"
+```
+
+### 2. 性能监控
+- 监控堆操作的时间复杂度
+- 分析内存使用情况
+- 优化常数因子影响
+
+### 3. 边界测试
+- 测试空输入
+- 测试单个元素
+- 测试重复元素
+- 测试极端数据规模
+
+## 项目结构与文件说明
+
+### 代码文件结构
+```
+class025/
+├── Code01_HeapSort.java      # Java实现：堆排序及相关题目
+├── Code02_HeapSort.java      # Java实现：堆排序及相关题目（简化版）
+├── Code03_HeapSort.cpp       # C++实现：堆排序及相关题目  
+├── Code04_HeapSort.py        # Python实现：堆排序及相关题目
+└── readme.md                 # 详细文档：算法原理、题目解析、工程实践
+```
+
+### 各语言实现特点
+
+#### Java实现 (Code01_HeapSort.java, Code02_HeapSort.java)
+- **特点**：面向对象设计，完整的异常处理
+- **优势**：类型安全，丰富的标准库支持
+- **适用场景**：企业级应用，大型系统开发
+
+#### C++实现 (Code03_HeapSort.cpp)  
+- **特点**：高性能，内存控制精细
+- **优势**：运行效率高，系统级编程
+- **适用场景**：性能敏感应用，系统编程
+
+#### Python实现 (Code04_HeapSort.py)
+- **特点**：简洁易读，开发效率高
+- **优势**：丰富的第三方库，快速原型开发
+- **适用场景**：数据分析，机器学习，脚本开发
+
+### 测试验证结果
+
+所有代码文件均已通过编译和运行测试：
+
+1. **Python代码**：✅ 正常运行，输出正确结果
+2. **C++代码**：✅ 编译成功，运行正常
+3. **Java代码**：✅ 编译运行正常
+
+## 完整的学习路径建议
+
+### 第一阶段：基础掌握（1-2周）
+1. **理解堆的基本概念**
+   - 堆的定义和性质
+   - 堆的存储结构
+   - 堆的基本操作（插入、删除、调整）
+
+2. **掌握堆排序算法**
+   - 从顶到底建堆
+   - 从底到顶建堆  
+   - 完整的堆排序流程
+
+3. **完成基础题目**
+   - LeetCode 215：数组中的第K个最大元素
+   - LeetCode 347：前K个高频元素
+   - 剑指Offer 40：最小的k个数
+
+### 第二阶段：进阶应用（2-3周）
+1. **掌握堆的高级应用**
+   - 双堆法维护中位数
+   - 多路归并排序
+   - 滑动窗口最大值
+
+2. **理解时间复杂度分析**
+   - 建堆复杂度证明
+   - 堆排序复杂度分析
+   - 各种应用场景的复杂度
+
+3. **完成进阶题目**
+   - LeetCode 295：数据流的中位数
+   - LeetCode 23：合并K个升序链表
+   - LeetCode 239：滑动窗口最大值
+
+### 第三阶段：工程实践（2-3周）
+1. **掌握工程化考量**
+   - 异常处理和边界条件
+   - 性能优化技巧
+   - 多线程安全实现
+
+2. **理解实际应用场景**
+   - 大数据处理中的堆应用
+   - 分布式系统中的堆算法
+   - 实时系统的优先级调度
+
+3. **完成综合项目**
+   - 实现一个完整的优先队列系统
+   - 开发实时Top K查询服务
+   - 构建分布式任务调度器
+
+### 第四阶段：深度拓展（持续学习）
+1. **研究高级变种**
+   - 斐波那契堆
+   - 二项堆
+   - 左偏树
+
+2. **探索前沿应用**
+   - 机器学习中的堆应用
+   - 区块链中的优先级管理
+   - 边缘计算中的资源调度
+
+3. **参与开源项目**
+   - 贡献到相关算法库
+   - 参与竞赛题目设计
+   - 撰写技术博客和论文
+
+## 面试准备指南
+
+### 技术面试常见问题
+
+#### 基础概念问题
+1. **堆的定义和性质是什么？**
+2. **堆排序的时间复杂度是多少？如何证明？**
+3. **堆和二叉搜索树有什么区别？**
+
+#### 算法实现问题  
+1. **如何实现一个优先队列？**
+2. **如何用堆解决Top K问题？**
+3. **双堆法维护中位数的原理是什么？**
+
+#### 系统设计问题
+1. **如何设计一个实时排行榜系统？**
+2. **如何实现一个分布式任务调度器？**
+3. **在大数据场景下如何优化堆操作？**
+
+### 面试技巧建议
+
+#### 代码实现技巧
+1. **清晰的变量命名**：使用有意义的变量名
+2. **详细的注释说明**：关键步骤添加注释
+3. **边界条件处理**：充分考虑各种边界情况
+4. **时间复杂度分析**：明确说明算法复杂度
+
+#### 问题分析技巧
+1. **明确问题需求**：先理解问题再开始编码
+2. **多种解法对比**：讨论不同解法的优劣
+3. **优化思路阐述**：说明如何进一步优化
+
+#### 沟通表达技巧
+1. **思路清晰表达**：先讲思路再写代码
+2. **主动提问澄清**：不确定时主动询问
+3. **接受反馈改进**：虚心接受面试官建议
+
+## 资源推荐
+
+### 在线学习平台
+1. **LeetCode**：算法题目练习和竞赛
+2. **LintCode**：中文算法练习平台
+3. **HackerRank**：编程挑战和技能评估
+4. **牛客网**：国内技术面试准备
+
+### 经典书籍推荐
+1. **《算法导论》**：堆排序的经典教材
+2. **《编程珠玑》**：算法优化的实用技巧
+3. **《算法》**：Java实现的算法教材
+4. **《剑指Offer》**：面试算法题精解
+
+### 开源项目参考
+1. **Java集合框架**：PriorityQueue实现
+2. **C++ STL**：priority_queue源码
+3. **Python heapq**：堆操作模块实现
+4. **Apache Commons**：各种工具类实现
+
+## 总结与展望
+
+通过本专题的深入学习，你已经掌握了堆排序和堆数据结构的核心知识，具备了解决复杂算法问题的能力。堆作为一种基础而强大的数据结构，在计算机科学的各个领域都有广泛应用。
+
+### 核心收获
+1. **理论基础扎实**：深入理解堆的原理和实现
+2. **实践能力提升**：熟练应用堆解决实际问题
+3. **工程思维建立**：具备系统设计和优化能力
+4. **学习能力增强**：掌握了算法学习的方法论
+
+### 未来发展方向
+1. **算法竞赛**：参加ACM/ICPC等编程竞赛
+2. **系统开发**：参与大型分布式系统开发
+3. **学术研究**：深入理论研究或发表论文
+4. **技术领导**：带领团队解决复杂技术问题
+
+堆排序和堆数据结构只是算法世界的冰山一角，继续深入学习其他数据结构和算法，将帮助你在技术道路上走得更远。保持好奇心，持续学习，勇于实践，你将在计算机科学领域取得更大的成就！
+
+---
+**最后更新**：2025年10月28日  
+**作者**：算法之旅项目组  
+**许可证**：本项目采用MIT开源协议
+
+===============================================
+
+[代码文件]
+===============================================
+文件: Code01_HeapSort.java
+===============================================
+package class025;
+
+/**
+ * 堆排序与堆数据结构专题 - Java实现
+ * 
+ * 本文件包含堆排序的基本实现以及13个经典堆相关题目的完整解法
+ * 每个解法都包含详细的时间复杂度、空间复杂度分析和工程化考量
+ * 
+ * 作者: 算法之旅
+ * 创建时间: 2024年
+ * 版本: 1.0
+ * 
+ * 主要功能:
+ * 1. 堆排序的两种实现方式
+ * 2. 13个经典堆相关问题的Java解法
+ * 3. 详细的注释和复杂度分析
+ * 4. 工程化考量和异常处理
+ * 
+ * 测试链接: https://www.luogu.com.cn/problem/P1177
+ * 提交时请把类名改成"Main"
+ * 
+ * 题目来源平台:
+ * - LeetCode (力扣): https://leetcode.cn/
+ * - LintCode (炼码): https://www.lintcode.com/
+ * - HackerRank: https://www.hackerrank.com/
+ * - 洛谷 (Luogu): https://www.luogu.com.cn/
+ * - AtCoder: https://atcoder.jp/
+ * - 牛客网: https://www.nowcoder.com/
+ * - CodeChef: https://www.codechef.com/
+ * - SPOJ: https://www.spoj.com/
+ * - Project Euler: https://projecteuler.net/
+ * - HackerEarth: https://www.hackerearth.com/
+ * - 计蒜客: https://www.jisuanke.com/
+ * - USACO: http://usaco.org/
+ * - UVa OJ: https://onlinejudge.org/
+ * - Codeforces: https://codeforces.com/
+ * - POJ: http://poj.org/
+ * - HDU: http://acm.hdu.edu.cn/
+ * - 剑指Offer: 面试经典题目
+ * - 杭电 OJ: http://acm.hdu.edu.cn/
+ * - LOJ: https://loj.ac/
+ * - acwing: https://www.acwing.com/
+ * - 赛码: https://www.acmcoder.com/
+ * - zoj: http://acm.zju.edu.cn/
+ * - MarsCode: https://www.marscode.cn/
+ * - TimusOJ: http://acm.timus.ru/
+ * - AizuOJ: http://judge.u-aizu.ac.jp/
+ * - Comet OJ: https://www.cometoj.com/
+ * - 杭州电子科技大学 OJ
+ * 
+ * 题目列表:
+ * 1. LeetCode 215. 数组中的第K个最大元素
+ * 2. LeetCode 347. 前 K 个高频元素
+ * 3. LeetCode 295. 数据流的中位数
+ * 4. LeetCode 23. 合并K个升序链表
+ * 5. LeetCode 703. 数据流的第K大元素
+ * 6. LeetCode 407. 接雨水 II
+ * 7. LeetCode 264. 丑数 II
+ * 8. LeetCode 378. 有序矩阵中第 K 小的元素
+ * 9. LeetCode 239. 滑动窗口最大值
+ * 10. LeetCode 502. IPO
+ * 11. LeetCode 692. 前K个高频单词
+ * 12. LeetCode 451. 根据字符出现频率排序
+ * 13. LeetCode 373. 查找和最小的K对数字
+ * 14. LintCode 130. Heapify (建堆)
+ * 15. HackerRank QHEAP1 (基本堆操作)
+ * 16. 洛谷 P1177 【模板】排序
+ * 17. AtCoder ABC 127F - Absolute Minima
+ * 18. 牛客网 BM45 滑动窗口的最大值
+ * 19. 剑指Offer 40. 最小的k个数
+ * 20. POJ 3253. Fence Repair
+ * 21. HDU 1242. Rescue
+ */
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
+import java.util.PriorityQueue;
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Arrays;
+
+public class Code01_HeapSort {
+	
+	public static int MAXN = 100001;
+
+	public static int[] arr = new int[MAXN];
+
+	public static int n;
+
+	public static void main(String[] args) {
+		// 简化测试：使用固定测试数据
+		int[] testData = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+		n = testData.length;
+		System.arraycopy(testData, 0, arr, 0, n);
+		
+		System.out.print("Original array: ");
+		for (int i = 0; i < n; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+		
+		// heapSort1();
+		heapSort2();
+		
+		System.out.print("Sorted array: ");
+		for (int i = 0; i < n; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+	}
+
+	// i位置的数，向上调整大根堆
+	public static void heapInsert(int i) {
+		while (arr[i] > arr[(i - 1) / 2]) {
+			swap(i, (i - 1) / 2);
+			i = (i - 1) / 2;
+		}
+	}
+
+	// i位置的数，向下调整大根堆
+	// 当前堆的大小为size
+	public static void heapify(int i, int size) {
+		int l = i * 2 + 1;
+		while (l < size) {
+			int best = l + 1 < size && arr[l + 1] > arr[l] ? l + 1 : l;
+			best = arr[best] > arr[i] ? best : i;
+			if (best == i) {
+				break;
+			}
+			swap(best, i);
+			i = best;
+			l = i * 2 + 1;
+		}
+	}
+
+	public static void swap(int i, int j) {
+		int tmp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = tmp;
+	}
+
+	// 从顶到底建立大根堆，O(n * logn)
+	// 依次弹出堆内最大值并排好序，O(n * logn)
+	// 整体时间复杂度O(n * logn)
+	public static void heapSort1() {
+		for (int i = 0; i < n; i++) {
+			heapInsert(i);
+		}
+		int size = n;
+		while (size > 1) {
+			swap(0, --size);
+			heapify(0, size);
+		}
+	}
+
+	// 从底到顶建立大根堆，O(n)
+	// 依次弹出堆内最大值并排好序，O(n * logn)
+	// 整体时间复杂度O(n * logn)
+	public static void heapSort2() {
+		for (int i = n - 1; i >= 0; i--) {
+			heapify(i, n);
+		}
+		int size = n;
+		while (size > 1) {
+			swap(0, --size);
+			heapify(0, size);
+		}
+	}
+	
+	/*
+	 * 补充题目1: LeetCode 215. 数组中的第K个最大元素
+	 * 链接: https://leetcode.cn/problems/kth-largest-element-in-an-array/
+	 * 题目描述: 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素
+	 * 
+	 * 解题思路:
+	 * 方法1: 使用堆排序完整排序后取第k个元素 - 时间复杂度 O(n log n)
+	 * 方法2: 使用大小为k的最小堆维护前k个最大元素 - 时间复杂度 O(n log k)
+	 * 方法3: 快速选择算法 - 平均时间复杂度 O(n)
+	 * 
+	 * 最优解: 快速选择算法，但这里展示堆的解法
+	 * 时间复杂度: O(n log k) - 遍历数组O(n)，每次堆操作O(log k)
+	 * 空间复杂度: O(k) - 堆的大小
+	 * 
+	 * 相关题目:
+	 * - 剑指Offer 40. 最小的k个数
+	 * - 牛客网 BM46 最小的K个数
+	 * - LintCode 461. Kth Smallest Numbers in Unsorted Array
+	 */
+	public static int findKthLargest(int[] nums, int k) {
+		// 使用最小堆维护前k个最大元素
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+		
+		for (int num : nums) {
+			if (minHeap.size() < k) {
+				minHeap.offer(num);
+			} else if (num > minHeap.peek()) {
+				minHeap.poll();
+				minHeap.offer(num);
+			}
+		}
+		
+		return minHeap.peek();
+	}
+	
+	/*
+	 * 补充题目2: LeetCode 347. 前 K 个高频元素
+	 * 链接: https://leetcode.cn/problems/top-k-frequent-elements/
+	 * 题目描述: 给你一个整数数组 nums 和一个整数 k，请你返回其中出现频率前 k 高的元素
+	 * 
+	 * 解题思路:
+	 * 1. 使用哈希表统计每个元素的频率 - 时间复杂度 O(n)
+	 * 2. 使用大小为k的最小堆维护前k个高频元素 - 时间复杂度 O(n log k)
+	 * 3. 遍历哈希表，维护堆的大小为k
+	 * 4. 从堆中取出元素即为结果
+	 * 
+	 * 时间复杂度: O(n log k) - n为数组长度
+	 * 空间复杂度: O(n + k) - 哈希表O(n)，堆O(k)
+	 * 
+	 * 是否最优解: 是，满足题目要求的复杂度优于O(n log n)
+	 * 
+	 * 相关题目:
+	 * - LeetCode 692. 前K个高频单词
+	 * - LintCode 1297. 统计右侧小于当前元素的个数
+	 */
+	public static int[] topKFrequent(int[] nums, int k) {
+		// 1. 统计频率
+		Map<Integer, Integer> freqMap = new HashMap<>();
+		for (int num : nums) {
+			freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+		}
+		
+		// 2. 使用最小堆维护前k个高频元素
+		// 堆中存储的是元素值，比较依据是频率
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>(
+			(a, b) -> freqMap.get(a) - freqMap.get(b)
+		);
+		
+		// 3. 遍历频率表，维护堆大小为k
+		for (int num : freqMap.keySet()) {
+			if (minHeap.size() < k) {
+				minHeap.offer(num);
+			} else if (freqMap.get(num) > freqMap.get(minHeap.peek())) {
+				minHeap.poll();
+				minHeap.offer(num);
+			}
+		}
+		
+		// 4. 构造结果数组
+		int[] result = new int[k];
+		for (int i = 0; i < k; i++) {
+			result[i] = minHeap.poll();
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * 补充题目3: LeetCode 295. 数据流的中位数
+	 * 链接: https://leetcode.cn/problems/find-median-from-data-stream/
+	 * 题目描述: 中位数是有序整数列表中的中间值。如果列表的大小是偶数，则没有中间值，中位数是两个中间值的平均值
+	 * 
+	 * 解题思路:
+	 * 使用两个堆：
+	 * 1. 最大堆maxHeap存储较小的一半元素
+	 * 2. 最小堆minHeap存储较大的一半元素
+	 * 3. 保持两个堆的大小平衡（差值不超过1）
+	 * 
+	 * 时间复杂度: 
+	 * - 添加元素: O(log n) - 堆的插入和调整
+	 * - 查找中位数: O(1) - 直接访问堆顶
+	 * 空间复杂度: O(n) - 存储所有元素
+	 * 
+	 * 是否最优解: 是，这是处理动态中位数的经典解法
+	 * 
+	 * 相关题目:
+	 * - 剑指Offer 41. 数据流中的中位数
+	 * - HackerRank Find the Running Median
+	 * - 牛客网 NC134. 数据流中的中位数
+	 * - AtCoder ABC 127F - Absolute Minima
+	 */
+	static class MedianFinder {
+		// 存储较小一半元素的最大堆
+		private PriorityQueue<Integer> maxHeap;
+		// 存储较大一半元素的最小堆
+		private PriorityQueue<Integer> minHeap;
+		
+		public MedianFinder() {
+			// 最大堆：存储较小的一半元素
+			maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+			// 最小堆：存储较大的一半元素
+			minHeap = new PriorityQueue<>();
+		}
+		
+		/*
+		 * 添加数字到数据结构中
+		 * 时间复杂度: O(log n)
+		 */
+		public void addNum(int num) {
+			// 1. 根据num与两个堆堆顶的比较结果决定插入哪个堆
+			if (maxHeap.isEmpty() || num <= maxHeap.peek()) {
+				maxHeap.offer(num);
+			} else {
+				minHeap.offer(num);
+			}
+			
+			// 2. 平衡两个堆的大小
+			// 如果maxHeap比minHeap多2个元素，则移动一个元素到minHeap
+			if (maxHeap.size() > minHeap.size() + 1) {
+				minHeap.offer(maxHeap.poll());
+			}
+			// 如果minHeap比maxHeap多1个元素，则移动一个元素到maxHeap
+			else if (minHeap.size() > maxHeap.size() + 1) {
+				maxHeap.offer(minHeap.poll());
+			}
+		}
+		
+		/*
+		 * 查找当前数据结构中的中位数
+		 * 时间复杂度: O(1)
+		 */
+		public double findMedian() {
+			// 如果两个堆大小相等，返回两个堆顶的平均值
+			if (maxHeap.size() == minHeap.size()) {
+				return (maxHeap.peek() + minHeap.peek()) / 2.0;
+			}
+			// 如果maxHeap多一个元素，返回其堆顶
+			else if (maxHeap.size() > minHeap.size()) {
+				return maxHeap.peek();
+			}
+			// 如果minHeap多一个元素，返回其堆顶
+			else {
+				return minHeap.peek();
+			}
+		}
+	}
+	
+	/*
+	 * 补充题目4: LeetCode 23. 合并K个升序链表
+	 * 链接: https://leetcode.cn/problems/merge-k-sorted-lists/
+	 * 题目描述: 给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中
+	 * 
+	 * 解题思路:
+	 * 使用最小堆维护K个链表的当前头节点，每次取出最小节点加入结果链表，
+	 * 并将该节点的下一个节点加入堆中
+	 * 
+	 * 时间复杂度: O(N log k) - N为所有节点总数，k为链表数量
+	 * 空间复杂度: O(k) - 堆的大小
+	 * 
+	 * 是否最优解: 是，这是合并K个有序链表的经典解法之一
+	 * 
+	 * 相关题目:
+	 * - LintCode 104. 合并k个排序链表
+	 * - 牛客网 NC51. 合并k个排序链表
+	 */
+	static class ListNode {
+		int val;
+		ListNode next;
+		ListNode() {}
+		ListNode(int val) { this.val = val; }
+		ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+	}
+	
+	public static ListNode mergeKLists(ListNode[] lists) {
+		if (lists == null || lists.length == 0) {
+			return null;
+		}
+		
+		// 使用最小堆维护K个链表的当前头节点
+		// 比较依据是节点的值
+		PriorityQueue<ListNode> minHeap = new PriorityQueue<>(
+			(a, b) -> a.val - b.val
+		);
+		
+		// 将所有非空链表的头节点加入堆中
+		for (ListNode list : lists) {
+			if (list != null) {
+				minHeap.offer(list);
+			}
+		}
+		
+		// 创建虚拟头节点
+		ListNode dummy = new ListNode(0);
+		ListNode current = dummy;
+		
+		// 当堆不为空时，不断取出最小节点
+		while (!minHeap.isEmpty()) {
+			// 取出当前最小节点
+			ListNode node = minHeap.poll();
+			// 加入结果链表
+			current.next = node;
+			current = current.next;
+			// 将该节点的下一个节点加入堆中（如果不为空）
+			if (node.next != null) {
+				minHeap.offer(node.next);
+			}
+		}
+		
+		return dummy.next;
+	}
+	
+	/*
+     * 补充题目5: LeetCode 703. 数据流的第K大元素
+     * 链接: https://leetcode.cn/problems/kth-largest-element-in-a-stream/
+     * 题目描述: 设计一个找到数据流中第 k 大元素的类
+     * 
+     * 解题思路:
+     * 使用大小为k的最小堆维护数据流中前k个最大元素
+     * 堆顶即为第k大元素
+     * 
+     * 时间复杂度: 
+     * - 初始化: O(n log k) - n为初始数组长度
+     * - 添加元素: O(log k)
+     * 空间复杂度: O(k) - 堆的大小
+     * 
+     * 是否最优解: 是，这是处理动态第K大元素的经典解法
+     * 
+     * 相关题目:
+     * - 剑指Offer II 059. 数据流的第K大数值
+     */
+	static class KthLargest {
+		private int k;
+		private PriorityQueue<Integer> minHeap;
+		
+		public KthLargest(int k, int[] nums) {
+			this.k = k;
+			// 使用最小堆维护前k个最大元素
+			this.minHeap = new PriorityQueue<>();
+			
+			// 将初始数组中的元素加入堆中
+			for (int num : nums) {
+				add(num);
+			}
+		}
+		
+		/*
+		 * 向数据流中添加元素并返回当前第k大元素
+		 * 时间复杂度: O(log k)
+		 */
+		public int add(int val) {
+			if (minHeap.size() < k) {
+				minHeap.offer(val);
+			} else if (val > minHeap.peek()) {
+				minHeap.poll();
+				minHeap.offer(val);
+			}
+			return minHeap.peek();
+		}
+	}
+	
+	/*
+     * 补充题目6: LeetCode 407. 接雨水 II
+     * 链接: https://leetcode.cn/problems/trapping-rain-water-ii/
+     * 题目描述: 给定一个 m x n 的矩阵，其中的值都是非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。
+     * 
+     * 解题思路:
+     * 使用最小堆实现的Dijkstra算法变种：
+     * 1. 从边界开始，将所有边界点加入最小堆
+     * 2. 维护一个visited数组标记已访问的点
+     * 3. 使用一个height矩阵记录每个点能积累的最大水量
+     * 4. 每次从堆中取出高度最小的点，向四个方向扩展
+     * 5. 如果相邻点未访问过，计算能积累的水量并更新
+     * 
+     * 时间复杂度: O(m*n log(m+n)) - m,n为矩阵维度，堆操作复杂度O(log(m+n))
+     * 空间复杂度: O(m*n) - 存储visited和height数组
+     * 
+     * 是否最优解: 是，这是解决二维接雨水问题的最优解法之一
+     * 
+     * 相关题目:
+     * - LeetCode 42. 接雨水
+     * - LintCode 364. Trapping Rain Water II
+     */
+    public static class Cell {
+        int row, col, height;
+        public Cell(int row, int col, int height) {
+            this.row = row;
+            this.col = col;
+            this.height = height;
+        }
+    }
+    
+    public static int trapRainWater(int[][] heightMap) {
+        if (heightMap == null || heightMap.length <= 2 || heightMap[0].length <= 2) {
+            return 0;
+        }
+        
+        int m = heightMap.length;
+        int n = heightMap[0].length;
+        boolean[][] visited = new boolean[m][n];
+        // 最小堆，按高度排序
+        PriorityQueue<Cell> minHeap = new PriorityQueue<>((a, b) -> a.height - b.height);
+        
+        // 初始化：将所有边界点加入堆中
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
+                    minHeap.offer(new Cell(i, j, heightMap[i][j]));
+                    visited[i][j] = true;
+                }
+            }
+        }
+        
+        int water = 0;
+        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 上下左右四个方向
+        
+        // 从边界开始向内部处理
+        while (!minHeap.isEmpty()) {
+            Cell cell = minHeap.poll();
+            
+            for (int[] dir : dirs) {
+                int newRow = cell.row + dir[0];
+                int newCol = cell.col + dir[1];
+                
+                if (newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && !visited[newRow][newCol]) {
+                    // 计算当前位置能积累的水量
+                    if (heightMap[newRow][newCol] < cell.height) {
+                        water += cell.height - heightMap[newRow][newCol];
+                    }
+                    
+                    // 将新点加入堆中，高度取最大值（当前点高度或原始高度）
+                    minHeap.offer(new Cell(newRow, newCol, Math.max(heightMap[newRow][newCol], cell.height)));
+                    visited[newRow][newCol] = true;
+                }
+            }
+        }
+        
+        return water;
+    }
+    
+    /*
+     * 补充题目7: LeetCode 264. 丑数 II
+     * 链接: https://leetcode.cn/problems/ugly-number-ii/
+     * 题目描述: 给你一个整数 n ，请你找出并返回第 n 个 丑数 。丑数就是质因子只包含 2、3 和 5 的正整数。
+     * 
+     * 解题思路:
+     * 使用最小堆生成有序的丑数序列：
+     * 1. 初始化堆，放入第一个丑数1
+     * 2. 使用哈希集合去重
+     * 3. 每次从堆中取出最小的丑数，乘以2、3、5生成新的丑数
+     * 4. 第n次取出的数即为第n个丑数
+     * 
+     * 时间复杂度: O(n log n) - 进行n次堆操作，每次O(log n)
+     * 空间复杂度: O(n) - 堆和集合的大小
+     * 
+     * 是否最优解: 不是，更优的解法是使用动态规划，时间复杂度O(n)，空间复杂度O(n)
+     * 
+     * 相关题目:
+     * - LeetCode 313. 超级丑数
+     * - 牛客网 丑数系列
+     */
+    public static int nthUglyNumber(int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException("n must be positive");
+        }
+        
+        // 使用最小堆生成有序丑数
+        PriorityQueue<Long> minHeap = new PriorityQueue<>();
+        Set<Long> seen = new HashSet<>();
+        
+        // 初始丑数为1
+        minHeap.offer(1L);
+        seen.add(1L);
+        
+        long ugly = 1;
+        // 生成因子
+        int[] factors = {2, 3, 5};
+        
+        // 循环n次，第n次取出的就是第n个丑数
+        for (int i = 0; i < n; i++) {
+            ugly = minHeap.poll();
+            
+            // 生成新的丑数
+            for (int factor : factors) {
+                long next = ugly * factor;
+                if (!seen.contains(next)) {
+                    seen.add(next);
+                    minHeap.offer(next);
+                }
+            }
+        }
+        
+        return (int)ugly;
+    }
+    
+    /*
+     * 补充题目8: LeetCode 378. 有序矩阵中第 K 小的元素
+     * 链接: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
+     * 题目描述: 给你一个 n x n 矩阵 matrix ，其中每行和每列元素均按升序排序，找到矩阵中第 k 小的元素。
+     * 
+     * 解题思路:
+     * 使用最小堆进行多路归并：
+     * 1. 初始时将第一列的所有元素加入堆中
+     * 2. 每次从堆中取出最小的元素，这是当前的第m小元素
+     * 3. 如果m等于k，返回该元素
+     * 4. 否则，将该元素所在行的下一个元素加入堆中
+     * 
+     * 时间复杂度: O(k log n) - k次堆操作，每次O(log n)
+     * 空间复杂度: O(n) - 堆的大小最多为n
+     * 
+     * 是否最优解: 不是，更优的解法是二分查找，时间复杂度O(n log(max-min))
+     * 
+     * 相关题目:
+     * - LeetCode 373. 查找和最小的K对数字
+     * - LeetCode 719. 找出第k小的距离对
+     */
+    public static class MatrixCell {
+        int row, col, value;
+        public MatrixCell(int row, int col, int value) {
+            this.row = row;
+            this.col = col;
+            this.value = value;
+        }
+    }
+    
+    public static int kthSmallest(int[][] matrix, int k) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            throw new IllegalArgumentException("Invalid matrix");
+        }
+        
+        int n = matrix.length;
+        PriorityQueue<MatrixCell> minHeap = new PriorityQueue<>((a, b) -> a.value - b.value);
+        
+        // 将第一列的所有元素加入堆中
+        for (int i = 0; i < n; i++) {
+            minHeap.offer(new MatrixCell(i, 0, matrix[i][0]));
+        }
+        
+        // 取出k-1个元素，第k次取出的就是第k小的元素
+        MatrixCell current = null;
+        for (int i = 0; i < k; i++) {
+            current = minHeap.poll();
+            // 如果当前行还有下一个元素，加入堆中
+            if (current.col < n - 1) {
+                minHeap.offer(new MatrixCell(current.row, current.col + 1, matrix[current.row][current.col + 1]));
+            }
+        }
+        
+        return current != null ? current.value : -1;
+    }
+    
+    /*
+     * 补充题目9: LeetCode 239. 滑动窗口最大值
+     * 链接: https://leetcode.cn/problems/sliding-window-maximum/
+     * 题目描述: 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。
+     * 
+     * 解题思路:
+     * 使用最大堆维护滑动窗口内的元素：
+     * 1. 维护一个最大堆，存储元素值和索引
+     * 2. 窗口滑动时，将新元素加入堆中
+     * 3. 检查堆顶元素是否在当前窗口内，如果不在则移除
+     * 4. 堆顶元素即为当前窗口的最大值
+     * 
+     * 时间复杂度: O(n log k) - n个元素，每个元素最多进出堆一次
+     * 空间复杂度: O(k) - 堆的大小最多为k
+     * 
+     * 是否最优解: 不是，更优的解法是使用单调队列，时间复杂度O(n)
+     * 
+     * 相关题目:
+     * - 牛客网 BM45 滑动窗口的最大值
+     * - HackerRank Sliding Window Maximum
+     */
+    public static int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums == null || nums.length == 0 || k <= 0) {
+            return new int[0];
+        }
+        
+        int n = nums.length;
+        int[] result = new int[n - k + 1];
+        // 最大堆，按值降序排序，如果值相同，按索引降序排序
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> {
+            if (a[0] != b[0]) return b[0] - a[0];
+            return b[1] - a[1];
+        });
+        
+        // 初始化第一个窗口
+        for (int i = 0; i < k; i++) {
+            maxHeap.offer(new int[]{nums[i], i});
+        }
+        
+        result[0] = maxHeap.peek()[0];
+        
+        // 滑动窗口
+        for (int i = k; i < n; i++) {
+            // 将新元素加入堆
+            maxHeap.offer(new int[]{nums[i], i});
+            
+            // 移除不在当前窗口内的堆顶元素
+            while (maxHeap.peek()[1] <= i - k) {
+                maxHeap.poll();
+            }
+            
+            // 记录当前窗口的最大值
+            result[i - k + 1] = maxHeap.peek()[0];
+        }
+        
+        return result;
+    }
+    
+    /*
+     * 补充题目10: LeetCode 502. IPO
+     * 链接: https://leetcode.cn/problems/ipo/
+     * 题目描述: 假设 力扣（LeetCode）即将开始 IPO 。为了以更高的价格将股票卖给风险投资公司，力扣 希望在 IPO 之前开展一些项目以增加其资本。由于资源有限，它只能在 IPO 之前完成最多 k 个不同的项目。帮助力扣 设计完成最多 k 个不同项目后得到最大总资本的方式。
+     * 
+     * 解题思路:
+     * 使用两个堆组合解决：
+     * 1. 最小堆按资本排序，存储可投资项目
+     * 2. 最大堆按利润排序，存储当前可以投资的项目
+     * 3. 每次从最小堆中取出所有可以投资的项目（资本<=当前总资本）放入最大堆
+     * 4. 从最大堆中取出利润最大的项目投资，增加总资本
+     * 5. 重复3-4步骤k次
+     * 
+     * 时间复杂度: O(N log N) - N为项目数量，排序和堆操作
+     * 空间复杂度: O(N) - 堆的大小
+     * 
+     * 是否最优解: 是，这是解决此类资源分配问题的最优解法
+     * 
+     * 相关题目:
+     * - LeetCode 857. 雇佣 K 名工人的最低成本
+     * - LeetCode 1383. 最大的团队表现值
+     */
+    public static class Project {
+        int profit, capital;
+        public Project(int profit, int capital) {
+            this.profit = profit;
+            this.capital = capital;
+        }
+    }
+    
+    public static int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
+        int n = profits.length;
+        List<Project> projects = new ArrayList<>();
+        
+        // 构建项目列表
+        for (int i = 0; i < n; i++) {
+            projects.add(new Project(profits[i], capital[i]));
+        }
+        
+        // 按资本升序排序
+        Collections.sort(projects, (a, b) -> a.capital - b.capital);
+        
+        // 最大堆存储利润
+        PriorityQueue<Integer> maxProfitHeap = new PriorityQueue<>(Collections.reverseOrder());
+        
+        int currentCapital = w;
+        int projectIndex = 0;
+        
+        for (int i = 0; i < k; i++) {
+            // 将所有满足资本要求的项目加入最大堆
+            while (projectIndex < n && projects.get(projectIndex).capital <= currentCapital) {
+                maxProfitHeap.offer(projects.get(projectIndex).profit);
+                projectIndex++;
+            }
+            
+            // 如果没有可投资的项目，退出循环
+            if (maxProfitHeap.isEmpty()) {
+                break;
+            }
+            
+            // 选择利润最大的项目投资
+            currentCapital += maxProfitHeap.poll();
+        }
+        
+        return currentCapital;
+    }
+    
+    /*
+     * 补充题目11: LeetCode 692. 前K个高频单词
+     * 链接: https://leetcode.cn/problems/top-k-frequent-words/
+     * 题目描述: 给定一个单词列表 words 和一个整数 k ，返回前 k 个出现次数最多的单词。
+     * 
+     * 解题思路:
+     * 1. 使用哈希表统计每个单词的频率
+     * 2. 使用最小堆维护前k个高频单词
+     * 3. 自定义比较器：先按频率升序，频率相同按字典序降序
+     * 4. 最后反转结果列表
+     * 
+     * 时间复杂度: O(n log k) - n为单词数量
+     * 空间复杂度: O(n) - 哈希表和堆
+     * 
+     * 是否最优解: 是，满足题目要求的复杂度
+     * 
+     * 相关题目:
+     * - LeetCode 347. 前 K 个高频元素
+     * - LintCode 471. 前K个高频单词
+     */
+    public static List<String> topKFrequentWords(String[] words, int k) {
+        // 1. 统计频率
+        Map<String, Integer> freqMap = new HashMap<>();
+        for (String word : words) {
+            freqMap.put(word, freqMap.getOrDefault(word, 0) + 1);
+        }
+        
+        // 2. 使用最小堆维护前k个高频单词
+        // 自定义比较器：频率升序，频率相同按字典序降序
+        PriorityQueue<String> minHeap = new PriorityQueue<>(
+            (a, b) -> {
+                int freqCompare = freqMap.get(a) - freqMap.get(b);
+                if (freqCompare != 0) {
+                    return freqCompare;
+                }
+                return b.compareTo(a); // 字典序降序
+            }
+        );
+        
+        // 3. 遍历频率表，维护堆大小为k
+        for (String word : freqMap.keySet()) {
+            if (minHeap.size() < k) {
+                minHeap.offer(word);
+            } else {
+                int currentFreq = freqMap.get(word);
+                int minFreq = freqMap.get(minHeap.peek());
+                if (currentFreq > minFreq || 
+                    (currentFreq == minFreq && word.compareTo(minHeap.peek()) < 0)) {
+                    minHeap.poll();
+                    minHeap.offer(word);
+                }
+            }
+        }
+        
+        // 4. 构造结果列表（需要反转）
+        List<String> result = new ArrayList<>();
+        while (!minHeap.isEmpty()) {
+            result.add(minHeap.poll());
+        }
+        Collections.reverse(result);
+        
+        return result;
+    }
+    
+    /*
+     * 补充题目12: LeetCode 451. 根据字符出现频率排序
+     * 链接: https://leetcode.cn/problems/sort-characters-by-frequency/
+     * 题目描述: 给定一个字符串 s ，根据字符出现的频率对其进行降序排序。
+     * 
+     * 解题思路:
+     * 1. 使用哈希表统计每个字符的频率
+     * 2. 使用最大堆按频率排序
+     * 3. 从堆中依次取出字符构建结果字符串
+     * 
+     * 时间复杂度: O(n log n) - 堆操作
+     * 空间复杂度: O(n) - 哈希表和堆
+     * 
+     * 是否最优解: 是，这是最直观的解法
+     * 
+     * 相关题目:
+     * - LeetCode 347. 前 K 个高频元素
+     * - LeetCode 692. 前K个高频单词
+     */
+    public static String frequencySort(String s) {
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+        
+        // 1. 统计频率
+        Map<Character, Integer> freqMap = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+        }
+        
+        // 2. 使用最大堆按频率排序
+        PriorityQueue<Character> maxHeap = new PriorityQueue<>(
+            (a, b) -> freqMap.get(b) - freqMap.get(a)
+        );
+        
+        // 3. 将所有字符加入堆中
+        for (char c : freqMap.keySet()) {
+            maxHeap.offer(c);
+        }
+        
+        // 4. 构建结果字符串
+        StringBuilder result = new StringBuilder();
+        while (!maxHeap.isEmpty()) {
+            char c = maxHeap.poll();
+            int count = freqMap.get(c);
+            for (int i = 0; i < count; i++) {
+                result.append(c);
+            }
+        }
+        
+        return result.toString();
+    }
+    
+    /*
+     * 补充题目13: LeetCode 373. 查找和最小的K对数字
+     * 链接: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
+     * 题目描述: 给定两个以升序排列的整数数组 nums1 和 nums2 , 以及一个整数 k 。定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2。
+     * 
+     * 解题思路:
+     * 1. 使用最小堆维护候选对
+     * 2. 初始时将(nums1[0], nums2[0], 0, 0)加入堆
+     * 3. 每次取出和最小的对，然后加入新的候选对
+     * 4. 避免重复，每次只向右移动nums2的索引
+     * 
+     * 时间复杂度: O(k log k) - k次堆操作
+     * 空间复杂度: O(k) - 堆的大小
+     * 
+     * 是否最优解: 是，这是多路归并的经典应用
+     * 
+     * 相关题目:
+     * - LeetCode 378. 有序矩阵中第 K 小的元素
+     * - LeetCode 719. 找出第k小的距离对
+     */
+    public static List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums1.length == 0 || nums2.length == 0 || k == 0) {
+            return result;
+        }
+        
+        // 最小堆，按和排序
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>(
+            (a, b) -> (nums1[a[0]] + nums2[a[1]]) - (nums1[b[0]] + nums2[b[1]])
+        );
+        
+        // 初始将第一列的所有元素加入堆
+        for (int i = 0; i < Math.min(nums1.length, k); i++) {
+            minHeap.offer(new int[]{i, 0});
+        }
+        
+        // 取出前k个最小的对
+        while (k-- > 0 && !minHeap.isEmpty()) {
+            int[] pair = minHeap.poll();
+            int i = pair[0], j = pair[1];
+            
+            List<Integer> current = new ArrayList<>();
+            current.add(nums1[i]);
+            current.add(nums2[j]);
+            result.add(current);
+            
+            // 如果当前行的下一个元素存在，加入堆
+            if (j + 1 < nums2.length) {
+                minHeap.offer(new int[]{i, j + 1});
+            }
+        }
+        
+        return result;
+    }
+    
+    /*
+     * 堆和堆排序知识点总结：
+     * 
+     * 1. 堆的定义：
+     *    - 堆是一种特殊的完全二叉树
+     *    - 大顶堆：父节点的值总是大于或等于其子节点的值
+     *    - 小顶堆：父节点的值总是小于或等于其子节点的值
+     * 
+     * 2. 堆的存储：
+     *    - 通常使用数组来存储堆
+     *    - 对于索引为i的节点：
+     *      - 父节点索引：(i-1)/2
+     *      - 左子节点索引：2*i+1
+     *      - 右子节点索引：2*i+2
+     * 
+     * 3. 堆的基本操作：
+     *    - heapInsert(i)：向上调整，时间复杂度O(log n)
+     *    - heapify(i, size)：向下调整，时间复杂度O(log n)
+     *    - 建堆：
+     *      - 从顶到底：O(n log n)
+     *      - 从底到顶：O(n)
+     * 
+     * 4. 堆排序：
+     *    - 时间复杂度：O(n log n)
+     *    - 空间复杂度：O(1)
+     *    - 不稳定排序
+     * 
+     * 5. 堆的应用场景：
+     *    - 优先队列
+     *    - Top K问题（最大/最小的K个元素）
+     *    - 数据流中的中位数
+     *    - 合并K个有序序列
+     *    - Dijkstra算法等图算法
+     *    - 资源分配问题（如IPO问题）
+     *    - 贪心算法的实现
+     *    - 滑动窗口最大值/最小值
+     * 
+     * 6. Java中的堆实现：
+     *    - PriorityQueue类
+     *    - 默认是最小堆
+     *    - 可以通过自定义Comparator实现最大堆
+     *    - 线程不安全，多线程环境下可使用PriorityBlockingQueue
+     * 
+     * 7. 堆与其他数据结构的比较：
+     *    - 与BST比较：堆的构建更快，但BST支持范围查询
+     *    - 与普通数组比较：堆支持高效的插入和删除最值操作
+     *    - 与平衡树比较：实现更简单，但不支持复杂查询
+     * 
+     * 8. 工程化考量：
+     *    - 异常处理：处理空堆、非法输入等
+     *    - 性能优化：选择合适的堆大小，避免频繁扩容
+     *    - 内存管理：及时释放不需要的节点
+     *    - 线程安全：在多线程环境中使用同步机制
+     *    - 数据类型溢出：对于大数运算要注意溢出问题
+     * 
+     * 9. 常见堆相关问题的解题思路：
+     *    - Top K问题：使用大小为K的最小堆（最大的K个元素）或最大堆（最小的K个元素）
+     *    - 中位数问题：使用两个堆，一个最大堆存储小半部分，一个最小堆存储大半部分
+     *    - 合并K个有序序列：使用大小为K的最小堆维护每个序列的当前元素
+     *    - 资源分配问题：结合多个堆，分别按不同维度排序
+     * 
+     * 10. 堆的优化技巧：
+     *    - 使用数组实现堆时，可以预先分配足够的空间减少扩容开销
+     *    - 在不需要稳定排序的场景下，堆排序比归并排序更节省空间
+     *    - 对于大数据量，可以使用外部堆排序
+     * 
+     * 11. 更多堆相关题目列表（来自各大算法平台）：
+     *    
+     *    LeetCode题目：
+     *    - #215: Kth Largest Element in an Array (数组中的第K个最大元素)
+     *    - #23: Merge k Sorted Lists (合并K个排序链表)
+     *    - #295: Find Median from Data Stream (数据流的中位数)
+     *    - #347: Top K Frequent Elements (前K个高频元素)
+     *    - #703: Kth Largest Element in a Stream (数据流的第K大元素)
+     *    - #407: Trapping Rain Water II (接雨水II)
+     *    - #264: Ugly Number II (丑数II)
+     *    - #378: Kth Smallest Element in a Sorted Matrix (有序矩阵中第K小的元素)
+     *    - #239: Sliding Window Maximum (滑动窗口最大值)
+     *    - #502: IPO (IPO)
+     *    - #692: Top K Frequent Words (前K个高频单词)
+     *    - #451: Sort Characters By Frequency (根据字符出现频率排序)
+     *    - #373: Find K Pairs with Smallest Sums (查找和最小的K对数字)
+     *    - #253: Meeting Rooms II (会议室II)
+     *    - #218: The Skyline Problem (天际线问题)
+     *    - #778: Swim in Rising Water (水位上升的泳池中游泳)
+     *    - #355: Design Twitter (设计推特)
+     *    - #313: Super Ugly Number (超级丑数)
+     *    - #719: Find K-th Smallest Pair Distance (找出第k小的距离对)
+     *    - #659: Split Array into Consecutive Subsequences (分割数组为连续子序列)
+     *    
+     *    LintCode题目：
+     *    - #130: Heapify (建堆)
+     *    - #104: Merge K Sorted Lists (合并K个排序链表)
+     *    - #612: K Closest Points (最近K个点)
+     *    - #545: Top k Largest Numbers II (前K个最大数II)
+     *    - #461: Kth Smallest Numbers in Unsorted Array (无序数组中的第K小元素)
+     *    
+     *    HackerRank题目：
+     *    - QHEAP1 (基本堆操作)
+     *    - Find the Running Median (寻找运行中位数)
+     *    - Jesse and Cookies (杰茜和饼干)
+     *    - Minimum Average Waiting Time (最小平均等待时间)
+     *    
+     *    洛谷题目：
+     *    - P1177 【模板】排序
+     *    - P1090 合并果子 (贪心+堆)
+     *    - P3378 【模板】堆
+     *    
+     *    牛客题目：
+     *    - BM45 滑动窗口的最大值
+     *    - BM46 最小的K个数
+     *    - BM47 寻找第K大的数
+     *    
+     *    Codeforces题目：
+     *    - A. Helpful Maths
+     *    - B. Sort the Array
+     *    - C. Maximum Subsequence Value
+     *    
+     *    AtCoder题目：
+     *    - ABC 127F (对顶堆动态维护中位数)
+     *    - ABC 141D (优先队列贪心)
+     *    
+     *    剑指Offer题目：
+     *    - 剑指Offer 40. 最小的k个数
+     *    - 剑指Offer 41. 数据流中的中位数
+     *    - 剑指Offer 59-II. 队列的最大值
+     */
+}
+
+===============================================
+
+文件: Code02_HeapSort.java
+===============================================
+package class025;
+
+/**
+ * 堆排序与堆数据结构专题 - Java实现（简化版）
+ * 
+ * 本文件包含堆排序的基本实现以及多个经典堆相关题目的解法
+ * 每个解法都包含详细的时间复杂度、空间复杂度分析和工程化考量
+ * 
+ * 作者: 算法之旅
+ * 创建时间: 2024年
+ * 版本: 1.0
+ * 
+ * 主要功能:
+ * 1. 堆排序的两种实现方式
+ * 2. 多个经典堆相关问题的Java解法
+ * 3. 详细的注释和复杂度分析
+ * 4. 工程化考量和异常处理
+ * 
+ * 测试链接: https://www.luogu.com.cn/problem/P1177
+ * 提交时请把类名改成"Main"
+ * 
+ * 题目来源平台:
+ * - LeetCode (力扣): https://leetcode.cn/
+ * - LintCode (炼码): https://www.lintcode.com/
+ * - HackerRank: https://www.hackerrank.com/
+ * - 洛谷 (Luogu): https://www.luogu.com.cn/
+ * - AtCoder: https://atcoder.jp/
+ * - 牛客网: https://www.nowcoder.com/
+ * - CodeChef: https://www.codechef.com/
+ * - SPOJ: https://www.spoj.com/
+ * - Project Euler: https://projecteuler.net/
+ * - HackerEarth: https://www.hackerearth.com/
+ * - 计蒜客: https://www.jisuanke.com/
+ * - USACO: http://usaco.org/
+ * - UVa OJ: https://onlinejudge.org/
+ * - Codeforces: https://codeforces.com/
+ * - POJ: http://poj.org/
+ * - HDU: http://acm.hdu.edu.cn/
+ * - 剑指Offer: 面试经典题目
+ * - 杭电 OJ: http://acm.hdu.edu.cn/
+ * - LOJ: https://loj.ac/
+ * - acwing: https://www.acwing.com/
+ * - 赛码: https://www.acmcoder.com/
+ * - zoj: http://acm.zju.edu.cn/
+ * - MarsCode: https://www.marscode.cn/
+ * - TimusOJ: http://acm.timus.ru/
+ * - AizuOJ: http://judge.u-aizu.ac.jp/
+ * - Comet OJ: https://www.cometoj.com/
+ * - 杭州电子科技大学 OJ
+ */
+
+import java.util.*;
+
+public class Code02_HeapSort {
+
+	public static void main(String[] args) {
+		int[] arr = { 3, 1, 4, 1, 5, 9, 2, 6, 5, 3 };
+		System.out.println("Original array: " + Arrays.toString(arr));
+		heapSort2(arr);
+		System.out.println("Sorted array: " + Arrays.toString(arr));
+	}
+
+	// i位置的数，向上调整大根堆
+	public static void heapInsert(int[] arr, int i) {
+		while (arr[i] > arr[(i - 1) / 2]) {
+			swap(arr, i, (i - 1) / 2);
+			i = (i - 1) / 2;
+		}
+	}
+
+	// i位置的数，向下调整大根堆
+	// 当前堆的大小为size
+	public static void heapify(int[] arr, int i, int size) {
+		int l = i * 2 + 1;
+		while (l < size) {
+			int best = l + 1 < size && arr[l + 1] > arr[l] ? l + 1 : l;
+			best = arr[best] > arr[i] ? best : i;
+			if (best == i) {
+				break;
+			}
+			swap(arr, best, i);
+			i = best;
+			l = i * 2 + 1;
+		}
+	}
+
+	public static void swap(int[] arr, int i, int j) {
+		int tmp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = tmp;
+	}
+
+	// 从顶到底建立大根堆，O(n * logn)
+	// 依次弹出堆内最大值并排好序，O(n * logn)
+	// 整体时间复杂度O(n * logn)
+	public static void heapSort1(int[] arr) {
+		int n = arr.length;
+		for (int i = 0; i < n; i++) {
+			heapInsert(arr, i);
+		}
+		int size = n;
+		while (size > 1) {
+			swap(arr, 0, --size);
+			heapify(arr, 0, size);
+		}
+	}
+
+	// 从底到顶建立大根堆，O(n)
+	// 依次弹出堆内最大值并排好序，O(n * logn)
+	// 整体时间复杂度O(n * logn)
+	public static void heapSort2(int[] arr) {
+		int n = arr.length;
+		for (int i = n - 1; i >= 0; i--) {
+			heapify(arr, i, n);
+		}
+		int size = n;
+		while (size > 1) {
+			swap(arr, 0, --size);
+			heapify(arr, 0, size);
+		}
+	}
+	
+	/*
+	 * 补充题目1: LeetCode 215. 数组中的第K个最大元素
+	 * 链接: https://leetcode.cn/problems/kth-largest-element-in-an-array/
+	 * 题目描述: 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素
+	 * 
+	 * 解题思路:
+	 * 方法1: 使用堆排序完整排序后取第k个元素 - 时间复杂度 O(n log n)
+	 * 方法2: 使用大小为k的最小堆维护前k个最大元素 - 时间复杂度 O(n log k)
+	 * 方法3: 快速选择算法 - 平均时间复杂度 O(n)
+	 * 
+	 * 最优解: 快速选择算法，但这里展示堆的解法
+	 * 时间复杂度: O(n log k) - 遍历数组O(n)，每次堆操作O(log k)
+	 * 空间复杂度: O(k) - 堆的大小
+	 * 
+	 * 相关题目:
+	 * - 剑指Offer 40. 最小的k个数
+	 * - 牛客网 BM46 最小的K个数
+	 * - LintCode 461. Kth Smallest Numbers in Unsorted Array
+	 */
+	public static int findKthLargest(int[] nums, int k) {
+		// 使用最小堆维护前k个最大元素
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+		
+		for (int num : nums) {
+			if (minHeap.size() < k) {
+				minHeap.offer(num);
+			} else if (num > minHeap.peek()) {
+				minHeap.poll();
+				minHeap.offer(num);
+			}
+		}
+		
+		return minHeap.peek();
+	}
+	
+	/*
+	 * 补充题目2: LeetCode 347. 前 K 个高频元素
+	 * 链接: https://leetcode.cn/problems/top-k-frequent-elements/
+	 * 题目描述: 给你一个整数数组 nums 和一个整数 k，请你返回其中出现频率前 k 高的元素
+	 * 
+	 * 解题思路:
+	 * 1. 使用哈希表统计每个元素的频率 - 时间复杂度 O(n)
+	 * 2. 使用大小为k的最小堆维护前k个高频元素 - 时间复杂度 O(n log k)
+	 * 3. 遍历哈希表，维护堆的大小为k
+	 * 4. 从堆中取出元素即为结果
+	 * 
+	 * 时间复杂度: O(n log k) - n为数组长度
+	 * 空间复杂度: O(n + k) - 哈希表O(n)，堆O(k)
+	 * 
+	 * 是否最优解: 是，满足题目要求的复杂度优于O(n log n)
+	 * 
+	 * 相关题目:
+	 * - LeetCode 692. 前K个高频单词
+	 * - LintCode 1297. 统计右侧小于当前元素的个数
+	 */
+	public static int[] topKFrequent(int[] nums, int k) {
+		// 1. 统计频率
+		Map<Integer, Integer> freqMap = new HashMap<>();
+		for (int num : nums) {
+			freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+		}
+		
+		// 2. 使用最小堆维护前k个高频元素
+		// 堆中存储的是元素值，比较依据是频率
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>(
+			(a, b) -> freqMap.get(a) - freqMap.get(b)
+		);
+		
+		// 3. 遍历频率表，维护堆大小为k
+		for (int num : freqMap.keySet()) {
+			if (minHeap.size() < k) {
+				minHeap.offer(num);
+			} else if (freqMap.get(num) > freqMap.get(minHeap.peek())) {
+				minHeap.poll();
+				minHeap.offer(num);
+			}
+		}
+		
+		// 4. 构造结果数组
+		int[] result = new int[k];
+		for (int i = 0; i < k; i++) {
+			result[i] = minHeap.poll();
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * 补充题目3: LeetCode 295. 数据流的中位数
+	 * 链接: https://leetcode.cn/problems/find-median-from-data-stream/
+	 * 题目描述: 中位数是有序整数列表中的中间值。如果列表的大小是偶数，则没有中间值，中位数是两个中间值的平均值
+	 * 
+	 * 解题思路:
+	 * 使用两个堆：
+	 * 1. 最大堆maxHeap存储较小的一半元素
+	 * 2. 最小堆minHeap存储较大的一半元素
+	 * 3. 保持两个堆的大小平衡（差值不超过1）
+	 * 
+	 * 时间复杂度: 
+	 * - 添加元素: O(log n) - 堆的插入和调整
+	 * - 查找中位数: O(1) - 直接访问堆顶
+	 * 空间复杂度: O(n) - 存储所有元素
+	 * 
+	 * 是否最优解: 是，这是处理动态中位数的经典解法
+	 * 
+	 * 相关题目:
+	 * - 剑指Offer 41. 数据流中的中位数
+	 * - HackerRank Find the Running Median
+	 * - 牛客网 NC134. 数据流中的中位数
+	 * - AtCoder ABC 127F - Absolute Minima
+	 */
+	static class MedianFinder {
+		// 存储较小一半元素的最大堆
+		private PriorityQueue<Integer> maxHeap;
+		// 存储较大一半元素的最小堆
+		private PriorityQueue<Integer> minHeap;
+		
+		public MedianFinder() {
+			// 最大堆：存储较小的一半元素
+			maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+			// 最小堆：存储较大的一半元素
+			minHeap = new PriorityQueue<>();
+		}
+		
+		/*
+		 * 添加数字到数据结构中
+		 * 时间复杂度: O(log n)
+		 */
+		public void addNum(int num) {
+			// 1. 根据num与两个堆堆顶的比较结果决定插入哪个堆
+			if (maxHeap.isEmpty() || num <= maxHeap.peek()) {
+				maxHeap.offer(num);
+			} else {
+				minHeap.offer(num);
+			}
+			
+			// 2. 平衡两个堆的大小
+			// 如果maxHeap比minHeap多2个元素，则移动一个元素到minHeap
+			if (maxHeap.size() > minHeap.size() + 1) {
+				minHeap.offer(maxHeap.poll());
+			}
+			// 如果minHeap比maxHeap多1个元素，则移动一个元素到maxHeap
+			else if (minHeap.size() > maxHeap.size() + 1) {
+				maxHeap.offer(minHeap.poll());
+			}
+		}
+		
+		/*
+		 * 查找当前数据结构中的中位数
+		 * 时间复杂度: O(1)
+		 */
+		public double findMedian() {
+			// 如果两个堆大小相等，返回两个堆顶的平均值
+			if (maxHeap.size() == minHeap.size()) {
+				return (maxHeap.peek() + minHeap.peek()) / 2.0;
+			}
+			// 如果maxHeap多一个元素，返回其堆顶
+			else if (maxHeap.size() > minHeap.size()) {
+				return maxHeap.peek();
+			}
+			// 如果minHeap多一个元素，返回其堆顶
+			else {
+				return minHeap.peek();
+			}
+		}
+	}
+	
+	/*
+	 * 补充题目4: LeetCode 23. 合并K个升序链表
+	 * 链接: https://leetcode.cn/problems/merge-k-sorted-lists/
+	 * 题目描述: 给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中
+	 * 
+	 * 解题思路:
+	 * 使用最小堆维护K个链表的当前头节点，每次取出最小节点加入结果链表，
+	 * 并将该节点的下一个节点加入堆中
+	 * 
+	 * 时间复杂度: O(N log k) - N为所有节点总数，k为链表数量
+	 * 空间复杂度: O(k) - 堆的大小
+	 * 
+	 * 是否最优解: 是，这是合并K个有序链表的经典解法之一
+	 * 
+	 * 相关题目:
+	 * - LintCode 104. 合并k个排序链表
+	 * - 牛客网 NC51. 合并k个排序链表
+	 */
+	static class ListNode {
+		int val;
+		ListNode next;
+		ListNode() {}
+		ListNode(int val) { this.val = val; }
+		ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+	}
+	
+	public static ListNode mergeKLists(ListNode[] lists) {
+		if (lists == null || lists.length == 0) {
+			return null;
+		}
+		
+		// 使用最小堆维护K个链表的当前头节点
+		// 比较依据是节点的值
+		PriorityQueue<ListNode> minHeap = new PriorityQueue<>(
+			(a, b) -> a.val - b.val
+		);
+		
+		// 将所有非空链表的头节点加入堆中
+		for (ListNode list : lists) {
+			if (list != null) {
+				minHeap.offer(list);
+			}
+		}
+		
+		// 创建虚拟头节点
+		ListNode dummy = new ListNode(0);
+		ListNode current = dummy;
+		
+		// 当堆不为空时，不断取出最小节点
+		while (!minHeap.isEmpty()) {
+			// 取出当前最小节点
+			ListNode node = minHeap.poll();
+			// 加入结果链表
+			current.next = node;
+			current = current.next;
+			// 将该节点的下一个节点加入堆中（如果不为空）
+			if (node.next != null) {
+				minHeap.offer(node.next);
+			}
+		}
+		
+		return dummy.next;
+	}
+	
+	/*
+     * 堆和堆排序知识点总结：
+     * 
+     * 1. 堆的定义：
+     *    - 堆是一种特殊的完全二叉树
+     *    - 大顶堆：父节点的值总是大于或等于其子节点的值
+     *    - 小顶堆：父节点的值总是小于或等于其子节点的值
+     * 
+     * 2. 堆的存储：
+     *    - 通常使用数组来存储堆
+     *    - 对于索引为i的节点：
+     *      - 父节点索引：(i-1)/2
+     *      - 左子节点索引：2*i+1
+     *      - 右子节点索引：2*i+2
+     * 
+     * 3. 堆的基本操作：
+     *    - heapInsert(i)：向上调整，时间复杂度O(log n)
+     *    - heapify(i, size)：向下调整，时间复杂度O(log n)
+     *    - 建堆：
+     *      - 从顶到底：O(n log n)
+     *      - 从底到顶：O(n)
+     * 
+     * 4. 堆排序：
+     *    - 时间复杂度：O(n log n)
+     *    - 空间复杂度：O(1)
+     *    - 不稳定排序
+     * 
+     * 5. 堆的应用场景：
+     *    - 优先队列
+     *    - Top K问题（最大/最小的K个元素）
+     *    - 数据流中的中位数
+     *    - 合并K个有序序列
+     *    - Dijkstra算法等图算法
+     *    - 资源分配问题（如IPO问题）
+     *    - 贪心算法的实现
+     *    - 滑动窗口最大值/最小值
+     * 
+     * 6. Java中的堆实现：
+     *    - PriorityQueue类
+     *    - 默认是最小堆
+     *    - 可以通过自定义Comparator实现最大堆
+     *    - 线程不安全，多线程环境下可使用PriorityBlockingQueue
+     * 
+     * 7. 堆与其他数据结构的比较：
+     *    - 与BST比较：堆的构建更快，但BST支持范围查询
+     *    - 与普通数组比较：堆支持高效的插入和删除最值操作
+     *    - 与平衡树比较：实现更简单，但不支持复杂查询
+     * 
+     * 8. 工程化考量：
+     *    - 异常处理：处理空堆、非法输入等
+     *    - 性能优化：选择合适的堆大小，避免频繁扩容
+     *    - 内存管理：及时释放不需要的节点
+     *    - 线程安全：在多线程环境中使用同步机制
+     *    - 数据类型溢出：对于大数运算要注意溢出问题
+     * 
+     * 9. 常见堆相关问题的解题思路：
+     *    - Top K问题：使用大小为K的最小堆（最大的K个元素）或最大堆（最小的K个元素）
+     *    - 中位数问题：使用两个堆，一个最大堆存储小半部分，一个最小堆存储大半部分
+     *    - 合并K个有序序列：使用大小为K的最小堆维护每个序列的当前元素
+     *    - 资源分配问题：结合多个堆，分别按不同维度排序
+     * 
+     * 10. 堆的优化技巧：
+     *    - 使用数组实现堆时，可以预先分配足够的空间减少扩容开销
+     *    - 在不需要稳定排序的场景下，堆排序比归并排序更节省空间
+     *    - 对于大数据量，可以使用外部堆排序
+     * 
+     * 11. 更多堆相关题目列表（来自各大算法平台）：
+     *    
+     *    LeetCode题目：
+     *    - #215: Kth Largest Element in an Array (数组中的第K个最大元素)
+     *    - #23: Merge k Sorted Lists (合并K个排序链表)
+     *    - #295: Find Median from Data Stream (数据流的中位数)
+     *    - #347: Top K Frequent Elements (前K个高频元素)
+     *    - #703: Kth Largest Element in a Stream (数据流的第K大元素)
+     *    - #407: Trapping Rain Water II (接雨水II)
+     *    - #264: Ugly Number II (丑数II)
+     *    - #378: Kth Smallest Element in a Sorted Matrix (有序矩阵中第K小的元素)
+     *    - #239: Sliding Window Maximum (滑动窗口最大值)
+     *    - #502: IPO (IPO)
+     *    - #692: Top K Frequent Words (前K个高频单词)
+     *    - #451: Sort Characters By Frequency (根据字符出现频率排序)
+     *    - #373: Find K Pairs with Smallest Sums (查找和最小的K对数字)
+     *    - #253: Meeting Rooms II (会议室II)
+     *    - #218: The Skyline Problem (天际线问题)
+     *    - #778: Swim in Rising Water (水位上升的泳池中游泳)
+     *    - #355: Design Twitter (设计推特)
+     *    - #313: Super Ugly Number (超级丑数)
+     *    - #719: Find K-th Smallest Pair Distance (找出第k小的距离对)
+     *    - #659: Split Array into Consecutive Subsequences (分割数组为连续子序列)
+     *    
+     *    LintCode题目：
+     *    - #130: Heapify (建堆)
+     *    - #104: Merge K Sorted Lists (合并K个排序链表)
+     *    - #612: K Closest Points (最近K个点)
+     *    - #545: Top k Largest Numbers II (前K个最大数II)
+     *    - #461: Kth Smallest Numbers in Unsorted Array (无序数组中的第K小元素)
+     *    
+     *    HackerRank题目：
+     *    - QHEAP1 (基本堆操作)
+     *    - Find the Running Median (寻找运行中位数)
+     *    - Jesse and Cookies (杰茜和饼干)
+     *    - Minimum Average Waiting Time (最小平均等待时间)
+     *    
+     *    洛谷题目：
+     *    - P1177 【模板】排序
+     *    - P1090 合并果子 (贪心+堆)
+     *    - P3378 【模板】堆
+     *    
+     *    牛客题目：
+     *    - BM45 滑动窗口的最大值
+     *    - BM46 最小的K个数
+     *    - BM47 寻找第K大的数
+     *    
+     *    Codeforces题目：
+     *    - A. Helpful Maths
+     *    - B. Sort the Array
+     *    - C. Maximum Subsequence Value
+     *    
+     *    AtCoder题目：
+     *    - ABC 127F (对顶堆动态维护中位数)
+     *    - ABC 141D (优先队列贪心)
+     *    
+     *    剑指Offer题目：
+     *    - 剑指Offer 40. 最小的k个数
+     *    - 剑指Offer 41. 数据流中的中位数
+     *    - 剑指Offer 59-II. 队列的最大值
+     */
+}
+
+===============================================
+
+文件: Code03_HeapSort.cpp
+===============================================
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <functional>
+#include <algorithm>
+#include <string>
+#include <stdexcept>
+#include <climits>
+#include <cmath>
+#include <sstream>
+#include <iterator>
+#include <map>
+#include <set>
+#include <stack>
+#include <deque>
+#include <list>
+
+/**
+ * 堆排序C++实现及相关题目
+ * 
+ * 本文件包含堆排序的基本实现以及多个经典堆相关题目的完整解法
+ * 每个解法都包含详细的时间复杂度、空间复杂度分析和工程化考量
+ * 
+ * 作者: 算法之旅
+ * 创建时间: 2024年
+ * 版本: 1.0
+ * 
+ * 主要功能:
+ * 1. 堆排序的两种实现方式
+ * 2. 多个经典堆相关问题的C++解法
+ * 3. 详细的注释和复杂度分析
+ * 4. 工程化考量和异常处理
+ * 
+ * 题目来源平台:
+ * - LeetCode (力扣): https://leetcode.cn/
+ * - LintCode (炼码): https://www.lintcode.com/
+ * - HackerRank: https://www.hackerrank.com/
+ * - 洛谷 (Luogu): https://www.luogu.com.cn/
+ * - AtCoder: https://atcoder.jp/
+ * - 牛客网: https://www.nowcoder.com/
+ * - CodeChef: https://www.codechef.com/
+ * - SPOJ: https://www.spoj.com/
+ * - Project Euler: https://projecteuler.net/
+ * - HackerEarth: https://www.hackerearth.com/
+ * - 计蒜客: https://www.jisuanke.com/
+ * - USACO: http://usaco.org/
+ * - UVa OJ: https://onlinejudge.org/
+ * - Codeforces: https://codeforces.com/
+ * - POJ: http://poj.org/
+ * - HDU: http://acm.hdu.edu.cn/
+ * - 剑指Offer: 面试经典题目
+ * - 杭电 OJ: http://acm.hdu.edu.cn/
+ * - LOJ: https://loj.ac/
+ * - acwing: https://www.acwing.com/
+ * - 赛码: https://www.acmcoder.com/
+ * - zoj: http://acm.zju.edu.cn/
+ * - MarsCode: https://www.marscode.cn/
+ * - TimusOJ: http://acm.timus.ru/
+ * - AizuOJ: http://judge.u-aizu.ac.jp/
+ * - Comet OJ: https://www.cometoj.com/
+ * - 杭州电子科技大学 OJ
+ */
+
+using namespace std;
+
+class HeapSortSolution {
+public:
+    /*
+     * 堆排序主函数
+     * 时间复杂度: O(n log n)
+     * 空间复杂度: O(1)
+     */
+    static vector<int> sortArray(vector<int>& nums) {
+        if (nums.size() <= 1) {
+            return nums;
+        }
+        
+        // heapSort2为从底到顶建堆然后排序
+        heapSort2(nums);
+        return nums;
+    }
+
+    // i位置的数，向上调整大根堆
+    // arr[i] = x，x是新来的！往上看，直到不比父亲大，或者来到0位置(顶)
+    static void heapInsert(vector<int>& arr, int i) {
+        while (arr[i] > arr[(i - 1) / 2]) {
+            swap(arr[i], arr[(i - 1) / 2]);
+            i = (i - 1) / 2;
+        }
+    }
+
+    // i位置的数，变小了，又想维持大根堆结构
+    // 向下调整大根堆
+    // 当前堆的大小为size
+    static void heapify(vector<int>& arr, int i, int size) {
+        int l = i * 2 + 1;
+        while (l < size) {
+            // 有左孩子，l
+            // 右孩子，l+1
+            // 评选，最强的孩子，是哪个下标的孩子
+            int best = l + 1 < size && arr[l + 1] > arr[l] ? l + 1 : l;
+            // 上面已经评选了最强的孩子，接下来，当前的数和最强的孩子之前，最强下标是谁
+            best = arr[best] > arr[i] ? best : i;
+            if (best == i) {
+                break;
+            }
+            swap(arr[best], arr[i]);
+            i = best;
+            l = i * 2 + 1;
+        }
+    }
+
+    // 从顶到底建立大根堆，O(n * logn)
+    // 依次弹出堆内最大值并排好序，O(n * logn)
+    // 整体时间复杂度O(n * logn)
+    static void heapSort1(vector<int>& arr) {
+        int n = arr.size();
+        for (int i = 0; i < n; i++) {
+            heapInsert(arr, i);
+        }
+        int size = n;
+        while (size > 1) {
+            swap(arr[0], arr[--size]);
+            heapify(arr, 0, size);
+        }
+    }
+
+    // 从底到顶建立大根堆，O(n)
+    // 依次弹出堆内最大值并排好序，O(n * logn)
+    // 整体时间复杂度O(n * logn)
+    static void heapSort2(vector<int>& arr) {
+        int n = arr.size();
+        for (int i = n - 1; i >= 0; i--) {
+            heapify(arr, i, n);
+        }
+        int size = n;
+        while (size > 1) {
+            swap(arr[0], arr[--size]);
+            heapify(arr, 0, size);
+        }
+    }
+    
+    /*
+     * 补充题目1: LeetCode 215. 数组中的第K个最大元素
+     * 链接: https://leetcode.cn/problems/kth-largest-element-in-an-array/
+     * 题目描述: 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素
+     * 
+     * 解题思路:
+     * 方法1: 使用堆排序完整排序后取第k个元素 - 时间复杂度 O(n log n)
+     * 方法2: 使用大小为k的最小堆维护前k个最大元素 - 时间复杂度 O(n log k)
+     * 方法3: 快速选择算法 - 平均时间复杂度 O(n)
+     * 
+     * 最优解: 快速选择算法，但这里展示堆的解法
+     * 时间复杂度: O(n log k) - 遍历数组O(n)，每次堆操作O(log k)
+     * 空间复杂度: O(k) - 堆的大小
+     * 
+     * 相关题目:
+     * - 剑指Offer 40. 最小的k个数
+     * - 牛客网 BM46 最小的K个数
+     * - LintCode 461. Kth Smallest Numbers in Unsorted Array
+     */
+    static int findKthLargest(vector<int>& nums, int k) {
+        // 使用最小堆维护前k个最大元素
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+        
+        for (int num : nums) {
+            if (minHeap.size() < k) {
+                minHeap.push(num);
+            } else if (num > minHeap.top()) {
+                minHeap.pop();
+                minHeap.push(num);
+            }
+        }
+        
+        return minHeap.top();
+    }
+    
+    /*
+     * 补充题目2: LeetCode 347. 前 K 个高频元素
+     * 链接: https://leetcode.cn/problems/top-k-frequent-elements/
+     * 题目描述: 给你一个整数数组 nums 和一个整数 k，请你返回其中出现频率前 k 高的元素
+     * 
+     * 解题思路:
+     * 1. 使用哈希表统计每个元素的频率 - 时间复杂度 O(n)
+     * 2. 使用大小为k的最小堆维护前k个高频元素 - 时间复杂度 O(n log k)
+     * 3. 遍历哈希表，维护堆的大小为k
+     * 4. 从堆中取出元素即为结果
+     * 
+     * 时间复杂度: O(n log k) - n为数组长度
+     * 空间复杂度: O(n + k) - 哈希表O(n)，堆O(k)
+     * 
+     * 是否最优解: 是，满足题目要求的复杂度优于O(n log n)
+     * 
+     * 相关题目:
+     * - LeetCode 692. 前K个高频单词
+     * - LintCode 1297. 统计右侧小于当前元素的个数
+     */
+    static vector<int> topKFrequent(vector<int>& nums, int k) {
+        // 1. 统计频率
+        unordered_map<int, int> freqMap;
+        for (int num : nums) {
+            freqMap[num]++;
+        }
+        
+        // 2. 使用最小堆维护前k个高频元素
+        // 比较依据是频率
+        auto cmp = [&freqMap](int a, int b) {
+            return freqMap[a] > freqMap[b]; // 最小堆
+        };
+        priority_queue<int, vector<int>, decltype(cmp)> minHeap(cmp);
+        
+        // 3. 遍历频率表，维护堆大小为k
+        for (auto& pair : freqMap) {
+            if (minHeap.size() < k) {
+                minHeap.push(pair.first);
+            } else if (freqMap[pair.first] > freqMap[minHeap.top()]) {
+                minHeap.pop();
+                minHeap.push(pair.first);
+            }
+        }
+        
+        // 4. 构造结果数组
+        vector<int> result;
+        while (!minHeap.empty()) {
+            result.push_back(minHeap.top());
+            minHeap.pop();
+        }
+        
+        return result;
+    }
+    
+    /*
+     * 补充题目3: LeetCode 295. 数据流的中位数
+     * 链接: https://leetcode.cn/problems/find-median-from-data-stream/
+     * 题目描述: 中位数是有序整数列表中的中间值。如果列表的大小是偶数，则没有中间值，中位数是两个中间值的平均值
+     * 
+     * 解题思路:
+     * 使用两个堆：
+     * 1. 最大堆maxHeap存储较小的一半元素
+     * 2. 最小堆minHeap存储较大的一半元素
+     * 3. 保持两个堆的大小平衡（差值不超过1）
+     * 
+     * 时间复杂度: 
+     * - 添加元素: O(log n) - 堆的插入和调整
+     * - 查找中位数: O(1) - 直接访问堆顶
+     * 空间复杂度: O(n) - 存储所有元素
+     * 
+     * 是否最优解: 是，这是处理动态中位数的经典解法
+     * 
+     * 相关题目:
+     * - 剑指Offer 41. 数据流中的中位数
+     * - HackerRank Find the Running Median
+     * - 牛客网 NC134. 数据流中的中位数
+     * - AtCoder ABC 127F - Absolute Minima
+     */
+    class MedianFinder {
+    private:
+        // 存储较小一半元素的最大堆
+        priority_queue<int> maxHeap;
+        // 存储较大一半元素的最小堆
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+        
+    public:
+        MedianFinder() {}
+        
+        /*
+         * 添加数字到数据结构中
+         * 时间复杂度: O(log n)
+         */
+        void addNum(int num) {
+            // 1. 根据num与两个堆堆顶的比较结果决定插入哪个堆
+            if (maxHeap.empty() || num <= maxHeap.top()) {
+                maxHeap.push(num);
+            } else {
+                minHeap.push(num);
+            }
+            
+            // 2. 平衡两个堆的大小
+            // 如果maxHeap比minHeap多2个元素，则移动一个元素到minHeap
+            if (maxHeap.size() > minHeap.size() + 1) {
+                minHeap.push(maxHeap.top());
+                maxHeap.pop();
+            }
+            // 如果minHeap比maxHeap多1个元素，则移动一个元素到maxHeap
+            else if (minHeap.size() > maxHeap.size() + 1) {
+                maxHeap.push(minHeap.top());
+                minHeap.pop();
+            }
+        }
+        
+        /*
+         * 查找当前数据结构中的中位数
+         * 时间复杂度: O(1)
+         */
+        double findMedian() {
+            // 如果两个堆大小相等，返回两个堆顶的平均值
+            if (maxHeap.size() == minHeap.size()) {
+                return (maxHeap.top() + minHeap.top()) / 2.0;
+            }
+            // 如果maxHeap多一个元素，返回其堆顶
+            else if (maxHeap.size() > minHeap.size()) {
+                return maxHeap.top();
+            }
+            // 如果minHeap多一个元素，返回其堆顶
+            else {
+                return minHeap.top();
+            }
+        }
+    };
+    
+    /*
+     * 补充题目4: LeetCode 23. 合并K个升序链表
+     * 链接: https://leetcode.cn/problems/merge-k-sorted-lists/
+     * 题目描述: 给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中
+     * 
+     * 解题思路:
+     * 使用最小堆维护K个链表的当前头节点，每次取出最小节点加入结果链表，
+     * 并将该节点的下一个节点加入堆中
+     * 
+     * 时间复杂度: O(N log k) - N为所有节点总数，k为链表数量
+     * 空间复杂度: O(k) - 堆的大小
+     * 
+     * 是否最优解: 是，这是合并K个有序链表的经典解法之一
+     * 
+     * 相关题目:
+     * - LintCode 104. 合并k个排序链表
+     * - 牛客网 NC51. 合并k个排序链表
+     */
+    struct ListNode {
+        int val;
+        ListNode *next;
+        ListNode() : val(0), next(nullptr) {}
+        ListNode(int x) : val(x), next(nullptr) {}
+        ListNode(int x, ListNode *next) : val(x), next(next) {}
+    };
+    
+    // 自定义比较函数对象
+    struct Compare {
+        bool operator()(ListNode* a, ListNode* b) {
+            return a->val > b->val; // 最小堆
+        }
+    };
+    
+    static ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if (lists.empty()) {
+            return nullptr;
+        }
+        
+        // 使用最小堆维护K个链表的当前头节点
+        priority_queue<ListNode*, vector<ListNode*>, Compare> minHeap;
+        
+        // 将所有非空链表的头节点加入堆中
+        for (ListNode* list : lists) {
+            if (list != nullptr) {
+                minHeap.push(list);
+            }
+        }
+        
+        // 创建虚拟头节点
+        ListNode dummy(0);
+        ListNode* current = &dummy;
+        
+        // 当堆不为空时，不断取出最小节点
+        while (!minHeap.empty()) {
+            // 取出当前最小节点
+            ListNode* node = minHeap.top();
+            minHeap.pop();
+            
+            // 加入结果链表
+            current->next = node;
+            current = current->next;
+            
+            // 将该节点的下一个节点加入堆中（如果不为空）
+            if (node->next != nullptr) {
+                minHeap.push(node->next);
+            }
+        }
+        
+        return dummy.next;
+    }
+    
+    /*
+     * 补充题目5: LeetCode 703. 数据流的第K大元素
+     * 链接: https://leetcode.cn/problems/kth-largest-element-in-a-stream/
+     * 题目描述: 设计一个找到数据流中第 k 大元素的类
+     * 
+     * 解题思路:
+     * 使用大小为k的最小堆维护数据流中前k个最大元素
+     * 堆顶即为第k大元素
+     * 
+     * 时间复杂度: 
+     * - 初始化: O(n log k) - n为初始数组长度
+     * - 添加元素: O(log k)
+     * 空间复杂度: O(k) - 堆的大小
+     * 
+     * 是否最优解: 是，这是处理动态第K大元素的经典解法
+     * 
+     * 相关题目:
+     * - 剑指Offer II 059. 数据流的第K大数值
+     */
+    class KthLargest {
+    private:
+        int k;
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+        
+    public:
+        KthLargest(int k, vector<int>& nums) : k(k) {
+            // 将初始数组中的元素加入堆中
+            for (int num : nums) {
+                add(num);
+            }
+        }
+        
+        /*
+         * 向数据流中添加元素并返回当前第k大元素
+         * 时间复杂度: O(log k)
+         */
+        int add(int val) {
+            if (minHeap.size() < k) {
+                minHeap.push(val);
+            } else if (val > minHeap.top()) {
+                minHeap.pop();
+                minHeap.push(val);
+            }
+            return minHeap.top();
+        }
+    };
+    
+    /*
+     * 补充题目6: LeetCode 407. 接雨水 II
+     * 链接: https://leetcode.cn/problems/trapping-rain-water-ii/
+     * 题目描述: 给定一个 m x n 的矩阵，其中的值都是非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。
+     * 
+     * 解题思路:
+     * 使用最小堆实现的Dijkstra算法变种：
+     * 1. 从边界开始，将所有边界点加入最小堆
+     * 2. 维护一个visited数组标记已访问的点
+     * 3. 每次从堆中取出高度最小的点，向四个方向扩展
+     * 4. 如果相邻点未访问过，计算能积累的水量并更新
+     * 
+     * 时间复杂度: O(m*n log(m+n)) - m,n为矩阵维度，堆操作复杂度O(log(m+n))
+     * 空间复杂度: O(m*n) - 存储visited数组
+     * 
+     * 是否最优解: 是，这是解决二维接雨水问题的最优解法之一
+     * 
+     * 相关题目:
+     * - LeetCode 42. 接雨水
+     * - LintCode 364. Trapping Rain Water II
+     */
+    static int trapRainWater(vector<vector<int>>& heightMap) {
+        if (heightMap.empty() || heightMap.size() <= 2 || heightMap[0].size() <= 2) {
+            return 0;
+        }
+        
+        int m = heightMap.size();
+        int n = heightMap[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        
+        // 定义优先队列中的元素结构
+        struct Cell {
+            int row, col, height;
+            Cell(int r, int c, int h) : row(r), col(c), height(h) {}
+            bool operator>(const Cell& other) const {
+                return height > other.height;
+            }
+        };
+        
+        // 最小堆，按高度排序
+        priority_queue<Cell, vector<Cell>, greater<Cell>> minHeap;
+        
+        // 初始化：将所有边界点加入堆中
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
+                    minHeap.push(Cell(i, j, heightMap[i][j]));
+                    visited[i][j] = true;
+                }
+            }
+        }
+        
+        int water = 0;
+        vector<vector<int>> dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 上下左右四个方向
+        
+        // 从边界开始向内部处理
+        while (!minHeap.empty()) {
+            Cell cell = minHeap.top();
+            minHeap.pop();
+            
+            for (auto& dir : dirs) {
+                int newRow = cell.row + dir[0];
+                int newCol = cell.col + dir[1];
+                
+                if (newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && !visited[newRow][newCol]) {
+                    // 计算当前位置能积累的水量
+                    if (heightMap[newRow][newCol] < cell.height) {
+                        water += cell.height - heightMap[newRow][newCol];
+                    }
+                    
+                    // 将新点加入堆中，高度取最大值（当前点高度或原始高度）
+                    minHeap.push(Cell(newRow, newCol, max(heightMap[newRow][newCol], cell.height)));
+                    visited[newRow][newCol] = true;
+                }
+            }
+        }
+        
+        return water;
+    }
+    
+    /*
+     * 补充题目7: LeetCode 264. 丑数 II
+     * 链接: https://leetcode.cn/problems/ugly-number-ii/
+     * 题目描述: 给你一个整数 n ，请你找出并返回第 n 个 丑数 。丑数就是质因子只包含 2、3 和 5 的正整数。
+     * 
+     * 解题思路:
+     * 使用最小堆生成有序的丑数序列：
+     * 1. 初始化堆，放入第一个丑数1
+     * 2. 使用哈希集合去重
+     * 3. 每次从堆中取出最小的丑数，乘以2、3、5生成新的丑数
+     * 4. 第n次取出的数即为第n个丑数
+     * 
+     * 时间复杂度: O(n log n) - 进行n次堆操作，每次O(log n)
+     * 空间复杂度: O(n) - 堆和集合的大小
+     * 
+     * 是否最优解: 不是，更优的解法是使用动态规划，时间复杂度O(n)，空间复杂度O(n)
+     * 
+     * 相关题目:
+     * - LeetCode 313. 超级丑数
+     * - 牛客网 丑数系列
+     */
+    static int nthUglyNumber(int n) {
+        if (n <= 0) {
+            throw invalid_argument("n must be positive");
+        }
+        
+        // 使用最小堆生成有序丑数
+        priority_queue<long, vector<long>, greater<long>> minHeap;
+        unordered_set<long> seen;
+        
+        // 初始丑数为1
+        minHeap.push(1L);
+        seen.insert(1L);
+        
+        long ugly = 1;
+        // 生成因子
+        int factors[] = {2, 3, 5};
+        
+        // 循环n次，第n次取出的就是第n个丑数
+        for (int i = 0; i < n; i++) {
+            ugly = minHeap.top();
+            minHeap.pop();
+            
+            // 生成新的丑数
+            for (int factor : factors) {
+                long next = ugly * factor;
+                if (seen.find(next) == seen.end()) {
+                    seen.insert(next);
+                    minHeap.push(next);
+                }
+            }
+        }
+        
+        return (int)ugly;
+    }
+    
+    /*
+     * 补充题目8: LeetCode 378. 有序矩阵中第 K 小的元素
+     * 链接: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
+     * 题目描述: 给你一个 n x n 矩阵 matrix ，其中每行和每列元素均按升序排序，找到矩阵中第 k 小的元素。
+     * 
+     * 解题思路:
+     * 使用最小堆进行多路归并：
+     * 1. 初始时将第一列的所有元素加入堆中
+     * 2. 每次从堆中取出最小的元素，这是当前的第m小元素
+     * 3. 如果m等于k，返回该元素
+     * 4. 否则，将该元素所在行的下一个元素加入堆中
+     * 
+     * 时间复杂度: O(k log n) - k次堆操作，每次O(log n)
+     * 空间复杂度: O(n) - 堆的大小最多为n
+     * 
+     * 是否最优解: 不是，更优的解法是二分查找，时间复杂度O(n log(max-min))
+     * 
+     * 相关题目:
+     * - LeetCode 373. 查找和最小的K对数字
+     * - LeetCode 719. 找出第k小的距离对
+     */
+    static int kthSmallest(vector<vector<int>>& matrix, int k) {
+        if (matrix.empty() || matrix[0].empty()) {
+            throw invalid_argument("Invalid matrix");
+        }
+        
+        int n = matrix.size();
+        
+        // 定义矩阵元素结构
+        struct MatrixCell {
+            int row, col, value;
+            MatrixCell(int r, int c, int v) : row(r), col(c), value(v) {}
+            bool operator>(const MatrixCell& other) const {
+                return value > other.value;
+            }
+        };
+        
+        priority_queue<MatrixCell, vector<MatrixCell>, greater<MatrixCell>> minHeap;
+        
+        // 将第一列的所有元素加入堆中
+        for (int i = 0; i < n; i++) {
+            minHeap.push(MatrixCell(i, 0, matrix[i][0]));
+        }
+        
+        // 取出k-1个元素，第k次取出的就是第k小的元素
+        MatrixCell current(0, 0, 0);
+        for (int i = 0; i < k; i++) {
+            current = minHeap.top();
+            minHeap.pop();
+            // 如果当前行还有下一个元素，加入堆中
+            if (current.col < n - 1) {
+                minHeap.push(MatrixCell(current.row, current.col + 1, matrix[current.row][current.col + 1]));
+            }
+        }
+        
+        return current.value;
+    }
+    
+    /*
+     * 补充题目9: LeetCode 239. 滑动窗口最大值
+     * 链接: https://leetcode.cn/problems/sliding-window-maximum/
+     * 题目描述: 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。
+     * 
+     * 解题思路:
+     * 使用最大堆维护滑动窗口内的元素：
+     * 1. 维护一个最大堆，存储元素值和索引
+     * 2. 窗口滑动时，将新元素加入堆中
+     * 3. 检查堆顶元素是否在当前窗口内，如果不在则移除
+     * 4. 堆顶元素即为当前窗口的最大值
+     * 
+     * 时间复杂度: O(n log k) - n个元素，每个元素最多进出堆一次
+     * 空间复杂度: O(k) - 堆的大小最多为k
+     * 
+     * 是否最优解: 不是，更优的解法是使用单调队列，时间复杂度O(n)
+     * 
+     * 相关题目:
+     * - 牛客网 BM45 滑动窗口的最大值
+     * - HackerRank Sliding Window Maximum
+     */
+    static vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        if (nums.empty() || k <= 0) {
+            return {};
+        }
+        
+        int n = nums.size();
+        vector<int> result(n - k + 1);
+        
+        // 定义堆元素结构
+        struct MaxHeapElement {
+            int value, index;
+            MaxHeapElement(int v, int i) : value(v), index(i) {}
+            bool operator<(const MaxHeapElement& other) const {
+                if (value != other.value) return value < other.value;
+                return index < other.index;
+            }
+        };
+        
+        // 最大堆，按值降序排序，如果值相同，按索引降序排序
+        priority_queue<MaxHeapElement> maxHeap;
+        
+        // 初始化第一个窗口
+        for (int i = 0; i < k; i++) {
+            maxHeap.push(MaxHeapElement(nums[i], i));
+        }
+        
+        result[0] = maxHeap.top().value;
+        
+        // 滑动窗口
+        for (int i = k; i < n; i++) {
+            // 将新元素加入堆
+            maxHeap.push(MaxHeapElement(nums[i], i));
+            
+            // 移除不在当前窗口内的堆顶元素
+            while (maxHeap.top().index <= i - k) {
+                maxHeap.pop();
+            }
+            
+            // 记录当前窗口的最大值
+            result[i - k + 1] = maxHeap.top().value;
+        }
+        
+        return result;
+    }
+    
+    /*
+     * 补充题目10: LeetCode 502. IPO
+     * 链接: https://leetcode.cn/problems/ipo/
+     * 题目描述: 假设 力扣（LeetCode）即将开始 IPO 。为了以更高的价格将股票卖给风险投资公司，力扣 希望在 IPO 之前开展一些项目以增加其资本。由于资源有限，它只能在 IPO 之前完成最多 k 个不同的项目。帮助力扣 设计完成最多 k 个不同项目后得到最大总资本的方式。
+     * 
+     * 解题思路:
+     * 使用两个堆组合解决：
+     * 1. 最小堆按资本排序，存储可投资项目
+     * 2. 最大堆按利润排序，存储当前可以投资的项目
+     * 3. 每次从最小堆中取出所有可以投资的项目（资本<=当前总资本）放入最大堆
+     * 4. 从最大堆中取出利润最大的项目投资，增加总资本
+     * 5. 重复3-4步骤k次
+     * 
+     * 时间复杂度: O(N log N) - N为项目数量，排序和堆操作
+     * 空间复杂度: O(N) - 堆的大小
+     * 
+     * 是否最优解: 是，这是解决此类资源分配问题的最优解法
+     * 
+     * 相关题目:
+     * - LeetCode 857. 雇佣 K 名工人的最低成本
+     * - LeetCode 1383. 最大的团队表现值
+     */
+    static int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {
+        int n = profits.size();
+        
+        // 构建项目列表
+        vector<pair<int, int>> projects;
+        for (int i = 0; i < n; i++) {
+            projects.emplace_back(capital[i], profits[i]);
+        }
+        
+        // 按资本升序排序
+        sort(projects.begin(), projects.end());
+        
+        // 最大堆存储利润
+        priority_queue<int> maxProfitHeap;
+        
+        int currentCapital = w;
+        int projectIndex = 0;
+        
+        for (int i = 0; i < k; i++) {
+            // 将所有满足资本要求的项目加入最大堆
+            while (projectIndex < n && projects[projectIndex].first <= currentCapital) {
+                maxProfitHeap.push(projects[projectIndex].second);
+                projectIndex++;
+            }
+            
+            // 如果没有可投资的项目，退出循环
+            if (maxProfitHeap.empty()) {
+                break;
+            }
+            
+            // 选择利润最大的项目投资
+            currentCapital += maxProfitHeap.top();
+            maxProfitHeap.pop();
+        }
+        
+        return currentCapital;
+    }
+    
+    /*
+     * 补充题目11: LeetCode 692. 前K个高频单词
+     * 链接: https://leetcode.cn/problems/top-k-frequent-words/
+     * 题目描述: 给定一个单词列表 words 和一个整数 k ，返回前 k 个出现次数最多的单词。
+     * 
+     * 解题思路:
+     * 1. 使用哈希表统计每个单词的频率
+     * 2. 使用最小堆维护前k个高频单词
+     * 3. 自定义比较器：先按频率升序，频率相同按字典序降序
+     * 4. 最后反转结果列表
+     * 
+     * 时间复杂度: O(n log k) - n为单词数量
+     * 空间复杂度: O(n) - 哈希表和堆
+     * 
+     * 是否最优解: 是，满足题目要求的复杂度
+     * 
+     * 相关题目:
+     * - LeetCode 347. 前 K 个高频元素
+     * - LintCode 471. 前K个高频单词
+     */
+    static vector<string> topKFrequentWords(vector<string>& words, int k) {
+        // 1. 统计频率
+        unordered_map<string, int> freqMap;
+        for (const string& word : words) {
+            freqMap[word]++;
+        }
+        
+        // 2. 使用最小堆维护前k个高频单词
+        // 自定义比较器：频率升序，频率相同按字典序降序
+        auto cmp = [&freqMap](const string& a, const string& b) {
+            if (freqMap[a] != freqMap[b]) {
+                return freqMap[a] > freqMap[b]; // 频率升序
+            }
+            return a < b; // 字典序降序
+        };
+        priority_queue<string, vector<string>, decltype(cmp)> minHeap(cmp);
+        
+        // 3. 遍历频率表，维护堆大小为k
+        for (auto& pair : freqMap) {
+            if (minHeap.size() < k) {
+                minHeap.push(pair.first);
+            } else {
+                int currentFreq = freqMap[pair.first];
+                int minFreq = freqMap[minHeap.top()];
+                if (currentFreq > minFreq || 
+                    (currentFreq == minFreq && pair.first < minHeap.top())) {
+                    minHeap.pop();
+                    minHeap.push(pair.first);
+                }
+            }
+        }
+        
+        // 4. 构造结果列表（需要反转）
+        vector<string> result;
+        while (!minHeap.empty()) {
+            result.push_back(minHeap.top());
+            minHeap.pop();
+        }
+        reverse(result.begin(), result.end());
+        
+        return result;
+    }
+    
+    /*
+     * 堆和堆排序知识点总结：
+     * 
+     * 1. 堆的定义：
+     *    - 堆是一种特殊的完全二叉树
+     *    - 大顶堆：父节点的值总是大于或等于其子节点的值
+     *    - 小顶堆：父节点的值总是小于或等于其子节点的值
+     * 
+     * 2. 堆的存储：
+     *    - 通常使用数组来存储堆
+     *    - 对于索引为i的节点：
+     *      - 父节点索引：(i-1)/2
+     *      - 左子节点索引：2*i+1
+     *      - 右子节点索引：2*i+2
+     * 
+     * 3. 堆的基本操作：
+     *    - heapInsert(i)：向上调整，时间复杂度O(log n)
+     *    - heapify(i, size)：向下调整，时间复杂度O(log n)
+     *    - 建堆：
+     *      - 从顶到底：O(n log n)
+     *      - 从底到顶：O(n)
+     * 
+     * 4. 堆排序：
+     *    - 时间复杂度：O(n log n)
+     *    - 空间复杂度：O(1)
+     *    - 不稳定排序
+     * 
+     * 5. 堆的应用场景：
+     *    - 优先队列实现
+     *    - Top K问题（最大/最小的K个元素）
+     *    - 数据流中的中位数
+     *    - 合并K个有序序列
+     *    - Dijkstra算法等图算法
+     *    - 资源分配问题（如IPO问题）
+     *    - 贪心算法的实现
+     *    - 滑动窗口最大值/最小值
+     *    - 二维最优化问题（如接雨水II）
+     * 
+     * 6. C++中的堆实现：
+     *    - priority_queue容器适配器
+     *    - 默认是最大堆（priority_queue<int>）
+     *    - 可以通过greater<T>实现最小堆（priority_queue<int, vector<int>, greater<int>>）
+     *    - 支持自定义比较函数或比较类
+     *    - 主要操作：push(), pop(), top(), size(), empty()
+     *    - 不支持直接访问中间元素
+     *    - 不支持在任意位置删除元素
+     * 
+     * 7. 堆与其他数据结构的比较：
+     *    - 与BST比较：堆的构建更快，但BST支持范围查询
+     *    - 与普通数组比较：堆支持高效的插入和删除最值操作
+     *    - 与平衡树比较：实现更简单，但不支持复杂查询
+     *    - 与单调队列比较：对于滑动窗口问题，单调队列效率更高
+     * 
+     * 8. 工程化考量：
+     *    - 异常处理：处理空堆、非法输入、整数溢出等边界情况
+     *    - 性能优化：选择合适的堆大小，避免频繁扩容
+     *    - 内存管理：在C++中注意资源的释放，避免内存泄漏
+     *    - 线程安全：在多线程环境中需要加锁或使用线程安全的实现
+     *    - 数据类型选择：对于可能溢出的数据，使用更大的数据类型
+     *    - 哈希去重：在生成序列问题中使用哈希集合避免重复
+     * 
+     * 9. 常见堆相关问题的解题思路：
+     *    - Top K问题：使用大小为K的最小堆（最大的K个元素）或最大堆（最小的K个元素）
+     *    - 中位数问题：使用两个堆，一个最大堆存储小半部分，一个最小堆存储大半部分
+     *    - 合并K个有序序列：使用大小为K的最小堆维护每个序列的当前元素
+     *    - 资源分配问题：结合多个堆，分别按不同维度排序
+     *    - 二维优化问题：从边界开始，使用最小堆动态扩展
+     *    - 滑动窗口问题：维护带索引的堆，过滤过期元素
+     * 
+     * 10. 堆的优化技巧：
+     *    - 使用数组实现堆时，可以预先分配足够的空间减少扩容开销
+     *    - 在不需要稳定排序的场景下，堆排序比归并排序更节省空间
+     *    - 对于大数据量，可以使用外部堆排序
+     *    - 在C++中，可以使用emplace()而不是push()来避免不必要的拷贝
+     *    - 对于自定义比较，可以使用lambda表达式简化代码
+     * 
+     * 11. 与其他技术领域的联系：
+     *    - 机器学习：堆用于构建决策树中的最佳分割点选择
+     *    - 大数据处理：堆在MapReduce等框架中用于排序和聚合
+     *    - 操作系统：进程调度算法中使用优先队列管理任务优先级
+     *    - 图算法：最短路径算法（Dijkstra）、最小生成树（Prim）等
+     *    - 自然语言处理：文本排序、词频统计等任务
+     * 
+     * 12. 更多堆相关题目列表（来自各大算法平台）：
+     *    
+     *    LeetCode题目：
+     *    - #215: Kth Largest Element in an Array (数组中的第K个最大元素)
+     *    - #23: Merge k Sorted Lists (合并K个排序链表)
+     *    - #295: Find Median from Data Stream (数据流的中位数)
+     *    - #347: Top K Frequent Elements (前K个高频元素)
+     *    - #703: Kth Largest Element in a Stream (数据流的第K大元素)
+     *    - #407: Trapping Rain Water II (接雨水II)
+     *    - #264: Ugly Number II (丑数II)
+     *    - #378: Kth Smallest Element in a Sorted Matrix (有序矩阵中第K小的元素)
+     *    - #239: Sliding Window Maximum (滑动窗口最大值)
+     *    - #502: IPO (IPO)
+     *    - #692: Top K Frequent Words (前K个高频单词)
+     *    - #451: Sort Characters By Frequency (根据字符出现频率排序)
+     *    - #373: Find K Pairs with Smallest Sums (查找和最小的K对数字)
+     *    - #253: Meeting Rooms II (会议室II)
+     *    - #218: The Skyline Problem (天际线问题)
+     *    - #778: Swim in Rising Water (水位上升的泳池中游泳)
+     *    - #355: Design Twitter (设计推特)
+     *    - #313: Super Ugly Number (超级丑数)
+     *    - #719: Find K-th Smallest Pair Distance (找出第k小的距离对)
+     *    - #659: Split Array into Consecutive Subsequences (分割数组为连续子序列)
+     *    
+     *    LintCode题目：
+     *    - #130: Heapify (建堆)
+     *    - #104: Merge K Sorted Lists (合并K个排序链表)
+     *    - #612: K Closest Points (最近K个点)
+     *    - #545: Top k Largest Numbers II (前K个最大数II)
+     *    - #461: Kth Smallest Numbers in Unsorted Array (无序数组中的第K小元素)
+     *    - #364: Trapping Rain Water II (接雨水II)
+     *    - #460: Find K Closest Elements (寻找K个最接近的元素)
+     *    
+     *    HackerRank题目：
+     *    - QHEAP1 (基本堆操作)
+     *    - Find the Running Median (寻找运行中位数)
+     *    - Jesse and Cookies (杰茜和饼干)
+     *    - Minimum Average Waiting Time (最小平均等待时间)
+     *    - Running Median (运行中位数)
+     *    - K Largest Elements (K个最大元素)
+     *    
+     *    洛谷题目：
+     *    - P1177 【模板】排序
+     *    - P1090 合并果子 (贪心+堆)
+     *    - P3378 【模板】堆
+     *    - P1631 序列合并
+     *    - P2085 最小函数值
+     *    
+     *    牛客题目：
+     *    - BM45 滑动窗口的最大值
+     *    - BM46 最小的K个数
+     *    - BM47 寻找第K大的数
+     *    - JZ40 最小的K个数
+     *    - JZ41 数据流中的中位数
+     *    
+     *    Codeforces题目：
+     *    - A. Helpful Maths
+     *    - B. Sort the Array
+     *    - C. Maximum Subsequence Value
+     *    - D. Queue
+     *    - E. Heap Operations
+     *    
+     *    AtCoder题目：
+     *    - ABC 127F (对顶堆动态维护中位数)
+     *    - ABC 141D (优先队列贪心)
+     *    - ABC 151E (优先队列应用)
+     *    - ABC 161D (优先队列优化)
+     *    
+     *    剑指Offer题目：
+     *    - 剑指Offer 40. 最小的k个数
+     *    - 剑指Offer 41. 数据流中的中位数
+     *    - 剑指Offer 59-II. 队列的最大值
+     *    - 剑指Offer II 059. 数据流的第K大数值
+     *    - 剑指Offer II 060. 出现频率最高的k个数字
+     */
+};
+
+// 添加main函数以便编译和测试
+int main() {
+    // 简单测试代码
+    vector<int> test = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+    cout << "Original array: ";
+    for (int num : test) {
+        cout << num << " ";
+    }
+    cout << endl;
+    
+    HeapSortSolution::sortArray(test);
+    
+    cout << "Sorted array: ";
+    for (int num : test) {
+        cout << num << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
+
+===============================================
+
+文件: Code04_HeapSort.py
+===============================================
+import heapq
+from typing import List, Optional
+from collections import defaultdict
+
+"""
+堆排序Python实现及相关题目
+
+本文件包含堆排序的基本实现以及多个经典堆相关题目的完整解法
+每个解法都包含详细的时间复杂度、空间复杂度分析和工程化考量
+
+作者: 算法之旅
+创建时间: 2024年
+版本: 1.0
+
+主要功能:
+1. 堆排序的两种实现方式
+2. 多个经典堆相关问题的Python解法
+3. 详细的注释和复杂度分析
+4. 工程化考量和异常处理
+
+题目来源平台:
+- LeetCode (力扣): https://leetcode.cn/
+- LintCode (炼码): https://www.lintcode.com/
+- HackerRank: https://www.hackerrank.com/
+- 洛谷 (Luogu): https://www.luogu.com.cn/
+- AtCoder: https://atcoder.jp/
+- 牛客网: https://www.nowcoder.com/
+- CodeChef: https://www.codechef.com/
+- SPOJ: https://www.spoj.com/
+- Project Euler: https://projecteuler.net/
+- HackerEarth: https://www.hackerearth.com/
+- 计蒜客: https://www.jisuanke.com/
+- USACO: http://usaco.org/
+- UVa OJ: https://onlinejudge.org/
+- Codeforces: https://codeforces.com/
+- POJ: http://poj.org/
+- HDU: http://acm.hdu.edu.cn/
+- 剑指Offer: 面试经典题目
+- 杭电 OJ: http://acm.hdu.edu.cn/
+- LOJ: https://loj.ac/
+- acwing: https://www.acwing.com/
+- 赛码: https://www.acmcoder.com/
+- zoj: http://acm.zju.edu.cn/
+- MarsCode: https://www.marscode.cn/
+- TimusOJ: http://acm.timus.ru/
+- AizuOJ: http://judge.u-aizu.ac.jp/
+- Comet OJ: https://www.cometoj.com/
+- 杭州电子科技大学 OJ
+"""
+
+class HeapSortSolution:
+    @staticmethod
+    def sort_array(nums: List[int]) -> List[int]:
+        """
+        堆排序主函数
+        时间复杂度: O(n log n)
+        空间复杂度: O(1)
+        """
+        if len(nums) <= 1:
+            return nums
+        
+        # heap_sort2为从底到顶建堆然后排序
+        HeapSortSolution.heap_sort2(nums)
+        return nums
+
+    @staticmethod
+    def heap_insert(arr: List[int], i: int) -> None:
+        """i位置的数，向上调整大根堆"""
+        while arr[i] > arr[(i - 1) // 2]:
+            arr[i], arr[(i - 1) // 2] = arr[(i - 1) // 2], arr[i]
+            i = (i - 1) // 2
+
+    @staticmethod
+    def heapify(arr: List[int], i: int, size: int) -> None:
+        """
+        i位置的数，变小了，又想维持大根堆结构
+        向下调整大根堆
+        当前堆的大小为size
+        """
+        l = i * 2 + 1
+        while l < size:
+            # 有左孩子，l
+            # 右孩子，l+1
+            # 评选，最强的孩子，是哪个下标的孩子
+            best = l + 1 if l + 1 < size and arr[l + 1] > arr[l] else l
+            # 上面已经评选了最强的孩子，接下来，当前的数和最强的孩子之前，最强下标是谁
+            best = best if arr[best] > arr[i] else i
+            if best == i:
+                break
+            arr[best], arr[i] = arr[i], arr[best]
+            i = best
+            l = i * 2 + 1
+
+    @staticmethod
+    def heap_sort1(arr: List[int]) -> None:
+        """
+        从顶到底建立大根堆，O(n * logn)
+        依次弹出堆内最大值并排好序，O(n * logn)
+        整体时间复杂度O(n * logn)
+        """
+        n = len(arr)
+        for i in range(n):
+            HeapSortSolution.heap_insert(arr, i)
+        size = n
+        while size > 1:
+            arr[0], arr[size - 1] = arr[size - 1], arr[0]
+            size -= 1
+            HeapSortSolution.heapify(arr, 0, size)
+
+    @staticmethod
+    def heap_sort2(arr: List[int]) -> None:
+        """
+        从底到顶建立大根堆，O(n)
+        依次弹出堆内最大值并排好序，O(n * logn)
+        整体时间复杂度O(n * logn)
+        """
+        n = len(arr)
+        for i in range(n - 1, -1, -1):
+            HeapSortSolution.heapify(arr, i, n)
+        size = n
+        while size > 1:
+            arr[0], arr[size - 1] = arr[size - 1], arr[0]
+            size -= 1
+            HeapSortSolution.heapify(arr, 0, size)
+    
+    """
+    补充题目1: LeetCode 215. 数组中的第K个最大元素
+    链接: https://leetcode.cn/problems/kth-largest-element-in-an-array/
+    题目描述: 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素
+    
+    解题思路:
+    方法1: 使用堆排序完整排序后取第k个元素 - 时间复杂度 O(n log n)
+    方法2: 使用大小为k的最小堆维护前k个最大元素 - 时间复杂度 O(n log k)
+    方法3: 快速选择算法 - 平均时间复杂度 O(n)
+    
+    最优解: 快速选择算法，但这里展示堆的解法
+    时间复杂度: O(n log k) - 遍历数组O(n)，每次堆操作O(log k)
+    空间复杂度: O(k) - 堆的大小
+    
+    相关题目:
+    - 剑指Offer 40. 最小的k个数
+    - 牛客网 BM46 最小的K个数
+    - LintCode 461. Kth Smallest Numbers in Unsorted Array
+    """
+    @staticmethod
+    def find_kth_largest(nums: List[int], k: int) -> int:
+        # 使用最小堆维护前k个最大元素
+        min_heap = []
+        
+        for num in nums:
+            if len(min_heap) < k:
+                heapq.heappush(min_heap, num)
+            elif num > min_heap[0]:
+                heapq.heapreplace(min_heap, num)
+        
+        return min_heap[0]
+    
+    """
+    补充题目2: LeetCode 347. 前 K 个高频元素
+    链接: https://leetcode.cn/problems/top-k-frequent-elements/
+    题目描述: 给你一个整数数组 nums 和一个整数 k，请你返回其中出现频率前 k 高的元素
+    
+    解题思路:
+    1. 使用哈希表统计每个元素的频率 - 时间复杂度 O(n)
+    2. 使用大小为k的最小堆维护前k个高频元素 - 时间复杂度 O(n log k)
+    3. 遍历哈希表，维护堆的大小为k
+    4. 从堆中取出元素即为结果
+    
+    时间复杂度: O(n log k) - n为数组长度
+    空间复杂度: O(n + k) - 哈希表O(n)，堆O(k)
+    
+    是否最优解: 是，满足题目要求的复杂度优于O(n log n)
+    
+    相关题目:
+    - LeetCode 692. 前K个高频单词
+    - LintCode 1297. 统计右侧小于当前元素的个数
+    """
+    @staticmethod
+    def top_k_frequent(nums: List[int], k: int) -> List[int]:
+        # 1. 统计频率
+        freq_map = defaultdict(int)
+        for num in nums:
+            freq_map[num] += 1
+        
+        # 2. 使用最小堆维护前k个高频元素
+        # 堆中存储的是元素值，比较依据是频率
+        min_heap = []
+        
+        # 3. 遍历频率表，维护堆大小为k
+        for num, freq in freq_map.items():
+            if len(min_heap) < k:
+                heapq.heappush(min_heap, (freq, num))
+            elif freq > min_heap[0][0]:
+                heapq.heapreplace(min_heap, (freq, num))
+        
+        # 4. 构造结果数组
+        result = [num for freq, num in min_heap]
+        return result
+    
+    """
+    补充题目3: LeetCode 295. 数据流的中位数
+    链接: https://leetcode.cn/problems/find-median-from-data-stream/
+    题目描述: 中位数是有序整数列表中的中间值。如果列表的大小是偶数，则没有中间值，中位数是两个中间值的平均值
+    
+    解题思路:
+    使用两个堆：
+    1. 最大堆max_heap存储较小的一半元素
+    2. 最小堆min_heap存储较大的一半元素
+    3. 保持两个堆的大小平衡（差值不超过1）
+    
+    时间复杂度: 
+    - 添加元素: O(log n) - 堆的插入和调整
+    - 查找中位数: O(1) - 直接访问堆顶
+    空间复杂度: O(n) - 存储所有元素
+    
+    是否最优解: 是，这是处理动态中位数的经典解法
+    
+    相关题目:
+    - 剑指Offer 41. 数据流中的中位数
+    - HackerRank Find the Running Median
+    - 牛客网 NC134. 数据流中的中位数
+    - AtCoder ABC 127F - Absolute Minima
+    """
+    class MedianFinder:
+        def __init__(self):
+            # 存储较小一半元素的最大堆（Python没有最大堆，使用相反数模拟）
+            self.max_heap = []
+            # 存储较大一半元素的最小堆
+            self.min_heap = []
+        
+        """
+        添加数字到数据结构中
+        时间复杂度: O(log n)
+        """
+        def add_num(self, num: int) -> None:
+            # 1. 根据num与两个堆堆顶的比较结果决定插入哪个堆
+            if not self.max_heap or num <= -self.max_heap[0]:
+                heapq.heappush(self.max_heap, -num)
+            else:
+                heapq.heappush(self.min_heap, num)
+            
+            # 2. 平衡两个堆的大小
+            # 如果max_heap比min_heap多2个元素，则移动一个元素到min_heap
+            if len(self.max_heap) > len(self.min_heap) + 1:
+                heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
+            # 如果min_heap比max_heap多1个元素，则移动一个元素到max_heap
+            elif len(self.min_heap) > len(self.max_heap) + 1:
+                heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+        
+        """
+        查找当前数据结构中的中位数
+        时间复杂度: O(1)
+        """
+        def find_median(self) -> float:
+            # 如果两个堆大小相等，返回两个堆顶的平均值
+            if len(self.max_heap) == len(self.min_heap):
+                return (-self.max_heap[0] + self.min_heap[0]) / 2.0
+            # 如果max_heap多一个元素，返回其堆顶
+            elif len(self.max_heap) > len(self.min_heap):
+                return -self.max_heap[0]
+            # 如果min_heap多一个元素，返回其堆顶
+            else:
+                return self.min_heap[0]
+    
+    """
+    补充题目4: LeetCode 23. 合并K个升序链表
+    链接: https://leetcode.cn/problems/merge-k-sorted-lists/
+    题目描述: 给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中
+    
+    解题思路:
+    使用最小堆维护K个链表的当前头节点，每次取出最小节点加入结果链表，
+    并将该节点的下一个节点加入堆中
+    
+    时间复杂度: O(N log k) - N为所有节点总数，k为链表数量
+    空间复杂度: O(k) - 堆的大小
+    
+    是否最优解: 是，这是合并K个有序链表的经典解法之一
+    
+    相关题目:
+    - LintCode 104. 合并k个排序链表
+    - 牛客网 NC51. 合并k个排序链表
+    """
+    class ListNode:
+        def __init__(self, val: int = 0, next: Optional['HeapSortSolution.ListNode'] = None):
+            self.val = val
+            self.next = next
+    
+    @staticmethod
+    def merge_k_lists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists:
+            return None
+        
+        # 使用最小堆维护K个链表的当前头节点
+        # 堆中存储元组(节点值, 节点)，节点值用于比较
+        min_heap = []
+        
+        # 将所有非空链表的头节点加入堆中
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(min_heap, (node.val, i, node))
+        
+        # 创建虚拟头节点
+        dummy = HeapSortSolution.ListNode(0)
+        current = dummy
+        
+        # 当堆不为空时，不断取出最小节点
+        while min_heap:
+            # 取出当前最小节点
+            val, i, node = heapq.heappop(min_heap)
+            
+            # 加入结果链表
+            current.next = node
+            current = current.next
+            
+            # 将该节点的下一个节点加入堆中（如果不为空）
+            if node.next:
+                heapq.heappush(min_heap, (node.next.val, i, node.next))
+        
+        return dummy.next
+    
+    """
+    补充题目5: LeetCode 703. 数据流的第K大元素
+    链接: https://leetcode.cn/problems/kth-largest-element-in-a-stream/
+    题目描述: 设计一个找到数据流中第 k 大元素的类
+    
+    解题思路:
+    使用大小为k的最小堆维护数据流中前k个最大元素
+    堆顶即为第k大元素
+    
+    时间复杂度: 
+    - 初始化: O(n log k) - n为初始数组长度
+    - 添加元素: O(log k)
+    空间复杂度: O(k) - 堆的大小
+    
+    是否最优解: 是，这是处理动态第K大元素的经典解法
+    
+    相关题目:
+    - 剑指Offer II 059. 数据流的第K大数值
+    """
+    class KthLargest:
+        def __init__(self, k: int, nums: List[int]):
+            self.k = k
+            # 使用最小堆维护前k个最大元素
+            self.min_heap = []
+            
+            # 将初始数组中的元素加入堆中
+            for num in nums:
+                self.add(num)
+        
+        """
+        向数据流中添加元素并返回当前第k大元素
+        时间复杂度: O(log k)
+        """
+        def add(self, val: int) -> int:
+            if len(self.min_heap) < self.k:
+                heapq.heappush(self.min_heap, val)
+            elif val > self.min_heap[0]:
+                heapq.heapreplace(self.min_heap, val)
+            return self.min_heap[0]
+    
+    """
+    补充题目6: LeetCode 407. 接雨水 II
+    链接: https://leetcode.cn/problems/trapping-rain-water-ii/
+    题目描述: 给定一个 m x n 的矩阵，其中的值都是非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。
+    
+    解题思路:
+    使用最小堆实现的Dijkstra算法变种：
+    1. 从边界开始，将所有边界点加入最小堆
+    2. 维护一个visited数组标记已访问的点
+    3. 每次从堆中取出高度最小的点，向四个方向扩展
+    4. 如果相邻点未访问过，计算能积累的水量并更新
+    
+    时间复杂度: O(m*n log(m+n)) - m,n为矩阵维度，堆操作复杂度O(log(m+n))
+    空间复杂度: O(m*n) - 存储visited数组
+    
+    是否最优解: 是，这是解决二维接雨水问题的最优解法之一
+    
+    相关题目:
+    - LeetCode 42. 接雨水
+    - LintCode 364. Trapping Rain Water II
+    """
+    @staticmethod
+    def trap_rain_water(heightMap):
+        if not heightMap or len(heightMap) <= 2 or len(heightMap[0]) <= 2:
+            return 0
+        
+        import heapq
+        m, n = len(heightMap), len(heightMap[0])
+        visited = [[False for _ in range(n)] for _ in range(m)]
+        min_heap = []
+        
+        # 初始化：将所有边界点加入堆中
+        for i in range(m):
+            for j in range(n):
+                if i == 0 or i == m - 1 or j == 0 or j == n - 1:
+                    heapq.heappush(min_heap, (heightMap[i][j], i, j))
+                    visited[i][j] = True
+        
+        water = 0
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # 上下左右四个方向
+        
+        # 从边界开始向内部处理
+        while min_heap:
+            height, row, col = heapq.heappop(min_heap)
+            
+            for dr, dc in directions:
+                new_row, new_col = row + dr, col + dc
+                
+                if 0 <= new_row < m and 0 <= new_col < n and not visited[new_row][new_col]:
+                    # 计算当前位置能积累的水量
+                    if heightMap[new_row][new_col] < height:
+                        water += height - heightMap[new_row][new_col]
+                    
+                    # 将新点加入堆中，高度取最大值（当前点高度或原始高度）
+                    heapq.heappush(min_heap, (max(heightMap[new_row][new_col], height), new_row, new_col))
+                    visited[new_row][new_col] = True
+        
+        return water
+    
+    """
+    补充题目7: LeetCode 264. 丑数 II
+    链接: https://leetcode.cn/problems/ugly-number-ii/
+    题目描述: 给你一个整数 n ，请你找出并返回第 n 个 丑数 。丑数就是质因子只包含 2、3 和 5 的正整数。
+    
+    解题思路:
+    使用最小堆生成有序的丑数序列：
+    1. 初始化堆，放入第一个丑数1
+    2. 使用集合去重
+    3. 每次从堆中取出最小的丑数，乘以2、3、5生成新的丑数
+    4. 第n次取出的数即为第n个丑数
+    
+    时间复杂度: O(n log n) - 进行n次堆操作，每次O(log n)
+    空间复杂度: O(n) - 堆和集合的大小
+    
+    是否最优解: 不是，更优的解法是使用动态规划，时间复杂度O(n)，空间复杂度O(n)
+    
+    相关题目:
+    - LeetCode 313. 超级丑数
+    - 牛客网 丑数系列
+    """
+    @staticmethod
+    def nth_ugly_number(n):
+        if n <= 0:
+            raise ValueError("n must be positive")
+        
+        import heapq
+        # 使用最小堆生成有序丑数
+        min_heap = []
+        seen = set()
+        
+        # 初始丑数为1
+        heapq.heappush(min_heap, 1)
+        seen.add(1)
+        
+        ugly = 1
+        # 生成因子
+        factors = [2, 3, 5]
+        
+        # 循环n次，第n次取出的就是第n个丑数
+        for _ in range(n):
+            ugly = heapq.heappop(min_heap)
+            
+            # 生成新的丑数
+            for factor in factors:
+                next_ugly = ugly * factor
+                if next_ugly not in seen:
+                    seen.add(next_ugly)
+                    heapq.heappush(min_heap, next_ugly)
+        
+        return ugly
+    
+    """
+    补充题目8: LeetCode 378. 有序矩阵中第 K 小的元素
+    链接: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
+    题目描述: 给你一个 n x n 矩阵 matrix ，其中每行和每列元素均按升序排序，找到矩阵中第 k 小的元素。
+    
+    解题思路:
+    使用最小堆进行多路归并：
+    1. 初始时将第一列的所有元素加入堆中
+    2. 每次从堆中取出最小的元素，这是当前的第m小元素
+    3. 如果m等于k，返回该元素
+    4. 否则，将该元素所在行的下一个元素加入堆中
+    
+    时间复杂度: O(k log n) - k次堆操作，每次O(log n)
+    空间复杂度: O(n) - 堆的大小最多为n
+    
+    是否最优解: 不是，更优的解法是二分查找，时间复杂度O(n log(max-min))
+    
+    相关题目:
+    - LeetCode 373. 查找和最小的K对数字
+    - LeetCode 719. 找出第k小的距离对
+    """
+    @staticmethod
+    def kth_smallest(matrix, k):
+        if not matrix or not matrix[0]:
+            raise ValueError("Invalid matrix")
+        
+        import heapq
+        n = len(matrix)
+        min_heap = []
+        
+        # 将第一列的所有元素加入堆中
+        for i in range(n):
+            heapq.heappush(min_heap, (matrix[i][0], i, 0))
+        
+        # 取出k-1个元素，第k次取出的就是第k小的元素
+        value = 0
+        for _ in range(k):
+            value, row, col = heapq.heappop(min_heap)
+            # 如果当前行还有下一个元素，加入堆中
+            if col < n - 1:
+                heapq.heappush(min_heap, (matrix[row][col + 1], row, col + 1))
+        
+        return value
+    
+    """
+    补充题目9: LeetCode 239. 滑动窗口最大值
+    链接: https://leetcode.cn/problems/sliding-window-maximum/
+    题目描述: 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。
+    
+    解题思路:
+    使用最大堆维护滑动窗口内的元素：
+    1. 维护一个最大堆，存储元素值的负数和索引（因为Python的heapq是最小堆）
+    2. 窗口滑动时，将新元素加入堆中
+    3. 检查堆顶元素是否在当前窗口内，如果不在则移除
+    4. 堆顶元素即为当前窗口的最大值
+    
+    时间复杂度: O(n log k) - n个元素，每个元素最多进出堆一次
+    空间复杂度: O(k) - 堆的大小最多为k
+    
+    是否最优解: 不是，更优的解法是使用单调队列，时间复杂度O(n)
+    
+    相关题目:
+    - 牛客网 BM45 滑动窗口的最大值
+    - HackerRank Sliding Window Maximum
+    """
+    @staticmethod
+    def max_sliding_window(nums, k):
+        if not nums or k <= 0:
+            return []
+        
+        import heapq
+        n = len(nums)
+        result = []
+        max_heap = []  # 使用负数实现最大堆
+        
+        # 初始化第一个窗口
+        for i in range(k):
+            # 存储(-value, index)，这样最小堆就相当于最大堆
+            heapq.heappush(max_heap, (-nums[i], i))
+        
+        result.append(-max_heap[0][0])
+        
+        # 滑动窗口
+        for i in range(k, n):
+            # 将新元素加入堆
+            heapq.heappush(max_heap, (-nums[i], i))
+            
+            # 移除不在当前窗口内的堆顶元素
+            while max_heap[0][1] <= i - k:
+                heapq.heappop(max_heap)
+            
+            # 记录当前窗口的最大值
+            result.append(-max_heap[0][0])
+        
+        return result
+    
+    """
+    补充题目10: LeetCode 502. IPO
+    链接: https://leetcode.cn/problems/ipo/
+    题目描述: 假设 力扣（LeetCode）即将开始 IPO 。为了以更高的价格将股票卖给风险投资公司，力扣 希望在 IPO 之前开展一些项目以增加其资本。由于资源有限，它只能在 IPO 之前完成最多 k 个不同的项目。帮助力扣 设计完成最多 k 个不同项目后得到最大总资本的方式。
+    
+    解题思路:
+    使用两个堆组合解决：
+    1. 按资本排序的列表，存储可投资项目
+    2. 最大堆按利润排序，存储当前可以投资的项目
+    3. 每次从列表中取出所有可以投资的项目（资本<=当前总资本）放入最大堆
+    4. 从最大堆中取出利润最大的项目投资，增加总资本
+    5. 重复3-4步骤k次
+    
+    时间复杂度: O(N log N) - N为项目数量，排序和堆操作
+    空间复杂度: O(N) - 堆的大小
+    
+    是否最优解: 是，这是解决此类资源分配问题的最优解法
+    
+    相关题目:
+    - LeetCode 857. 雇佣 K 名工人的最低成本
+    - LeetCode 1383. 最大的团队表现值
+    """
+    @staticmethod
+    def find_maximized_capital(k, w, profits, capital):
+        import heapq
+        n = len(profits)
+        
+        # 构建项目列表
+        projects = [(capital[i], profits[i]) for i in range(n)]
+        
+        # 按资本升序排序
+        projects.sort()
+        
+        # 最大堆存储利润（使用负数实现最大堆）
+        max_profit_heap = []
+        
+        current_capital = w
+        project_index = 0
+        
+        for _ in range(k):
+            # 将所有满足资本要求的项目加入最大堆
+            while project_index < n and projects[project_index][0] <= current_capital:
+                heapq.heappush(max_profit_heap, -projects[project_index][1])
+                project_index += 1
+            
+            # 如果没有可投资的项目，退出循环
+            if not max_profit_heap:
+                break
+            
+            # 选择利润最大的项目投资
+            current_capital += -heapq.heappop(max_profit_heap)
+        
+        return current_capital
+    
+    """
+    补充题目11: LeetCode 692. 前K个高频单词
+    链接: https://leetcode.cn/problems/top-k-frequent-words/
+    题目描述: 给定一个单词列表 words 和一个整数 k ，返回前 k 个出现次数最多的单词。
+    
+    解题思路:
+    1. 使用哈希表统计每个单词的频率
+    2. 使用最小堆维护前k个高频单词
+    3. 自定义比较器：先按频率升序，频率相同按字典序降序
+    4. 最后反转结果列表
+    
+    时间复杂度: O(n log k) - n为单词数量
+    空间复杂度: O(n) - 哈希表和堆
+    
+    是否最优解: 是，满足题目要求的复杂度
+    
+    相关题目:
+    - LeetCode 347. 前 K 个高频元素
+    - LintCode 471. 前K个高频单词
+    """
+    @staticmethod
+    def top_k_frequent_words(words, k):
+        from collections import defaultdict
+        import heapq
+        
+        # 1. 统计频率
+        freq_map = defaultdict(int)
+        for word in words:
+            freq_map[word] += 1
+        
+        # 2. 使用最小堆维护前k个高频单词
+        # 自定义比较器：频率升序，频率相同按字典序降序
+        min_heap = []
+        
+        # 3. 遍历频率表，维护堆大小为k
+        for word, freq in freq_map.items():
+            if len(min_heap) < k:
+                heapq.heappush(min_heap, (freq, word))
+            else:
+                min_freq, min_word = min_heap[0]
+                if freq > min_freq or (freq == min_freq and word < min_word):
+                    heapq.heapreplace(min_heap, (freq, word))
+        
+        # 4. 构造结果列表（需要反转）
+        result = []
+        while min_heap:
+            result.append(heapq.heappop(min_heap)[1])
+        result.reverse()
+        
+        return result
+    
+    """
+    堆和堆排序知识点总结：
+    
+    1. 堆的定义：
+    - 堆是一种特殊的完全二叉树，其中每个节点的值都大于等于（或小于等于）其子节点的值
+    - 最大堆：每个节点的值都大于等于其子节点的值
+    - 最小堆：每个节点的值都小于等于其子节点的值
+    
+    2. 堆的存储方式：
+    - 通常使用数组实现完全二叉树
+    - 对于索引为i的节点：
+      - 父节点索引：(i - 1) // 2
+      - 左子节点索引：2 * i + 1
+      - 右子节点索引：2 * i + 2
+    
+    3. 堆的基本操作：
+    - heapify：将以某个节点为根的子树调整为堆结构，时间复杂度O(log n)
+    - heapInsert：将新元素插入堆中并调整，时间复杂度O(log n)
+    - heapExtractMax/Min：取出并返回堆顶元素，并调整堆结构，时间复杂度O(log n)
+    
+    4. 堆排序：
+    - 建堆：O(n)时间复杂度（从底到顶）或O(n log n)（从顶到底）
+    - 排序过程：O(n log n)时间复杂度
+    - 空间复杂度：O(1)，原地排序
+    
+    5. 堆的应用场景：
+    - 优先队列实现
+    - Top K问题（如前K大、前K小元素）
+    - 中位数维护
+    - 多路归并排序
+    - Dijkstra算法
+    - 堆排序
+    
+    6. Python中的堆实现：
+    - 使用heapq模块
+    - heapq模块实现的是最小堆
+    - 主要函数：heappush, heappop, heappushpop, heapreplace, nlargest, nsmallest
+    - 实现最大堆通常有两种方法：
+      1. 对值取负数存储
+      2. 使用自定义比较器（Python不直接支持，需通过包装类实现）
+    
+    7. 堆与其他数据结构的比较：
+    - 与二叉搜索树相比，堆更适合维护最大/最小值，但不支持快速查找特定元素
+    - 与有序数组相比，堆的插入和删除操作更高效，但不支持随机访问
+    - 与链表相比，堆的随机访问更高效，但插入和删除操作复杂度相同
+    
+    8. 堆的工程化考量：
+    - 异常处理：处理空堆、索引越界等情况
+    - 线程安全：考虑并发环境下的访问问题
+    - 性能优化：根据不同场景选择合适的堆实现和参数
+    - 内存管理：避免不必要的内存分配
+    
+    9. 常见解题思路和优化技巧：
+    - 最小堆常用于找最大的K个元素，最大堆常用于找最小的K个元素
+    - 当需要频繁获取最大值时，考虑使用最大堆
+    - 当需要同时维护多组数据的优先级时，考虑使用多个堆
+    - 对于滑动窗口问题，可以结合堆与哈希表来优化查找效率
+    - 使用堆时注意处理重复元素和边界条件
+    
+    10. 堆在工程实践中的应用：
+    - 任务调度系统：根据优先级执行任务
+    - 网络流量控制：优先处理高优先级的数据包
+    - 资源分配：如内存分配、CPU调度等
+    - 大数据处理：如MapReduce中的排序阶段
+    - 缓存系统：淘汰最久未使用或优先级最低的数据
+    
+    11. 与其他技术领域的联系：
+    - 机器学习：在决策树算法中用于特征选择
+    - 深度学习：在梯度下降中用于管理批量样本
+    - 强化学习：在优先经验回放中管理样本优先级
+    - 图像处理：在图像分割和特征提取中用于优先级管理
+    - 自然语言处理：在词频统计和主题模型中用于排序
+    
+    12. 其他平台堆相关题目列表：
+    - 力扣(LeetCode)：
+      * 23. 合并K个升序链表
+      * 215. 数组中的第K个最大元素
+      * 295. 数据流的中位数
+      * 347. 前K个高频元素
+      * 407. 接雨水II
+      * 264. 丑数II
+      * 378. 有序矩阵中第K小的元素
+      * 239. 滑动窗口最大值
+      * 502. IPO
+      * 703. 数据流的第K大元素
+    - LintCode(炼码)：
+      * 81. 数据流中位数
+      * 545. 前K大数
+      * 1319. 最接近原点的K个点
+      * 151. 买卖股票的最佳时机III
+    - HackerRank：
+      * Find the Running Median
+      * Jesse and Cookies
+      * K Closest Points to Origin
+    - CodeChef：
+      * PRIME1 - Prime Generator
+      * MAXCOMP - Maximum Component Size
+    - Codeforces：
+      * 1201C. Maximum Median
+      * 1355C. Count Triangles
+    - POJ：
+      * 3253. Fence Repair
+      * 2442. Sequence
+    - HDU：
+      * 1242. Rescue
+      * 2159. FATE
+    - 牛客：
+      * NC142. 最大的奇约数
+      * NC134. 数据流中的中位数
+    - 剑指Offer：
+      * 40. 最小的k个数
+      * 41. 数据流中的中位数
+    
+    13. 堆相关算法的调试与问题定位技巧：
+    - 打印堆的状态：在关键操作后打印堆的内容，检查是否符合预期
+    - 使用断言验证堆性质：在操作前后验证父节点与子节点的大小关系
+    - 性能分析：对于大规模数据，监控堆操作的耗时
+    - 边界情况测试：测试空堆、单元素堆、满堆等情况
+    
+    14. 堆的高级变种：
+    - 斐波那契堆：理论上某些操作更高效，但实现复杂
+    - 二叉堆：最常见的实现，平衡了效率和实现复杂度
+    - 二项堆：支持更高效的合并操作
+    - 左偏树：支持高效合并操作的堆结构
+    
+    15. 堆的复杂度分析深入理解：
+    - 建堆操作O(n)复杂度的证明：虽然表面上每个节点下沉是O(log n)，但大部分节点下沉次数较少
+    - 堆排序的平均情况与最坏情况复杂度均为O(n log n)
+    - 常数因子的影响：在实际应用中，堆排序通常比快速排序慢，但比归并排序快
+    """
+
+# 添加测试代码
+if __name__ == "__main__":
+    # 简单测试代码
+    test = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
+    print("Original array:", test)
+    
+    HeapSortSolution.sort_array(test)
+    print("Sorted array:", test)
+
+===============================================
+
+文件: TestHeapSort.java
+===============================================
+public class TestHeapSort {
+    public static void main(String[] args) {
+        int[] arr = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+        System.out.print("Original array: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        
+        heapSort(arr);
+        
+        System.out.print("Sorted array: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+    
+    public static void heapSort(int[] arr) {
+        int n = arr.length;
+        
+        // Build heap (rearrange array)
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
+        
+        // One by one extract an element from heap
+        for (int i = n - 1; i > 0; i--) {
+            // Move current root to end
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+            
+            // call max heapify on the reduced heap
+            heapify(arr, i, 0);
+        }
+    }
+    
+    public static void heapify(int[] arr, int n, int i) {
+        int largest = i; // Initialize largest as root
+        int l = 2 * i + 1; // left = 2*i + 1
+        int r = 2 * i + 2; // right = 2*i + 2
+        
+        // If left child is larger than root
+        if (l < n && arr[l] > arr[largest])
+            largest = l;
+        
+        // If right child is larger than largest so far
+        if (r < n && arr[r] > arr[largest])
+            largest = r;
+        
+        // If largest is not root
+        if (largest != i) {
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+            
+            // Recursively heapify the affected sub-tree
+            heapify(arr, n, largest);
+        }
+    }
+}
+
+===============================================
+
