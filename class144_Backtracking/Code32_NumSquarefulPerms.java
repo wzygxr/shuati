@@ -1,0 +1,90 @@
+package class038;
+
+import java.util.*;
+
+/**
+ * LeetCode 996. 正方形数组的数目
+ * 
+ * 给定一个非负整数数组 A，如果该数组任意两个相邻元素的和都可以表示为某个完全平方数，
+ * 那么这个数组就称为正方形数组。返回 A 的所有可能的排列中，正方形数组的数目。
+ * 
+ * 算法思路：
+ * 使用回溯算法生成所有可能的排列，并在生成过程中检查相邻元素之和是否为完全平方数。
+ * 需要注意去重，因为数组中可能有重复元素。
+ * 
+ * 时间复杂度：O(n! * n)
+ * 空间复杂度：O(n)
+ */
+public class Code32_NumSquarefulPerms {
+    
+    private int count = 0;
+    
+    /**
+     * 返回正方形数组的数目
+     * @param nums 输入数组
+     * @return 正方形数组的数目
+     */
+    public int numSquarefulPerms(int[] nums) {
+        count = 0;
+        Arrays.sort(nums); // 排序便于去重
+        boolean[] used = new boolean[nums.length];
+        backtrack(nums, used, -1, 0);
+        return count;
+    }
+    
+    /**
+     * 回溯函数
+     * @param nums 输入数组
+     * @param used 标记数组元素是否已使用
+     * @param prevIndex 前一个元素的索引
+     * @param index 当前处理的位置
+     */
+    private void backtrack(int[] nums, boolean[] used, int prevIndex, int index) {
+        // 终止条件：处理完所有元素
+        if (index == nums.length) {
+            count++;
+            return;
+        }
+        
+        for (int i = 0; i < nums.length; i++) {
+            // 去重：如果当前元素与前一个元素相同，且前一个元素未使用，则跳过
+            if (used[i] || (i > 0 && nums[i] == nums[i-1] && !used[i-1])) {
+                continue;
+            }
+            
+            // 检查相邻元素之和是否为完全平方数
+            if (prevIndex != -1 && !isPerfectSquare(nums[prevIndex] + nums[i])) {
+                continue;
+            }
+            
+            used[i] = true;
+            backtrack(nums, used, i, index + 1);
+            used[i] = false;
+        }
+    }
+    
+    /**
+     * 判断一个数是否为完全平方数
+     * @param num 待判断的数
+     * @return 是否为完全平方数
+     */
+    private boolean isPerfectSquare(int num) {
+        int sqrt = (int) Math.sqrt(num);
+        return sqrt * sqrt == num;
+    }
+    
+    // 测试方法
+    public static void main(String[] args) {
+        Code32_NumSquarefulPerms solution = new Code32_NumSquarefulPerms();
+        
+        // 测试用例1
+        int[] nums1 = {1, 17, 8};
+        System.out.println("Input: [1, 17, 8]");
+        System.out.println("Output: " + solution.numSquarefulPerms(nums1));
+        
+        // 测试用例2
+        int[] nums2 = {2, 2, 2};
+        System.out.println("\nInput: [2, 2, 2]");
+        System.out.println("Output: " + solution.numSquarefulPerms(nums2));
+    }
+}

@@ -1,0 +1,105 @@
+package class090;
+
+// 分发糖果
+// n 个孩子站成一排。给你一个整数数组 ratings 表示每个孩子的评分。
+// 你需要按照以下要求，给这些孩子分发糖果：
+// 每个孩子至少分配到 1 个糖果。
+// 相邻两个孩子评分更高的孩子会获得更多的糖果。
+// 请你给每个孩子分发糖果，计算并返回需要准备的最少糖果数目。
+// 测试链接: https://leetcode.cn/problems/candy/
+public class Code18_Candy {
+
+    /**
+     * 分发糖果问题的贪心解法
+     * 
+     * 解题思路：
+     * 1. 将问题分解为两个子问题：
+     *    - 从左到右遍历，保证评分更高的孩子比左边孩子获得更多糖果
+     *    - 从右到左遍历，保证评分更高的孩子比右边孩子获得更多糖果
+     * 2. 贪心策略：两次遍历分别处理左右邻居的约束
+     * 3. 对于每个孩子，取两次遍历结果的最大值作为最终糖果数
+     * 
+     * 贪心策略的正确性：
+     * 1. 通过两次遍历，分别满足左邻居和右邻居的约束条件
+     * 2. 对于每个孩子，取两次遍历结果的最大值可以同时满足两个方向的约束
+     * 3. 这样可以保证在满足约束条件下，糖果总数最少
+     * 
+     * 时间复杂度：O(n)，需要遍历数组两次
+     * 空间复杂度：O(n)，需要额外数组存储每个孩子的糖果数
+     * 
+     * @param ratings 孩子们的评分数组
+     * @return 需要准备的最少糖果数目
+     */
+    public static int candy(int[] ratings) {
+        // 边界条件处理：如果没有孩子，则不需要任何糖果
+        if (ratings == null || ratings.length == 0) {
+            return 0;
+        }
+
+        int n = ratings.length;
+        
+        // 1. 初始化糖果数组，每个孩子至少分配到1个糖果
+        int[] candies = new int[n];
+        for (int i = 0; i < n; i++) {
+            candies[i] = 1;
+        }
+
+        // 2. 从左到右遍历，保证评分更高的孩子比左边孩子获得更多糖果
+        for (int i = 1; i < n; i++) {
+            if (ratings[i] > ratings[i - 1]) {
+                candies[i] = candies[i - 1] + 1;
+            }
+        }
+
+        // 3. 从右到左遍历，保证评分更高的孩子比右边孩子获得更多糖果
+        for (int i = n - 2; i >= 0; i--) {
+            if (ratings[i] > ratings[i + 1]) {
+                candies[i] = Math.max(candies[i], candies[i + 1] + 1);
+            }
+        }
+
+        // 4. 计算总糖果数
+        int totalCandies = 0;
+        for (int candy : candies) {
+            totalCandies += candy;
+        }
+
+        // 5. 返回总糖果数
+        return totalCandies;
+    }
+
+    // 测试方法
+    public static void main(String[] args) {
+        // 测试用例1
+        // 输入: ratings = [1,0,2]
+        // 输出: 5
+        // 解释: 你可以分别给第一个、第二个、第三个孩子分发 2、1、2 颗糖果。
+        int[] ratings1 = {1, 0, 2};
+        System.out.println("测试用例1结果: " + candy(ratings1)); // 期望输出: 5
+
+        // 测试用例2
+        // 输入: ratings = [1,2,2]
+        // 输出: 4
+        // 解释: 你可以分别给第一个、第二个、第三个孩子分发 1、2、1 颗糖果。
+        int[] ratings2 = {1, 2, 2};
+        System.out.println("测试用例2结果: " + candy(ratings2)); // 期望输出: 4
+
+        // 测试用例3：边界情况
+        // 输入: ratings = [1]
+        // 输出: 1
+        int[] ratings3 = {1};
+        System.out.println("测试用例3结果: " + candy(ratings3)); // 期望输出: 1
+
+        // 测试用例4：复杂情况
+        // 输入: ratings = [1,3,2,2,1]
+        // 输出: 7
+        int[] ratings4 = {1, 3, 2, 2, 1};
+        System.out.println("测试用例4结果: " + candy(ratings4)); // 期望输出: 7
+
+        // 测试用例5：递增序列
+        // 输入: ratings = [1,2,3,4,5]
+        // 输出: 15
+        int[] ratings5 = {1, 2, 3, 4, 5};
+        System.out.println("测试用例5结果: " + candy(ratings5)); // 期望输出: 15
+    }
+}

@@ -1,0 +1,21 @@
+# 忽略大文件
+merged_algorithm_files.txt
+
+# 忽略临时文件和构建文件
+.vscode/
+.idea/
+*.class
+*.pyc
+__pycache__/
+node_modules/
+build/
+dist/
+
+# 忽略系统文件
+.DS_Store
+Thumbs.db
+
+# 忽略PDF和HTML转换文件
+PDF/
+pdf_files/
+merged_files/

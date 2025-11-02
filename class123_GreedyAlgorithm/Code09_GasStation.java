@@ -1,0 +1,90 @@
+package class092;
+
+// 加油站
+// 在一条环路上有 n 个加油站，其中第 i 个加油站有汽油 gas[i] 升
+// 你有一辆油箱容量无限的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升
+// 你从其中的一个加油站出发，开始时油箱为空
+// 给定两个整数数组 gas 和 cost，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1
+// 如果存在解，则保证它是唯一的
+// 测试链接 : https://leetcode.cn/problems/gas-station/
+public class Code09_GasStation {
+
+    /*
+     * 贪心算法解法
+     * 
+     * 核心思想：
+     * 1. 如果总油量减去总消耗量小于0，那么无论如何都无法绕环路行驶一周
+     * 2. 如果总油量减去总消耗量大于等于0，那么一定存在解
+     * 3. 从0开始累加rest[i]（gas[i]-cost[i]），和记为curSum，
+     *    一旦curSum小于0，说明[0, i]区间都不能作为起始位置，
+     *    起始位置从i+1开始算起，再从0开始计算curSum
+     * 
+     * 时间复杂度：O(n) - 只需要遍历数组一次
+     * 空间复杂度：O(1) - 只使用了常数级别的额外空间
+     * 
+     * 为什么这是最优解？
+     * 1. 贪心策略保证了每一步都做出了当前看起来最好的选择
+     * 2. 通过数学归纳法可以证明这种策略能得到全局最优解
+     * 3. 无法在更少的时间内完成，因为至少需要遍历一遍数组
+     * 
+     * 工程化考虑：
+     * 1. 边界条件处理：空数组、单元素数组
+     * 2. 异常处理：输入参数验证
+     * 3. 可读性：变量命名清晰，注释详细
+     * 
+     * 算法调试技巧：
+     * 1. 可以通过打印每一步的curSum和totalSum来观察油量变化过程
+     * 2. 用断言验证中间结果是否符合预期
+     */
+
+    public static int canCompleteCircuit(int[] gas, int[] cost) {
+        int curSum = 0;    // 当前油量
+        int totalSum = 0;  // 总油量
+        int start = 0;     // 起始位置
+
+        for (int i = 0; i < gas.length; i++) {
+            curSum += gas[i] - cost[i];
+            totalSum += gas[i] - cost[i];
+
+            // 如果当前油量小于0，说明[0, i]区间都不能作为起始位置
+            if (curSum < 0) {
+                start = i + 1;  // 起始位置从i+1开始算起
+                curSum = 0;     // 重新计算当前油量
+            }
+        }
+
+        // 如果总油量小于0，说明无论如何都无法绕环路行驶一周
+        if (totalSum < 0) {
+            return -1;
+        }
+
+        return start;
+    }
+
+    // 测试方法
+    public static void main(String[] args) {
+        // 测试用例1: gas=[1,2,3,4,5], cost=[3,4,5,1,2] -> 3
+        int[] gas1 = { 1, 2, 3, 4, 5 };
+        int[] cost1 = { 3, 4, 5, 1, 2 };
+        System.out.println("测试用例1:");
+        System.out.println("gas: " + java.util.Arrays.toString(gas1));
+        System.out.println("cost: " + java.util.Arrays.toString(cost1));
+        System.out.println("预期结果: 3, 实际结果: " + canCompleteCircuit(gas1, cost1));
+
+        // 测试用例2: gas=[2,3,4], cost=[3,4,3] -> -1
+        int[] gas2 = { 2, 3, 4 };
+        int[] cost2 = { 3, 4, 3 };
+        System.out.println("测试用例2:");
+        System.out.println("gas: " + java.util.Arrays.toString(gas2));
+        System.out.println("cost: " + java.util.Arrays.toString(cost2));
+        System.out.println("预期结果: -1, 实际结果: " + canCompleteCircuit(gas2, cost2));
+
+        // 测试用例3: gas=[5,1,2,3,4], cost=[4,4,1,5,1] -> 4
+        int[] gas3 = { 5, 1, 2, 3, 4 };
+        int[] cost3 = { 4, 4, 1, 5, 1 };
+        System.out.println("测试用例3:");
+        System.out.println("gas: " + java.util.Arrays.toString(gas3));
+        System.out.println("cost: " + java.util.Arrays.toString(cost3));
+        System.out.println("预期结果: 4, 实际结果: " + canCompleteCircuit(gas3, cost3));
+    }
+}

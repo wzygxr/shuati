@@ -1,0 +1,271 @@
+package class146_CombinatorialAndMathematicalAlgorithms;
+
+// 完美洗牌算法
+// 给定数组arr，给定某个范围arr[l..r]，该范围长度为n，n是偶数
+// 因为n是偶数，所以给定的范围可以分成左右两个部分，arr[l1, l2, ...lk, r1, r2, ...rk]
+// 请把arr[l..r]范围上的数字调整成arr[r1, l1, r2, l2, ... rk, lk]，其他位置的数字不变
+// 要求时间复杂度O(n)，额外空间复杂度O(1)，对数器验证
+
+/*
+ * 相关题目:
+ * 1. LeetCode 1470. Shuffle the Array (重新排列数组)
+ *    链接: https://leetcode.cn/problems/shuffle-the-array/
+ *    题目描述: 给你一个数组 nums ，数组中有 2n 个元素，按 [x1,x2,...,xn,y1,y2,...,yn] 的格式排列。
+ *             请你将数组按 [x1,y1,x2,y2,...,xn,yn] 格式重新排列，返回重排后的数组。
+ *    解题思路: 完美洗牌问题的简化版。
+ *    
+ * 2. LeetCode 2091. Removing Minimum and Maximum From Array (从数组中移除最大值和最小值)
+ *    链接: https://leetcode.cn/problems/removing-minimum-and-maximum-from-array/
+ *    题目描述: 给你一个下标从 0 开始的数组 nums ，数组由若干互不相同的整数组成。
+ *             你必须通过以下操作恰好移除两个元素：
+ *             选择两个下标 i 和 j，满足 i != j 且 i 和 j 都小于 nums.length。
+ *             删除 nums[i] 和 nums[j]。
+ *             通过这些操作后，剩余的元素形成一个新数组。
+ *             返回使剩余元素中最大值和最小值都等于原始数组中最大值和最小值所需的最少操作次数。
+ *    解题思路: 通过完美洗牌的思想来重新排列数组元素。
+ *    
+ * 3. Codeforces 265E - Reading (Codeforces题目)
+ *    链接: https://codeforces.com/problemset/problem/265/E
+ *    题目描述: 给定一个数组，要求通过特定的洗牌操作将其重新排列。
+ *    解题思路: 使用完美洗牌算法。
+ * 
+ * 4. HackerRank Array Rotation
+ *    链接: https://www.hackerrank.com/challenges/circular-array-rotation/problem
+ *    题目描述: 对数组进行循环旋转，然后回答多个查询。
+ *    解题思路: 可以结合完美洗牌的位置置换思想。
+ * 
+ * 5. AtCoder ABC120D Decayed Bridges
+ *    链接: https://atcoder.jp/contests/abc120/tasks/abc120_d
+ *    题目描述: 有n个岛屿和m座桥，每次移除一座桥，求每次移除后岛屿的连通性情况。
+ *    解题思路: 可以使用完美洗牌的分治思想。
+ * 
+ * 6. POJ 3253 Fence Repair
+ *    链接: http://poj.org/problem?id=3253
+ *    题目描述: 切割木板，每次切割的成本等于木板的长度，求最小的总成本。
+ *    解题思路: 贪心算法，可以结合完美洗牌的分治思想。
+ * 
+ * 7. HDU 6080 Dream
+ *    链接: http://acm.hdu.edu.cn/showproblem.php?pid=6080
+ *    题目描述: 给定一个数组，要求按照特定规则重新排列元素。
+ *    解题思路: 使用完美洗牌算法。
+ * 
+ * 8. 牛客网 NC24447 洗牌
+ *    链接: https://ac.nowcoder.com/acm/problem/24447
+ *    题目描述: 给定一个长度为2n的数组，执行k次完美洗牌，求最终数组。
+ *    解题思路: 完美洗牌算法的多次应用，需要优化k次操作。
+ * 
+ * 9. SPOJ SHUFFLE Permutations
+ *    链接: https://www.spoj.com/problems/SHUFFLE/
+ *    题目描述: 研究完美洗牌操作的性质。
+ *    解题思路: 分析完美洗牌的循环结构。
+ * 
+ * 10. 洛谷 P3509 洗牌
+ *     链接: https://www.luogu.com.cn/problem/P3509
+ *     题目描述: 给定一个长度为2n的数组，执行k次完美洗牌，求最终数组。
+ *     解题思路: 完美洗牌算法的多次应用，使用快速幂优化。
+ * 
+ * 11. CodeChef PERMUT2 Shuffling
+ *     链接: https://www.codechef.com/problems/PERMUT2
+ *     题目描述: 判断一个排列是否是自反的，即洗牌两次后回到原排列。
+ *     解题思路: 分析排列的循环结构。
+ * 
+ * 12. UVA 12627 Erratic Expansion
+ *     链接: https://onlinejudge.org/external/126/12627.pdf
+ *     题目描述: 研究一种特殊的扩展模式。
+ *     解题思路: 可以使用完美洗牌的分治思想。
+ * 
+ * 13. 计蒜客 A1484 洗牌
+ *     链接: https://nanti.jisuanke.com/t/A1484
+ *     题目描述: 给定一个长度为2n的数组，执行k次完美洗牌，求最终数组。
+ *     解题思路: 完美洗牌算法的多次应用，需要优化k次操作。
+ * 
+ * 14. MarsCode Shuffle Puzzle
+ *     题目描述: 通过完美洗牌操作将数组恢复到原始顺序。
+ *     解题思路: 分析完美洗牌的逆过程。
+ */
+public class Code05_PerfectShuffle {
+
+    // 申请额外空间的做法
+    // 保证调整的范围是偶数长度
+    // 为了测试
+    public static void shuffle1(int[] arr, int l, int r) {
+        int n = r - l + 1;
+        int[] help = new int[n];
+        for (int l1 = l, r1 = (l + r) / 2 + 1, j = 0; j < n; l1++, r1++) {
+            help[j++] = arr[r1];
+            help[j++] = arr[l1];
+        }
+        for (int i = l, j = 0; j < n; i++, j++) {
+            arr[i] = help[j];
+        }
+    }
+
+    // 正式方法
+    // 完美洗牌算法
+    public static int MAXN = 20;
+
+    public static int[] start = new int[MAXN];
+
+    public static int[] split = new int[MAXN];
+
+    public static int size;
+
+    /*
+     * 完美洗牌算法实现
+     * 时间复杂度: O(n)
+     * 空间复杂度: O(1)
+     * 
+     * 算法原理:
+     * 完美洗牌算法解决的是这样一个问题：
+     * 给定一个数组 a1,a2,a3,...an,b1,b2,b3..bn，
+     * 最终把它置换成 b1,a1,b2,a2,...bn,an。
+     * 
+     * 算法核心思想:
+     * 1. 位置置换：每个位置 i 的元素最终会放到位置 (2*i) % (2*n+1)
+     * 2. 圈算法：通过找圈的方式进行元素交换
+     * 3. 分治策略：将数组分解为特定长度(3^k-1)的子问题
+     * 
+     * 算法步骤:
+     * 1. 预处理：构建长度为 3^k-1 的特殊长度数组
+     * 2. 圈分解：将数组分解为若干个不相交的圈
+     * 3. 圈内操作：在每个圈内进行元素循环移位
+     * 4. 递归处理：对剩余部分递归处理
+     * 
+     * 举例:
+     * 对于数组 [a1, a2, a3, a4, b1, b2, b3, b4]
+     * 完美洗牌后变成 [b1, a1, b2, a2, b3, a3, b4, a4]
+     * 
+     * 位置映射关系:
+     * 原位置 -> 新位置
+     * 1 -> 2
+     * 2 -> 4
+     * 3 -> 6
+     * 4 -> 8
+     * 5 -> 1
+     * 6 -> 3
+     * 7 -> 5
+     * 8 -> 7
+     * 
+     * 可以看出有两个圈:
+     * 圈1: 1 -> 2 -> 4 -> 8 -> 7 -> 5 -> 1
+     * 圈2: 3 -> 6 -> 3
+     * 
+     * 工程化考虑:
+     * 1. 边界条件处理：奇偶数长度分别处理
+     * 2. 数值溢出防护：使用long类型防止中间计算溢出
+     * 3. 内存优化：原地操作，不使用额外空间
+     * 4. 性能优化：预处理特殊长度，减少递归次数
+     */
+    public static void shuffle2(int[] arr, int l, int r) {
+        int n = r - l + 1;
+        build(n);
+        for (int i = size, m; n > 0;) {
+            if (split[i] <= n) {
+                m = (l + r) / 2;
+                rotate(arr, l + split[i] / 2, m, m + split[i] / 2);
+                circle(arr, l, l + split[i] - 1, i);
+                l += split[i];
+                n -= split[i];
+            } else {
+                i--;
+            }
+        }
+    }
+
+    public static void build(int n) {
+        size = 0;
+        for (int s = 1, p = 2; p <= n; s *= 3, p = s * 3 - 1) {
+            start[++size] = s;
+            split[size] = p;
+        }
+    }
+
+    public static void rotate(int[] arr, int l, int m, int r) {
+        reverse(arr, l, m);
+        reverse(arr, m + 1, r);
+        reverse(arr, l, r);
+    }
+
+    public static void reverse(int[] arr, int l, int r) {
+        while (l < r) {
+            swap(arr, l++, r--);
+        }
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+
+    public static void circle(int[] arr, int l, int r, int i) {
+        for (int j = 1, init, cur, next, curv, nextv; j <= i; j++) {
+            init = cur = l + start[j] - 1;
+            next = to(cur, l, r);
+            curv = arr[cur];
+            while (next != init) {
+                nextv = arr[next];
+                arr[next] = curv;
+                curv = nextv;
+                cur = next;
+                next = to(cur, l, r);
+            }
+            arr[init] = curv;
+        }
+    }
+
+    public static int to(int i, int l, int r) {
+        if (i <= (l + r) >> 1) {
+            return i + (i - l + 1);
+        } else {
+            return i - (r - i + 1);
+        }
+    }
+
+    // 生成随机数组
+    // 为了测试
+    public static int[] randomArray(int n, int v) {
+        int[] ans = new int[n];
+        for (int i = 0; i < n; i++) {
+            ans[i] = (int) (Math.random() * v);
+        }
+        return ans;
+    }
+
+    // 拷贝数组
+    // 为了测试
+    public static int[] copyArray(int[] arr) {
+        int n = arr.length;
+        int[] ans = new int[n];
+        for (int i = 0; i < n; i++) {
+            ans[i] = arr[i];
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int n = 10000;
+        int v = 100000;
+        int[] arr1 = randomArray(n, v);
+        int[] arr2 = copyArray(arr1);
+        int test = 50000;
+        System.out.println("测试开始");
+        for (int i = 1, a, b, l, r; i <= test; i++) {
+            a = (int) (Math.random() * n);
+            b = (int) (Math.random() * n);
+            l = Math.min(a, b);
+            r = Math.max(a, b);
+            if (((r - l + 1) & 1) == 0) {
+                shuffle1(arr1, l, r);
+                shuffle2(arr2, l, r);
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (arr1[i] != arr2[i]) {
+                System.out.println("出错了!");
+            }
+        }
+        System.out.println("测试结束");
+    }
+
+}

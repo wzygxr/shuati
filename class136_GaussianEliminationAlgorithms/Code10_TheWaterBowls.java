@@ -1,0 +1,192 @@
+package class133;
+
+// POJ 3185 The Water Bowls
+// 题目链接：http://poj.org/problem?id=3185
+// 题目大意：有20个碗排成一排，每个碗可能是正放(0)或反放(1)
+// 每次可以翻转连续3个碗的状态
+// 求最少需要翻转多少次才能使所有碗都正放
+//
+// 解题思路：
+// 1. 这是一个典型的异或方程组问题，可以使用高斯消元法求解
+// 2. 对于每个碗，我们可以建立一个方程表示其最终状态
+// 3. 对于第i个碗，其最终状态 = 初始状态 XOR 所有影响它的翻转操作
+// 4. 每次翻转连续3个碗，所以第i个碗会被第i-1、i、i+1次翻转操作影响（边界情况特殊处理）
+// 5. 通过高斯消元法求解这个异或方程组，得到最少翻转次数
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+
+public class Code10_TheWaterBowls {
+
+    public static int MAXN = 25;
+    
+    // 增广矩阵，用于高斯消元求解异或方程组
+    // mat[i][j] 表示第j次翻转对第i个碗的影响（1表示有影响，0表示无影响）
+    // mat[i][n+1] 表示第i个碗的初始状态（1表示反放需要翻转，0表示正放不需要翻转）
+    public static int[][] mat = new int[MAXN][MAXN];
+    
+    // 结果数组，result[i] 表示第i个位置是否需要翻转（1表示翻转，0表示不翻转）
+    public static int[] result = new int[MAXN];
+    
+    // 碗的数量，题目固定为20
+    public static int n = 20;
+    
+    /**
+     * 高斯消元法求解异或方程组
+     * 时间复杂度: O(n^3)
+     * 空间复杂度: O(n^2)
+     * 
+     * 数学原理：
+     * 异或方程组形式：
+     * a11*x1 XOR a12*x2 XOR ... XOR a1n*xn = b1
+     * a21*x1 XOR a22*x2 XOR ... XOR a2n*xn = b2
+     * ...
+     * an1*x1 XOR an2*x2 XOR ... XOR ann*xn = bn
+     * 
+     * 其中：
+     * - xi 表示第i个位置是否需要翻转（1表示翻转，0表示不翻转）
+     * - aij 表示在第j个位置翻转对第i个碗的影响（1表示有影响，0表示无影响）
+     * - bi 表示第i个碗的初始状态（1表示反放需要翻转，0表示正放不需要翻转）
+     * 
+     * 算法步骤：
+     * 1. 对于每一列i，找到一个行row使得mat[row][i] = 1
+     * 2. 将该行与第i行交换
+     * 3. 用第i行消除其他所有行的第i列系数
+     * 4. 回代求解
+     * 
+     * @return 最少翻转次数，-1表示无解
+     */
+    public static int gauss() {
+        // 对每一列进行处理，从第1列到第n列
+        for (int i = 1; i <= n; i++) {
+            // 寻找第i列中系数为1的行，将其交换到第i行
+            // 这一步是为了确保主元不为0，便于后续的消元操作
+            int row = i;
+            for (int j = i + 1; j <= n; j++) {
+                if (mat[j][i] == 1) {
+                    row = j;
+                    break;
+                }
+            }
+            
+            // 如果找不到系数为1的行，说明该列全为0，继续处理下一列
+            if (mat[row][i] == 0) {
+                continue;
+            }
+            
+            // 将找到的行与第i行交换，确保主元在对角线上
+            if (row != i) {
+                for (int j = 1; j <= n + 1; j++) {
+                    int tmp = mat[i][j];
+                    mat[i][j] = mat[row][j];
+                    mat[row][j] = tmp;
+                }
+            }
+            
+            // 用第i行消除其他行的第i列系数
+            // 对于每一行j，如果j != i且mat[j][i] == 1，则用第i行消除第j行的第i列系数
+            for (int j = 1; j <= n; j++) {
+                if (i != j && mat[j][i] == 1) {
+                    // 对于第j行，将其与第i行进行异或操作，消除第i列的系数
+                    for (int k = 1; k <= n + 1; k++) {
+                        mat[j][k] ^= mat[i][k]; // 异或操作
+                    }
+                }
+            }
+        }
+        
+        // 检查是否有解
+        // 从最后一行开始检查，如果某一行的系数全为0但常数项不为0，则无解
+        for (int i = n; i >= 1; i--) {
+            if (mat[i][i] == 0 && mat[i][n + 1] != 0) {
+                return -1; // 无解
+            }
+        }
+        
+        // 回代求解
+        // 从最后一行开始，逐行求解变量的值
+        for (int i = n; i >= 1; i--) {
+            result[i] = mat[i][n + 1]; // 初始化为常数项
+            // 对于第i个变量，需要考虑其他变量对其的影响
+            for (int j = i + 1; j <= n; j++) {
+                result[i] ^= (mat[i][j] & result[j]); // 异或操作
+            }
+        }
+        
+        // 计算需要翻转的次数
+        // 统计result数组中值为1的元素个数，即为需要翻转的次数
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            if (result[i] == 1) {
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    
+    /**
+     * 主函数
+     * 读取输入数据，构建系数矩阵，调用高斯消元法求解，输出结果
+     * 
+     * 算法流程：
+     * 1. 读取每个碗的初始状态
+     * 2. 初始化增广矩阵
+     * 3. 设置常数项（初始状态为反放需要翻转为正放）
+     * 4. 构造系数矩阵（每次翻转对碗的影响）
+     * 5. 使用高斯消元法求解
+     * 6. 输出结果
+     */
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+        
+        // 读取初始状态
+        // 输入为一行20个数字，0表示正放，1表示反放
+        String[] parts = br.readLine().trim().split(" ");
+        int[] bowls = new int[MAXN];
+        for (int i = 1; i <= n; i++) {
+            bowls[i] = Integer.parseInt(parts[i - 1]);
+        }
+        
+        // 初始化矩阵，将所有元素置为0
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n + 1; j++) {
+                mat[i][j] = 0;
+            }
+        }
+        
+        // 设置常数项（初始状态为反放需要翻转为正放）
+        // 如果碗初始状态为1（反放），则需要翻转使其变为0（正放）
+        for (int i = 1; i <= n; i++) {
+            mat[i][n + 1] = bowls[i]; // 反放需要翻转
+        }
+        
+        // 构造系数矩阵
+        // 对于每个位置，翻转它会影响自己和相邻的位置
+        // 第i次翻转操作会影响第i-1、i、i+1个碗（如果存在）
+        for (int i = 1; i <= n; i++) {
+            // 翻转第i个位置会影响第i-1, i, i+1个碗（如果存在）
+            if (i - 1 >= 1) {
+                mat[i - 1][i] = 1; // 第i次翻转影响第i-1个碗
+            }
+            mat[i][i] = 1; // 第i次翻转影响第i个碗
+            if (i + 1 <= n) {
+                mat[i + 1][i] = 1; // 第i次翻转影响第i+1个碗
+            }
+        }
+        
+        // 使用高斯消元法求解异或方程组
+        int res = gauss();
+        
+        // 输出结果
+        out.println(res);
+        
+        out.flush();
+        out.close();
+        br.close();
+    }
+}

@@ -1,0 +1,197 @@
+# 数列分块入门3 - Python实现
+# 题目来源：LibreOJ #6279 数列分块入门3
+# 题目链接：https://loj.ac/p/6279
+# 题目描述：给出一个长为n的数列，以及n个操作，操作涉及区间加法，询问区间内小于某个值x的前驱（比其小的最大元素）
+# 操作0：区间加法 [l, r] + c
+# 操作1：询问区间内小于某个值x的前驱
+# 解题思路：
+# 1. 使用分块算法，将数组分成sqrt(n)大小的块
+# 2. 每个块维护一个有序列表，用于快速查找前驱元素
+# 3. 对于区间加法操作，不完整块直接更新并重新排序，完整块使用懒惰标记
+# 4. 对于查询操作，不完整块直接遍历，完整块使用二分查找优化
+# 时间复杂度：预处理O(n log(√n))，区间加法操作O(√n * log(√n))，查询操作O(√n * log(√n))
+# 空间复杂度：O(n)
+# 相关题目：
+# 1. LibreOJ #6277 数列分块入门1 - https://loj.ac/p/6277
+# 2. LibreOJ #6278 数列分块入门2 - https://loj.ac/p/6278
+# 3. LibreOJ #6280 数列分块入门4 - https://loj.ac/p/6280
+# 4. LibreOJ #6281 数列分块入门5 - https://loj.ac/p/6281
+# 5. LibreOJ #6282 数列分块入门6 - https://loj.ac/p/6282
+# 6. LibreOJ #6283 数列分块入门7 - https://loj.ac/p/6283
+# 7. LibreOJ #6284 数列分块入门8 - https://loj.ac/p/6284
+# 8. LibreOJ #6285 数列分块入门9 - https://loj.ac/p/6285
+
+import math
+import bisect
+
+# 最大数组大小
+MAXN = 500001
+
+# 原数组
+arr = [0] * MAXN
+
+# 每个块内的有序列表，用于维护有序元素
+block_lists = [[] for _ in range(MAXN)]
+
+# 块大小和块数量
+blockSize = 0
+blockNum = 0
+
+# 每个元素所属的块
+belong = [0] * MAXN
+
+# 每个块的左右边界
+blockLeft = [0] * MAXN
+blockRight = [0] * MAXN
+
+# 每个块的懒惰标记（区间加法标记）
+lazy = [0] * MAXN
+
+def build(n):
+    """
+    构建分块结构
+    时间复杂度：O(n log(√n))
+    空间复杂度：O(n)
+    """
+    global blockSize, blockNum
+    
+    # 块大小取sqrt(n)
+    blockSize = int(math.sqrt(n))
+    # 块数量
+    blockNum = (n + blockSize - 1) // blockSize
+    
+    # 计算每个元素属于哪个块
+    for i in range(1, n + 1):
+        belong[i] = (i - 1) // blockSize + 1
+    
+    # 计算每个块的左右边界
+    for i in range(1, blockNum + 1):
+        blockLeft[i] = (i - 1) * blockSize + 1
+        blockRight[i] = min(i * blockSize, n)
+    
+    # 将每个块内的元素添加到对应的有序列表中
+    for i in range(1, blockNum + 1):
+        block_lists[i].clear()
+        for j in range(blockLeft[i], blockRight[i] + 1):
+            block_lists[i].append(arr[j])
+        block_lists[i].sort()
+
+def rebuild(blockId):
+    """
+    重构指定块的有序列表
+    当块内元素被修改后需要重新排序
+    时间复杂度：O(√n * log(√n))
+    """
+    block_lists[blockId].clear()
+    for i in range(blockLeft[blockId], blockRight[blockId] + 1):
+        block_lists[blockId].append(arr[i])
+    block_lists[blockId].sort()
+
+def add(l, r, c):
+    """
+    区间加法操作
+    时间复杂度：O(√n * log(√n))
+    :param l: 区间左端点
+    :param r: 区间右端点
+    :param c: 加的值
+    """
+    belongL = belong[l]  # 左端点所属块
+    belongR = belong[r]  # 右端点所属块
+    
+    # 如果在同一个块内，直接暴力处理
+    if belongL == belongR:
+        for i in range(l, r + 1):
+            arr[i] += c
+        # 重构该块的有序列表
+        rebuild(belongL)
+    else:
+        # 处理左端不完整块
+        for i in range(l, blockRight[belongL] + 1):
+            arr[i] += c
+        # 重构该块的有序列表
+        rebuild(belongL)
+        
+        # 处理右端不完整块
+        for i in range(blockLeft[belongR], r + 1):
+            arr[i] += c
+        # 重构该块的有序列表
+        rebuild(belongR)
+        
+        # 处理中间的完整块，使用懒惰标记
+        for i in range(belongL + 1, belongR):
+            lazy[i] += c
+
+def query(l, r, v):
+    """
+    查询区间内小于v的最大元素（前驱）
+    时间复杂度：O(√n * log(√n))
+    :param l: 区间左端点
+    :param r: 区间右端点
+    :param v: 查找的值
+    :return: 小于v的最大元素，不存在则返回-1
+    """
+    belongL = belong[l]  # 左端点所属块
+    belongR = belong[r]  # 右端点所属块
+    result = -1
+    
+    # 如果在同一个块内，直接暴力处理
+    if belongL == belongR:
+        for i in range(l, r + 1):
+            actualValue = arr[i] + lazy[belong[i]]
+            if actualValue < v:
+                result = max(result, actualValue)
+    else:
+        # 处理左端不完整块
+        for i in range(l, blockRight[belongL] + 1):
+            actualValue = arr[i] + lazy[belong[i]]
+            if actualValue < v:
+                result = max(result, actualValue)
+        
+        # 处理右端不完整块
+        for i in range(blockLeft[belongR], r + 1):
+            actualValue = arr[i] + lazy[belong[i]]
+            if actualValue < v:
+                result = max(result, actualValue)
+        
+        # 处理中间的完整块，使用有序列表优化
+        for i in range(belongL + 1, belongR):
+            # 调整v的值，考虑懒惰标记的影响
+            adjustedV = v - lazy[i]
+            # 在有序列表中查找小于adjustedV的最大元素
+            pos = bisect.bisect_left(block_lists[i], adjustedV)
+            if pos > 0:
+                predecessor = block_lists[i][pos - 1]
+                result = max(result, predecessor + lazy[i])
+    
+    return result
+
+def main():
+    # 读取数组长度
+    n = int(input())
+    
+    # 读取数组元素
+    elements = list(map(int, input().split()))
+    for i in range(1, n + 1):
+        arr[i] = elements[i - 1]
+    
+    # 构建分块结构
+    build(n)
+    
+    # 处理操作
+    for _ in range(n):
+        operation = list(map(int, input().split()))
+        op = operation[0]
+        l = operation[1]
+        r = operation[2]
+        
+        if op == 0:
+            # 区间加法操作
+            c = operation[3]
+            add(l, r, c)
+        else:
+            # 查询操作
+            v = operation[3]
+            print(query(l, r, v))
+
+if __name__ == "__main__":
+    main()

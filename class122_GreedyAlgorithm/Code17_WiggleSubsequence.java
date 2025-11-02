@@ -1,0 +1,90 @@
+package class091;
+
+// 摆动序列
+// 如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为摆动序列。
+// 第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也视作摆动序列。
+// 子序列可以通过从原始序列中删除一些（也可以不删除）元素来获得，剩下的元素保持其原始顺序。
+// 给你一个整数数组 nums ，返回 nums 中作为摆动序列的最长子序列的长度。
+// 测试链接 : https://leetcode.cn/problems/wiggle-subsequence/
+public class Code17_WiggleSubsequence {
+
+	/**
+	 * 摆动序列
+	 * 
+	 * 算法思路：
+	 * 使用贪心策略：
+	 * 1. 维护两个变量：
+	 *    - up：以上升结尾的最长摆动序列长度
+	 *    - down：以下降结尾的最长摆动序列长度
+	 * 2. 遍历数组：
+	 *    - 如果当前元素大于前一个元素，更新up = down + 1
+	 *    - 如果当前元素小于前一个元素，更新down = up + 1
+	 *    - 如果相等，不更新
+	 * 
+	 * 正确性分析：
+	 * 1. 我们只需要关注序列的上升和下降趋势
+	 * 2. 当出现上升时，以上升结尾的最长序列长度等于以下降结尾的最长序列长度+1
+	 * 3. 当出现下降时，以下降结尾的最长序列长度等于以上升结尾的最长序列长度+1
+	 * 
+	 * 时间复杂度：O(n) - 只需要遍历数组一次
+	 * 空间复杂度：O(1) - 只使用常数额外空间
+	 * 
+	 * @param nums 整数数组
+	 * @return 最长摆动子序列的长度
+	 */
+	public static int wiggleMaxLength(int[] nums) {
+		// 边界情况处理
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+		if (nums.length == 1) {
+			return 1;
+		}
+		
+		// 初始化变量
+		int up = 1;    // 以上升结尾的最长摆动序列长度
+		int down = 1;  // 以下降结尾的最长摆动序列长度
+		
+		// 遍历数组
+		for (int i = 1; i < nums.length; i++) {
+			if (nums[i] > nums[i - 1]) {
+				// 出现上升，更新以上升结尾的最长序列长度
+				up = down + 1;
+			} else if (nums[i] < nums[i - 1]) {
+				// 出现下降，更新以下降结尾的最长序列长度
+				down = up + 1;
+			}
+			// 如果相等，不更新
+		}
+		
+		// 返回最长摆动子序列的长度
+		return Math.max(up, down);
+	}
+
+	// 测试用例
+	public static void main(String[] args) {
+		// 测试用例1: nums = [1,7,4,9,2,5] -> 输出: 6
+		int[] nums1 = {1, 7, 4, 9, 2, 5};
+		System.out.println("测试用例1:");
+		System.out.println("数组: " + java.util.Arrays.toString(nums1));
+		System.out.println("最长摆动子序列长度: " + wiggleMaxLength(nums1)); // 期望输出: 6
+		
+		// 测试用例2: nums = [1,17,5,10,13,15,10,5,16,8] -> 输出: 7
+		int[] nums2 = {1, 17, 5, 10, 13, 15, 10, 5, 16, 8};
+		System.out.println("\n测试用例2:");
+		System.out.println("数组: " + java.util.Arrays.toString(nums2));
+		System.out.println("最长摆动子序列长度: " + wiggleMaxLength(nums2)); // 期望输出: 7
+		
+		// 测试用例3: nums = [1,2,3,4,5,6,7,8,9] -> 输出: 2
+		int[] nums3 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+		System.out.println("\n测试用例3:");
+		System.out.println("数组: " + java.util.Arrays.toString(nums3));
+		System.out.println("最长摆动子序列长度: " + wiggleMaxLength(nums3)); // 期望输出: 2
+		
+		// 测试用例4: nums = [1] -> 输出: 1
+		int[] nums4 = {1};
+		System.out.println("\n测试用例4:");
+		System.out.println("数组: " + java.util.Arrays.toString(nums4));
+		System.out.println("最长摆动子序列长度: " + wiggleMaxLength(nums4)); // 期望输出: 1
+	}
+}

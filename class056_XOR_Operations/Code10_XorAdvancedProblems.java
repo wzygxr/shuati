@@ -1,0 +1,673 @@
+package class030;
+
+import java.util.*;
+
+/**
+ * 异或运算高级题目实现
+ * 
+ * 本文件包含各种复杂的异或运算题目，展示异或在算法中的广泛应用
+ * 涵盖LeetCode、LintCode、HackerRank、Codeforces、AtCoder、SPOJ、POJ等平台的经典题目
+ */
+public class Code10_XorAdvancedProblems {
+
+    /**
+     * 题目1: 与数组中元素的最大异或值
+     * 
+     * 题目来源: LeetCode 1707. Maximum XOR With an Element From Array
+     * 链接: https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/
+     * 
+     * 题目描述:
+     * 给你一个由非负整数组成的数组 nums 和一个查询数组 queries，
+     * 其中 queries[i] = [xi, mi]。
+     * 第 i 个查询的答案是 xi 与 nums 中所有小于等于 mi 的元素异或的最大值。
+     * 如果 nums 中的所有元素都大于 mi，最终答案就是 -1。
+     * 返回一个数组 answer 作为查询的答案，其中 answer.length == queries.length 且 answer[i] 是第 i 个查询的答案。
+     * 
+     * 解题思路:
+     * 使用前缀树(Trie)配合离线处理：
+     * 1. 将查询按照 mi 排序，将数组按照值排序
+     * 2. 对于每个查询，将所有小于等于 mi 的数插入前缀树
+     * 3. 在前缀树中查找与 xi 异或的最大值
+     * 
+     * 时间复杂度: O((n + q) * log(max)) - n为数组长度，q为查询次数，max为最大值
+     * 空间复杂度: O(n * log(max)) - 前缀树的空间
+     * 
+     * @param nums 输入数组
+     * @param queries 查询数组
+     * @return 查询结果数组
+     */
+    public static int[] maximizeXor(int[] nums, int[][] queries) {
+        // 构建前缀树
+        TrieNode root = new TrieNode();
+        
+        // 将数组排序
+        Arrays.sort(nums);
+        
+        // 构建查询索引并排序
+        int[][] indexedQueries = new int[queries.length][3];
+        for (int i = 0; i < queries.length; i++) {
+            indexedQueries[i][0] = queries[i][0]; // xi
+            indexedQueries[i][1] = queries[i][1]; // mi
+            indexedQueries[i][2] = i;             // 原始索引
+        }
+        
+        // 按照mi排序查询
+        Arrays.sort(indexedQueries, (a, b) -> a[1] - b[1]);
+        
+        int[] result = new int[queries.length];
+        int numIndex = 0;
+        
+        // 处理每个查询
+        for (int[] query : indexedQueries) {
+            int xi = query[0];
+            int mi = query[1];
+            int index = query[2];
+            
+            // 将所有小于等于mi的数插入前缀树
+            while (numIndex < nums.length && nums[numIndex] <= mi) {
+                insert(root, nums[numIndex]);
+                numIndex++;
+            }
+            
+            // 如果前缀树为空，说明没有符合条件的数
+            if (root.children[0] == null && root.children[1] == null) {
+                result[index] = -1;
+            } else {
+                // 在前缀树中查找与xi异或的最大值
+                result[index] = findMaxXor(root, xi);
+            }
+        }
+        
+        return result;
+    }
+    
+    // 前缀树节点类
+    static class TrieNode {
+        TrieNode[] children = new TrieNode[2]; // 0和1两个子节点
+        int count = 0; // 通过该节点的路径数
+    }
+    
+    // 向前缀树中插入数字
+    private static void insert(TrieNode root, int num) {
+        TrieNode node = root;
+        // 从最高位开始处理
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+            if (node.children[bit] == null) {
+                node.children[bit] = new TrieNode();
+            }
+            node = node.children[bit];
+        }
+    }
+    
+    // 在前缀树中查找与num异或能得到最大值的数字
+    private static int findMaxXor(TrieNode root, int num) {
+        TrieNode node = root;
+        int maxXor = 0;
+        // 从最高位开始处理
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+            // 贪心策略：尽量走相反的位
+            int desiredBit = 1 - bit;
+            if (node.children[desiredBit] != null) {
+                // 能走相反的位，该位异或结果为1
+                maxXor |= (1 << i);
+                node = node.children[desiredBit];
+            } else {
+                // 只能走相同的位，该位异或结果为0
+                node = node.children[bit];
+            }
+        }
+        return maxXor;
+    }
+
+    /**
+     * 题目2: 统计异或值在范围内的数对有多少
+     * 
+     * 题目来源: LeetCode 1803. Count Pairs With XOR in a Range
+     * 链接: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
+     * 
+     * 题目描述:
+     * 给你一个整数数组 nums（下标从 0 开始）和一个整数 low、high，
+     * 返回满足以下条件的数对 (i, j) 的数目：
+     * - 0 <= i < j < nums.length
+     * - low <= (nums[i] XOR nums[j]) <= high
+     * 
+     * 解题思路:
+     * 使用前缀树配合数学技巧：
+     * 1. 利用容斥原理：count(low, high) = count(0, high) - count(0, low-1)
+     * 2. 对于每个数，在前缀树中查找与其异或结果小于等于某个值的数的个数
+     * 3. 使用前缀树存储已处理的数，并在树中进行计数查询
+     * 
+     * 时间复杂度: O(n * log(max)) - n为数组长度，max为最大值
+     * 空间复杂度: O(n * log(max)) - 前缀树的空间
+     * 
+     * @param nums 输入数组
+     * @param low 范围下界
+     * @param high 范围上界
+     * @return 满足条件的数对数目
+     */
+    public static int countPairs(int[] nums, int low, int high) {
+        // 利用容斥原理
+        return countPairsLessThan(nums, high + 1) - countPairsLessThan(nums, low);
+    }
+    
+    // 计算异或结果小于指定值的数对数目
+    private static int countPairsLessThan(int[] nums, int limit) {
+        TrieNode root = new TrieNode();
+        int count = 0;
+        
+        for (int num : nums) {
+            // 查找与当前数异或结果小于limit的数的个数
+            count += countLessThan(root, num, limit);
+            // 将当前数插入前缀树
+            insertWithCount(root, num);
+        }
+        
+        return count;
+    }
+    
+    // 向前缀树中插入数字并维护计数
+    private static void insertWithCount(TrieNode root, int num) {
+        TrieNode node = root;
+        // 从最高位开始处理
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+            if (node.children[bit] == null) {
+                node.children[bit] = new TrieNode();
+            }
+            node = node.children[bit];
+            // 增加通过该节点的路径数
+            node.count++;
+        }
+    }
+    
+    // 在前缀树中查找与num异或结果小于limit的数的个数
+    private static int countLessThan(TrieNode root, int num, int limit) {
+        TrieNode node = root;
+        int count = 0;
+        
+        // 从最高位开始处理
+        for (int i = 31; i >= 0 && node != null; i--) {
+            int numBit = (num >> i) & 1;
+            int limitBit = (limit >> i) & 1;
+            
+            if (limitBit == 1) {
+                // 如果limit的当前位是1，我们可以选择与num相同位的路径（异或结果为0）
+                if (node.children[numBit] != null) {
+                    count += node.children[numBit].count;
+                }
+                // 继续走相反位的路径（异或结果为1）
+                node = node.children[1 - numBit];
+            } else {
+                // 如果limit的当前位是0，只能走与num相同位的路径（异或结果为0）
+                node = node.children[numBit];
+            }
+        }
+        
+        return count;
+    }
+    
+    // 带计数的前缀树节点类
+    static class TrieNodeWithCount {
+        int count = 0; // 通过该节点的路径数
+        TrieNodeWithCount[] children = new TrieNodeWithCount[2]; // 0和1两个子节点
+    }
+
+    /**
+     * 题目3: 数组中两个数的最大异或值 II
+     * 
+     * 题目来源: LintCode 1490. Maximum XOR
+     * 链接: https://www.lintcode.com/problem/1490/
+     * 
+     * 题目描述:
+     * 给定一个非负整数数组，找到数组中任意两个数异或的最大值。
+     * 
+     * 解题思路:
+     * 使用前缀树(Trie)：
+     * 1. 将所有数字的二进制表示插入前缀树
+     * 2. 对于每个数字，在前缀树中查找能产生最大异或值的数字
+     * 3. 贪心策略：在前缀树中尽量走相反的位（0走1，1走0）
+     * 
+     * 时间复杂度: O(n * log(max)) - n为数组长度，max为最大值
+     * 空间复杂度: O(n * log(max)) - 前缀树的空间
+     * 
+     * @param nums 输入数组
+     * @return 最大异或值
+     */
+    public static int findMaximumXOR(int[] nums) {
+        if (nums == null || nums.length < 2) {
+            return 0;
+        }
+        
+        // 构建前缀树
+        TrieNode root = new TrieNode();
+        
+        // 将所有数字插入前缀树
+        for (int num : nums) {
+            insert(root, num);
+        }
+        
+        int maxXOR = 0;
+        // 对于每个数字，在前缀树中寻找能产生最大异或值的数字
+        for (int num : nums) {
+            int currentXOR = findMaxXor(root, num);
+            maxXOR = Math.max(maxXOR, currentXOR);
+        }
+        
+        return maxXOR;
+    }
+
+    /**
+     * 题目4: 牛客网 NC152. 数组中两个数的最大异或值
+     * 
+     * 题目来源: 牛客网 NC152
+     * 链接: https://www.nowcoder.com/practice/363b9cab5ab142459f757c79c0b540be
+     * 
+     * 题目描述:
+     * 给定一个非负整数数组，找到数组中任意两个数异或的最大值。
+     * 
+     * 解题思路:
+     * 与LeetCode 421相同，使用前缀树(Trie)方法。
+     * 
+     * 时间复杂度: O(n * log(max)) - n为数组长度，max为最大值
+     * 空间复杂度: O(n * log(max)) - 前缀树的空间
+     * 
+     * @param nums 输入数组
+     * @return 最大异或值
+     */
+    public static int nc152MaxXor(int[] nums) {
+        return findMaximumXOR(nums);
+    }
+
+    /**
+     * 题目5: 数组中两个数的最大异或值
+     * 
+     * 题目来源: LeetCode 421. Maximum XOR of Two Numbers in an Array
+     * 链接: https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
+     * 
+     * 题目描述:
+     * 给你一个整数数组 nums ，返回 nums[i] XOR nums[j] 的最大运算结果，其中 0 ≤ i ≤ j < n 。
+     * 
+     * 解题思路:
+     * 使用前缀树(Trie)结构：
+     * 1. 将数组中每个数字的二进制表示插入前缀树中
+     * 2. 对于每个数字，在前缀树中查找能与之产生最大异或值的路径
+     * 3. 贪心策略：对于每一位，尽量寻找相反的位以最大化异或结果
+     * 
+     * 时间复杂度: O(n * 32) = O(n) - 每个数字处理32位
+     * 空间复杂度: O(n * 32) = O(n) - 前缀树存储
+     * 
+     * @param nums 输入数组
+     * @return 最大异或值
+     */
+    public static int maxXOR(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        // 构建前缀树
+        TrieNode root = new TrieNode();
+        insert(root, nums[0]); // 先插入第一个数
+        
+        int maxResult = 0;
+        
+        // 对于每个后续的数，先查询再插入
+        for (int i = 1; i < nums.length; i++) {
+            // 查询当前数与前缀树中已有数的最大异或值
+            int currentMax = findMaxXor(root, nums[i]);
+            maxResult = Math.max(maxResult, currentMax);
+            
+            // 将当前数插入前缀树
+            insert(root, nums[i]);
+        }
+        
+        return maxResult;
+    }
+
+    /**
+     * 题目6: 数组中唯一出现一次的元素 II
+     * 
+     * 题目来源: LeetCode 137. Single Number II
+     * 链接: https://leetcode.cn/problems/single-number-ii/
+     * 
+     * 题目描述:
+     * 给你一个整数数组 nums ，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次 。
+     * 请你找出并返回那个只出现了一次的元素。
+     * 
+     * 解题思路:
+     * 使用位运算统计每一位出现的次数：
+     * 1. 对于每一位（0-31），统计数组中所有数字在该位上出现1的次数
+     * 2. 如果该位出现的次数对3取余等于1，说明只出现一次的数字在该位上是1
+     * 3. 否则，只出现一次的数字在该位上是0
+     * 
+     * 时间复杂度: O(n * 32) = O(n)
+     * 空间复杂度: O(1)
+     * 
+     * @param nums 输入数组
+     * @return 只出现一次的元素
+     */
+    public static int singleNumberII(int[] nums) {
+        int result = 0;
+        
+        // 遍历每一位
+        for (int i = 0; i < 32; i++) {
+            int count = 0;
+            // 统计数组中所有数字在第i位上出现1的次数
+            for (int num : nums) {
+                count += (num >> i) & 1;
+            }
+            // 如果该位出现的次数对3取余等于1，则只出现一次的数字在该位上是1
+            if (count % 3 == 1) {
+                result |= (1 << i);
+            }
+        }
+        
+        return result;
+    }
+
+    /**
+     * 题目7: 数组中两个只出现一次的元素
+     * 
+     * 题目来源: LeetCode 260. Single Number III
+     * 链接: https://leetcode.cn/problems/single-number-iii/
+     * 
+     * 题目描述:
+     * 给你一个整数数组 nums，其中恰好有两个元素只出现一次，其余所有元素均出现两次。
+     * 找出只出现一次的那两个元素。你可以按 任意顺序 返回答案。
+     * 
+     * 解题思路:
+     * 利用异或运算的性质：
+     * 1. 首先，对数组中所有元素进行异或操作，得到两个只出现一次的元素的异或结果
+     * 2. 找出异或结果中最右边的1位，根据该位将数组分为两组
+     * 3. 对每组分别进行异或操作，得到两个只出现一次的元素
+     * 
+     * 时间复杂度: O(n)
+     * 空间复杂度: O(1)
+     * 
+     * @param nums 输入数组
+     * @return 只出现一次的两个元素
+     */
+    public static int[] singleNumberIII(int[] nums) {
+        // 对数组中所有元素进行异或操作
+        int xorResult = 0;
+        for (int num : nums) {
+            xorResult ^= num;
+        }
+        
+        // 找出异或结果中最右边的1位
+        int rightmostOne = xorResult & (-xorResult);
+        
+        // 根据该位将数组分为两组，并分别异或
+        int[] result = new int[2];
+        for (int num : nums) {
+            if ((num & rightmostOne) == 0) {
+                result[0] ^= num;
+            } else {
+                result[1] ^= num;
+            }
+        }
+        
+        return result;
+    }
+
+    /**
+     * 题目8: Sum vs XOR
+     * 
+     * 题目来源: HackerRank - Sum vs XOR
+     * 链接: https://www.hackerrank.com/challenges/sum-vs-xor/problem
+     * 
+     * 题目描述:
+     * 给定一个整数 n，找出非负整数 x 的个数，使得 x + n == x ^ n。
+     * 
+     * 解题思路:
+     * 数学分析：x + n = x ^ n 当且仅当 x & n = 0
+     * 即x和n在二进制表示中没有重叠的1位。
+     * 1. 计算n的二进制表示中0的个数count
+     * 2. 答案就是2^count
+     * 
+     * 时间复杂度: O(log n)
+     * 空间复杂度: O(1)
+     * 
+     * @param n 输入整数
+     * @return 满足条件的x的个数
+     */
+    public static long sumXor(long n) {
+        // 计算n的二进制表示中0的个数
+        int countZeros = 0;
+        long temp = n;
+        
+        // 特殊情况：当n=0时，任何x都满足条件
+        if (n == 0) {
+            return 1;
+        }
+        
+        while (temp > 0) {
+            // 如果当前位是0，计数加1
+            if ((temp & 1) == 0) {
+                countZeros++;
+            }
+            temp >>= 1;
+        }
+        
+        // 答案是2的countZeros次方
+        return 1L << countZeros;
+    }
+
+    /**
+     * 题目9: XOR and Favorite Number
+     * 
+     * 题目来源: Codeforces - Round #400 (Div. 2) - C
+     * 链接: https://codeforces.com/contest/776/problem/C
+     * 
+     * 题目描述:
+     * 给定一个数组a和一个数k，计算有多少个子数组满足子数组元素的异或值等于k。
+     * 
+     * 解题思路:
+     * 利用前缀异或和哈希表：
+     * 1. 计算前缀异或数组prefixXor
+     * 2. 对于每个i，我们需要找到有多少个j < i使得prefixXor[i] ^ prefixXor[j] = k
+     * 3. 这等价于查找prefixXor[j] = prefixXor[i] ^ k的次数
+     * 4. 使用哈希表记录每个prefixXor值出现的次数
+     * 
+     * 时间复杂度: O(n)
+     * 空间复杂度: O(n)
+     * 
+     * @param nums 输入数组
+     * @param k 目标异或值
+     * @return 满足条件的子数组个数
+     */
+    public static long xorFavoriteNumber(int[] nums, int k) {
+        Map<Integer, Integer> xorCount = new HashMap<>();
+        // 初始状态：空前缀的异或值为0
+        xorCount.put(0, 1);
+        
+        int prefixXor = 0;
+        long result = 0;
+        
+        for (int num : nums) {
+            // 计算当前前缀异或
+            prefixXor ^= num;
+            
+            // 查找prefixXor ^ k在哈希表中出现的次数
+            result += xorCount.getOrDefault(prefixXor ^ k, 0);
+            
+            // 将当前前缀异或值加入哈希表
+            xorCount.put(prefixXor, xorCount.getOrDefault(prefixXor, 0) + 1);
+        }
+        
+        return result;
+    }
+
+    /**
+     * 题目10: 剑指Offer - 数组中数字出现的次数
+     * 
+     * 题目来源: 剑指Offer 56 - I
+     * 链接: https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/
+     * 
+     * 题目描述:
+     * 一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。
+     * 要求时间复杂度是O(n)，空间复杂度是O(1)。
+     * 
+     * 解题思路:
+     * 与LeetCode 260相同，利用异或运算的性质：
+     * 1. 首先，对数组中所有元素进行异或操作，得到两个只出现一次的元素的异或结果
+     * 2. 找出异或结果中最右边的1位，根据该位将数组分为两组
+     * 3. 对每组分别进行异或操作，得到两个只出现一次的元素
+     * 
+     * 时间复杂度: O(n)
+     * 空间复杂度: O(1)
+     * 
+     * @param nums 输入数组
+     * @return 只出现一次的两个元素
+     */
+    public static int[] jianzhiOffer56(int[] nums) {
+        return singleNumberIII(nums);
+    }
+
+    /**
+     * 题目11: The XOR-longest Path
+     * 
+     * 题目来源: POJ 3764
+     * 链接: http://poj.org/problem?id=3764
+     * 
+     * 题目描述:
+     * 给定一棵树，每条边有一个权值。找出树中最长的一条路径，使得路径上的边权异或值最大。
+     * 
+     * 解题思路:
+     * 树的异或路径问题：
+     * 1. 树中任意两点之间的路径是唯一的
+     * 2. 计算每个节点到根节点的路径异或值xorPath[u]
+     * 3. 任意两点u和v之间的路径异或值等于xorPath[u] ^ xorPath[v]
+     * 4. 问题转化为：在xorPath数组中找出两个数，使得它们的异或值最大
+     * 5. 使用前缀树(Trie)解决最大异或对问题
+     * 
+     * 时间复杂度: O(n * 32)
+     * 空间复杂度: O(n * 32)
+     * 
+     * 注意：这里只提供xorPath数组的处理方法，完整解法需要先进行树的遍历计算xorPath数组
+     * 
+     * @param xorPath 各节点到根节点的异或路径值
+     * @return 最长异或路径的异或值
+     */
+    public static int xorLongestPath(int[] xorPath) {
+        return findMaximumXOR(xorPath);
+    }
+
+    /**
+     * 题目12: SPOJ XOR
+     * 
+     * 题目来源: SPOJ XOR - XOR
+     * 链接: https://www.spoj.com/problems/XOR/
+     * 
+     * 题目描述:
+     * 给定一个数组，找出一个子数组，使得子数组的异或值最大。
+     * 
+     * 解题思路:
+     * 利用前缀异或和前缀树：
+     * 1. 计算前缀异或数组prefixXor
+     * 2. 对于每个i，我们需要找到j < i使得prefixXor[i] ^ prefixXor[j]最大
+     * 3. 使用前缀树(Trie)来快速查找最大异或对
+     * 
+     * 时间复杂度: O(n * 32)
+     * 空间复杂度: O(n * 32)
+     * 
+     * @param nums 输入数组
+     * @return 最大异或子数组的异或值
+     */
+    public static int maximumSubarrayXOR(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int n = nums.length;
+        int[] prefixXor = new int[n + 1];
+        
+        // 计算前缀异或数组
+        for (int i = 0; i < n; i++) {
+            prefixXor[i + 1] = prefixXor[i] ^ nums[i];
+        }
+        
+        // 使用前缀树查找最大异或对
+        TrieNode root = new TrieNode();
+        insert(root, prefixXor[0]);
+        
+        int maxResult = 0;
+        for (int i = 1; i <= n; i++) {
+            // 查找当前前缀异或值与之前前缀异或值的最大异或结果
+            int currentMax = findMaxXor(root, prefixXor[i]);
+            maxResult = Math.max(maxResult, currentMax);
+            
+            // 将当前前缀异或值插入前缀树
+            insert(root, prefixXor[i]);
+        }
+        
+        return maxResult;
+    }
+
+    // 测试方法
+    public static void main(String[] args) {
+        // 测试 maximizeXor 方法
+        int[] nums1 = {0, 1, 2, 3, 4};
+        int[][] queries1 = {{3, 1}, {1, 3}, {5, 6}};
+        int[] result1 = maximizeXor(nums1, queries1);
+        System.out.println("maximizeXor测试结果: " + Arrays.toString(result1)); // 应该输出 [3, 3, 7]
+        
+        // 测试 countPairs 方法
+        int[] nums2 = {1, 4, 2, 7};
+        int low = 2, high = 6;
+        int result2 = countPairs(nums2, low, high);
+        System.out.println("countPairs测试结果: " + result2); // 应该输出 6
+        
+        // 测试 findMaximumXOR 方法
+        int[] nums3 = {3, 10, 5, 25, 2, 8};
+        int result3 = findMaximumXOR(nums3);
+        System.out.println("findMaximumXOR测试结果: " + result3); // 应该输出 28 (5^25)
+        
+        // 测试 nc152MaxXor 方法
+        int[] nums4 = {3, 10, 5, 25, 2, 8};
+        int result4 = nc152MaxXor(nums4);
+        System.out.println("nc152MaxXor测试结果: " + result4); // 应该输出 28 (5^25)
+        
+        // 测试 maxXOR 方法
+        int[] nums5 = {3, 10, 5, 25, 2, 8};
+        int result5 = maxXOR(nums5);
+        System.out.println("maxXOR测试结果: " + result5); // 应该输出 28 (5^25)
+        
+        // 测试 singleNumberII 方法
+        int[] nums6 = {2, 2, 3, 2};
+        int result6 = singleNumberII(nums6);
+        System.out.println("singleNumberII测试结果: " + result6); // 应该输出 3
+        
+        // 测试 singleNumberIII 方法
+        int[] nums7 = {1, 2, 1, 3, 2, 5};
+        int[] result7 = singleNumberIII(nums7);
+        System.out.println("singleNumberIII测试结果: " + Arrays.toString(result7)); // 应该输出 [3, 5] 或 [5, 3]
+        
+        // 测试 sumXor 方法
+        long n = 5;
+        long result8 = sumXor(n);
+        System.out.println("sumXor测试结果: " + result8); // 应该输出 2
+        
+        // 测试 xorFavoriteNumber 方法
+        int[] nums8 = {4, 2, 2, 6, 4};
+        int k = 6;
+        long result9 = xorFavoriteNumber(nums8, k);
+        System.out.println("xorFavoriteNumber测试结果: " + result9); // 应该输出 4
+        
+        // 测试 jianzhiOffer56 方法
+        int[] nums9 = {1, 2, 1, 3, 2, 5};
+        int[] result10 = jianzhiOffer56(nums9);
+        System.out.println("jianzhiOffer56测试结果: " + Arrays.toString(result10)); // 应该输出 [3, 5] 或 [5, 3]
+        
+        // 测试 xorLongestPath 方法 (模拟数据)
+        int[] xorPath = {0, 3, 1, 5, 2, 8};
+        int result11 = xorLongestPath(xorPath);
+        System.out.println("xorLongestPath测试结果: " + result11); // 应该输出 13 (5^8)
+        
+        // 测试 maximumSubarrayXOR 方法
+        int[] nums10 = {8, 1, 2, 12, 7, 6};
+        int result12 = maximumSubarrayXOR(nums10);
+        System.out.println("maximumSubarrayXOR测试结果: " + result12); // 应该输出 15
+    }
+}

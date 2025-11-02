@@ -1,0 +1,81 @@
+import heapq
+from collections import defaultdict
+
+# Codeforces 20C Dijkstra?
+# 给定一个带权无向图。你需要求出从点1到点n的最短路
+# 如果无法从点1到达点n，则输出-1
+# 否则输出最短路径（路径上的点序列）
+# 测试链接：https://codeforces.com/problemset/problem/20/C
+
+def dijkstra(n, edges):
+    """
+    使用Dijkstra算法求解最短路径
+    时间复杂度: O((V+E)logV) 其中V是节点数，E是边数
+    空间复杂度: O(V+E) 存储图和距离数组
+    """
+    # 构建邻接表表示的图
+    graph = defaultdict(list)
+    
+    # 添加边到图中
+    for u, v, w in edges:
+        # 无向图，需要添加两条边
+        graph[u].append((v, w))
+        graph[v].append((u, w))
+    
+    # distance[i] 表示从源节点1到节点i的最短距离
+    distance = [float('inf')] * (n + 1)
+    # 源节点到自己的距离为0
+    distance[1] = 0
+    
+    # parent[i] 表示在最短路径树中节点i的父节点
+    parent = [-1] * (n + 1)
+    
+    # visited[i] 表示节点i是否已经确定了最短距离
+    visited = [False] * (n + 1)
+    
+    # 优先队列，按距离从小到大排序
+    # 存储 (距离, 节点)
+    heap = [(0, 1)]
+    
+    while heap:
+        # 取出距离源点最近的节点
+        dist, u = heapq.heappop(heap)
+        
+        # 如果已经处理过，跳过
+        if visited[u]:
+            continue
+        # 标记为已处理
+        visited[u] = True
+        
+        # 遍历u的所有邻居节点
+        for v, w in graph[u]:
+            # 如果邻居节点未访问且通过u到达v的距离更短，则更新
+            if not visited[v] and distance[u] + w < distance[v]:
+                distance[v] = distance[u] + w
+                parent[v] = u
+                heapq.heappush(heap, (distance[v], v))
+    
+    # 如果无法到达终点，返回空列表
+    if distance[n] == float('inf'):
+        return []
+    
+    # 重构路径
+    path = []
+    current = n
+    while current != -1:
+        path.append(current)
+        current = parent[current]
+    path.reverse()
+    
+    return path
+
+# 测试用例
+if __name__ == "__main__":
+    # 测试用例1
+    n1 = 5
+    edges1 = [[1,2,2],[2,5,5],[2,3,4],[1,4,1],[4,3,3],[3,5,1]]
+    result1 = dijkstra(n1, edges1)
+    if not result1:
+        print("-1")
+    else:
+        print(" ".join(map(str, result1)))
