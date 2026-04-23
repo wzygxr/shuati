@@ -1,0 +1,310 @@
+### 题目链接
+[POJ 2942 Knights of the Round Table](http://poj.org/problem?id=2942)
+
+### 题目描述
+给定一个无向图，求有多少个点可以参加圆桌会议，使得每个点都能坐在一个奇数长度的环上。
+
+### 笔试/面试考察点分析
+- 考察点双连通分量的应用
+- 考察二分图染色
+- 考察图的环分析
+- 常见坑点：重边/自环处理、根节点特殊处理
+
+### 解题思路
+1. 使用Tarjan算法求点双连通分量
+2. 对每个点双连通分量进行二分图染色
+3. 判断是否存在奇环
+4. 统计能坐在奇环上的点数量
+
+### 完整代码实现
+```cpp
+#include <iostream>
+#include <vector>
+#include <stack>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+
+const int MAXN = 1005; // 节点最大数量
+const int MAXM = 1000005; // 边最大数量
+
+struct Edge {
+    int to, next;
+} edge[MAXM];
+
+int head[MAXN], tot;
+int dfn[MAXN], low[MAXN], timestamp;
+int dcc_cnt; // 点双连通分量数量
+vector<int> dcc[MAXN]; // 存储每个点双连通分量的节点
+stack<pair<int, int>> st; // 存储边的栈
+bool is_odd[MAXN]; // 标记是否在奇环上
+int color[MAXN]; // 二分图染色数组
+
+// 初始化
+void init() {
+    tot = 0;
+    memset(head, -1, sizeof(head));
+    memset(dfn, 0, sizeof(dfn));
+    memset(low, 0, sizeof(low));
+    timestamp = 0;
+    dcc_cnt = 0;
+    memset(is_odd, false, sizeof(is_odd));
+    while (!st.empty()) st.pop();
+    for (int i = 0; i < MAXN; i++) dcc[i].clear();
+}
+
+// 添加边
+void add_edge(int u, int v) {
+    edge[tot].to = v;
+    edge[tot].next = head[u];
+    head[u] = tot++;
+}
+
+// Tarjan算法求点双连通分量
+void tarjan(int u, int fa) {
+    dfn[u] = low[u] = ++timestamp;
+    for (int i = head[u]; i != -1; i = edge[i].next) {
+        int v = edge[i].to;
+        if (v == fa) continue;
+        if (!dfn[v]) {
+            st.push({u, v});
+            tarjan(v, u);
+            low[u] = min(low[u], low[v]);
+            // 点双连通分量提取
+            if (low[v] >= dfn[u]) {
+                dcc_cnt++;
+                while (true) {
+                    pair<int, int> e = st.top();
+                    st.pop();
+                    if (dcc[dcc_cnt].empty() || dcc[dcc_cnt].back() != e.first) {
+                        dcc[dcc_cnt].push_back(e.first);
+                    }
+                    if (dcc[dcc_cnt].back() != e.second) {
+                        dcc[dcc_cnt].push_back(e.second);
+                    }
+                    if (e.first == u && e.second == v) break;
+                }
+            }
+        } else if (dfn[v] < dfn[u]) {
+            st.push({u, v});
+            low[u] = min(low[u], dfn[v]);
+        }
+    }
+}
+
+// 二分图染色判断是否存在奇环
+bool dfs(int u, int c, const vector<int>& nodes) {
+    color[u] = c;
+    for (int v : nodes) {
+        if (v == u) continue;
+        // 判断u和v是否有边（补图）
+        bool has_edge = false;
+        for (int i = head[u]; i != -1; i = edge[i].next) {
+            if (edge[i].to == v) {
+                has_edge = true;
+                break;
+            }
+        }
+        if (!has_edge) { // 补图中有边
+            if (color[v] == -1) {
+                if (!dfs(v, c ^ 1, nodes)) return false;
+            } else if (color[v] == c) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int main() {
+    int n, m;
+    while (cin >> n >> m && n != 0) {
+        init();
+        // 初始化补图
+        for (int i = 0; i < m; i++) {
+            int u, v;
+            cin >> u >> v;
+            add_edge(u, v);
+            add_edge(v, u);
+        }
+        // 处理每个连通块
+        for (int i = 1; i <= n; i++) {
+            if (!dfn[i]) {
+                tarjan(i, -1);
+            }
+        }
+        // 对每个点双连通分量进行二分图染色
+        for (int i = 1; i <= dcc_cnt; i++) {
+            memset(color, -1, sizeof(color));
+            bool ok = dfs(dcc[i][0], 0, dcc[i]);
+            if (!ok) { // 存在奇环
+                for (int u : dcc[i]) {
+                    is_odd[u] = true;
+                }
+            }
+        }
+        // 统计能坐在奇环上的点数量
+        int ans = 0;
+        for (int i = 1; i <= n; i++) {
+            if (is_odd[i]) ans++;
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
+```
+
+### 代码逐行注释
+```cpp
+#include <iostream>
+#include <vector>
+#include <stack>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+
+const int MAXN = 1005; // 节点最大数量，适配题目数据范围
+const int MAXM = 1000005; // 边最大数量，无向图双向存储
+
+struct Edge {
+    int to, next;
+} edge[MAXM]; // 边结构体
+
+int head[MAXN], tot; // 邻接表头指针、边计数
+int dfn[MAXN], low[MAXN], timestamp; // 时间戳数组
+int dcc_cnt; // 点双连通分量数量
+vector<int> dcc[MAXN]; // 存储每个点双连通分量的节点
+stack<pair<int, int>> st; // 存储边的栈，用于点双连通分量提取
+bool is_odd[MAXN]; // 标记是否在奇环上
+int color[MAXN]; // 二分图染色数组
+
+// 初始化函数
+void init() {
+    tot = 0;
+    memset(head, -1, sizeof(head)); // 邻接表头初始化
+    memset(dfn, 0, sizeof(dfn)); // 时间戳数组初始化
+    memset(low, 0, sizeof(low)); // 可回溯最早时间数组初始化
+    timestamp = 0; // 时间戳计数器重置
+    dcc_cnt = 0; // 点双连通分量数量重置
+    memset(is_odd, false, sizeof(is_odd)); // 奇环标记数组初始化
+    while (!st.empty()) st.pop(); // 清空边栈
+    for (int i = 0; i < MAXN; i++) dcc[i].clear(); // 清空点双连通分量存储
+}
+
+// 添加边函数
+void add_edge(int u, int v) {
+    edge[tot].to = v; // 边的目标节点
+    edge[tot].next = head[u]; // 边的下一条边指针
+    head[u] = tot++; // 更新邻接表头指针
+}
+
+// Tarjan算法求点双连通分量
+// u：当前节点，fa：父节点
+void tarjan(int u, int fa) {
+    dfn[u] = low[u] = ++timestamp; // 初始化时间戳
+    for (int i = head[u]; i != -1; i = edge[i].next) { // 遍历邻接边
+        int v = edge[i].to; // 邻接节点
+        if (v == fa) continue; // 跳过父节点
+        if (!dfn[v]) { // 邻接节点未被访问过
+            st.push({u, v}); // 将边入栈
+            tarjan(v, u); // 递归遍历子节点
+            low[u] = min(low[u], low[v]); // 回溯更新low[u]
+            // 点双连通分量提取
+            if (low[v] >= dfn[u]) { // 当low[v] >= dfn[u]时，弹出边栈至当前边
+                dcc_cnt++; // 点双连通分量数量+1
+                while (true) {
+                    pair<int, int> e = st.top(); // 取栈顶边
+                    st.pop(); // 弹出栈顶边
+                    // 将边的两个端点加入点双连通分量
+                    if (dcc[dcc_cnt].empty() || dcc[dcc_cnt].back() != e.first) {
+                        dcc[dcc_cnt].push_back(e.first);
+                    }
+                    if (dcc[dcc_cnt].back() != e.second) {
+                        dcc[dcc_cnt].push_back(e.second);
+                    }
+                    if (e.first == u && e.second == v) break; // 弹出到当前边为止
+                }
+            }
+        } else if (dfn[v] < dfn[u]) { // 邻接节点已被访问过，且是祖先节点
+            st.push({u, v}); // 将边入栈
+            low[u] = min(low[u], dfn[v]); // 更新low[u]
+        }
+    }
+}
+
+// 二分图染色判断是否存在奇环
+// u：当前节点，c：颜色，nodes：点双连通分量的节点列表
+bool dfs(int u, int c, const vector<int>& nodes) {
+    color[u] = c; // 染色
+    for (int v : nodes) { // 遍历点双连通分量中的所有节点
+        if (v == u) continue; // 跳过自身
+        // 判断u和v是否有边（补图）
+        bool has_edge = false;
+        for (int i = head[u]; i != -1; i = edge[i].next) {
+            if (edge[i].to == v) {
+                has_edge = true;
+                break;
+            }
+        }
+        if (!has_edge) { // 补图中有边
+            if (color[v] == -1) { // 未染色
+                if (!dfs(v, c ^ 1, nodes)) return false; // 递归染色
+            } else if (color[v] == c) { // 颜色相同，存在奇环
+                return false;
+            }
+        }
+    }
+    return true; // 无环或偶环
+}
+
+int main() {
+    int n, m;
+    while (cin >> n >> m && n != 0) { // 多组数据输入
+        init(); // 初始化
+        // 读取边数据（补图）
+        for (int i = 0; i < m; i++) {
+            int u, v;
+            cin >> u >> v;
+            add_edge(u, v); // 添加正向边
+            add_edge(v, u); // 添加反向边（无向图）
+        }
+        // 处理每个连通块
+        for (int i = 1; i <= n; i++) {
+            if (!dfn[i]) { // 未访问过的节点作为连通块根节点
+                tarjan(i, -1); // 根节点父节点设为-1
+            }
+        }
+        // 对每个点双连通分量进行二分图染色
+        for (int i = 1; i <= dcc_cnt; i++) {
+            memset(color, -1, sizeof(color)); // 染色数组初始化
+            bool ok = dfs(dcc[i][0], 0, dcc[i]); // 二分图染色
+            if (!ok) { // 存在奇环
+                for (int u : dcc[i]) {
+                    is_odd[u] = true; // 标记该点在奇环上
+                }
+            }
+        }
+        // 统计能坐在奇环上的点数量
+        int ans = 0;
+        for (int i = 1; i <= n; i++) {
+            if (is_odd[i]) ans++;
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
+```
+
+### 时间/空间复杂度分析
+- 时间复杂度：O(V + E)，其中V为节点数，E为边数
+- 空间复杂度：O(V + E)，用于存储邻接表和点双连通分量
+
+### 同类题目拓展
+- [POJ 1523 SPF](http://poj.org/problem?id=1523)（割点判定）
+- [HDU 3844 Mining Your Own Business](http://acm.hdu.edu.cn/showproblem.php?pid=3844)（点双连通分量应用）
+
+### ML/DL关联思考
+- 点双连通分量可作为图社区划分的基础
+- 二分图染色可用于图的结构分析
+- 在GNN模型中，点双连通分量可作为局部聚合单元，提升模型对图拓扑的理解
+- 奇环检测可用于图异常检测任务，提升模型性能

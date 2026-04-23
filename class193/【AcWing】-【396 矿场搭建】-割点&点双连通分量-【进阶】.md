@@ -1,0 +1,252 @@
+### 题目链接
+https://www.acwing.com/problem/content/396/
+
+### 题目描述
+给定一个无向图，求最少需要搭建的救援点数量和方案数。
+
+### 笔试/面试考察点分析
+- 考察点双连通分量的概念和应用
+- Tarjan算法求点双连通分量的实现
+- 分类讨论思想的应用
+- 时间复杂度分析（O(n+m)）
+- 方案数的计算（组合数学）
+
+### 解题思路
+1. 使用Tarjan算法找到所有点双连通分量
+2. 分类讨论：
+   - 图中只有一个点双连通分量，无割点：需要搭建2个救援点，方案数为C(n,2)
+   - 点双连通分量有一个割点：需要搭建1个救援点，方案数为n-1
+   - 点双连通分量有≥2个割点：不需要搭建救援点
+3. 计算总救援点数量和方案数
+
+### 代码实现
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef unsigned long long ULL;
+const int N=1005;
+const int M=1005;
+
+int n, m;
+int head[N], E=0; // graph
+int dfn[N], low[N], ts=0; // tarjan
+stack<int> st;
+bool vis[N];
+int ebcc_cnt;
+vector<int> ebcc[N]; // 存储每个双连通分量中有哪些点
+bool cut[N]; // 判断该点是否为割点
+int root; // 特判root节点
+
+struct Edge{int v, ne;}e[M];
+inline void add(int a, int b){
+    e[E].v=b;
+    e[E].ne=head[a];
+    head[a]=E++;
+}
+
+void tarjan(int u){
+    dfn[u]=low[u]=++ts;
+    st.push(u);
+    
+    if(u==root && head[u]==-1){
+        ebcc_cnt++;
+        ebcc[ebcc_cnt].push_back(u);
+        return;
+    }
+    
+    int cnt=0; // 子树的数量
+    for(int i=head[u]; ~i; i=e[i].ne){
+        int v=e[i].v;
+        if(!dfn[v]){
+            tarjan(v);
+            low[u]=min(low[u], low[v]);
+            if(dfn[u]<=low[v]){ // 割点判断条件
+                ++cnt;
+                if(u!=root || cnt>1) cut[u]=true;
+                ++ebcc_cnt;
+                int j;
+                do{
+                    j=st.top(); st.pop();
+                    ebcc[ebcc_cnt].push_back(j);
+                }while(j!=v);
+                ebcc[ebcc_cnt].push_back(u);
+            }
+        }
+        else low[u]=min(low[u], dfn[v]);
+    }
+}
+
+int main(){
+    int kase=1;
+    while(cin>>m, m){
+        for(int i=1; i<=ebcc_cnt; ++i) ebcc[i].clear();
+        E=n=ts=ebcc_cnt=0;
+        memset(head, -1, sizeof head);
+        memset(dfn, 0x00, sizeof dfn);
+        memset(cut, 0x00, sizeof cut);
+        
+        while(m--){
+            int a, b;
+            cin>>a>>b;
+            n=max(n, a), n=max(n, b); // 得到所有点的数量
+            add(a, b);
+            add(b, a);
+        }
+        
+        for(root=1; root<=n; ++root){
+            if(!dfn[root]) tarjan(root);
+        }
+        int res=0; // 需要放置的救援点的数量
+        ULL ans=1; // 放置救援点的方案数
+        
+        // 分类讨论
+        for(int i=1; i<=ebcc_cnt; ++i){
+            int cnt=0;
+            // 统计割点的数量
+            for(int j=0; j<ebcc[i].size(); ++j)
+                if(cut[ebcc[i][j]]) ++cnt;
+            
+            // 一个BCC
+            if(!cnt){
+                if(ebcc[i].size()>1){
+                    res+=2;
+                    ans*=ebcc[i].size()*(ebcc[i].size()-1)/2;
+                }
+                else ++res;
+            }
+            // BCC有一个割点, 需要在BCC内部放一个救援点
+            else if(cnt==1){
+                ++res;
+                ans*=ebcc[i].size()-1;
+            }
+        }
+        cout<<"Case "<<kase++<<": "<<res<<" "<<ans<<endl;
+    }
+    
+    return 0;
+}
+```
+
+### 代码逐行注释
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef unsigned long long ULL;
+const int N=1005;
+const int M=1005;
+
+int n, m;
+int head[N], E=0; // 邻接表头
+int dfn[N], low[N], ts=0; // 时间戳数组
+stack<int> st; // 存储节点的栈
+bool vis[N];
+int ebcc_cnt; // 点双连通分量计数
+vector<int> ebcc[N]; // 存储每个点双连通分量的节点
+bool cut[N]; // 标记节点是否为割点
+int root; // 根节点
+
+struct Edge{int v, ne;}e[M]; // 边结构体
+
+// 添加边函数
+inline void add(int a, int b){
+    e[E].v=b;
+    e[E].ne=head[a];
+    head[a]=E++;
+}
+
+// Tarjan算法求点双连通分量
+void tarjan(int u){
+    dfn[u]=low[u]=++ts; // 初始化时间戳
+    st.push(u); // 将当前节点入栈
+    
+    if(u==root && head[u]==-1){
+        ebcc_cnt++;
+        ebcc[ebcc_cnt].push_back(u);
+        return;
+    }
+    
+    int cnt=0; // 统计子树数量
+    for(int i=head[u]; ~i; i=e[i].ne){
+        int v=e[i].v;
+        if(!dfn[v]){
+            tarjan(v); // 递归遍历
+            low[u]=min(low[u], low[v]); // 更新low值
+            if(dfn[u]<=low[v]){ // 判断是否为割点
+                ++cnt;
+                if(u!=root || cnt>1) cut[u]=true;
+                ++ebcc_cnt;
+                int j;
+                do{
+                    j=st.top(); st.pop();
+                    ebcc[ebcc_cnt].push_back(j);
+                }while(j!=v);
+                ebcc[ebcc_cnt].push_back(u);
+            }
+        }
+        else low[u]=min(low[u], dfn[v]); // 更新low值
+    }
+}
+
+int main(){
+    int kase=1;
+    while(cin>>m, m){
+        for(int i=1; i<=ebcc_cnt; ++i) ebcc[i].clear();
+        E=n=ts=ebcc_cnt=0;
+        memset(head, -1, sizeof head);
+        memset(dfn, 0x00, sizeof dfn);
+        memset(cut, 0x00, sizeof cut);
+        
+        while(m--){
+            int a, b;
+            cin>>a>>b;
+            n=max(n, a), n=max(n, b); // 得到节点总数
+            add(a, b);
+            add(b, a);
+        }
+        
+        for(root=1; root<=n; ++root){
+            if(!dfn[root]) tarjan(root);
+        }
+        int res=0; // 救援点数量
+        ULL ans=1; // 方案数
+        
+        // 分类讨论
+        for(int i=1; i<=ebcc_cnt; ++i){
+            int cnt=0;
+            for(int j=0; j<ebcc[i].size(); ++j)
+                if(cut[ebcc[i][j]]) ++cnt;
+            
+            if(!cnt){
+                if(ebcc[i].size()>1){
+                    res+=2;
+                    ans*=ebcc[i].size()*(ebcc[i].size()-1)/2;
+                }
+                else ++res;
+            }
+            else if(cnt==1){
+                ++res;
+                ans*=ebcc[i].size()-1;
+            }
+        }
+        cout<<"Case "<<kase++<<": "<<res<<" "<<ans<<endl;
+    }
+    
+    return 0;
+}
+```
+
+### 时间/空间复杂度分析
+- 时间复杂度：O(n+m)，n为节点数，m为边数
+- 空间复杂度：O(n+m)，存储邻接表和点双连通分量
+
+### 同类题目拓展
+- POJ 3177 冗余路径（边双连通分量）
+- POJ 2117 电力（割点应用）
+- 洛谷 3225 矿场搭建（点双连通分量）
+
+### ML/DL关联思考
+- 点双连通分量可用于图结构数据的社区划分
+- 救援点数量的计算可用于图的容错性评估
+- 在GNN中，点双连通分量可作为图的局部结构特征，提升模型性能
