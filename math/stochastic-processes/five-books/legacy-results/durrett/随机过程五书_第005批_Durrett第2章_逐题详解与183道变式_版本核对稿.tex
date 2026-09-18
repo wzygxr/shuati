@@ -1,0 +1,1908 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+  a4paper,
+  UTF8,fontset=fandol]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[top=25mm,bottom=24mm,left=24mm,right=24mm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fancyhdr,needspace}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{3em}
+\allowdisplaybreaks[2]
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small 随机过程五书逐题详解}
+\fancyhead[R]{\small 第005批｜Durrett第2章}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\let\OldSection\section
+\renewcommand{\section}{\Needspace{7\baselineskip}\OldSection}
+\let\OldSubsection\subsection
+\renewcommand{\subsection}{\Needspace{5\baselineskip}\OldSubsection}
+\AtBeginDocument{\hypersetup{bookmarksnumbered=false,linkcolor=black,urlcolor=blue,pdftitle={随机过程五书 第005批 Durrett第2章 版本核对稿}}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={随机过程五书逐题详解：第005批},
+  pdfauthor={全中文学习讲义},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{随机过程五书逐题详解：第005批}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Durrett 第三版第2章：61个题号位置与183道变式（版本核对稿）}
+\author{全中文学习讲义}
+\date{2026年9月7日}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\section{本批范围与真实进度}\label{ux672cux6279ux8303ux56f4ux4e0eux771fux5b9eux8fdbux5ea6}
+
+本批从已交付的第1章之后继续，逐项覆盖 Richard Durrett《Essentials of
+Stochastic
+Processes》2016年第三版第2章的61个题号位置。每个位置均有详细解答与三道带推导的不同变式，共183道训练。原题与变式分开计数。
+
+\textbf{不能把本批说成``2016版全章已经无缺口核对完成''。}现有2016电子文本在2.17---2.22之间有读取缺段。本文为这六个位置提供了作者2021公开稿相应题目的完整解答，每道题开头均标``版本待核对''，但暂不把它们算作2016版已核对原题。其余55个位置已取得2016文本并处理；这55个位置包含电子提取异常2.58的原样判断，不代表一切题面都没有疑点。
+
+还有三处不能隐去：2.29的文本未明确到达率12的时间单位，解答保留一般换算；2.52与2.57在已取得2016文本中重复，两个题号保留、解法和变式不同；2.58取得的概率质量函数缺归一化因子，先证明原样不合法，再给明确加上因子的版本，未据此断言原书印错。
+
+已交付的第1章77个题号不在本批重复计为新增。其他四本教材本批没有新增解答。后续的最早版本核对缺口仍是2016版2.17---2.22，不能以进入第3章为由把这六个标记删除。
+
+\subsection{版本与来源}\label{ux7248ux672cux4e0eux6765ux6e90}
+
+{[}S1{]} Richard Durrett, \emph{Essentials of Stochastic Processes}, 3rd
+ed., Springer, 2016，ISBN 9783319456133，DOI
+10.1007/978-3-319-45614-0。第2章练习位于印刷页116---124。本次取得的是该版电子文本；来源页面为：
+
+\url{https://dokumen.pub/essentials-of-stochastic-processes-3ed-331945613x-978-3-319-45613-3-978-3-319-45614-0-237-241-244-2.html}
+
+{[}S2{]} 作者公开稿 \emph{Essentials of Stochastic Processes}, Version
+3.9, May
+2021。对应习题页为印刷页97---103（PDF物理页101---107）。已查看公开稿页面图像来核对公式、时间条件和子问；不能把它当作2016版原书图像：
+
+\url{https://sites.math.duke.edu/~rtd/EOSP/EOSP2021.pdf}
+
+例如：2016的2.3预约病人题在公开稿习题列表中不在同号位置；2016的2.16办公室题写8点至10点，公开稿对应2.17改成8点至8点半；2016的2.41有两个小问，公开稿对应2.44增加小问；2016的2.45---2.61多数理论题不在公开稿对应位置。因此本文以2016编号为主，遇到缺段明确保留待核对状态。
+
+正文只重述解题必需条件，解答与变式均为独立推导，不整章复制英文题干。数学模型里的医疗、金融、交通等场景只用于教材练习，不作为现实操作建议。
+
+\section{阅读前先弄懂的六个工具}\label{ux9605ux8bfbux524dux5148ux5f04ux61c2ux7684ux516dux4e2aux5de5ux5177}
+
+\subsection{工具一：指数参数是率，而不是平均数}\label{ux5de5ux5177ux4e00ux6307ux6570ux53c2ux6570ux662fux7387ux800cux4e0dux662fux5e73ux5747ux6570}
+
+书内依据：2.1节。{[}S1, S2{]}
+
+\(T\sim\mathrm{Exp}(\lambda)\)的意思是\(P(T>t)=e^{-\lambda t}\)，\(t\ge0\)，其中\(\lambda>0\)。对尾概率积分：
+\[ET=\int_0^\infty e^{-\lambda t}dt=1/\lambda.\]
+再用\(ET^2=2\int_0^\infty tP(T>t)dt=2/\lambda^2\)，得到\(\operatorname{Var}T=1/\lambda^2\)。均值是30分钟时，率为\(1/30\)每分钟，也可以写2每小时，但不能把30直接作为指数中的率。
+
+无记忆性来自条件概率的比值：
+\[P(T>s+t\mid T>s)=\frac{e^{-\lambda(s+t)}}{e^{-\lambda s}}=e^{-\lambda t}.\]
+它说已经等待\(s\)后还要再等多久的分布没变，不是说随机变量\(T\)与事件\(T>s\)独立。
+
+若独立时钟率为\(\lambda_1,\ldots,\lambda_m\)，则最先发生的时间满足
+\[P(\min_iT_i>t)=\prod_i e^{-\lambda_it}=e^{-(\sum_i\lambda_i)t}.\]
+率相加的原因是``全部尚未发生''可用独立性相乘。第\(i\)个先发生的概率由积分
+\[\int_0^\infty\lambda_i e^{-\lambda_i t}\prod_{j\ne i}e^{-\lambda_jt}dt=\frac{\lambda_i}{\sum_j\lambda_j}\]
+得到。题2.5、2.7、2.9反复利用这一步。
+
+\subsection{工具二：固定时间的次数与固定次数的时间}\label{ux5de5ux5177ux4e8cux56faux5b9aux65f6ux95f4ux7684ux6b21ux6570ux4e0eux56faux5b9aux6b21ux6570ux7684ux65f6ux95f4}
+
+书内依据：2.2节。{[}S1, S2{]}
+
+率\(\lambda\)的Poisson过程在长度\(t\)的时段内，次数\(N(t)\)满足
+\[P(N(t)=k)=e^{-\lambda t}(\lambda t)^k/k!,\quad k=0,1,\ldots.\]
+其均值与方差都是\(\lambda t\)。非重叠区间的增量独立。
+
+第\(r\)次到达时间\(T_r\)是\(r\)段独立Exp\((\lambda)\)的和，因此\(ET_r=r/\lambda\)、\(\operatorname{Var}T_r=r/\lambda^2\)。事件关系是
+\[\{T_r\le t\}=\{N(t)\ge r\}.\]
+``至少\(r\)次''包括\(r\)本身；把它写成\(N(t)>r\)就会错一项。
+
+\subsection{工具三：固定总数后，用时间比例做二项分布}\label{ux5de5ux5177ux4e09ux56faux5b9aux603bux6570ux540eux7528ux65f6ux95f4ux6bd4ux4f8bux505aux4e8cux9879ux5206ux5e03}
+
+书内依据：2.4.3节。{[}S1, S2{]}
+
+给定区间\([0,t]\)恰有\(n\)次到达，未排序的到达时刻可以视为\(n\)个独立均匀点。每个点落在前\(s\)长度内的概率为\(s/t\)，因此
+\[N(s)\mid N(t)=n\sim\mathrm{Bin}(n,s/t),\qquad0<s<t.\]
+也可完全用条件概率计算：
+\[\frac{e^{-\lambda s}(\lambda s)^k/k!\ e^{-\lambda(t-s)}[\lambda(t-s)]^{n-k}/(n-k)!}{e^{-\lambda t}(\lambda t)^n/n!}=\binom nk(s/t)^k(1-s/t)^{n-k}.\]
+这个公式与``已知过去，求未来增量''不同。过去数固定时，未来增量仍Poisson；未来总数固定时，过去部分变为二项。
+
+\subsection{工具四：按类型分流会产生独立的Poisson计数}\label{ux5de5ux5177ux56dbux6309ux7c7bux578bux5206ux6d41ux4f1aux4ea7ux751fux72ecux7acbux7684poissonux8ba1ux6570}
+
+书内依据：2.4.1---2.4.2节。{[}S1, S2{]}
+
+总数\(N\sim\mathrm{Poisson}(m)\)，每次独立以概率\(p_j\)标第\(j\)类，\(\sum_jp_j=1\)。指定类别数\(n_j\)，总数\(n=\sum_jn_j\)时，联合概率为
+\[e^{-m}\frac{m^n}{n!}\frac{n!}{\prod_jn_j!}\prod_jp_j^{n_j}=\prod_j e^{-mp_j}\frac{(mp_j)^{n_j}}{n_j!}.\]
+右侧分解成各类概率的乘积，既证明每类Poisson，也证明它们独立。不是只知道各类期望就擅自宣布独立。
+
+反过来，多条独立Poisson过程合流，总率相加，下一次的类别概率是各自率占总率的比例。若改为给定总数，各类变成多项式条件分布，独立性就不再成立。
+
+\subsection{工具五：随机总额的方差不能只乘单笔方差}\label{ux5de5ux5177ux4e94ux968fux673aux603bux989dux7684ux65b9ux5deeux4e0dux80fdux53eaux4e58ux5355ux7b14ux65b9ux5dee}
+
+书内依据：2.3节。{[}S1, S2{]}
+
+设\(S=Y_1+\cdots+Y_N\)，标记独立同分布且与\(N\)独立，\(EY=\mu\)、\(\operatorname{Var}Y=\sigma^2\)。条件下有\(E(S\mid N)=N\mu\)、\(\operatorname{Var}(S\mid N)=N\sigma^2\)。
+
+将\(S-ES=[S-E(S\mid N)]+[E(S\mid N)-ES]\)平方取平均，交叉项条件均值为0，便得到
+\[ES=\mu EN,\qquad\operatorname{Var}S=\sigma^2EN+\mu^2\operatorname{Var}N.\]
+如果\(N\sim\mathrm{Poisson}(m)\)，则
+\[\boxed{ES=m\mu,\qquad\operatorname{Var}S=m(\sigma^2+\mu^2)=mEY^2.}\]
+前一部分是固定条数下各条金额的波动，后一部分是条数变化的波动。标准差要在最后开平方；金额的方差单位是``金额平方''。
+
+\subsection{工具六：还留在系统中的人数}\label{ux5de5ux5177ux516dux8fd8ux7559ux5728ux7cfbux7edfux4e2dux7684ux4ebaux6570}
+
+书内依据：2.4节的分流与条件均匀性；相关无限服务台例子。{[}S1, S2{]}
+
+率\(\lambda\)到达，每个人的独立停留时间\(L\)不必指数。从空系统开始，时刻\(t\)仍在者是对之前到达者作按年龄的保留。给定其到达时刻\(u\)，保留概率\(P(L>t-u)\)；平均保留概率为\(t^{-1}\int_0^tP(L>x)dx\)。所以
+\[X(t)\sim\mathrm{Poisson}\left(\lambda\int_0^tP(L>x)dx\right).\]
+如果\(EL<\infty\)，参数趋于\(\lambda EL\)，得到Poisson极限。固定寿命、均匀寿命、指数寿命可以有同一平均值，因此同一单时刻稳态分布；但它们的动态相关不同。题2.29、2.42、2.44、2.53、2.60分别在不同场景使用这个结构。
+
+\section{题号对照与核对状态}\label{ux9898ux53f7ux5bf9ux7167ux4e0eux6838ux5bf9ux72b6ux6001}
+
+下面的``电子文本已取得''不等于已经看过2016年实体印刷页。章节、题号和子问以能取得的指定版文本为依据；公开稿图像仅用于列出的对应内容。
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+2016题号 & 2021作者稿对应 & 本批状态 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2.1 & 2.1 & 电子文本已取得并解答 \\
+2.2 & 2.2 & 电子文本已取得并解答 \\
+2.3 & 无同号对应 & 电子文本已取得并解答 \\
+2.4 & 2.3 & 电子文本已取得并解答 \\
+2.5 & 2.9 & 电子文本已取得并解答 \\
+2.6 & 2.8 & 电子文本已取得并解答 \\
+2.7 & 2.7 & 电子文本已取得并解答 \\
+2.8 & 2.5 & 电子文本已取得并解答 \\
+2.9 & 2.11（2021增问） & 电子文本已取得并解答 \\
+2.10 & 2.6(c)相关公式 & 电子文本已取得并解答 \\
+2.11 & 2.12 & 电子文本已取得并解答 \\
+2.12 & 2.13 & 电子文本已取得并解答 \\
+2.13 & 2.14 & 电子文本已取得并解答 \\
+2.14 & 2.15 & 电子文本已取得并解答 \\
+2.15 & 2.16 & 电子文本已取得并解答 \\
+2.16 & 2.17（开门时间改变） & 电子文本已取得并解答 \\
+2.17 & 2.18 & 版本待核对：对应题已解 \\
+2.18 & 2.19 & 版本待核对：对应题已解 \\
+2.19 & 2.20 & 版本待核对：对应题已解 \\
+2.20 & 2.21 & 版本待核对：对应题已解 \\
+2.21 & 2.22 & 版本待核对：对应题已解 \\
+2.22 & 2.23 & 版本待核对：对应题已解 \\
+2.23 & 2.24 & 电子文本已取得并解答 \\
+2.24 & 2.25 & 电子文本已取得并解答 \\
+2.25 & 2.26 & 电子文本已取得并解答 \\
+2.26 & 2.27 & 电子文本已取得并解答 \\
+2.27 & 2.28 & 电子文本已取得并解答 \\
+2.28 & 未据公开稿同号认定 & 电子文本已取得并解答 \\
+2.29 & 2.33 & 率单位待定，分情况 \\
+2.30 & 2.36 & 电子文本已取得并解答 \\
+2.31 & 2.39 & 电子文本已取得并解答 \\
+2.32 & 2.40 & 电子文本已取得并解答 \\
+2.33 & 2.41 & 电子文本已取得并解答 \\
+2.34 & 2.43 & 电子文本已取得并解答 \\
+2.35 & 2.37（2016另有一般率问） & 电子文本已取得并解答 \\
+2.36 & 2.29 & 电子文本已取得并解答 \\
+2.37 & 2.30 & 电子文本已取得并解答 \\
+2.38 & 2.42 & 电子文本已取得并解答 \\
+2.39 & 未据公开稿同号认定 & 电子文本已取得并解答 \\
+2.40 & 2.31 & 电子文本已取得并解答 \\
+2.41 & 2.44（2021增问） & 电子文本已取得并解答 \\
+2.42 & 2.45 & 电子文本已取得并解答 \\
+2.43 & 2.46 & 电子文本已取得并解答 \\
+2.44 & 2.34 & 电子文本已取得并解答 \\
+2.45 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.46 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.47 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.48 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.49 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.50 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.51 & 2.6 & 电子文本已取得并解答 \\
+2.52 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.53 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.54 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.55 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.56 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.57 & 无可靠同号对应 & 重复题另解 \\
+2.58 & 无可靠同号对应 & 提取式异常分列处理 \\
+2.59 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.60 & 无可靠同号对应 & 电子文本已取得并解答 \\
+2.61 & 无可靠同号对应 & 电子文本已取得并解答 \\
+\end{longtable}
+
+\newpage
+
+\section{习题2.1：维修时间：两个条件概率}\label{ux4e60ux98982.1ux7ef4ux4feeux65f6ux95f4ux4e24ux4e2aux6761ux4ef6ux6982ux7387}
+
+\textbf{书内依据：}2.1节，指数分布的尾概率和无记忆性。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54}
+
+维修时间\(T\)均值为2小时，故率为\(\lambda=1/2\)，不是2。指数尾概率为\(P(T>t)=e^{-t/2}\)。
+
+（a）超过2小时的概率是\(\boxed{e^{-1}}\)。
+
+（b）已超过3小时，还要超过5小时的条件概率：
+\[P(T>5\mid T>3)=\frac{P(T>5)}{P(T>3)}=\frac{e^{-5/2}}{e^{-3/2}}=\boxed{e^{-1}}.\]
+分子事件包含在分母事件中，才可以这样直接取比值。剩余等待为2小时，过去的3小时已被条件化掉。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54}
+
+\textbf{A｜分位数。}求95\%的维修都能在其内完成的最短期限。解：\(1-e^{-t/2}\ge0.95\)，等价于\(t\ge2\log20\)，约5.9915小时。分位数与平均数2小时不同。
+
+\textbf{B｜截止工时。}只准维修3小时，求\(E\min(T,3)\)。解：非负变量的均值是尾概率积分，故\(\int_0^3e^{-t/2}dt=2(1-e^{-3/2})\)小时；超过截止时也只计3小时。
+
+\textbf{C｜辨别模型。}尾概率改为\(e^{-t^2/4}\)，再算原题两概率。解：\(P(T>2)=e^{-1}\)，而\(P(T>5\mid T>3)=e^{-(25-9)/4}=e^{-4}\)，不相同。无记忆性不是任意寿命模型的性质。
+
+\newpage
+
+\section{习题2.2：使用七年后的剩余寿命}\label{ux4e60ux98982.2ux4f7fux7528ux4e03ux5e74ux540eux7684ux5269ux4f59ux5bffux547d}
+
+\textbf{书内依据：}2.1节，无记忆性。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-1}
+
+收音机寿命\(T\)指数均值5年，已用7年，求再用3年的概率。已有信息为\(T>7\)，目标为\(T>10\)。
+\[P(T>10\mid T>7)=\frac{e^{-10/5}}{e^{-7/5}}=\boxed{e^{-3/5}\approx0.548812}.\]
+不能写成\(e^{-2}\)，那是从全新开始存活10年的概率。这里题设把使用中的收音机当作无记忆寿命模型，不是对实际老化规律的断言。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-1}
+
+\textbf{A｜剩余均值。}求\(E(T-7\mid T>7)\)。解：条件尾概率为\(e^{-x/5}\)，对\(x\ge0\)积分得到5年；不是\(5-7\)年。
+
+\textbf{B｜上下界条件。}已知\(7<T\le10\)，求\(P(T>9)\)。解：取事件比值得\([e^{-9/5}-e^{-2}]/[e^{-7/5}-e^{-2}]\)。上界条件不能被无记忆性丢掉。
+
+\textbf{C｜串行备用。}两个独立均值5年的部件依次启用，求总寿命超过3年的概率。解：和的密度由卷积为\(t e^{-t/5}/25\)，积分尾部为\(e^{-3/5}(1+3/5)\)。两段指数之和不是指数。
+
+\newpage
+
+\section{习题2.3：两次预约之间的空闲与等待}\label{ux4e60ux98982.3ux4e24ux6b21ux9884ux7ea6ux4e4bux95f4ux7684ux7a7aux95f2ux4e0eux7b49ux5f85}
+
+\textbf{书内依据：}2.1节；附录A.3，期望的尾积分。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-2}
+
+两病人分别9点和9点半到达，医生独立服务时间均值30分钟。求从9点半到第二人看完的平均时间。设第一人的服务时间\(X\)，第二人为\(Y\)，则
+\[W=(X-30)^++Y,\qquad x^+=\max(x,0).\]
+第一人超过30分钟的概率为\(e^{-1}\)；一旦超过，其剩余均值仍为30。因此
+\[E(X-30)^+=30e^{-1},\qquad \boxed{EW=30(1+e^{-1})\text{分钟}}.\]
+也可积分\(E(X-d)^+=\int_d^\infty e^{-x/30}dx\)。第一人早结束时医生会等第二次预约，不能提前给尚未到达的人看病。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-2}
+
+\textbf{A｜是否排队。}第二人排队的概率为\(e^{-1}\)；给定排队，平均等待30分钟；未加条件的平均等待为\(30/e\)。这三个量由\(X>30\)及无记忆性分别得到。
+
+\textbf{B｜设计预约间隔。}第一人均值\(m\)，第二人均值\(b\)，间隔\(d\)。解：完成时长均值为\(m e^{-d/m}+b\)。若要求平均等待不超过\(0<w<m\)，则\(d\ge m\log(m/w)\)。
+
+\textbf{C｜方差。}原题令\(Z=(X-30)^+\)，则\(EZ=30/e\)、\(EZ^2=1800/e\)；\(Z\)与\(Y\)独立且\(\operatorname{Var}Y=900\)。故\(\operatorname{Var}W=900+1800/e-900/e^2\)平方分钟。
+
+\newpage
+
+\section{习题2.4：三人各自钓到第一条鱼}\label{ux4e60ux98982.4ux4e09ux4ebaux5404ux81eaux9493ux5230ux7b2cux4e00ux6761ux9c7c}
+
+\textbf{书内依据：}2.1节，独立指数时钟竞争。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-3}
+
+三人独立，每人的首次成功率为2/小时。要等所有人成功，等的是三首次时间的最大值。尚有3人未成功时总率6，平均等\(1/6\)小时；随后两人的总率4，平均\(1/4\)；最后一人均值\(1/2\)。
+\[\boxed{EM=\frac16+\frac14+\frac12=\frac{11}{12}\text{小时}=55\text{分钟}.}\]
+每次有人成功后，其他人的剩余时钟因无记忆性仍有原率。另一个核对是\(P(M\le t)=(1-e^{-2t})^3\)，对补事件积分。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-3}
+
+\textbf{A｜只等两人。}第二个人首次成功的期望是前两段之和\(1/6+1/4=5/12\)小时，不能加最后阶段。
+
+\textbf{B｜固定时限。}一小时内全成功概率\((1-e^{-2})^3\)；恰两人成功概率\(3(1-e^{-2})^2e^{-2}\)。独立性用在三人的成功事件上。
+
+\textbf{C｜不同速率。}三人率1、2、3，最大值尾部容斥后逐项积分得\(1+1/2+1/3-1/3-1/4-1/5+1/6=73/60\)小时。共同率的调和数公式不能直接套用。
+
+\newpage
+
+\section{习题2.5：两人各做两题的完成顺序}\label{ux4e60ux98982.5ux4e24ux4ebaux5404ux505aux4e24ux9898ux7684ux5b8cux6210ux987aux5e8f}
+
+\textbf{书内依据：}2.1节；第一步分析。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-4}
+
+Ilan、Justin独立，均先做均值20分钟的题1，再做均值30分钟的题2，各阶段独立。用小时，两率为3、2。
+
+（a）Ilan两题全完时Justin题1仍未完：Ilan先完成题1概率\(1/2\)，随后他的题2比Justin剩余题1先完概率\(2/(2+3)\)。所以\(\boxed{1/5}\)。
+
+（b）设\(E_{ab}\)为分别在阶段\(a,b\)时全结束的剩余均值，\(D\)表示完成。首先
+\[E_{2D}=\frac12,\quad E_{1D}=\frac13+\frac12=\frac56,\quad E_{22}=\frac14+\frac12=\frac34.\]
+状态\((1,2)\)下一个完成总率5，等\(1/5\)小时；以\(3/5\)变成\((2,2)\)，以\(2/5\)变成\((1,D)\)，故
+\[E_{12}=\frac15+\frac35\frac34+\frac25\frac56=\frac{59}{60}.\]
+初态第一次事件平均\(1/6\)小时，两种身份都通向同一对称状态，因此
+\[\boxed{E_{11}=\frac16+\frac{59}{60}=\frac{23}{20}\text{小时}=69\text{分钟}.}\]
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-4}
+
+\textbf{A｜单人总时长。}率3和2的和\(S\)由卷积得密度\(6(e^{-2t}-e^{-3t})\)，尾概率\(3e^{-2t}-2e^{-3t}\)。积分尾部为\(5/6\)小时，等于两个阶段均值之和。
+
+\textbf{B｜等第一人完成。}两人的\(S\)独立，所以最小值尾概率为\((3e^{-2t}-2e^{-3t})^2\)。积分得\(9/4-12/5+4/6=31/60\)小时；与最大值均值相加为\(5/3\)，核对两人均值之和。
+
+\textbf{C｜限定一小时。}两人均完成概率是\([1-3e^{-2}+2e^{-3}]^2\)。先求单人两段时间的和不超过1的概率，再利用两人独立；不能把两阶段各不超过1当作总和不超过1。
+
+\newpage
+
+\section{习题2.6：取货与付款可以同时进行}\label{ux4e60ux98982.6ux53d6ux8d27ux4e0eux4ed8ux6b3eux53efux4ee5ux540cux65f6ux8fdbux884c}
+
+\textbf{书内依据：}2.1节，最大值与指数竞争。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-5}
+
+取货均值6分钟，付款均值3分钟。Al正在取货，收银处空，Bob到达。设Al剩余取货\(A\)，Bob取货\(B\)，Al付款\(C\)，Bob付款\(D\)。Bob取货和Al付款可以同时进行，但Bob付款前两者都要完成。
+\[T=A+\max(B,C)+D.\]
+\(E\min(B,C)=1/(1/6+1/3)=2\)，而\(\max=B+C-\min\)，故
+\[\boxed{ET=6+(6+3-2)+3=16\text{分钟}.}\]
+把\(B+C\)直接相加会重复计入并行工作的时间。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-5}
+
+\textbf{A｜要不要等付款。}Bob取完仍等Al的概率\(P(B<C)=(1/6)/(1/6+1/3)=1/3\)，来自两指数竞争。
+
+\textbf{B｜只计算额外排队。}\(E(C-B)^+\)等于发生排队的概率\(1/3\)乘条件剩余付款均值3，结果1分钟。也等于\(E\max(B,C)-EB=7-6\)。
+
+\textbf{C｜一般速率。}取货率\(a\)、付款率\(b\)时，同一分解给\(ET=2/a+2/b-1/(a+b)\)。对\(a\)求导为\(-2/a^2+1/(a+b)^2<0\)，严格证明加快取货降低均值。
+
+\newpage
+
+\section{习题2.7：三位顾客与两个不同速度柜员}\label{ux4e60ux98982.7ux4e09ux4f4dux987eux5ba2ux4e0eux4e24ux4e2aux4e0dux540cux901fux5ea6ux67dcux5458}
+
+\textbf{书内依据：}2.1节，最小值、身份与剩余服务。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-6}
+
+Anne先由均值3分钟的柜员服务，Betty由均值6分钟的柜员服务，Carol等待先空的柜员。服务独立，率为\(a=1/3,b=1/6\)。
+
+（a）首次空出平均\(1/(a+b)=2\)分钟，快柜员先空概率\(2/3\)。Carol随后服务均值为\((2/3)3+(1/3)6=4\)，故离开平均\(\boxed6\)分钟。
+
+（b）首次离开后，另两人的剩余时间分别率\(a,b\)；最大值均值\(3+6-2=7\)，所以全体离开平均\(\boxed9\)分钟。
+
+（c）Anne最后必须Betty先离开（\(1/3\)），然后Carol再比Anne先完（\(1/3\)）；概率\(1/9\)。Betty最后同理\((2/3)^2=4/9\)。Carol最后是余下两种路径，概率\(4/9\)。因此
+\[\boxed{P(A,B,C\text{最后})=(1/9,4/9,4/9).}\]
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-6}
+
+\textbf{A｜纯等待时间。}Carol开始服务前的\(W\sim\mathrm{Exp}(1/2)\)，所以\(P(W>5)=e^{-5/2}\)，\(EW=2\)，方差4。这里不含她的服务时间。
+
+\textbf{B｜最后离开的条件。}\(W\)独立于首次结束的柜员身份，且新的与剩余的服务独立于\(W\)。故Carol最后这一事件与\(W\)独立，\(E(W\mid C\text{最后})=2\)，不是因为最后离开就必定先等更久。
+
+\textbf{C｜只等快柜员。}Carol只等Anne的柜员，总时间是两个独立均值3的指数量之和，均值6、方差18。原策略均值同为6，但自己的服务是均值3和6的混合，二阶矩\(2[(2/3)9+(1/3)36]=36\)，服务方差20；加等待方差4得总方差24。
+
+\newpage
+
+\section{习题2.8：四节电池中的最后幸存者}\label{ux4e60ux98982.8ux56dbux8282ux7535ux6c60ux4e2dux7684ux6700ux540eux5e78ux5b58ux8005}
+
+\textbf{书内依据：}2.1节，无记忆性与逐次淘汰。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-7}
+
+两节同时供电，共4节，按编号从小到大启用，寿命从启用后开始独立计时且均值100小时。到只余一节可用时手电筒停止。
+
+（a）停止要出现3次失败，三次之前都恰有两节在用，失败总率为\(2/100\)。每段平均50小时，\(\boxed{ET=150\text{小时}}\)。
+
+（b）1号、2号要逃过三次各概率\(1/2\)的淘汰，幸存概率均\(1/8\)。3号在首次替换时启用，只需逃过两次，概率\(1/4\)；4号只面临最后一次，概率\(1/2\)。
+\[\boxed{P(N=1,2,3,4)=(1/8,1/8,1/4,1/2).}\]
+未启用的电池不老化是此模型的重要假设；在用时间长短不同也不影响指数剩余寿命。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-7}
+
+\textbf{A｜停止时间分布。}\(T\)为3段独立率\(1/50\)的和，故\(P(T>t)=e^{-t/50}[1+t/50+(t/50)^2/2]\)，方差\(3\cdot50^2=7500\)。
+
+\textbf{B｜编号与持续时间。}每次等待时间独立于淘汰身份，重新启用后性质继续成立，所以\(T\)与最后编号\(N\)独立。各\(k\)均有\(E(T\mid N=k)=150\)，不是编号越大该次实验就越长。
+
+\textbf{C｜一节供电装置。}同样4节，改为每次仅用一节直到耗尽。持续时间均值400，方差40000。推导是4个寿命之和；这改变了供电要求，不能与原装置在相同功率下作直接优劣比较。
+
+\newpage
+
+\section{习题2.9：家务协作中的并行与停工状态}\label{ux4e60ux98982.9ux5bb6ux52a1ux534fux4f5cux4e2dux7684ux5e76ux884cux4e0eux505cux5de5ux72b6ux6001}
+
+\textbf{书内依据：}2.1节；按首次事件分类。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-8}
+
+Jill清厨房均值30分钟，Kelly清浴室均值40分钟。先完者去耙叶，单人完成率1/小时，两人合作率2/小时，其他指数时钟独立。
+
+用小时，两室内率为2、\(3/2\)。首次室内完成平均\(2/7\)小时，Jill先完概率\(4/7\)，Kelly先完概率\(3/7\)。
+
+若Jill先完：Kelly室内率\(3/2\)与耙叶率1竞争。再等\(2/5\)；Kelly先完概率\(3/5\)，之后合作均值\(1/2\)；耙叶先完概率\(2/5\)，仍须等Kelly，均值\(2/3\)。故此状态均值\(u=2/5+(3/5)(1/2)+(2/5)(2/3)=29/30\)。
+
+若Kelly先完，同理\(v=1/3+(2/3)(1/2)+(1/3)(1/2)=5/6\)。合并：
+\[\boxed{ET=\frac27+\frac47\frac{29}{30}+\frac37\frac56=\frac{251}{210}\text{小时}.}\]
+约71.7143分钟。耙叶先结束时不能把仍未结束的室内任务当作已经完成。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-8}
+
+\textbf{A｜最终状态。}最后Kelly单独在室内的概率\((4/7)(2/5)=8/35\)，最后Jill单独在室内为\((3/7)(1/3)=1/7\)；二人合做耙叶结束为\(1-8/35-1/7=22/35\)，三者互斥且穷尽。
+
+\textbf{B｜协作效率。}合作率改为\(c>0\)，仅共同耙叶阶段时间改变，其到达概率\(22/35\)。因此\(ET(c)=251/210+(22/35)(1/c-1/2)=37/42+22/(35c)\)。效率改善不影响进入该状态的概率。
+
+\textbf{C｜先等两人室内都做完。}室内最大值均值\(1/2+2/3-2/7=37/42\)，之后合作半小时，总计\(29/21\)。比原策略多\(13/70\)小时，即\(78/7\)分钟；这是没有提前耙叶损失的时间。
+
+\newpage
+
+\section{习题2.10：三名学生离开办公室的先后次序}\label{ux4e60ux98982.10ux4e09ux540dux5b66ux751fux79bbux5f00ux529eux516cux5ba4ux7684ux5148ux540eux6b21ux5e8f}
+
+\textbf{书内依据：}2.1节，指数次序、尾积分。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-9}
+
+Ron、Sue、Ted独立停留，率分别1、2、3每小时。
+
+（a）只剩一人需要前两次离开。首次平均\(1/6\)小时；身份概率\(1/6,2/6,3/6\)，其后总率为5、4、3。因此
+\[\boxed{ET_{(2)}=\frac16+\frac16\frac15+\frac26\frac14+\frac36\frac13=\frac9{20}\text{小时}.}\]
+（b）Ron最后，按他的时间\(t\)积分：\(\int_0^\infty e^{-t}(1-e^{-2t})(1-e^{-3t})dt=7/12\)。同理其余两人，
+\[\boxed{P(R,S,T\text{最后})=(7/12,4/15,3/20).}\]
+（c）最大值\(M\)尾部由独立性展开，逐项积分：
+\[\boxed{EM=1+\frac12+\frac13-\frac13-\frac14-\frac15+\frac16=\frac{73}{60}\text{小时}.}\]
+不能按``最后身份的概率''乘各人的原始均值求和，因最后这一条件会选择偏长的时间。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-9}
+
+\textbf{A｜特定次序。}Ron、Sue、Ted依次走的概率为\((1/6)(2/5)=1/15\)。最后已只剩Ted，不再乘一次概率。
+
+\textbf{B｜一小时后人数。}各人仍在的概率\(e^{-1},e^{-2},e^{-3}\)，指标独立。人数均值\(\sum_{j=1}^3e^{-j}\)，方差\(\sum_{j=1}^3e^{-j}(1-e^{-j})\)。由于三个概率不等，不是统一参数的二项分布。
+
+\textbf{C｜第二人离开的分布。}用至少两人已走，得到\(P(T_{(2)}\le t)=1-e^{-3t}-e^{-4t}-e^{-5t}+2e^{-6t}\)。尾积分\(1/3+1/4+1/5-2/6=9/20\)，与阶段法一致。
+
+\newpage
+
+\section{习题2.11：二项与泊松近似：恰一次成功}\label{ux4e60ux98982.11ux4e8cux9879ux4e0eux6ccaux677eux8fd1ux4f3cux6070ux4e00ux6b21ux6210ux529f}
+
+\textbf{书内依据：}2.2节，二项分布的泊松极限。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-10}
+
+设\(X\sim\mathrm{Bin}(20,0.1)\)。精确概率选出唯一成功的位置，然后其余19次失败：
+\[P(X=1)=\binom{20}1(0.1)(0.9)^{19}=2(0.9)^{19}\approx0.27017034.\]
+泊松近似保持均值\(\theta=np=2\)，故\(Y\sim\mathrm{Pois}(2)\)，\(P(Y=1)=2e^{-2}\approx0.27067057\)。
+
+近似比精确值高约\(0.00050022\)，相对误差约\(0.1851\%\)。这些都是概率，不是百分数；绝对误差换成百分点为约0.0500。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-10}
+
+\textbf{A｜至少一次。}仍取原参数，精确\(P(X\ge1)=1-0.9^{20}\)，近似\(1-e^{-2}\)。由于\(\log(1-p)<-p\)，有\((1-p)^n<e^{-np}\)，所以这种事件的泊松近似必定低估，方向不是由一次数值巧合得出。
+
+\textbf{B｜恰两次的比值。}一般\(n,p\)，精确与泊松概率比为\(\frac{n(n-1)}{n^2}(1-p)^{n-2}e^{np}\)。先把\(\binom n2p^2(1-p)^{n-2}\)除以\(e^{-np}(np)^2/2\)再约分。可据此直接检查误差，而不相减两个很小的概率。
+
+\textbf{C｜固定均值的极限。}令\(p=\theta/n\)且固定\(k\)。精确概率等于\(\frac{\theta^k}{k!}\prod_{j=0}^{k-1}(1-j/n)(1-\theta/n)^{n-k}\)。有限乘积趋1，最后一项趋\(e^{-\theta}\)，故逐项证明泊松极限。
+
+\newpage
+
+\section{习题2.12：相同均值下零成功概率的比较}\label{ux4e60ux98982.12ux76f8ux540cux5747ux503cux4e0bux96f6ux6210ux529fux6982ux7387ux7684ux6bd4ux8f83}
+
+\textbf{书内依据：}2.2节，泊松近似。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-11}
+
+零成功事件的精确概率为\((1-p)^n\)，泊松近似为\(e^{-np}\)。
+
+（a）\(n=10,p=0.1\)：精确\(0.9^{10}\approx0.34867844\)，近似\(e^{-1}\approx0.36787944\)，绝对误差约0.01920100。
+
+（b）\(n=50,p=0.02\)：精确\(0.98^{50}\approx0.36416968\)，近似仍为\(e^{-1}\)，绝对误差约0.00370976。
+
+两者均值都是1，但第二组单次成功概率更小，近似更准确。不能只根据``均值相同''就断定二项分布相同。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-11}
+
+\textbf{A｜证明近似偏高。}\(\log(1-p)=-\int_0^p(1-x)^{-1}dx<-p\)，故\((1-p)^n<e^{-np}\)。这给出零成功概率的统一误差方向。
+
+\textbf{B｜初等误差上界。}因\(-\log(1-p)-p=\int_0^p x/(1-x)dx\le p^2/[2(1-p)]\)，零概率比满足\(1\le e^{-np}/(1-p)^n\le\exp\{np^2/[2(1-p)]\}\)。这也是如何选择足够小\(p\)的定量依据。
+
+\textbf{C｜无放回抽样。}100个物品恰有2个次品，取10个不放回。零次品精确概率\(\binom{98}{10}/\binom{100}{10}=90\cdot89/(100\cdot99)\)。不应写\(0.98^{10}\)，因为不同抽取不独立；泊松\(e^{-0.2}\)只能作为另行说明的近似。
+
+\newpage
+
+\section{习题2.13：二十手牌至少一次目标牌型}\label{ux4e60ux98982.13ux4e8cux5341ux624bux724cux81f3ux5c11ux4e00ux6b21ux76eeux6807ux724cux578b}
+
+\textbf{书内依据：}2.2节，稀有事件近似与补事件。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-12}
+
+按题设每手成功概率约\(1/50\)，且各手独立。20手成功次数近似泊松均值\(20/50=0.4\)。至少一次用零次的补事件：
+\[\boxed{P(X\ge1)\approx1-e^{-0.4}\approx0.32967995.}\]
+若把给定的\(1/50\)视为精确概率，则二项精确值为\(1-(49/50)^{20}\approx0.33239203\)。这个``精确''仅针对独立伯努利模型；输入牌型概率本身已被题设近似。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-12}
+
+\textbf{A｜需要多少手。}泊松近似下要至少50\%概率成功，\(1-e^{-n/50}\ge1/2\)，即\(n\ge50\log2\)，最小整数35。二项模型用\(n\ge\log(1/2)/\log(49/50)\)，取上整也为35。
+
+\textbf{B｜首次成功的平均手数。}独立试验每次成功概率\(1/50\)，首次手数几何分布\(P(T=k)=(49/50)^{k-1}/50\)；尾和\(ET=\sum_{k\ge0}(49/50)^k=50\)。这里不需要泊松近似。
+
+\textbf{C｜已知至少一次。}泊松近似下恰一次的条件概率\(P(X=1\mid X\ge1)=0.4e^{-0.4}/(1-e^{-0.4})\)。分母不能省略；这是在成功的20手样本中所占比例。
+
+\newpage
+
+\section{习题2.14：一盒灯泡至多一只次品}\label{ux4e60ux98982.14ux4e00ux76d2ux706fux6ce1ux81f3ux591aux4e00ux53eaux6b21ux54c1}
+
+\textbf{书内依据：}2.2节，泊松近似。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-13}
+
+25只独立灯泡每只次品概率0.01。次品数\(X\sim\mathrm{Bin}(25,0.01)\)，近似\(Y\sim\mathrm{Pois}(0.25)\)。
+
+``至多一只''包括0与1，故
+\[\boxed{P(X\le1)\approx e^{-0.25}(1+0.25)\approx0.97350098.}\]
+精确二项值为\(0.99^{25}+25(0.01)0.99^{24}\approx0.97424089\)。若只写\(0.25e^{-0.25}\)，就漏了没有次品的盒子。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-13}
+
+\textbf{A｜两种独立缺陷的并集。}每只两种缺陷概率0.01、0.02且独立，坏的概率\(0.01+0.02-0.0002=0.0298\)。25只总坏数近似\(\mathrm{Pois}(0.745)\)，至少两只约\(1-e^{-0.745}(1+0.745)\)。不能把有两种缺陷的一只重复数两次。
+
+\textbf{B｜合并十盒。}独立十盒共有250只，次品总数均值2.5，零次品近似\(e^{-2.5}\)，精确\(0.99^{250}\)。这是合计次品数，不是``含次品的盒数''；后者是\(\mathrm{Bin}(10,1-0.99^{25})\)。
+
+\textbf{C｜抽样检验遗漏。}若一盒实际恰有2只坏，均匀抽5只无放回检查，漏检概率\(\binom{23}{5}/\binom{25}{5}=20\cdot19/(25\cdot24)=19/30\)。已知坏数后是超几何问题，不再用泊松近似。
+
+\newpage
+
+\section{习题2.15：未来到达时间与已有计数}\label{ux4e60ux98982.15ux672aux6765ux5230ux8fbeux65f6ux95f4ux4e0eux5df2ux6709ux8ba1ux6570}
+
+\textbf{书内依据：}2.2节，独立平稳增量；Gamma到达时间。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-14}
+
+\(N(t)\)率3，\(T_n\)为第\(n\)次到达。
+
+（a）\(T_{12}\)是12个独立均值\(1/3\)的和，\(\boxed{ET_{12}=4}\)。
+
+（b）给定\(N(2)=5\)，从时刻2往后还差7次到达，而不是12次。独立增量及无记忆性给\(T_{12}=2+G\)，其中条件下\(G\)为7阶率3的Gamma变量。因此
+\[\boxed{E(T_{12}\mid N(2)=5)=2+7/3=13/3.}\]
+（c）\(N(5)=N(2)+[N(5)-N(2)]\)，后项独立且均值\(3(5-2)=9\)，所以\(\boxed{E[N(5)\mid N(2)=5]=14}\)。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-14}
+
+\textbf{A｜条件方差。}（b）的剩余量是7个率3指数之和，故条件方差\(7/9\)；常数2不影响方差。（c）新增数泊松均值9，故条件方差9。
+
+\textbf{B｜在时限内到第12次。}已知\(N(2)=5\)，求\(P(T_{12}\le4)\)。未来2时间单位均值6，要至少7次，所以\(1-e^{-6}\sum_{j=0}^6 6^j/j!\)。计数至少7与到达时间不超过4是同一事件。
+
+\textbf{C｜向过去看。}给定\(N(2)=5\)，求\(ET_3\)。五个点条件下均匀散落在\([0,2]\)，第3次的均值为\(2\cdot3/(5+1)=1\)。不能用未来增量的\(3/3\)作为证明；相同数字只是此参数下巧合。
+
+\newpage
+
+\section{习题2.16：迟到开门：保留2016版的10点}\label{ux4e60ux98982.16ux8fdfux5230ux5f00ux95e8ux4fddux75592016ux7248ux768410ux70b9}
+
+\textbf{书内依据：}2.2节，零计数及确定时刻后的独立增量。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-15}
+
+到达率3/小时。\textbf{2016题面写8点应开门、10点才到，时间间隔2小时；2021作者稿改为8点半，不能混算。}
+
+（a）8点到10点无人来访的概率\(\boxed{P(N(2)=0)=e^{-6}}\)，不是新版条件下的\(e^{-3/2}\)。
+
+（b）以Oscar到达的10点为起点，等下一位新顾客的时间\(W\)满足
+\[P(W>x)=P(N(2+x)-N(2)=0)=e^{-3x},\quad x\ge0.\]
+所以\(\boxed{W\sim\mathrm{Exp}(3)}\)，均值\(1/3\)小时，即20分钟。题面没有规定之前顾客留下等候；这里明确计算``10点以后下一位到达''，不是虚构一个积压队列。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-15}
+
+\textbf{A｜迟到时间随机。}若迟到\(D\sim U(0,2)\)且独立，无人来访概率\(Ee^{-3D}=\frac12\int_0^2e^{-3d}dd=(1-e^{-6})/6\)。不能把随机时长用其均值1替代后写\(e^{-3}\)。
+
+\textbf{B｜积压人数的另一个模型。}若所有人都留下等开门，10点积压数为\(\mathrm{Pois}(6)\)。给定至少一人，平均人数\(6/(1-e^{-6})\)，由\(E[N1_{N>0}]=EN\)得到。
+
+\textbf{C｜离开后再来。}规定10点以后的新顾客在等到下一位之前不受旧顾客影响。已知8点至10点有\(k\)人或无人，\(P(W>x\mid N(2)=k)=e^{-3x}\)，均值仍20分钟。独立增量是关键条件。
+
+\newpage
+
+\section{习题2.17：接线计数：版本待核对的对应题}\label{ux4e60ux98982.17ux63a5ux7ebfux8ba1ux6570ux7248ux672cux5f85ux6838ux5bf9ux7684ux5bf9ux5e94ux9898}
+
+\textbf{书内依据：}2021作者稿2.18；2.2节独立增量。
+
+\textbf{版本状态：}2016原文存在读取缺口；本条按2021作者稿对应题解答，暂不计为2016版已核对。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-16}
+
+\textbf{版本提示。}2016版网络文本从本题``fewer''之后到2.22中段缺失。本条只把2021作者稿2.18完整解出，暂不据此断言2016版所有条件和小问相同。
+
+对应题：来电率4/小时。（a）首小时少于2通；（b）已知首小时6通，次小时少于2通；（c）每接10通休息一次的平均工作段（按来电时刻计，不另计服务时长）。
+
+（a）少于2是0或1：\(\boxed{e^{-4}(1+4)=5e^{-4}}\)。
+
+（b）次小时增量独立于首小时，仍为\(\boxed{5e^{-4}}\)，不能因刚才多了就预想以后必少。
+
+（c）等待10次来电是10个均值\(1/4\)小时的和，\(\boxed{ET_{10}=10/4=2.5\text{小时}}\)。若每通通话耗时并导致漏接，要另建排队模型。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-16}
+
+\textbf{A｜恰在两小时内凑满。}第10通在2小时内到达概率为\(P(N(2)\ge10)=1-e^{-8}\sum_{j=0}^9 8^j/j!\)，平均时间2.5小时不意味着2小时内概率为零。
+
+\textbf{B｜给定全天总数。}给定2小时共8通，首小时少于2通概率为\([\binom80+\binom81]/2^8=9/256\)，不是\(5e^{-4}\)；此时条件约束了两段的总和。
+
+\textbf{C｜工作段波动。}等待10通的方差是\(10/4^2=5/8\)平方小时。变异系数为\(\sqrt{5/8}/(5/2)=1/\sqrt{10}\)，来自独立指数等待时间的方差相加。
+
+\newpage
+
+\section{习题2.18：车流短区间中的至少一次到达}\label{ux4e60ux98982.18ux8f66ux6d41ux77edux533aux95f4ux4e2dux7684ux81f3ux5c11ux4e00ux6b21ux5230ux8fbe}
+
+\textbf{书内依据：}2021作者稿2.19；2.2节泊松零计数。
+
+\textbf{版本状态：}2016原文存在读取缺口；本条按2021作者稿对应题解答，暂不计为2016版已核对。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-17}
+
+\textbf{版本待核对，非已确认的2016原题。}按2021对应题，车流率6辆/分钟；模型把过路所需的短时间内有车到达定义为碰撞事件。
+
+（a）5秒是\(1/12\)分钟，平均车数\(6/12=1/2\)，所以\(\boxed{1-e^{-1/2}}\)。
+
+（b）2秒是\(1/30\)分钟，平均\(1/5\)，所以\(\boxed{1-e^{-1/5}}\)。
+
+这只是教材的理想化计数模型，不是实际道路安全判断。先统一秒与分钟，再计算\(\lambda t\)；直接把6乘5会错一个60倍。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-17}
+
+\textbf{A｜一般时长反求。}模型中使至少一辆的概率不超过\(r\in(0,1)\)，需\(1-e^{-6t}\le r\)，即\(t\le-\log(1-r)/6\)分钟。该式只是模型的概率阈值，不提供现实通行建议。
+
+\textbf{B｜恰两辆。}5秒内恰两辆概率\(e^{-1/2}(1/2)^2/2!=e^{-1/2}/8\)；给定至少一辆，恰两辆概率再除\(1-e^{-1/2}\)。
+
+\textbf{C｜两个不重叠窗口。}两个5秒窗口内都无车的概率为\(e^{-1/2}e^{-1/2}=e^{-1}\)。若两窗口重叠2秒，则其并集8秒，无车概率为\(e^{-6(8/60)}=e^{-4/5}\)；不能再当独立。
+
+\newpage
+
+\section{习题2.19：消防队第一次需要外援前承接多少次}\label{ux4e60ux98982.19ux6d88ux9632ux961fux7b2cux4e00ux6b21ux9700ux8981ux5916ux63f4ux524dux627fux63a5ux591aux5c11ux6b21}
+
+\textbf{书内依据：}2021作者稿2.20；2.1、2.2节与条件期望。
+
+\textbf{版本状态：}2016原文存在读取缺口；本条按2021作者稿对应题解答，暂不计为2016版已核对。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-18}
+
+\textbf{版本待核对。}对应题来电率\(\lambda=1/2\)每小时，每次处理并恢复准备的时间\(S\sim U(1/2,1)\)小时，独立于到达及其他服务。忙碌时再来电话就需外援。
+
+一次服务期间没有新电话的概率为
+\[q=E(e^{-S/2})=2\int_{1/2}^{1}e^{-s/2}ds=4(e^{-1/4}-e^{-1/2}).\]
+处理顺利并恢复准备后，未来来电仍重新开始同样的实验。定义\(K\)为在第一次需要外援之前本队已经承接的来电数，\textbf{包括此时正在处理的那一次，不包括交给外援的来电}。第\(k\)次本队服务中首次出现需要外援的来电，概率
+\[\boxed{P(K=k)=q^{k-1}(1-q),\quad k=1,2,\ldots.}\]
+相应\(EK=1/(1-q)\)。若只数在外援请求前已经完成的本队服务，答案是\(K-1\)，从0开始；计数约定必须说明。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-18}
+
+\textbf{A｜固定处理时间。}若每次恰耗\(s\)小时，则\(q=e^{-\lambda s}\)，承接次数仍为上述几何型，均值\(1/(1-e^{-\lambda s})\)。这是由每次无来电的独立事件得到。
+
+\textbf{B｜服务时间随机性比较。}原题\(ES=3/4\)，由凸性\(Ee^{-\lambda S}\ge e^{-\lambda ES}\)。可用切线不等式\(e^x\ge1+x\)证明。故同均值下随机服务的单次无冲突概率不小于固定服务，但这不等于所有系统绩效都更好。
+
+\textbf{C｜超过三次才求援。}按原定义\(P(K>3)=q^3\)，\(P(K=3)=q^2(1-q)\)。尾概率用三次都顺利，恰三次则第三次失败；这一区别也解释了几何指数的偏移。
+
+\newpage
+
+\section{习题2.20：等公交还是遇到愿意搭载的汽车}\label{ux4e60ux98982.20ux7b49ux516cux4ea4ux8fd8ux662fux9047ux5230ux613fux610fux642dux8f7dux7684ux6c7dux8f66}
+
+\textbf{书内依据：}2021作者稿2.21；2.4.1节分流与条件积分。
+
+\textbf{版本状态：}2016原文存在读取缺口；本条按2021作者稿对应题解答，暂不计为2016版已核对。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-19}
+
+\textbf{版本待核对。}公交剩余时间\(B\sim U(0,1)\)小时；汽车泊松率6/小时，各自独立地以\(1/3\)概率愿意搭载。愿意搭载的汽车流率\(6/3=2\)，等它的时间\(C\sim\mathrm{Exp}(2)\)且独立于\(B\)。
+
+坐上公交等价于\(B<C\)。给定\(B=b\)，概率为\(e^{-2b}\)；再对\(b\)平均：
+\[\boxed{P(B<C)=\int_0^1e^{-2b}db=\frac{1-e^{-2}}2.}\]
+把公交等候时间直接替换为均值半小时，会错误地得到\(e^{-1}\)。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-19}
+
+\textbf{A｜真正等待多久。}\(W=\min(B,C)\)，\(P(W>t)=(1-t)e^{-2t}\)，\(0\le t\le1\)。积分得\(EW=(1+e^{-2})/4\)小时；1小时之后尾概率为0。
+
+\textbf{B｜已知最终坐公交。}条件平均等待为\(E[B1_{B<C}]/P(B<C)\)。分子\(\int_0^1b e^{-2b}db=(1-3e^{-2})/4\)，所以均值\((1-3e^{-2})/[2(1-e^{-2})]\)。
+
+\textbf{C｜随机愿意概率。}每辆车独立抽一个概率\(P_i\)，再依它决定是否搭载，且\(EP_i=r\)。对每辆平均后独立成功概率仍\(r\)，合格车率\(6r\)，公交胜率\((1-e^{-6r})/(6r)\)；\(r=0\)时连续延拓为1。若所有车辆共用同一个随机\(r\)，则条件化后再平均，不能直接替换均值。
+
+\newpage
+
+\section{习题2.21：随机发车间隔下的上车人数}\label{ux4e60ux98982.21ux968fux673aux53d1ux8f66ux95f4ux9694ux4e0bux7684ux4e0aux8f66ux4ebaux6570}
+
+\textbf{书内依据：}2021作者稿2.22；2.2、2.3节；全方差公式。
+
+\textbf{版本状态：}2016原文存在读取缺口；本条按2021作者稿对应题解答，暂不计为2016版已核对。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-20}
+
+\textbf{版本待核对。}班次间隔\(T\sim U(1,2)\)小时，独立乘客泊松率24/小时，每班把间隔内全部乘客接走。给定\(T=t\)，人数\(X\mid T=t\sim\mathrm{Pois}(24t)\)。
+
+（a）\(EX=E(24T)=24\cdot(3/2)=\boxed{36}\)。
+
+（b）条件方差\(\operatorname{Var}(X\mid T)=24T\)，条件均值\(24T\)也在变动。因此
+\[\operatorname{Var}X=E(24T)+\operatorname{Var}(24T)=36+24^2\frac{(2-1)^2}{12}=\boxed{84}.\]
+无条件不是\(\mathrm{Pois}(36)\)，因为方差84不等于均值36。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-20}
+
+\textbf{A｜联合依赖。}\(\operatorname{Cov}(T,X)=\operatorname{Cov}(T,24T)=24/12=2\)小时·人。更长的间隔平均带来更多乘客，虽然到达过程与事先的间隔变量独立。
+
+\textbf{B｜一班空车。}\(P(X=0)=\int_1^2e^{-24t}dt=(e^{-24}-e^{-48})/24\)。这不是\(e^{-36}\)，后者错误地忽略了混合分布。
+
+\textbf{C｜改善发车规律。}一般独立间隔均值\(m\)、方差\(v\)时\(EX=24m\)、\(\operatorname{Var}X=24m+576v\)。保持平均间隔不变、改成确定间隔，会消去后一项，但乘客随机到达造成的\(24m\)仍在。
+
+\newpage
+
+\section{习题2.22：被上界截断的指数均值}\label{ux4e60ux98982.22ux88abux4e0aux754cux622aux65adux7684ux6307ux6570ux5747ux503c}
+
+\textbf{书内依据：}2021作者稿2.23；2.1节及条件期望定义。
+
+\textbf{版本状态：}2016原文存在读取缺口；本条按2021作者稿对应题解答，暂不计为2016版已核对。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-21}
+
+\textbf{版本待核对。}\(T\sim\mathrm{Exp}(\lambda)\)，\(c>0\)，求\(E(T\mid T<c)\)并用另一方法核对。
+
+（a）条件密度为\(\lambda e^{-\lambda t}/(1-e^{-\lambda c})\)，\(0<t<c\)。分部积分
+\[\int_0^c t\lambda e^{-\lambda t}dt=-ce^{-\lambda c}+\frac{1-e^{-\lambda c}}\lambda.\]
+除以条件概率，得到
+\[\boxed{E(T\mid T<c)=\frac1\lambda-\frac{c}{e^{\lambda c}-1}.}\]
+（b）无记忆性给\(E(T\mid T>c)=c+1/\lambda\)。全期望式
+\[\frac1\lambda=(1-e^{-\lambda c})E(T\mid T<c)+e^{-\lambda c}(c+1/\lambda)\]
+解出完全相同的结果。不能把截断条件与只观察\(\min(T,c)\)混同。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-21}
+
+\textbf{A｜条件分布函数。}\(0\le x\le c\)时\(P(T\le x\mid T<c)=(1-e^{-\lambda x})/(1-e^{-\lambda c})\)；\(x<0\)为0，\(x\ge c\)为1。对\(x\)求导重新得到截断密度。
+
+\textbf{B｜条件方差。}再分部积分得\(E(T^2\mid T<c)=[2/\lambda^2-e^{-\lambda c}(c^2+2c/\lambda+2/\lambda^2)]/(1-e^{-\lambda c})\)。减去均值平方，化为\(1/\lambda^2-c^2e^{\lambda c}/(e^{\lambda c}-1)^2\)。
+
+\textbf{C｜很小的截止时间。}令\(T=cU\)，条件密度在\(0<u<1\)为\(\lambda c e^{-\lambda cu}/(1-e^{-\lambda c})\)。当\(c\to0\)它一致趋于1，故\(E(T\mid T<c)/c\to1/2\)；短区间里的指数分布趋于均匀。
+
+\newpage
+
+\section{习题2.23：等待足够长的无车间隔}\label{ux4e60ux98982.23ux7b49ux5f85ux8db3ux591fux957fux7684ux65e0ux8f66ux95f4ux9694}
+
+\textbf{书内依据：}第2.1节无记忆性；第2.2节到达间隔；条件期望。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-22}
+
+\textbf{模型。}车流是率\(\lambda\)的泊松过程，间隔\(t_i\)独立且服从\(\mathrm{Exp}(\lambda)\)。令\(J\)是首个超过\(c>0\)的间隔编号；按题目规定，在其起点开始过路，\(c\)分钟后完成。求\(E(T_{J-1}+c)\)。
+
+每个间隔足够长的概率\(q=e^{-\lambda c}\)。前面短间隔的个数\(K=J-1\)有分布\(P(K=k)=(1-q)^kq\)，所以\(EK=(1-q)/q\)。给定\(K=k\)，前面\(k\)个间隔独立，均为``指数变量给定小于\(c\)''的条件分布。上一题计算给出
+\[m_c=E(t_i\mid t_i<c)=\frac1\lambda-\frac{cq}{1-q}.\] 于是
+\[E T_{J-1}=\frac{1-q}{q}m_c=\frac{e^{\lambda c}-1}{\lambda}-c,\]
+再加实际过路的\(c\)分钟，得到
+\[\boxed{E(T_{J-1}+c)=\frac{e^{\lambda c}-1}{\lambda}.}\]
+这里的开始时刻由题目用完整间隔来定义，是理想化的间隔选择模型；不能把它当作现实交通中的安全判断方法。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-22}
+
+\textbf{A｜等待开始而非等待完成。}求\(E T_{J-1}\)。解：从上式减掉\(c\)，为\((e^{\lambda c}-1)/\lambda-c\)。当\(c\to0\)，用\(e^x=1+x+x^2/2+o(x^2)\)得到等待开始约为\(\lambda c^2/2\)，而总完成时间约为\(c+\lambda c^2/2\)。
+
+\textbf{B｜前面已经过去几辆车。}\(K\)就是短间隔数，故\(EK=e^{\lambda c}-1\)，\(\operatorname{Var}K=(1-q)/q^2\)。给定已经连续遇见\(k\)个短间隔，下一个仍以\(q\)概率足够长；过去的失败不提高下一次成功概率。
+
+\textbf{C｜完整等待的拉普拉斯变换。}令\(H=E(e^{-s(T_{J-1}+c)})\)，\(s\ge0\)。按首个间隔分类，\(H=q e^{-sc}+H\int_0^c\lambda e^{-(\lambda+s)x}dx\)。所以\(H=\frac{q e^{-sc}}{1-\lambda(1-e^{-(\lambda+s)c})/(\lambda+s)}\)。分母为正；在\(s=0\)取值1，对\(s\)求导可重新得到原题均值。
+
+\newpage
+
+\section{习题2.24：随机鱼数与总重量}\label{ux4e60ux98982.24ux968fux673aux9c7cux6570ux4e0eux603bux91cdux91cf}
+
+\textbf{书内依据：}第2.3节：随机和、复合泊松过程。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-23}
+
+两小时鱼数\(N\sim\mathrm{Poisson}(6)\)；鱼重\(Y_i\)相互独立，也独立于鱼数，均值4磅、标准差2磅。设\(S=\sum_{i=1}^NY_i\)，\(N=0\)时\(S=0\)。
+
+给定\(N=n\)，\(E(S\mid N=n)=4n\)，\(\operatorname{Var}(S\mid N=n)=4n\)。因此
+\[ES=4EN=\boxed{24\text{磅}},\]
+\[\operatorname{Var}S=E(4N)+\operatorname{Var}(4N)=24+96=120.\]
+所求标准差为\(\boxed{\sqrt{120}=2\sqrt{30}\text{磅}}\)。后面的96来自鱼数自身的波动，不能漏掉。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-23}
+
+\textbf{A｜知道恰好钓到六条。}给定\(N=6\)，总重均值24，方差\(6\cdot4=24\)，标准差\(2\sqrt6\)。与原题均值一样，但方差不同，因为条件固定了随机条数。
+
+\textbf{B｜不同批次独立性。}第一小时与第二小时的总重\(S_1,S_2\)独立，每个均值12、方差60。故差\(S_1-S_2\)均值0、方差120；和的方差也为120。要有鱼重标记在不同到达之间独立，这个结论才成立。
+
+\textbf{C｜条数与总重的相关。}\(E(NS)=E[N E(S\mid N)]=4EN^2\)，故\(\operatorname{Cov}(N,S)=4\operatorname{Var}N=24\)。相关系数为\(24/\sqrt{6\cdot120}=2/\sqrt5\)。条数与各条重量独立，不表示条数与总重独立。
+
+\newpage
+
+\section{习题2.25：随机索赔总额}\label{ux4e60ux98982.25ux968fux673aux7d22ux8d54ux603bux989d}
+
+\textbf{书内依据：}第2.3节：复合泊松总量的两个矩。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-24}
+
+四周索赔次数\(N\sim\mathrm{Poisson}(16)\)。以千美元\(K\)为金额单位，每次金额均值10、标准差6，所以二阶矩为\(EY^2=6^2+10^2=136\)。
+
+条件期望与条件方差公式给
+\[\boxed{ES=16\cdot10=160K},\qquad \operatorname{Var}S=16\cdot136=2176K^2.\]
+因此标准差为\(\boxed{8\sqrt{34}\,K}\)，约\(46.6476K\)。标准差不能直接做\(16\times6\)，也不能只做\(\sqrt{16}\times6\)，因为次数并未固定。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-24}
+
+\textbf{A｜确定赔款但次数随机。}每次固定赔10K，其他不变。则\(S=10N\)，均值仍160K，方差为1600\(K^2\)。即使单笔金额毫无波动，总赔款仍因次数随机而波动。
+
+\textbf{B｜两类独立索赔。}每次索赔独立以\(1/4\)归类A，其他归类B；金额分布相同。四周两类次数为独立Poisson(4)、Poisson(12)，金额总和也独立，均值40K、120K，方差544\(K^2\)、1632\(K^2\)。相加恢复原题。
+
+\textbf{C｜无分布细节的波动界。}切比雪夫不等式给\(P(|S-160|\ge a)\le2176/a^2\)，这里金额以K计。例如\(a=100\)时上界0.2176。这个上界只需要二阶矩，不能据此宣称真实超额概率恰为0.2176。
+
+\newpage
+
+\section{习题2.26：八小时ATM总取款}\label{ux4e60ux98982.26ux516bux5c0fux65f6atmux603bux53d6ux6b3e}
+
+\textbf{书内依据：}第2.3节：随机和；期望与方差的单位。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-25}
+
+八小时交易数\(N\sim\mathrm{Poisson}(80)\)；单次取款均值30美元、标准差20美元，独立同分布且与到达过程独立。二阶矩为\(20^2+30^2=1300\)。
+\[\boxed{ES=80\cdot30=2400\text{美元}},\]
+\[\operatorname{Var}S=80\cdot1300=104000\text{美元}^2,\]
+\[\boxed{\operatorname{SD}S=40\sqrt{65}\text{美元}\approx322.4903\text{美元}.}\]
+若把80当作恰好发生的次数，得到的标准差就会偏小；80只是平均交易数。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-25}
+
+\textbf{A｜营业时间翻倍。}16小时均值4800美元、方差208000、标准差\(40\sqrt{130}\)美元。均值翻倍、方差翻倍，标准差只乘\(\sqrt2\)。
+
+\textbf{B｜独立无效操作。}假设每次到达以概率\(q\)成功取款，失败时取款0；成功金额分布如原题。成功次数Poisson\((80q)\)，所以总额均值\(2400q\)、方差\(104000q\)。不能把每筆实际金额简单乘\(q\)，那会把方差错算成\(q^2\)倍。
+
+\textbf{C｜已知总交易数后的最佳平方误差预测。}观察到\(N=n\)后，条件均值\(E(S\mid N)=30n\)是最佳平方误差预测；其条件均方误差为\(400n\)。不观察交易数只预测2400时，均方误差为104000；观察交易数后的平均误差为32000，减少72000。
+
+\newpage
+
+\section{习题2.27：售票处：合流、固定总数条件与多类分流}\label{ux4e60ux98982.27ux552eux7968ux5904ux5408ux6d41ux56faux5b9aux603bux6570ux6761ux4ef6ux4e0eux591aux7c7bux5206ux6d41}
+
+\textbf{书内依据：}第2.4.1节分流；第2.4.2节叠加；第2.4.3节条件均匀性。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-26}
+
+女性和男性到达是独立泊松过程，率分别30、20人/小时。合流率50，任一次到达为女性的概率\(30/50=3/5\)，各次类别独立。
+
+（a）前三位都为女性：\(\boxed{(3/5)^3=27/125}\)。
+
+（b）给定前5分钟恰有2人到达，两个未排序到达时刻独立均匀在这5分钟内。两个都在前3分钟的概率\(\boxed{(3/5)^2=9/25}\)。这一问的\(3/5\)是时间长度之比，不是女性比例；数字相同只是巧合。
+
+（c）每人独立买1、2、3张的概率为\(1/2,2/5,1/10\)，和性别无关。三类顾客数独立，\(N_1\sim\mathrm{Poisson}(25)\)、\(N_2\sim\mathrm{Poisson}(20)\)、\(N_3\sim\mathrm{Poisson}(5)\)。联合概率为
+\[\boxed{P(N_1=a,N_2=b,N_3=c)=e^{-50}\frac{25^a}{a!}\frac{20^b}{b!}\frac{5^c}{c!}},\quad a,b,c\ge0.\]
+\(N_i\)数的是买\(i\)张的顾客，而不是这些顾客一共买的票。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-26}
+
+\textbf{A｜总票数。}\(S=N_1+2N_2+3N_3\)，所以\(ES=25+40+15=80\)，\(\operatorname{Var}S=25+4\cdot20+9\cdot5=150\)。总票数不是Poisson(80)，因为它的方差不等于均值。
+
+\textbf{B｜给定总顾客数。}若\(N_1+N_2+N_3=n\)，条件联合分布是多项式：\(\frac{n!}{a!b!c!}(1/2)^a(2/5)^b(1/10)^c\)，\(a+b+c=n\)。于是条件协方差\(\operatorname{Cov}(N_1,N_2\mid n)=-n/5\)；无条件独立并不保证条件下仍独立。
+
+\textbf{C｜首位三张票顾客。}该类顾客率5/小时，等待时间为Exp(5)，均值12分钟。其到来前买1或2张的顾客数为支撑\(0,1,\ldots\)的几何分布，参数\(1/10\)，均值9。
+
+\newpage
+
+\section{习题2.28：故障更换与预防性更换}\label{ux4e60ux98982.28ux6545ux969cux66f4ux6362ux4e0eux9884ux9632ux6027ux66f4ux6362}
+
+\textbf{书内依据：}第2.1节指数竞争；第2.4节分流与叠加。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-27}
+
+寿命均值200天，故障率\(a=1/200=0.005\)每天；预防维护人员独立以率\(b=0.01\)每天出现。每次出现都换新灯泡，坏掉也立即换新。
+
+（a）任一次更换之后，等故障和等维护是两个独立指数时钟。下一次更换时间为Exp\((a+b)\)，均值
+\[\boxed{\frac1{0.015}=\frac{200}{3}\text{天}}.\]
+所以长期更换频率\(\boxed{0.015\text{次/天}}\)。同时给均值间隔和频率，避免把``多久换一次''与``每天几次''混淆。
+
+（b）每次更换由故障引起的概率是\(a/(a+b)\)，各周期同分布。因此长期故障更换比例为\(\boxed{1/3}\)。指数无记忆性保证预防换新并不改变此模型下的瞬时故障率。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-27}
+
+\textbf{A｜一年内的更换次数。}用365天计算，更换次数Poisson\((0.015\cdot365)\)；平均5.475次，没有更换的概率\(e^{-5.475}\)。故障与维护两类分别是独立Poisson(1.825)、Poisson(3.65)。
+
+\textbf{B｜只有新灯采购成本。}若任何更换都花费\(c\)，长期成本率为\(0.015c\)；取消预防维护后为\(0.005c\)。本模型中灯泡老化率不增长，且故障立即替换，因而单靠此成本目标，预防更换并无收益；现实额外停机成本等未包含。
+
+\textbf{C｜非指数寿命反例。}若灯泡恰好用200天后失效，而预防维护仍率0.01，则每周期长度\(\min(200,H)\)，均值\((1-e^{-2})/0.01\)。故障概率\(P(H\ge200)=e^{-2}\)。此时预防维护确实改变故障频率，不能套原题的\(1/3\)。
+
+\newpage
+
+\section{习题2.29：两类电话的稳态在通话数量与时间单位}\label{ux4e60ux98982.29ux4e24ux7c7bux7535ux8bddux7684ux7a33ux6001ux5728ux901aux8bddux6570ux91cfux4e0eux65f6ux95f4ux5355ux4f4d}
+
+\textbf{书内依据：}第2.4.1节按标记分流；第2.4.3节条件均匀性；无限服务台例子。
+
+\textbf{版本状态：}2016文本已取得；到达率12的时间单位未明，给一般换算及两种单位答案。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-28}
+
+\textbf{需要保留的单位信息。}所取得的2016文本只写到达率12，没有明确``每分钟''还是``每小时''。通话平均时长分别10分钟和5分钟。因此先给可直接换算的答案，不擅自补单位。
+
+设一单位时间相当于\(d\)分钟，到达率是每单位12次，则每分钟率为\(12/d\)。本地占\(3/4\)，长途占\(1/4\)。独立通话的稳态在途数，是Poisson到达率乘平均持续时间：
+\[\boxed{M\sim\mathrm{Poisson}(90/d),\qquad N\sim\mathrm{Poisson}(15/d),\quad M\perp N.}\]
+对\(m,n\ge0\)，联合概率\(e^{-105/d}(90/d)^m(15/d)^n/(m!n!)\)。若率12是每分钟，则均值90、15；若是每小时，则均值\(3/2,1/4\)。
+
+理由：时刻0以前\(u\)分钟的一个本地来电仍在通话，概率为其时长尾概率\(\overline F_L(u)\)；对各年龄的到达作独立保留，均值为\((9/d)\int_0^\infty\overline F_L(u)du=90/d\)。长途同理，两类独立。并不要求通话时长为指数分布。
+
+总的在通话连接数是\(M+N\sim\mathrm{Poisson}(105/d)\)。若每条通话恰有两个互不重叠的参与者，人数才是\(2(M+N)\)；原有通话数和参与人数是不同的计数对象。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-28}
+
+\textbf{A｜给定共有十路通话。}由于两个稳态均值之比为6:1，\(M\mid M+N=10\sim\mathrm{Bin}(10,6/7)\)，均值\(60/7\)。新来电话的本地比例是3/4，但在通话里的比例是6/7，因为本地电话平均持续更久。
+
+\textbf{B｜从空系统开始。}额外假设两类时长为指数分布，并采用每分钟12次。时刻\(t\)分钟两均值分别\(90(1-e^{-t/10})\)和\(15(1-e^{-t/5})\)，仍为独立Poisson。令\(t\to\infty\)得到原稳态。
+
+\textbf{C｜两条通话可能共享一个人。}在不规定每人最多一路通话时，只知道\(M+N\)不能推出独立参与人数，因为两个连接可以共享端点。反例：两路通话可以由四个不同人参与，也可以由同一人分别和另外两个人通话，仅三人。人数结论必须另外说明模型。
+
+\newpage
+
+\section{习题2.30：男性、女性来电的联合计数与先到竞争}\label{ux4e60ux98982.30ux7537ux6027ux5973ux6027ux6765ux7535ux7684ux8054ux5408ux8ba1ux6570ux4e0eux5148ux5230ux7adeux4e89}
+
+\textbf{书内依据：}第2.4.1节独立分流；第2.4.2节叠加后的类别序列。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-29}
+
+总率4次/小时，男性比例\(3/4\)，女性\(1/4\)。两类独立泊松率为3、1。
+
+（a）一小时恰好2男3女：
+\[\boxed{e^{-3}\frac{3^2}{2!}\,e^{-1}\frac{1^3}{3!}=\frac34e^{-4}.}\]
+（b）第3名男性先于第3名女性出现，等价于前5个来电至少3个为男性。因为五次中必有一类已达3次，并且另一类最多2次。于是
+\[P=\sum_{k=3}^5\binom5k(3/4)^k(1/4)^{5-k}=\boxed{\frac{459}{512}}.\]
+也可按第3名男性到来前有0、1、2名女性分类：\(P=\sum_{j=0}^2\binom{2+j}{j}(3/4)^3(1/4)^j\)，给出相同结果。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-29}
+
+\textbf{A｜等到首次女性来电。}女性来电率1/小时，均值等待1小时。此之前男性数为几何失败次数分布：\(P(K=k)=(3/4)^k/4\)，均值3。不能把``此前男性数''当作固定时间的Poisson(3)。
+
+\textbf{B｜不同目标数量。}男性目标\(a\)、女性目标\(b\)，每次为男性的概率\(p\)。男性先达到\(a\)的概率为\(\sum_{j=0}^{b-1}\binom{a+j-1}{j}p^a(1-p)^j\)。组合数安排最后一次男性之前的\(a-1\)男与\(j\)女，最后再乘一次\(p\)。
+
+\textbf{C｜给定来电共五次。}一小时内已知总数5，男性数Bin\((5,3/4)\)，但一小时内第三名男性是否先出现的事件还包含``目标是否在本小时达到''。这里至少3男性的条件概率仍为459/512；无条件在一小时内达到3名男性的概率则为\(1-e^{-3}(1+3+9/2)\)。
+
+\newpage
+
+\section{习题2.31：向未来条件化与向过去条件化}\label{ux4e60ux98982.31ux5411ux672aux6765ux6761ux4ef6ux5316ux4e0eux5411ux8fc7ux53bbux6761ux4ef6ux5316}
+
+\textbf{书内依据：}第2.2节独立增量；第2.4.3节固定总数后的均匀性。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-30}
+
+\(N(t)\)为率2的泊松过程。
+
+（a）给定\(N(1)=1\)，要有\(N(3)=4\)，未来两单位时间需新增3次。该增量与过去独立，参数\(2(3-1)=4\)，故
+\[\boxed{P(N(3)=4\mid N(1)=1)=e^{-4}\frac{4^3}{3!}.}\]
+（b）给定\(N(3)=4\)，四个未排序时刻均匀分布在\([0,3]\)；每个落在前一单位的概率是\(1/3\)。所以
+\[\boxed{P(N(1)=1\mid N(3)=4)=\binom41\frac13(2/3)^3=\frac{32}{81}.}\]
+第二问不再是参数2的无条件Poisson变量。已知道未来总数，限制了过去可能发生的次数。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-30}
+
+\textbf{A｜一般双时间公式。}\(0<s<t\)且\(0\le k\le n\)时，\(P(N(s)=k\mid N(t)=n)=\binom nk(s/t)^k(1-s/t)^{n-k}\)。证明：将独立增量的两个Poisson概率相乘，再除以\(P(N(t)=n)\)，指数项和\(\lambda^n\)约掉。
+
+\textbf{B｜条件协方差。}给定\(N(t)=n\)，两个区间人数\(X=N(s)\)、\(Y=n-X\)，故\(\operatorname{Cov}(X,Y\mid N(t)=n)=-\operatorname{Var}(X\mid n)=-n(s/t)(1-s/t)\)。无条件独立与条件负相关不矛盾。
+
+\textbf{C｜已知前后端的中间值。}给定\(N(1)=1,N(3)=4\)，\(N(2)-1\sim\mathrm{Bin}(3,1/2)\)，所以\(P(N(2)=2\mid\cdots)=3/8\)。因为三个新增时刻在\([1,3]\)均匀，不是把最初一个时刻也一起重新分配。
+
+\newpage
+
+\section{习题2.32：三个泊松概率的完整计算}\label{ux4e60ux98982.32ux4e09ux4e2aux6ccaux677eux6982ux7387ux7684ux5b8cux6574ux8ba1ux7b97}
+
+\textbf{书内依据：}第2.2节独立增量；第2.4.3节条件分布。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-31}
+
+率仍为2。
+
+（a）\(N(2)\sim\mathrm{Poisson}(4)\)，所以\(\boxed{P(N(2)=5)=e^{-4}4^5/5!}\)。
+
+（b）给定\(N(2)=3\)，到时刻5要达到8，需要随后3单位时间新增5次；增量参数为6。故\(\boxed{P(N(5)=8\mid N(2)=3)=e^{-6}6^5/5!}\)。
+
+（c）给定\(N(5)=8\)，前2单位时间的人数是Bin\((8,2/5)\)，所以
+\[\boxed{P(N(2)=3\mid N(5)=8)=\binom83(2/5)^3(3/5)^5.}\]
+算（b）用时间差\(5-2\)，算（c）用时间比例\(2/5\)；这是两种不同的信息结构。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-31}
+
+\textbf{A｜联合概率。}\(P(N(2)=3,N(5)=8)=e^{-4}4^3/3!\cdot e^{-6}6^5/5!\)。将这个式子除以\(e^{-10}10^8/8!\)，就得到原题（c），直接检验贝叶斯条件化。
+
+\textbf{B｜固定总数后的平均到达时刻。}给定\(N(5)=8\)，第3次到达的平均时刻为\(5\cdot3/(8+1)=5/3\)。理由：八个均匀点形成九段对称间距，每段均值\(5/9\)，前三段相加即可。
+
+\textbf{C｜只知道第三次已发生。}\(P(N(2)=3\mid N(2)\ge3)=\frac{e^{-4}4^3/3!}{1-e^{-4}(1+4+8)}\)。这个条件不是\(N(5)=8\)，不能再套时间比例的二项公式。
+
+\newpage
+
+\section{习题2.33：已知两位顾客到达后的时间位置}\label{ux4e60ux98982.33ux5df2ux77e5ux4e24ux4f4dux987eux5ba2ux5230ux8fbeux540eux7684ux65f6ux95f4ux4f4dux7f6e}
+
+\textbf{书内依据：}第2.4.3节：给定总数的条件均匀性。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-32}
+
+银行到达率10人/小时，给定前5分钟恰有两人。设两人的未排序时刻\(U_1,U_2\)；条件下它们独立均匀于\([0,5]\)分钟。
+
+（a）两人都在前2分钟的概率为\(\boxed{(2/5)^2=4/25}\)。
+
+（b）至少一人在前2分钟，取``都不在''的补集：
+\[\boxed{1-(3/5)^2=16/25}.\]
+到达率10在条件化后消掉；但时间比例仍需使用相同单位。不能将2分钟直接除以一小时60分钟。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-32}
+
+\textbf{A｜恰好一人早到。}概率\(2(2/5)(3/5)=12/25\)；加上两人都早到的4/25，恢复至少一人的16/25。系数2表示哪一人早到的两种互斥选择。
+
+\textbf{B｜首次和末次到达的均值。}对两个均匀点，首次均值\(5/3\)分钟，末次均值\(10/3\)分钟。首次尾概率\(((5-x)/5)^2\)在0到5积分得\(5/3\)；又两人的和均值5，减去首次均值得末次。
+
+\textbf{C｜二人的到达间隔。}在正方形\([0,5]^2\)中，\(|U_1-U_2|>d\)对应两个边长\(5-d\)的直角三角形，故概率\((5-d)^2/25\)，\(0\le d\le5\)。因此间隔均值\(\int_0^5(1-d/5)^2dd=5/3\)分钟。
+
+\newpage
+
+\section{习题2.34：进球、助攻与随机奖金}\label{ux4e60ux98982.34ux8fdbux7403ux52a9ux653bux4e0eux968fux673aux5956ux91d1}
+
+\textbf{书内依据：}第2.3节复合泊松；第2.4节分流及时间条件化。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-33}
+
+每场计分事件数Poisson(6)，其中进球比例0.6、助攻0.4，独立标记。奖金以千元K计，进球3K、助攻1K。令\(G,A\)为次数，则独立且\(G\sim\mathrm{Poisson}(3.6)\)、\(A\sim\mathrm{Poisson}(2.4)\)，奖金\(S=3G+A\)。
+
+（a）\(ES=3\cdot3.6+2.4=\boxed{13.2K}\)；方差\(9\cdot3.6+2.4=34.8K^2\)，标准差\(\boxed{\sqrt{34.8}\,K}\)。
+
+（b）四进球两助攻：\(\boxed{e^{-6}(3.6)^4(2.4)^2/(4!2!)}\)。
+
+（c）按照本节齐次泊松时间模型，给定全场六个事件，前半场有四个的概率
+\[\boxed{\binom64(1/2)^6=15/64}.\]
+``每场总数为Poisson''这一孤立条件本身并不指定比赛内部的时间分布；（c）用到了齐次过程的额外时间结构。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-33}
+
+\textbf{A｜给定总事件数的奖金。}给定\(G+A=6\)，\(G\sim\mathrm{Bin}(6,0.6)\)，\(S=6+2G\)。所以条件均值13.2K、条件方差\(4\cdot6\cdot0.6\cdot0.4=5.76K^2\)，显著小于未固定总数时的34.8。
+
+\textbf{B｜没有进球但仍有奖金。}该事件是\(G=0,A\ge1\)，概率\(e^{-3.6}(1-e^{-2.4})\)。独立分流允许相乘；给定总事件固定后则要重新计算。
+
+\textbf{C｜奖金与事件数的协方差。}\(N=G+A\)，独立性给\(\operatorname{Cov}(S,N)=3\operatorname{Var}G+\operatorname{Var}A=13.2\)（K·次）。相关系数为\(13.2/\sqrt{34.8\cdot6}\)。这说明总数影响奖金，但奖金还取决于组成。
+
+\newpage
+
+\section{习题2.35：从已有比分开始的泊松竞赛}\label{ux4e60ux98982.35ux4eceux5df2ux6709ux6bd4ux5206ux5f00ux59cbux7684ux6ccaux677eux7adeux8d5b}
+
+\textbf{书内依据：}第2.4.2节：叠加后的独立类别；离散首次成功计数。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-34}
+
+两队独立进球率为1、2，初始进球数为3、1，目标都是5。也就是说队1还需2球，队2还需4球，不能把初始比分当成两者都从0开始。
+
+（a）合并未来所有进球，每球来自队1的概率\(p=1/3\)，队2概率\(q=2/3\)。队1先达到目标，等价于未来前5个球中至少2个属于队1。因而
+\[P=1-q^5-5pq^4=\boxed{131/243}.\]
+另一个逐条路径算法：队1最后的决定性第二球到来前，队2可能已进\(j=0,1,2,3\)球；前面\(j+1\)球里恰有一球来自队1，安排方法\(j+1\)种。故\(P=\sum_{j=0}^3(j+1)p^2q^j\)，与上式一致。
+
+（b）一般独立率\(\lambda_1,\lambda_2>0\)，只需令\(p=\lambda_1/(\lambda_1+\lambda_2)\)、\(q=1-p\)，得到
+\[\boxed{P=1-q^5-5pq^4=\sum_{j=0}^3(j+1)p^2q^j.}\]
+概率只依赖率的比例；把两率同时乘10会缩短时间，但不会改变谁先到达目标的概率。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-34}
+
+\textbf{A｜一般领先量。}队1还需\(a\)球，队2还需\(b\)球。胜率\(\sum_{k=a}^{a+b-1}\binom{a+b-1}{k}p^kq^{a+b-1-k}\)，因为合并前\(a+b-1\)球时恰有一队已达目标。等价地可按最后一球分类得到\(\sum_{j=0}^{b-1}\binom{a+j-1}{j}p^aq^j\)。
+
+\textbf{B｜每队只差一球的结束时间。}此时等下一球即可，时间Exp\((\lambda_1+\lambda_2)\)，均值\(1/(\lambda_1+\lambda_2)\)，且与获胜队独立。联合尾概率\(P(T>t,\text{队1赢})=e^{-(\lambda_1+\lambda_2)t}p\)可直接验证。
+
+\textbf{C｜原题胜率对\(p\)的变化。}\(f(p)=1-(1-p)^5-5p(1-p)^4\)。求导得\(f'(p)=20p(1-p)^3\ge0\)，内部严格正。因此提高自己的相对进球率一定提高胜率；这个结论由明确公式而非直觉断言得到。
+
+\newpage
+
+\section{习题2.36：交通中的车辆总数与卡车分流}\label{ux4e60ux98982.36ux4ea4ux901aux4e2dux7684ux8f66ux8f86ux603bux6570ux4e0eux5361ux8f66ux5206ux6d41}
+
+\textbf{书内依据：}第2.4.1节：独立Poisson分流；固定总数后的二项条件分布。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-35}
+
+总率每分钟\(2/3\)辆，一小时总数Poisson(40)。卡车占0.1、小汽车0.9，因此卡车\(T\sim\mathrm{Poisson}(4)\)、汽车\(C\sim\mathrm{Poisson}(36)\)，两者独立。
+
+（a）至少一卡车：\(\boxed{1-e^{-4}}\)。
+
+（b）已知卡车10辆并不改变汽车分布，故\(E(T+C\mid T=10)=10+36=\boxed{46}\)。不能认为卡车总占一成，就把总数强制成100。
+
+（c）给定总数50，卡车数Bin\((50,0.1)\)，所以
+\[\boxed{P(T=5,C=45\mid T+C=50)=\binom{50}{5}(0.1)^5(0.9)^{45}.}\]
+先固定某个类别与先固定总数，是完全不同的条件化。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-35}
+
+\textbf{A｜给定卡车十辆的总数波动。}\(T+C\mid T=10\)等于\(10+\mathrm{Poisson}(36)\)，方差36，支持从10开始；并不是Poisson(46)。
+
+\textbf{B｜无卡车时的总交通。}给定\(T=0\)，总数就是独立的\(C\sim\mathrm{Poisson}(36)\)。因此仍至少有一辆车的概率为\(1-e^{-36}\)，不是零。
+
+\textbf{C｜相邻两辆是否同类。}合流后的类别独立，一对相邻车辆同类概率\(0.1^2+0.9^2=0.82\)；恰为``卡车后接汽车''是0.09。连续三辆都同类则为\(0.1^3+0.9^3=0.73\)，不能把两次同类事件直接当独立相乘。
+
+\newpage
+
+\section{习题2.37：两类志愿者的随机产出}\label{ux4e60ux98982.37ux4e24ux7c7bux5fd7ux613fux8005ux7684ux968fux673aux4ea7ux51fa}
+
+\textbf{书内依据：}第2.3节随机和；第2.4.1节按类型分流。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-36}
+
+参加人数Poisson(60)，独立有\(2/3\)热心、\(1/3\)较懒。两类人数分别独立Poisson(40)、Poisson(20)。热心者收集量均值10、标准差5；另一类均值3、标准差2。不同人的数量在给定各自类型后独立。
+
+热心组均值\(40\cdot10=400\)，方差\(40(10^2+5^2)=5000\)；另一组均值60，方差\(20(3^2+2^2)=260\)。两组独立，得到
+\[\boxed{ES=460,\qquad\operatorname{SD}S=\sqrt{5260}.}\]
+亦可把每个参与者视为混合标记：\(EY=23/3\)，\(EY^2=(2/3)125+(1/3)13=263/3\)，从而\(60EY=460\)、\(60EY^2=5260\)。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-36}
+
+\textbf{A｜人数固定为60。}这时总量均值仍460，但方差\(60\operatorname{Var}Y=60[263/3-(23/3)^2]=5200/3\)。少掉的部分\(60(23/3)^2\)是总人数随机带来的波动。
+
+\textbf{B｜给定热心者恰40名。}热心组数量波动只来自每个人的产出，方差\(40\cdot25=1000\)；另一组仍复合Poisson，方差260。总均值460、方差1260。这与同时固定总人数并不是同一条件。
+
+\textbf{C｜提高一组的平均产出。}若只把每位较懒者的产出都额外增加整数\(d\ge0\)，该类二阶矩变成\(13+6d+d^2\)。总均值\(460+20d\)，方差\(5260+120d+20d^2\)。提高平均产量并不保证绝对方差下降，因为人数仍随机。
+
+\newpage
+
+\section{习题2.38：已知全场得分构成后的半场比分}\label{ux4e60ux98982.38ux5df2ux77e5ux5168ux573aux5f97ux5206ux6784ux6210ux540eux7684ux534aux573aux6bd4ux5206}
+
+\textbf{书内依据：}第2.4.3节：给定次数后的时间均匀性。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-37}
+
+\textbf{条件要完整。}题目给定的不是只有总比分42比34，还给定Virginia有6次达阵、0次射门得分，Duke有4次达阵、2次射门得分。四类得分是独立齐次Poisson过程。求半场Virginia4次达阵，Duke1次达阵加2次射门的概率。
+
+每类给定全场总次数后，半场次数为以\(1/2\)为参数的二项变量；四类仍相互独立，因为条件也分别只作用于各自的过程。因此
+\[P=\binom64(1/2)^6\binom41(1/2)^4\binom22(1/2)^2.\]
+Virginia没有射门，相关条件概率为1。于是
+\[\boxed{P=\frac{15}{1024}=0.0146484375.}\]
+若只知道42分而不知道构成，也可以是14次三分得分等其他组成；此时须把所有与总分相符的组成按条件权重求和，答案一般依赖各类的率，不能直接用上面的二项乘积。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-37}
+
+\textbf{A｜任意比赛时间比例。}把半场改为全场时间的比例\(r\)，所求指定构成概率为\(\binom64 r^4(1-r)^2\binom41r(1-r)^3r^2=60r^7(1-r)^5\)。\(r=1/2\)恢复原题。
+
+\textbf{B｜条件半场得分均值和方差。}Virginia半场分为\(7B_6\)，\(B_6\sim\mathrm{Bin}(6,1/2)\)，均值21、方差\(49\cdot6/4=147/2\)。Duke为\(7B_4+3B_2\)，独立，均值17、方差\(49+9/2=107/2\)。
+
+\textbf{C｜已知前半场构成后看后半场。}在已经给定全场总次数的前提下，前后半场计数互补；若Virginia前半4次，则后半必2次，不再是独立的Bin\((6,1/2)\)。其前后半场得分协方差为\(-147/2\)。
+
+\newpage
+
+\section{习题2.39：出租车的循环收入与机场时间占比}\label{ux4e60ux98982.39ux51faux79dfux8f66ux7684ux5faaux73afux6536ux5165ux4e0eux673aux573aux65f6ux95f4ux5360ux6bd4}
+
+\textbf{书内依据：}第2.1节等待时间；第3.1节定理3.3更新报酬（本题需跨节使用）。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-38}
+
+将一个循环定义为``司机在市内空闲等客开始，到本次市内短途或完整机场往返结束、再次市内空闲''。市内等客率\(1/5\)每分钟，平均等5分钟。
+
+以概率\(1/3\)去机场：行驶20分钟、机场排队平均35分钟、返回20分钟，总共75分钟，收入\(28+28=56\)美元。以概率\(2/3\)做短途：时长均匀于2至10分钟，平均6分钟，按每分钟\(4/3\)美元计，平均收入8美元。
+
+平均循环时长与收入为
+\[EC=5+\frac13\cdot75+\frac23\cdot6=34\text{分钟},\]
+\[ER=\frac13\cdot56+\frac23\cdot8=24\text{美元}.\]
+（a）独立同分布循环的长期``总收入/总时间''趋于\(ER/EC\)，故每小时收入为
+\[\boxed{60\frac{24}{34}=\frac{720}{17}\text{美元}\approx42.3529\text{美元}.}\]
+（b）机场相关时间包括双向行程与机场排队，每循环平均\(75/3=25\)分钟，所以比例
+\[\boxed{25/34}.\]
+为什么是两个均值之比？做完\(n\)个循环，收入和时间各除以\(n\)，由大数律分别趋于\(ER,EC\)，相除即得。进一步将任意时刻夹在相邻循环终点之间，就是书中更新报酬定理；不能用各路线``小时收入''的概率平均取代它。此处采用通常的各循环独立、有限均值假设。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-38}
+
+\textbf{A｜机场排队改变。}平均机场排队改为\(w\ge0\)分钟。循环均值\(5+(40+w)/3+4=(67+w)/3\)，收入仍24。因此小时收入\(4320/(67+w)\)，机场时间比例\((40+w)/(67+w)\)。排队越长，收入越少而机场时间占比越大。
+
+\textbf{B｜只看实际载客时段。}机场两段载客共40分钟，短途均值6。每循环平均载客\(40/3+4=52/3\)分钟，载客时间比例\((52/3)/34=26/51\)。它小于机场相关时间比例，因为后者把机场排队也包含在内。
+
+\textbf{C｜拒绝全部机场客。}假设可无成本拒单且拒绝后立即继续等待，则可接的市内短途率变成\((1/5)(2/3)=2/15\)每分钟，平均等7.5分钟；短途6分钟、收入8美元，小时收入\(480/(7.5+6)=320/9\)美元，低于原策略。不能拒掉机场客后还保留原来5分钟平均等客时间。
+
+\newpage
+
+\section{习题2.40：市场顾客构成与营业额}\label{ux4e60ux98982.40ux5e02ux573aux987eux5ba2ux6784ux6210ux4e0eux8425ux4e1aux989d}
+
+\textbf{书内依据：}第2.3节复合Poisson；第2.4.1节分流。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-39}
+
+总到达率15人/小时，素食者占\(4/5\)、肉食者\(1/5\)。两类率12、3。
+
+（a）20分钟等于\(1/3\)小时，两类人数独立Poisson(4)、Poisson(1)。恰好3名素食者2名肉食者的概率
+\[\boxed{e^{-5}\frac{4^3}{3!}\frac{1^2}{2!}=\frac{16}{3}e^{-5}.}\]
+（b）4小时内两类人数均值48、12。两类个人消费均值7、15，标准差3、8；条件独立标记的二阶矩分别58、289。因此
+\[\boxed{ES=48\cdot7+12\cdot15=516\text{美元}},\]
+\[\boxed{\operatorname{SD}S=\sqrt{48\cdot58+12\cdot289}=\sqrt{6252}\text{美元}.}\]
+这是顾客消费总额的波动，包含人数、类别和同类别消费三种随机性。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-39}
+
+\textbf{A｜给定总人数60。}单人的混合消费均值8.6，二阶矩104.2，方差30.24。总人数固定后，均值516美元，方差\(60\cdot30.24=1814.4\)。无条件方差多出的\(60(8.6)^2=4437.6\)来自总人数随机。
+
+\textbf{B｜优惠券独立抽样。}每名到达者独立以概率\(q\)使用某种券，且使用者消费分布仍如原题。使用者总消费的均值\(516q\)、方差\(6252q\)。如果用券改变消费，则须改标记分布，不能直接套此结果。
+
+\textbf{C｜两类总消费占比不能直接取比例。}两类期望消费分别336、180，期望份额\(336/516=28/43\)只表示``均值之比''。随机实际份额\(S_V/(S_V+S_M)\)的期望一般不是28/43；例如无人来时分母为0，还需要先说明如何定义或条件化。题给两阶矩不足以确定该份额期望。
+
+\newpage
+
+\section{习题2.41：车辆数不是乘客人数}\label{ux4e60ux98982.41ux8f66ux8f86ux6570ux4e0dux662fux4e58ux5ba2ux4ebaux6570}
+
+\textbf{书内依据：}第2.3节复合泊松；第2.4.1节分流。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-40}
+
+每小时30辆到达；三类车辆概率\(1/2,3/10,1/5\)，载人数分别1、2、4。半小时各类车辆数独立Poisson\((7.5),\mathrm{Poisson}(4.5),\mathrm{Poisson}(3)\)。
+
+（a）指定四人车恰好4辆，概率\(\boxed{e^{-3}3^4/4!}\)。
+
+（b）令单车人数\(Y\)。\(EY=0.5+0.6+0.8=1.9\)，\(EY^2=0.5+1.2+3.2=4.9\)。半小时总车数均值15，所以
+\[\boxed{ES=28.5\text{人},\qquad\operatorname{SD}S=\sqrt{73.5}\text{人}.}\]
+或者直接对独立车数加权，均值\(7.5+2\cdot4.5+4\cdot3\)，方差\(7.5+4\cdot4.5+16\cdot3\)，结果相同。2016版这一题只有（a）（b）；公开稿增设的小问不混入原题完成量。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-40}
+
+\textbf{A｜给定四人车有4辆。}该类贡献确定16人，其他两类分布不变。总人数条件均值\(16+7.5+9=32.5\)，条件方差\(7.5+18=25.5\)。
+
+\textbf{B｜至少一位到达。}因为每车至少一人，无人到达当且仅当没有车，概率\(e^{-15}\)。因此至少一人概率\(1-e^{-15}\)，不是\(1-e^{-28.5}\)。总人数不是Poisson(28.5)。
+
+\textbf{C｜人数的生成函数。}\(g(z)=z/2+3z^2/10+z^4/5\)，总人数生成函数\(f(z)=\exp\{15[g(z)-1]\}\)。例如恰好2人，可以是一辆双人车，或两辆单人车；概率\(e^{-15}[4.5+7.5^2/2]\)。
+
+\newpage
+
+\section{习题2.42：商场内人数与按到达群体计算的消费}\label{ux4e60ux98982.42ux5546ux573aux5185ux4ebaux6570ux4e0eux6309ux5230ux8fbeux7fa4ux4f53ux8ba1ux7b97ux7684ux6d88ux8d39}
+
+\textbf{书内依据：}第2.4.1节分流；一般停留时间的Poisson在途数；第2.3节随机总额。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-41}
+
+总率96人/小时，男性\(1/3\)、女性\(2/3\)，所以两类率32、64。
+
+（a）男士停留U\((0,1)\)小时，平均\(1/2\)；女士停留为平均3小时的指数分布。每类稳态人数为Poisson``到达率乘平均停留''，且两类独立：
+\[\boxed{M\sim\mathrm{Poisson}(16),\quad W\sim\mathrm{Poisson}(192),\quad M\perp W.}\]
+联合概率\(P(M=m,W=w)=e^{-208}16^m192^w/(m!w!)\)。
+
+（b）题目统计9点至10点\textbf{到达的女士}所产生的消费，不是这个时段内收银台实际到账，也不是10点仍在场的人的消费。该群体人数Poisson(64)，每人消费均值150、标准差80。故
+\[\boxed{ES=9600\text{美元}},\qquad\boxed{\operatorname{Var}S=64(150^2+80^2)=1849600\text{美元}^2.}\]
+这里所求为方差，不再开平方；假设消费标记独立同分布，且不依赖到达次数。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-41}
+
+\textbf{A｜开门时空场。}从时刻0开始运营，\(t\)小时后男士均值\(32\int_0^t(1-u)^+du\)，即\(t\le1\)时\(32(t-t^2/2)\)、\(t\ge1\)时16。女士均值\(192(1-e^{-t/3})\)。人数仍独立Poisson，只有均值随时间变。
+
+\textbf{B｜固定总在场人数。}稳态给定\(M+W=n\)，男士人数Bin\((n,16/208)=\mathrm{Bin}(n,1/13)\)。到达男士比例1/3，与在场男士比例1/13不同，原因是女士停留更久。
+
+\textbf{C｜跨时刻女士人数的协方差。}稳态相隔\(h\)小时，两个时刻共享的是第一个时刻已在场且又存活\(h\)小时的女士，均值\(192e^{-h/3}\)。用独立Poisson群体分拆得\(\operatorname{Cov}(W_t,W_{t+h})=192e^{-h/3}\)；单个时刻Poisson不意味着跨时间独立。
+
+\newpage
+
+\section{习题2.43：两种罚单与条件概率比较}\label{ux4e60ux98982.43ux4e24ux79cdux7f5aux5355ux4e0eux6761ux4ef6ux6982ux7387ux6bd4ux8f83}
+
+\textbf{书内依据：}第2.3节随机收入；第2.4.1节分流；第2.4.3节条件时间位置。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-42}
+
+每小时罚单数Poisson(6)，独立有\(2/3\)为100美元超速单，\(1/3\)为400美元另一类单。令次数为\(A,B\)，它们独立Poisson(4)、Poisson(2)。
+
+（a）收入\(S=100A+400B\)，因此\(\boxed{ES=1200\text{美元}}\)，方差\(100^2\cdot4+400^2\cdot2=360000\)，标准差\(\boxed{600\text{美元}}\)。
+
+（b）一小时5张超速、1张另一类单的概率
+\[\boxed{e^{-6}\frac{4^5}{5!}\frac{2}{1!}=\frac{256}{15}e^{-6}.}\]
+（c）令\(A_0\)为前半小时没有罚单，\(N\)为整小时总数。不加条件，\(P(A_0)=e^{-3}\approx0.0497871\)；给定\(N=5\)，五个均匀时刻都落后半小时的概率是\(\boxed{1/32=0.03125}\)。所以无条件概率更大。仅凭``知道总数后机会更小''的口头猜测不够，必须计算这两个数。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-42}
+
+\textbf{A｜给定总罚单六张。}\(B\mid N=6\sim\mathrm{Bin}(6,1/3)\)，收入\(600+300B\)。条件均值1200、条件方差\(300^2\cdot6(1/3)(2/3)=120000\)。无条件方差更大，因为总数也波动。
+
+\textbf{B｜什么时候条件概率反而更大？}给定\(N=n\)，前半小时无单概率\(2^{-n}\)。它大于\(e^{-3}\)当且仅当\(n<3/\log2\)；对整数\(n\)是\(n\le4\)，而\(n\ge5\)时相反。原题\(n=5\)正好处在转折之后。
+
+\textbf{C｜用总收入判断类别。}一小时收入恰400美元，可能是4张100美元单，或1张400美元单。概率\(e^{-6}(4^4/4!+2)\)。给定收入400，只有1张高额单的条件概率为\(2/(4^4/4!+2)=3/19\)，不是原来单张类别比例1/3。
+
+\newpage
+
+\section{习题2.44：执业人数的Poisson极限不要求指数职业寿命}\label{ux4e60ux98982.44ux6267ux4e1aux4ebaux6570ux7684poissonux6781ux9650ux4e0dux8981ux6c42ux6307ux6570ux804cux4e1aux5bffux547d}
+
+\textbf{书内依据：}第2.4.1节分流；第2.4.3节条件均匀性；尾积分公式。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-43}
+
+新执业者按率300/年独立到达，各自执业时长\(L\)独立同分布，分布函数\(F\)，平均25年。为说明极限，先从时刻0无人开始，令\(X(t)\)为\(t\)年仍在执业人数。
+
+给定到达数\(N(t)=n\)，每位的未排序到达时刻\(U\)均匀在\([0,t]\)。到\(t\)仍在执业，当且仅当\(L>t-U\)；平均保留概率
+\[q_t=\frac1t\int_0^t[1-F(u)]du.\]
+由于不同人的时刻与寿命标记相互独立，条件下保留人数Bin\((n,q_t)\)。Poisson分流给
+\[X(t)\sim\mathrm{Poisson}\left(300\int_0^t[1-F(u)]du\right).\]
+尾积分\(\int_0^\infty[1-F(u)]du=EL=25\)。因此参数趋于7500，对每个\(k\ge0\)概率趋于\(e^{-7500}7500^k/k!\)，即
+\[\boxed{X(t)\Longrightarrow\mathrm{Poisson}(7500).}\]
+若初始另有有限位执业者且他们最终离开，他们的残留人数趋于0，不影响该极限。仅知道均值25就足以得到极限参数，不必擅自假设职业寿命是指数。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-43}
+
+\textbf{A｜固定执业25年。}\(1-F(u)=1\)当\(0\le u<25\)，其余0。因此\(X(t)\sim\mathrm{Poisson}(300\min(t,25))\)。从25年起已经恰为Poisson(7500)，不是只在无穷远才接近。
+
+\textbf{B｜指数执业时长。}若\(L\sim\mathrm{Exp}(1/25)\)，参数为\(7500(1-e^{-t/25})\)。要使均值达到稳态的95\%，需\(t\ge25\log20\)年。与固定25年同均值，但到达稳态的方式不同。
+
+\textbf{C｜两时刻人数的相关。}稳态时，相隔\(h\)年的共享执业者均值\(300\int_h^\infty[1-F(u)]du\)，也是协方差。固定寿命25年时为\(300(25-h)^+\)；指数时为\(7500e^{-h/25}\)。相同单时刻Poisson分布不能识别寿命分布，跨时间相关可以提供更多信息。
+
+\newpage
+
+\section{习题2.45：第二台机器延迟启动}\label{ux4e60ux98982.45ux7b2cux4e8cux53f0ux673aux5668ux5ef6ux8fdfux542fux52a8}
+
+\textbf{书内依据：}第2.1节：无记忆性与指数竞争。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-44}
+
+机器1现在运行，机器2到时刻\(t\ge0\)才启动。启用后的独立寿命为Exp\((\lambda_1)\)、Exp\((\lambda_2)\)，率均为正。求机器2先失效的概率。
+
+机器2要先坏，首先机器1必须活到\(t\)，概率\(e^{-\lambda_1t}\)。在此条件下，机器1从\(t\)起的剩余寿命仍是Exp\((\lambda_1)\)，与新启动机器2独立。因此机器2赢得之后失效竞争的概率为\(\lambda_2/(\lambda_1+\lambda_2)\)。
+\[\boxed{P(\text{机器2先坏})=e^{-\lambda_1t}\frac{\lambda_2}{\lambda_1+\lambda_2}.}\]
+也可令机器2启用后寿命为\(s\)，积分\(\int_0^\infty\lambda_2e^{-\lambda_2s}e^{-\lambda_1(t+s)}ds\)，得到同一答案。不能忽略机器1在第二台启动前已经坏掉的路径。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-44}
+
+\textbf{A｜达到指定概率的启动时刻。}若要求机器2先坏概率为\(r\)，只有\(0<r\le\lambda_2/(\lambda_1+\lambda_2)\)可实现。解得\(t=\lambda_1^{-1}\log[\lambda_2/(r(\lambda_1+\lambda_2))]\)；超过最大值时不存在非负启动延迟。
+
+\textbf{B｜随机启动。}启动时刻\(D\)独立、为Exp\((\delta)\)。平均条件概率，得\(P(2\text{先坏})=\frac{\lambda_2}{\lambda_1+\lambda_2}E e^{-\lambda_1D}=\frac{\lambda_2}{\lambda_1+\lambda_2}\frac\delta{\delta+\lambda_1}\)。
+
+\textbf{C｜首次失效日历时刻。}\(H=\min(S_1,t+S_2)\)。当\(0\le x<t\)尾概率为\(e^{-\lambda_1x}\)，当\(x\ge t\)为\(e^{-\lambda_1x-\lambda_2(x-t)}\)。积分得\(EH=(1-e^{-\lambda_1t})/\lambda_1+e^{-\lambda_1t}/(\lambda_1+\lambda_2)\)。
+
+\newpage
+
+\section{习题2.46：提前关门但不漏掉后续顾客}\label{ux4e60ux98982.46ux63d0ux524dux5173ux95e8ux4f46ux4e0dux6f0fux6389ux540eux7eedux987eux5ba2}
+
+\textbf{书内依据：}第2.2节Poisson计数；一元微积分的极值。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-45}
+
+顾客率\(\lambda>0\)每小时。原定在时刻\(T\)关门，店主从\(T-s\)开始，第一位顾客到来后即离开；成功要求离开早于\(T\)且之后到\(T\)再无顾客。按题目的即时处理约定，不另加服务时间。
+
+（a）成功当且仅当区间\((T-s,T]\)中\textbf{恰好一位}顾客：零位意味着到\(T\)仍未执行提前离开；两位以上意味着首位之后漏客。因此
+\[\boxed{P(\text{成功})=\lambda s e^{-\lambda s}.}\]
+（b）对\(s\ge0\)求导：\(f'(s)=\lambda e^{-\lambda s}(1-\lambda s)\)。先增后减，唯一最大点\(s=1/\lambda\)，最大值\(\boxed{e^{-1}}\)。
+
+若开门时间还限制可提前窗口\(s\le H\)，则最优\(s=\min(H,1/\lambda)\)；题目未限制窗口时才直接给\(1/\lambda\)。这里\(T\)是钟表上的关门时间，优化量\(s\)是时长。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-45}
+
+\textbf{A｜成功时到底提前多久。}给定窗口内恰一位顾客，该时刻均匀于窗口，所以实际提前时间均匀于\([0,s]\)，条件平均\(s/2\)。取概率最优窗口\(s=1/\lambda\)时，成功条件下平均提前\(1/(2\lambda)\)小时。
+
+\textbf{B｜优化成功且提前时间的平均奖励。}失败记奖励0，成功奖励实际提前时长。期望奖励\(R(s)=P(\text{成功})\cdot s/2=\lambda s^2e^{-\lambda s}/2\)。求导得最大点\(s=2/\lambda\)，与最大化成功概率的\(1/\lambda\)不同，说明优化前要先明确目标。
+
+\textbf{C｜允许先接待第\(k\)位再走。}从阈值后等第\(k\)位来再离开，仍要求之后不漏客，成功当且仅当窗口内恰\(k\)位。概率\(e^{-\lambda s}(\lambda s)^k/k!\)，对\(s\)最大化得\(s=k/\lambda\)、最大概率\(e^{-k}k^k/k!\)，\(k\ge1\)。
+
+\newpage
+
+\section{习题2.47：两个独立指数变量的最小值、最大值和间隔}\label{ux4e60ux98982.47ux4e24ux4e2aux72ecux7acbux6307ux6570ux53d8ux91cfux7684ux6700ux5c0fux503cux6700ux5927ux503cux548cux95f4ux9694}
+
+\textbf{书内依据：}第2.1节：指数竞争；尾积分与条件期望。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-46}
+
+\textbf{条件说明。}按本节独立指数时钟的模型，\(S\sim\mathrm{Exp}(\lambda)\)、\(T\sim\mathrm{Exp}(\mu)\)相互独立，\(\lambda,\mu>0\)。只知道边缘指数分布而不知道独立性，不能得到以下唯一答案。设\(U=\min(S,T)\)，\(V=\max(S,T)\)，\(L=\lambda+\mu\)。
+
+（a）\(P(U>x)=P(S>x)P(T>x)=e^{-Lx}\)，所以\(\boxed{EU=1/L}\)。
+
+（b）若\(S\)先结束（概率\(\lambda/L\)），间隔\(V-U\)是\(T\)剩余寿命，均值\(1/\mu\)；反之均值\(1/\lambda\)。故
+\[\boxed{E(V-U)=\frac\lambda{L\mu}+\frac\mu{L\lambda}.}\]
+（c）由\(V=U+(V-U)\)，
+\[\boxed{EV=\frac1L+\frac\lambda{L\mu}+\frac\mu{L\lambda}.}\]
+（d）逐样本恒等式\(V=S+T-U\)给另一种形式
+\[EV=\frac1\lambda+\frac1\mu-\frac1L.\]
+验证两式相等：统一分母\(L\lambda\mu\)后，两者分子都为\(\lambda^2+\lambda\mu+\mu^2\)。期望相加本身不要求\(U\)与\(V-U\)独立；下一题计算方差时才需要更仔细分析。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-46}
+
+\textbf{A｜谁先完成与首次完成时间独立。}联合密度\(P(U\in du,S<T)=\lambda e^{-Lu}du\)，等于\((Le^{-Lu}du)(\lambda/L)\)，因而独立。给定\(S<T\)后首次完成均值仍为\(1/L\)。
+
+\textbf{B｜最大值的分布。}\(P(V\le x)=(1-e^{-\lambda x})(1-e^{-\mu x})\)，\(x\ge0\)。尾积分得到\(EV=1/\lambda+1/\mu-1/L\)，提供不依赖竞争分类的第三种求解方式。
+
+\textbf{C｜相关的指数变量反例。}取\(S=T\sim\mathrm{Exp}(1)\)。此时\(U=V=S\)、\(E(V-U)=0\)、\(EU=1\)，而独立情形\(EU=1/2\)。这说明独立性是必要建模信息，不是从``指数分布''四个字自动推出的。
+
+\newpage
+
+\section{习题2.48：两个指数顺序统计量的方差}\label{ux4e60ux98982.48ux4e24ux4e2aux6307ux6570ux987aux5e8fux7edfux8ba1ux91cfux7684ux65b9ux5dee}
+
+\textbf{书内依据：}第2.1节：指数的二阶矩；全方差公式。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-47}
+
+沿用独立\(S\sim\mathrm{Exp}(\lambda)\)、\(T\sim\mathrm{Exp}(\mu)\)，记\(L=\lambda+\mu\)、\(W=V-U\)。
+
+首先\(U\sim\mathrm{Exp}(L)\)，所以\(\boxed{\operatorname{Var}U=1/L^2}\)。
+
+从上题的分类，\(W\)以权重\(\lambda/L\)为Exp\((\mu)\)，以权重\(\mu/L\)为Exp\((\lambda)\)。指数变量均值为\(1/a\)、二阶矩为\(2/a^2\)，故设
+\[a=EW=\frac\lambda{L\mu}+\frac\mu{L\lambda},\qquad b=EW^2=\frac{2\lambda}{L\mu^2}+\frac{2\mu}{L\lambda^2}.\]
+于是\(\boxed{\operatorname{Var}W=b-a^2}\)。
+
+必须再证明能否直接给\(V=U+W\)加方差。对任意\(u,w\ge0\)，先结束身份\(S<T\)的联合密度为\(\lambda e^{-Lu}\mu e^{-\mu w}\)；另一身份为\(\mu e^{-Lu}\lambda e^{-\lambda w}\)。二者相加可写成
+\[Le^{-Lu}\left[\frac\lambda L\mu e^{-\mu w}+\frac\mu L\lambda e^{-\lambda w}\right].\]
+它是\(U\)密度乘\(W\)密度，证明二者独立。所以
+\[\boxed{\operatorname{Var}V=\frac1{L^2}+b-a^2.}\]
+不要把\(V=S+T-U\)里的三项当作相互独立；\(U\)明显依赖\(S,T\)。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-47}
+
+\textbf{A｜同率简化。}若\(\lambda=\mu=r\)，\(U\sim\mathrm{Exp}(2r)\)、\(W\sim\mathrm{Exp}(r)\)且独立。故三方差依次为\(1/(4r^2)\)、\(5/(4r^2)\)、\(1/r^2\)（按\(U,V,W\)顺序）。
+
+\textbf{B｜最小值与最大值的协方差。}\(V=U+W\)且\(U\perp W\)，所以\(\operatorname{Cov}(U,V)=\operatorname{Var}U=1/L^2\)。虽然最小值与间隔独立，最小值与最大值不独立。
+
+\textbf{C｜间隔是否也指数。}\(P(W>w)=(\lambda/L)e^{-\mu w}+(\mu/L)e^{-\lambda w}\)。若\(\lambda\ne\mu\)，这是两种不同率的混合；其在0处的一阶、二阶导数不满足单一指数的关系，因为两个率的加权方差为正。因此一般没有无记忆性。
+
+\newpage
+
+\section{习题2.49：一般快慢柜员与第三位顾客}\label{ux4e60ux98982.49ux4e00ux822cux5febux6162ux67dcux5458ux4e0eux7b2cux4e09ux4f4dux987eux5ba2}
+
+\textbf{书内依据：}第2.1节：一般率的竞争与无记忆性。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-48}
+
+两个柜员率为\(0<\lambda\le\mu\)，前两位各占一个柜台，Carol等待首先空出的柜员。令\(L=\lambda+\mu\)。
+
+（a）开始服务前等候均值\(1/L\)。率\(\lambda\)的柜员先空概率\(\lambda/L\)，Carol在其处均值\(1/\lambda\)；另一柜员同理。因此
+\[\boxed{E T_C=\frac1L+\frac\lambda L\frac1\lambda+\frac\mu L\frac1\mu=\frac3L.}\]
+（b）首位顾客离开后，剩下的原顾客和Carol分别在两个柜员处，剩余服务仍独立且率为\(\lambda,\mu\)。两人均完成需最大值均值\(1/\lambda+1/\mu-1/L\)。连同首次离开前的等待：
+\[\boxed{E T_{\rm all}=\frac1\lambda+\frac1\mu.}\]
+（c）慢柜员先空概率\(\lambda/L\)，Carol接慢柜员后比原快柜员顾客更晚走的概率\(\mu/L\)；快柜员先空时相反。故
+\[\boxed{P(C\text{最后})=\frac{2\lambda\mu}{L^2}.}\]
+这些答案保留一般率，不能因为第2.7题已做过数值例子就省略本题。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-48}
+
+\textbf{A｜第三位最后的概率上界。}由\((\lambda-\mu)^2\ge0\)可得\(4\lambda\mu\le L^2\)，所以\(P(C\text{最后})\le1/2\)，等号当且仅当两柜员一样快。
+
+\textbf{B｜坚持只找快柜员。}从现在起等待快柜员，自己再由快柜员服务，均值\(2/\mu\)。它比原策略\(3/L\)小当且仅当\(\mu>2\lambda\)。如果快慢差异极大，``任何空柜员都去''未必使Carol平均最早离开；原题并没有声称这是一种最优策略。
+
+\textbf{C｜在慢柜员先空时重新选择。}若慢柜员先空，立即服务的剩余均值\(1/\lambda\)，等快柜员后再服务的剩余均值\(2/\mu\)。选较小者，总均值\(1/L+(\mu/L)(1/\mu)+(\lambda/L)\min(1/\lambda,2/\mu)\)。故当\(\mu\le2\lambda\)为\(3/L\)，当\(\mu>2\lambda\)为\(2/\mu\)。无记忆性使这个比较不依赖已经等了多久。
+
+\newpage
+
+\section{习题2.50：任意数量备用电池的完整分布}\label{ux4e60ux98982.50ux4efbux610fux6570ux91cfux5907ux7528ux7535ux6c60ux7684ux5b8cux6574ux5206ux5e03}
+
+\textbf{书内依据：}第2.1节：指数竞争与身份独立；有限几何级数。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-49}
+
+共有\(n\ge2\)节电池，开始用1、2号，按编号依次补入备用。每节启用后寿命独立、均值100小时，备用期间不耗损。剩一节时装置不再工作。
+
+（a）从\(n\)节到只剩1节，需要\(n-1\)次失败；每次失败前都维持两节在用，总失败率\(2/100\)，平均每次50小时。因此
+\[\boxed{ET=50(n-1)\text{小时}.}\]
+（b）1、2号都从最初在场，各需连续逃过\(n-1\)次淘汰，概率\(2^{-(n-1)}\)。第\(k\ge3\)号在第\(k-2\)次失败后投入，随后面对\(n-k+1\)次淘汰，概率为\(2^{-(n-k+1)}\)。所以
+\[\boxed{P(N=k)=\begin{cases}2^{-(n-1)},&k=1,2,\\2^{-(n-k+1)},&3\le k\le n.\end{cases}}\]
+检查归一化：\(2\cdot2^{-(n-1)}+\sum_{j=1}^{n-2}2^{-j}=1\)。\(n=2\)时求和为空，两概率都是\(1/2\)。\(n=1\)不能让这种双电池装置起动，不属于原模型的运行情形。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-49}
+
+\textbf{A｜工作时间的分布与方差。}\(T\)为\(n-1\)段独立Exp\((1/50)\)之和，其尾概率为
+\[P(T>t)=e^{-t/50}\sum_{j=0}^{n-2}\frac{(t/50)^j}{j!}.\]
+各段等待的方差为\(50^2\)，所以\(\operatorname{Var}T=2500(n-1)\)。
+
+\textbf{B｜最后幸存的是最后两节中的一节。}当\(n\ge4\)，\(P(N\in\{n-1,n\})=1/4+1/2=3/4\)，与前面还有多少备用无关。当\(n=3\)则最后两编号2、3的概率也是\(1/4+1/2\)；当\(n=2\)事件为必然，需单独处理。
+
+\textbf{C｜同时需要\(m\)节。}设\(n\ge m\ge1\)、每节率\(r\)，始终维持\(m\)节直到备用耗尽并发生下一次失败。需\(n-m+1\)次失败，单次均值\(1/(mr)\)，故持续均值\((n-m+1)/(mr)\)。此结论改变的是装置的最低工作节数，不把功率差异忽略后做经济优劣判断。
+
+\newpage
+
+\section{习题2.51：最大值的容斥恒等式与三指数最大值}\label{ux4e60ux98982.51ux6700ux5927ux503cux7684ux5bb9ux65a5ux6052ux7b49ux5f0fux4e0eux4e09ux6307ux6570ux6700ux5927ux503c}
+
+\textbf{书内依据：}第2.1节：指数最小值；逐样本恒等式取期望。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-50}
+
+（a）证明题给恒等式。右侧对三个数对称，可以不失一般性排序\(x\le y\le z\)。则三个两两最小值为\(x,x,y\)，三者最小为\(x\)。代入右侧得到\(x+y+z-x-x-y+x=z\)，正好是最大值。排序包括相等的情况，因此对任意实数成立：
+\[\max(t_1,t_2,t_3)=\sum_i t_i-\sum_{i<j}\min(t_i,t_j)+\min(t_1,t_2,t_3).\]
+（b）三个独立指数率\(\lambda_i>0\)，两两最小值率\(\lambda_i+\lambda_j\)，三者最小值率\(\lambda_1+\lambda_2+\lambda_3\)。逐项取期望得
+\[\boxed{E\max_iT_i=\sum_i\frac1{\lambda_i}-\sum_{i<j}\frac1{\lambda_i+\lambda_j}+\frac1{\lambda_1+\lambda_2+\lambda_3}.}\]
+（c）代入2.10的率1、2、3，得到\(1+1/2+1/3-1/3-1/4-1/5+1/6=\boxed{73/60}\)小时。此式与前面按先后离开状态分析的方法相互核对。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-50}
+
+\textbf{A｜任意\(n\)个独立指数。}最大值尾概率为\(1-\prod_i(1-e^{-\lambda_it})\)，展开积并积分，得到\(E\max_iT_i=\sum_{\varnothing\ne A\subseteq\{1,\ldots,n\}}(-1)^{|A|+1}/\sum_{i\in A}\lambda_i\)。每一项来自指定子集的同时未完成事件。
+
+\textbf{B｜同率时调和数。}若\(n\)个率皆\(r\)，依次完成后的剩余人数为\(n,n-1,\ldots,1\)，阶段均值分别\(1/(nr),\ldots,1/r\)，故最大值均值\(H_n/r\)。这也证明容斥和\(\sum_{k=1}^n(-1)^{k+1}\binom nk/k=H_n\)。
+
+\textbf{C｜求最大值的二阶矩。}非负变量有\(EX^2=2\int_0^\infty tP(X>t)dt\)。三指数情形得到\(EV^2=2[\sum_i\lambda_i^{-2}-\sum_{i<j}(\lambda_i+\lambda_j)^{-2}+(\sum_i\lambda_i)^{-2}]\)，减去（b）均值平方便得方差。
+
+\newpage
+
+\section{习题2.52：距离最近一次到达已经多久}\label{ux4e60ux98982.52ux8dddux79bbux6700ux8fd1ux4e00ux6b21ux5230ux8fbeux5df2ux7ecfux591aux4e45}
+
+\textbf{书内依据：}第2.2节：无到达概率；非负变量尾积分。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-51}
+
+率\(\lambda>0\)的泊松过程从时刻0开始。\(L\)为\([0,t]\)内末次到达，无到达时定义\(L=0\)。令\(A=t-L\)为已经过去的时间。
+
+（a）\(A\)取值在\([0,t]\)。对\(0\le x<t\)，\(A>x\)恰表示最近长度\(x\)的区间\((t-x,t]\)没有到达，概率\(e^{-\lambda x}\)。在\(A=t\)还有质量\(e^{-\lambda t}\)，对应整个区间没有到达。尾积分
+\[\boxed{EA=\int_0^t e^{-\lambda x}dx=\frac{1-e^{-\lambda t}}\lambda.}\]
+端点处用\(>\)还是\(\ge\)会涉及这个原子，但不影响积分。
+
+（b）令\(t\to\infty\)，得到\(\boxed{EA\to1/\lambda}\)。有限\(t\)时，\(A\)并不是完整的指数分布，因为它不可能超过\(t\)；准确地说，其分布等于\(\min(E,t)\)，其中\(E\sim\mathrm{Exp}(\lambda)\)。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-51}
+
+\textbf{A｜已知至少有一次到达。}在\(N(t)>0\)条件下没有端点\(t\)的原子，\(E(A\mid N(t)>0)=[(1-e^{-\lambda t})/\lambda-te^{-\lambda t}]/(1-e^{-\lambda t})=1/\lambda-t/(e^{\lambda t}-1)\)。
+
+\textbf{B｜向前等下一次。}\(R=T_{N(t)+1}-t\)由未来独立增量决定，服从Exp\((\lambda)\)，与过去的\(A\)独立。包含时刻\(t\)的左右长度和（左端按0截断）均值\(EA+ER=(2-e^{-\lambda t})/\lambda\)。
+
+\textbf{C｜久后看到的间隔偏长。}令\(t\to\infty\)，左右距离趋为两个独立Exp\((\lambda)\)，总长度是Gamma\((2,\lambda)\)，均值\(2/\lambda\)。这比按一次到达后观察的下一个间隔均值\(1/\lambda\)大；随机时刻更容易落在长间隔中。
+
+\newpage
+
+\section{习题2.53：发生但尚未报告的索赔}\label{ux4e60ux98982.53ux53d1ux751fux4f46ux5c1aux672aux62a5ux544aux7684ux7d22ux8d54}
+
+\textbf{书内依据：}第2.4节：按年龄独立保留；第2.3节复合泊松。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-52}
+
+事故按率\(\lambda\)的泊松过程发生，报告延迟\(R\)分布函数\(G\)、平均\(\nu<\infty\)。各延迟独立，且与到达过程独立。先说明有限时间，再给通常所问的稳态。
+
+（a）若时刻0没有既往未报案件，\(t\)时刻的未报数\(U_t\)服从
+\[\boxed{U_t\sim\mathrm{Poisson}\left(\lambda\int_0^t[1-G(u)]du\right).}\]
+事故发生在\(t-u\)，到\(t\)还未报告的概率为\(P(R>u)\)；将到达按这个概率保留即可。随\(t\to\infty\)，参数趋于\(\lambda\nu\)，稳态\(\boxed{U\sim\mathrm{Poisson}(\lambda\nu)}\)。
+
+（b）若每笔金额\(Y\)均值\(\mu\)、方差\(\sigma^2\)，金额与报告延迟独立，各事故标记也独立，则稳态未报总额\(S\)满足
+\[\boxed{ES=\lambda\nu\mu,\qquad\operatorname{Var}S=\lambda\nu(\sigma^2+\mu^2).}\]
+有限\(t\)只要把\(\lambda\nu\)换成（a）的有限参数。若金额越大报告越慢，独立性不成立，仅有这三个均值、方差不能推出上述金额结果。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-52}
+
+\textbf{A｜金额与延迟相关时的正确公式。}假设各事故的二元标记\((Y,R)\)独立同分布，但同一标记的两分量可相关。按年龄\(u\)保留后，稳态总额均值\(\lambda\int_0^\infty E[Y1_{R>u}]du=\lambda E(YR)\)；方差同理为\(\lambda E(Y^2R)\)，在相应矩有限时成立。
+
+\textbf{B｜固定延迟。}若报告都恰好延迟\(d\)，未报者就是最近\(d\)时间内的事故；从空系统开始\(U_t\sim\mathrm{Poisson}(\lambda\min(t,d))\)。当\(t\ge d\)已经精确处于该单时刻稳态分布。
+
+\textbf{C｜未报与已报人数。}从0到\(t\)全部事故根据是否已报进行独立标记分流，所以未报与已报数独立Poisson，参数分别\(\lambda\int_0^t(1-G(u))du\)和\(\lambda\int_0^tG(u)du\)。给定总事故数后，这两者变为互补的二项计数，不再独立。
+
+\newpage
+
+\section{习题2.54：随机次数的乘法增长模型}\label{ux4e60ux98982.54ux968fux673aux6b21ux6570ux7684ux4e58ux6cd5ux589eux957fux6a21ux578b}
+
+\textbf{书内依据：}第2.2节Poisson生成函数；条件期望与二阶矩。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-53}
+
+设\(S_t=S_0\prod_{i=1}^{N(t)}X_i\)，空积为1；\(S_0>0\)确定，\(N(t)\sim\mathrm{Poisson}(\lambda t)\)，正标记\(X_i\)相互独立，也独立于计数，均值\(\mu\)、方差\(\sigma^2\)。
+
+给定\(N(t)=n\)，\(E(S_t\mid n)=S_0\mu^n\)，而\(E(S_t^2\mid n)=S_0^2(EX^2)^n=S_0^2(\sigma^2+\mu^2)^n\)。
+
+使用Poisson恒等式\(E a^{N(t)}=\exp\{\lambda t(a-1)\}\)，得到
+\[\boxed{ES_t=S_0e^{\lambda t(\mu-1)}},\]
+\[\boxed{\operatorname{Var}S_t=S_0^2\left[e^{\lambda t(\sigma^2+\mu^2-1)}-e^{2\lambda t(\mu-1)}\right].}\]
+等价地，方差是\((ES_t)^2\{e^{\lambda t[\sigma^2+(\mu-1)^2]}-1\}\)，括号非负，自动核对了方差不能为负。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-53}
+
+\textbf{A｜每次恰好乘\(a\)。}\(\sigma^2=0,\mu=a\)时，仍有正方差（除非\(a=1\)或\(t=0\)）：\(\operatorname{Var}S_t=S_0^2[e^{\lambda t(a^2-1)}-e^{2\lambda t(a-1)}]\)。每次幅度固定并不消除次数的随机性。
+
+\textbf{B｜对数总增长。}若\(E|\log X|<\infty\)且\(E(\log X)^2<\infty\)，\(\log(S_t/S_0)=\sum_{i=1}^{N(t)}\log X_i\)，均值\(\lambda t E\log X\)、方差\(\lambda t E(\log X)^2\)。这是对数变量的结论，不能与\(\log ES_t\)混同。
+
+\textbf{C｜平均乘数为1。}\(\mu=1\)时\(ES_t=S_0\)，但\(\operatorname{Var}S_t=S_0^2(e^{\lambda t\sigma^2}-1)\)仍可能增长。平均不变不意味着每条路径不变。利用独立增量还可得\(E(S_t\mid\text{截至}s\text{的信息})=S_s\)，\(s<t\)。
+
+\newpage
+
+\section{习题2.55：随机观察时间与观察到的次数的协方差}\label{ux4e60ux98982.55ux968fux673aux89c2ux5bdfux65f6ux95f4ux4e0eux89c2ux5bdfux5230ux7684ux6b21ux6570ux7684ux534fux65b9ux5dee}
+
+\textbf{书内依据：}第2.2节独立Poisson过程；全期望及全协方差。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-54}
+
+非负\(T\)独立于整个率\(\lambda\)的泊松过程，\(ET=\mu\)、\(\operatorname{Var}T=\sigma^2<\infty\)。虽然\(T\)独立于事先给定时刻的过程值，却不独立于在它自身时刻观察的\(N(T)\)。
+
+给定\(T=t\)，\(E(N(T)\mid T=t)=\lambda t\)。因此
+\[E[TN(T)]=E[T\,E(N(T)\mid T)]=\lambda ET^2,\]
+\[E N(T)=\lambda ET=\lambda\mu.\] 所以
+\[\boxed{\operatorname{Cov}(T,N(T))=\lambda(ET^2-(ET)^2)=\lambda\sigma^2.}\]
+这与\(T\)的初始独立假设不矛盾：观察得越久，平均能看到越多事件。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-54}
+
+\textbf{A｜随机计数的方差与相关系数。}全方差给\(\operatorname{Var}N(T)=\lambda\mu+\lambda^2\sigma^2\)。若\(\sigma^2>0\)、\(\mu>0\)，相关系数\(\lambda\sigma/\sqrt{\lambda\mu+\lambda^2\sigma^2}\)。若\(T\)确定，协方差0，但\(T\)的相关系数未定义。
+
+\textbf{B｜指数观察时间。}\(T\sim\mathrm{Exp}(\delta)\)，则\(P(N(T)=k)=\int_0^\infty\delta e^{-(\delta+\lambda)t}(\lambda t)^k/k!dt=\frac\delta{\delta+\lambda}(\frac\lambda{\delta+\lambda})^k\)，是从0开始的几何分布，不是Poisson\((\lambda/\delta)\)。
+
+\textbf{C｜依赖过程的停止时间反例。}令\(T\)为第一次到达时刻，则\(T\sim\mathrm{Exp}(\lambda)\)但\(N(T)=1\)恒成立，协方差为0。若错误使用原公式会得到\(1/\lambda\)；失败原因是\(T\)已不再独立于过程。
+
+\newpage
+
+\section{习题2.56：总消息字节数的概率生成函数}\label{ux4e60ux98982.56ux603bux6d88ux606fux5b57ux8282ux6570ux7684ux6982ux7387ux751fux6210ux51fdux6570}
+
+\textbf{书内依据：}第2.3节：复合Poisson与随机和生成函数。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-55}
+
+消息到达率\(\lambda\)，大小\(Y_i\)为非负整数，独立同分布且与到达过程独立；\(g(z)=Ez^{Y_i}\)。令\(m=\lambda t\)、\(S=\sum_{i=1}^{N(t)}Y_i\)。
+
+（a）给定\(N(t)=n\)，独立性给\(E(z^S\mid n)=g(z)^n\)。再对Poisson数求和：
+\[\boxed{f(z)=E z^S=e^{m[g(z)-1]}},\quad0\le z\le1.\]
+（b）\(f'(z)=m g'(z)f(z)\)，\(f(1)=g(1)=1\)。若\(EY<\infty\)，\(\boxed{ES=f'(1)=m g'(1)=m EY}\)。
+
+（c）再求导：\(f''(z)=[m g''(z)+m^2(g'(z))^2]f(z)\)。若二阶矩有限，则
+\[\boxed{E[S(S-1)]=m E[Y(Y-1)]+m^2(EY)^2.}\] （d）\(S^2=S(S-1)+S\)，所以
+\[\boxed{\operatorname{Var}S=f''(1)+f'(1)-f'(1)^2=m EY^2.}\]
+二阶导在1处给的是阶乘矩，不是\(ES^2\)；少加\(f'(1)\)会漏掉一个项。若矩无穷，相关有限方差公式需改为扩展意义，不能直接宣称有限。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-55}
+
+\textbf{A｜每条消息恰好\(b\)字节。}\(g(z)=z^b\)，\(f(z)=e^{m(z^b-1)}\)，且\(S=bN(t)\)，只落在\(b\)的倍数上。均值\(bm\)、方差\(b^2m\)。
+
+\textbf{B｜一或两字节消息。}若各以\(1/2\)概率取1、2，\(f(z)=e^{m[(z+z^2)/2-1]}\)。恰总2字节可由一条2字节或两条1字节产生，概率\(e^{-m}(m/2+m^2/8)\)。
+
+\textbf{C｜第三个中心矩。}令\(m=\lambda t\)、\(a=EY\)、\(b=\operatorname{Var}Y\)、\(c=E(Y-a)^3\)，假设\(E|Y|^3<\infty\)。给定\(N=n\)，设\(Z=\sum_{i=1}^n(Y_i-a)\)，则\(EZ=0\)、\(EZ^2=nb\)、\(EZ^3=nc\)。因为\(S-ma=Z+a(n-m)\)，立方展开后条件平均为\(nc+3a(n-m)nb+a^3(n-m)^3\)。Poisson变量满足\(E[N(N-m)]=m\)、\(E(N-m)^3=m\)，所以\(E(S-ES)^3=m(c+3ab+a^3)=mEY^3\)。该证明不需要假设正参数矩母函数存在。
+
+\newpage
+
+\section{习题2.57：再次求末次到达：按最后时刻的分布重做}\label{ux4e60ux98982.57ux518dux6b21ux6c42ux672bux6b21ux5230ux8fbeux6309ux6700ux540eux65f6ux523bux7684ux5206ux5e03ux91cdux505a}
+
+\textbf{书内依据：}第2.2节独立增量；分布函数与期望。
+
+\textbf{版本状态：}2016文本已取得；与2.52同题，保留编号并提供另一解法和另三道变式。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-56}
+
+\textbf{题号核对。}取得的2016文本中2.52与2.57给出相同的末次到达问题。本讲义保留两个题号，但不把它们说成两个不同的数学模型；此处换用\(L\)本身的分布求解，且另配三道变式。
+
+\(0\le x\le t\)时，\(L\le x\)恰表示\((x,t]\)没有到达，包括整个区间都没有到达的情况。所以
+\[P(L\le x)=e^{-\lambda(t-x)}.\]
+\(L=0\)的点质量是\(e^{-\lambda t}\)；在\(0<x<t\)有密度\(\lambda e^{-\lambda(t-x)}\)。期望可由尾概率计算：
+\[EL=\int_0^t[1-e^{-\lambda(t-x)}]dx=t-\frac{1-e^{-\lambda t}}\lambda.\]
+（a）因此\(\boxed{E(t-L)=(1-e^{-\lambda t})/\lambda}\)。
+
+（b）随着\(t\to\infty\)，\(\boxed{E(t-L)\to1/\lambda}\)。与2.52一致，两个题号都已给出原题要求的两个部分。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-56}
+
+\textbf{A｜年龄方差。}\(A=t-L\)有\(EA^2=2\int_0^t x e^{-\lambda x}dx=2[1-e^{-\lambda t}(1+\lambda t)]/\lambda^2\)。减去均值平方，得\(\operatorname{Var}A=[1-2\lambda t e^{-\lambda t}-e^{-2\lambda t}]/\lambda^2\)，极限\(1/\lambda^2\)。
+
+\textbf{B｜固定到达次数的年龄均值。}给定\(N(t)=n\)，\(n\)个均匀点形成\(n+1\)段同分布间距，最后一段均值\(t/(n+1)\)。\(n=0\)时也成立（年龄等于\(t\)）。对Poisson\(n\)平均，用\(1/(n+1)=\int_0^1z^ndz\)再次得到原题均值。
+
+\textbf{C｜次数与年龄的协方差。}\(E[NA]=tE[N/(N+1)]=t[1-(1-e^{-\lambda t})/(\lambda t)]\)。再减\(EN\,EA=t(1-e^{-\lambda t})\)，得到\(\operatorname{Cov}(N,A)=t e^{-\lambda t}-(1-e^{-\lambda t})/\lambda<0\)（\(t>0\)）。到达次数多时，最后一个空隙倾向于短。
+
+\newpage
+
+\section{习题2.58：几何个指数间隔的和：先检查概率归一化}\label{ux4e60ux98982.58ux51e0ux4f55ux4e2aux6307ux6570ux95f4ux9694ux7684ux548cux5148ux68c0ux67e5ux6982ux7387ux5f52ux4e00ux5316}
+
+\textbf{书内依据：}第2.1节指数；第2.4.1节独立保留；概率质量函数的归一化。
+
+\textbf{版本状态：}电子提取式缺归一化因子；先判断原样非法，再解明确标注的归一化版本；未断言原印刷有误。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-57}
+
+\textbf{电子文本异常，不冒认原书印错。}目前取得的2016电子提取式写\(P(N=n)=(1-p)^{n-1}\)，\(n\ge1\)，没有前面的\(p\)。当\(0<p<1\)，各项和为\(1/p\ne1\)，因此按此提取式原样，它不是概率分布，随机和的分布不能被合法定义。由于没有取得这一页的原版图像，不能确定是原印刷错误还是电子提取丢失。
+
+下面明确增加一个条件：\textbf{采用归一化的几何分布\(P(N=n)=p(1-p)^{n-1}\)}，\(0<p\le1\)；且\(N\)独立于所有率\(\lambda>0\)的指数间隔。此时\(T=t_1+\cdots+t_N\)表示独立Poisson到达中首个以概率\(p\)成功保留的时刻。保留过程率\(\lambda p\)，故
+\[\boxed{T\sim\mathrm{Exp}(\lambda p)}\qquad\text{（归一化修正版）}.\]
+也可混合密度验证：给定\(N=n\)，\(T\)密度\(\lambda^nt^{n-1}e^{-\lambda t}/(n-1)!\)。加权相加：
+\[\sum_{n\ge1}p(1-p)^{n-1}\frac{\lambda^nt^{n-1}e^{-\lambda t}}{(n-1)!}=\lambda p e^{-\lambda pt}.\]
+\(p=1\)时退回单个指数；\(p=0\)没有首个成功，需理解为无限等待，不能称为率0的普通指数概率分布。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-57}
+
+\textbf{A｜均值与方差交叉核对。}\(EN=1/p\)，\(\operatorname{Var}N=(1-p)/p^2\)，每段均值\(1/\lambda\)、方差\(1/\lambda^2\)。随机和均值\(1/(\lambda p)\)，方差\([1/p+(1-p)/p^2]/\lambda^2=1/(\lambda^2p^2)\)，与指数结论一致。
+
+\textbf{B｜从0开始的几何次数。}若\(P(N=n)=p(1-p)^n\)，\(n\ge0\)，\(T\)在0有质量\(p\)；给定\(N\ge1\)，剩余正次数分布与原修正版一样。因此\(P(T>t)=(1-p)e^{-\lambda pt}\)，\(t\ge0\)。不能把两个几何分布支持集混同。
+
+\textbf{C｜第\(r\)次成功。}若\(N\)改为独立Bernoulli标记中达到第\(r\)次成功的总次数，则随机和是保留Poisson过程的第\(r\)次到达时刻，服从Gamma\((r,\lambda p)\)，均值\(r/(\lambda p)\)、方差\(r/(\lambda^2p^2)\)。
+
+\newpage
+
+\section{习题2.59：成功信号与丢失信号}\label{ux4e60ux98982.59ux6210ux529fux4fe1ux53f7ux4e0eux4e22ux5931ux4fe1ux53f7}
+
+\textbf{书内依据：}第2.4.1节：分流；独立Bernoulli序列中的首次成功。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-58}
+
+发送是率\(\lambda>0\)的泊松过程，每个信号独立以概率\(p\)成功、\(1-p\)丢失。
+
+（a）截至\(t\)的成功数\(N_1(t)\)、丢失数\(N_2(t)\)是独立Poisson，参数分别\(\lambda pt\)、\(\lambda(1-p)t\)。因此
+\[\boxed{P(N_1=a,N_2=b)=e^{-\lambda t}\frac{(\lambda pt)^a}{a!}\frac{(\lambda(1-p)t)^b}{b!}},\quad a,b\ge0.\]
+端点\(p=0,1\)时相应一类恒为0，按退化Poisson理解。
+
+（b）首个成功之前丢失\(k\)次，当且仅当前\(k\)次都失败、下一次成功。所以对于\(0<p\le1\)，
+\[\boxed{P(L=k)=(1-p)^kp,\qquad k=0,1,2,\ldots.}\]
+这里不包含最终那次成功，所以是从0开始的几何分布。\(p=0\)时永无成功，\(L=\infty\)几乎必然，另行处理。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-58}
+
+\textbf{A｜等待首次成功。}成功过程率\(\lambda p\)，等待\(W\sim\mathrm{Exp}(\lambda p)\)。给定\(W=w\)，此前丢失数Poisson\((\lambda(1-p)w)\)，积分后又得到\(P(L=k)=p(1-p)^k\)，把时间模型与计数模型接起来。
+
+\textbf{B｜等待时间与丢失数的依赖。}给定\(L=k\)，首次成功在第\(k+1\)次发送，\(E(W\mid L=k)=(k+1)/\lambda\)。故\(\operatorname{Cov}(L,W)=\operatorname{Var}L/\lambda=(1-p)/(\lambda p^2)\)。成功与失败过程独立，并不意味着首次成功前的失败数与等待独立。
+
+\textbf{C｜至少一次成功的设计条件。}\(t\)内至少一次成功概率\(1-e^{-\lambda pt}\)。要求不低于\(q\in(0,1)\)，等价于\(\lambda pt\ge-\log(1-q)\)。若改变的是\(p\)，还需检查算出的下限是否不超过1，否则在给定率、时间内做不到。
+
+\newpage
+
+\section{习题2.60：发射后有随机寿命的在轨工作数量}\label{ux4e60ux98982.60ux53d1ux5c04ux540eux6709ux968fux673aux5bffux547dux7684ux5728ux8f68ux5de5ux4f5cux6570ux91cf}
+
+\textbf{书内依据：}第2.4.1节独立分流；第2.4.3节均匀到达时刻。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-59}
+
+时刻0开始发射，没有原有卫星。到达率\(\lambda\)；各寿命\(L_i\)独立，分布函数\(F\)，平均\(\mu<\infty\)，独立于发射过程。令\(X(t)\)是\(t\)时刻仍工作的卫星数。
+
+（a）给定\(t\)前共发射\(n\)颗，未排序发射时刻\(U_i\)独立均匀在\([0,t]\)，生存事件\(L_i>t-U_i\)彼此独立，统一保留概率
+\[q_t=\frac1t\int_0^t[1-F(u)]du.\]
+因此条件下\(X(t)\sim\mathrm{Bin}(n,q_t)\)；把Poisson\((\lambda t)\)总数混合，得到
+\[\boxed{X(t)\sim\mathrm{Poisson}\left(\lambda\int_0^t[1-F(u)]du\right)}.\]
+\(t=0\)时\(X(0)=0\)，直接定义，不使用除以\(t\)的表达式。
+
+（b）由于\(\int_0^\infty[1-F(u)]du=\mu\)，参数趋于\(\lambda\mu\)，所以
+\[\boxed{X(t)\Longrightarrow\mathrm{Poisson}(\lambda\mu).}\]
+这里证明了完整分布，不只是均值趋于\(\lambda\mu\)。若平均寿命无穷，则参数趋于无穷，不存在上述有限参数的稳态。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-59}
+
+\textbf{A｜指数寿命的有限时分布。}若寿命率\(r\)，\(X(t)\sim\mathrm{Poisson}((\lambda/r)(1-e^{-rt}))\)。均值与方差都等于该参数；任意\(t>0\)无工作卫星概率为其负指数。
+
+\textbf{B｜无限平均寿命。}若尾概率\(P(L>u)=1/(1+u)\)，则\(EX(t)=\lambda\log(1+t)\)。尽管每颗卫星寿命有限几乎必然，平均寿命无穷导致工作数量的均值不断增长；对任意固定\(K\)，\(P(X(t)\le K)\to0\)。
+
+\textbf{C｜停掉发射后的衰减。}在时刻\(a\)停止发射，\(t\ge a\)的工作数仍Poisson，参数\(\lambda\int_0^a[1-F(t-u)]du\)。若每颗最终失效，则被积函数趋0且有界，参数趋0，所以工作数趋向0，而不是原来持续发射时的稳态。
+
+\newpage
+
+\section{习题2.61：两个独立Poisson过程是否访问指定格点}\label{ux4e60ux98982.61ux4e24ux4e2aux72ecux7acbpoissonux8fc7ux7a0bux662fux5426ux8bbfux95eeux6307ux5b9aux683cux70b9}
+
+\textbf{书内依据：}第2.4.2节：叠加后的类别；二项计数。
+
+\textbf{版本状态：}2016文本已取得。
+
+\subsection{原题解答}\label{ux539fux9898ux89e3ux7b54-60}
+
+两个过程独立，率\(\lambda_1,\lambda_2>0\)，初始皆0。它们不同时跳跃的概率为1，每次跳跃只把一个坐标加1。因此若访问非负整数点\((i,j)\)，必定发生在合并过程的第\(i+j\)次跳跃后；早于此时总坐标不够，晚于此时总坐标过大，无法返回。
+
+合并过程率\(L=\lambda_1+\lambda_2\)，每跳类别独立，第一类概率\(p=\lambda_1/L\)、第二类\(q=\lambda_2/L\)。到第\(i+j\)跳恰有\(i\)次第一类、\(j\)次第二类的概率为
+\[\boxed{P(\text{曾访问 }(i,j))=\binom{i+j}{i}p^iq^j.}\]
+合并过程总有无限多次到达几乎必然，所以不需再乘``能等到第\(i+j\)跳''的额外概率。原点\((0,0)\)在时刻0已访问，概率1；任一坐标不是非负整数则概率0。
+
+\subsection{三道变式与完整解答}\label{ux4e09ux9053ux53d8ux5f0fux4e0eux5b8cux6574ux89e3ux7b54-60}
+
+\textbf{A｜访问时刻的条件分布。}令\(H\)为首次到达\((i,j)\)的时间，未访问时\(H=\infty\)。给定访问且\(i+j\ge1\)，\(H\)是合并过程第\(i+j\)次到达时间，Gamma\((i+j,L)\)；因为类别序列与所有合并间隔独立。因此条件均值\((i+j)/L\)。
+
+\textbf{B｜访问两个有序格点。}若\(0\le i\le k\)且\(0\le j\le\ell\)，先访问\((i,j)\)再访问\((k,\ell)\)的概率为\(\binom{i+j}{i}p^iq^j\binom{k+\ell-i-j}{k-i}p^{k-i}q^{\ell-j}\)，第二段由独立的新类别序列给出。两点坐标交叉（如\(i<k,j>\ell\)）时不能两者都访问。
+
+\textbf{C｜在格点停留多久。}一旦到达，下一次总跳跃等待Exp\((L)\)，均值\(1/L\)，且离开后永不回来。因此该格点的无条件总占用时间均值为\(\binom{i+j}{i}p^iq^j/L\)。这与命中概率是两个不同量，多了一个时间尺度因子。
+
+\newpage
+
+\section{本批验算与接续清单}\label{ux672cux6279ux9a8cux7b97ux4e0eux63a5ux7eedux6e05ux5355}
+
+本讲义有61个题号位置，每个位置三道带解答的变式，共183道。2.17---2.22暂按2021公开稿对应问题给出解答；这些条目的2016题面核对尚未完成。其余55个位置的指定版电子文本已取得并处理，其中2.58按电子提取异常单列、2.29按单位缺失分情况、2.52与2.57保留重复题号。因此不把本稿称为``所有原版题面均已完整核对的第2章定稿''。
+
+正文引用的6个工具和每题开头的章节说明，指出推导来自书中的哪个内容。2.39的长期收入实际需要更新报酬思想，已明确引用第3.1节定理3.3，而未虚构为第2章的某个定理。
+
+可复核计算包含：指数竞争的递推方程；矩与标准差的单位换算；随机和公式；条件分布的两种算法一致性；有限编号电池分布的归一化；最大值恒等式；几何混合密度；Poisson生成函数的导数；末次到达的矩；全部题号与变式数。实际检查数量以资料包中的
+\texttt{verification\_summary.json}
+和运行日志为准。不用重复数值代入代替无记忆性、独立性或极限的数学证明。
+
+\textbf{项目进度：}第1章为此前已交付内容；本批新增第2章讲义。最早待补的指定版原题核对是2.17---2.22。其后的下一章从2016第三版3.1开始，但不能因此跳过这六个待核对标记。Ross及三本中文教材本批均未新增，全五书仍未完成。
+
+\end{document}
