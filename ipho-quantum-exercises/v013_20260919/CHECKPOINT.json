@@ -1,0 +1,55 @@
+{
+  "project": "IPhO 原子·近代·量子物理全习题详解",
+  "version": "v013",
+  "date": "2026-09-19",
+  "completed_source_positions": 489,
+  "variants": 1467,
+  "training_units": 1956,
+  "unprocessed_book_lines": 0,
+  "strict_union": {
+    "searchable_positions": 446,
+    "high_confidence_clusters": 18,
+    "aliases_covered": 41,
+    "confirmed_reduction": 23,
+    "searchable_provisional_upper_bound": 423,
+    "cheng_positions_pending_text_audit": 43,
+    "seven_source_provisional_upper_bound": 466,
+    "is_final_denominator": false
+  },
+  "high_risk_audit": {
+    "checks": 71,
+    "pass": 71,
+    "fail": 0,
+    "correction": "FX13-39: lambda_i-lambda_0=lambda_C(1-cos theta)"
+  },
+  "cumulative": {
+    "markdown_lines": 33015,
+    "pdf_pages": 788,
+    "pdf_bookmarks": 4201,
+    "image_references": 112,
+    "missing_assets": 0,
+    "rendered_pages": 788,
+    "edge_alerts": 0,
+    "low_ink_alerts": 0,
+    "high_black_alerts": 0
+  },
+  "package": {
+    "filename": "IPhO_原子近代量子物理_全习题详解_v013_完整包_20260919.zip",
+    "sha256": "65792ccd4e5e68d411fadf450500a64f6ca5a1698313be98830c45730685ee08",
+    "zip_test": "No errors detected in compressed data"
+  },
+  "google_drive": {
+    "folder_id": "1KrApDp26SBZup0mSmENkhNug-oJhVVbr",
+    "folder_created": true,
+    "files_uploaded": false,
+    "error": "403 storageQuotaExceeded"
+  },
+  "remaining_project_audits": [
+    "recover 43 Cheng positions as native searchable Markdown",
+    "strict-union second-pass candidate adjudication",
+    "final canonical IDs, aliases, version differences, and source conflicts",
+    "extend second-pass numerical audit to all high-risk problems",
+    "expand short solutions and deduplicate variant mechanisms",
+    "generate final indexes, error tags, difficulty tags, and five-hour mock exams"
+  ]
+}
