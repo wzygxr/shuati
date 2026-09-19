@@ -26,5 +26,6 @@
 ## 存储与清理
 
 - PDF、QA、CSV、机器检查、SHA-256 和 ZIP 已持久化到 ChatGPT Library：`/课后习题单书Canonical_2026-09-19/02_拓扑_微分拓扑两书/`。
+- Google Drive 已创建目录 `02_拓扑_微分拓扑两书`（folder ID `1AyP3ZoXOuMW_M5Gc7CMv2_YR-OrG5P1c`），但上传测试被 `storageQuotaExceeded` 拒绝；没有虚报上传成功。
 - 本目录保存审计清单与哈希；PDF 二进制不直接提交普通 Git 仓库。
 - 本批没有删除任何旧版。只有远端新文件可打开、页数与 SHA-256 复核一致，并确认旧文件不是唯一题源证据或独立分支后，才进入精确 ID 清理。
