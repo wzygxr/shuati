@@ -29,5 +29,6 @@
 ## 存储与清理
 
 - PDF、QA、CSV、机器检查、SHA-256 和 ZIP 已持久化到 ChatGPT Library：`/课后习题单书Canonical_2026-09-19/04_概率统计_高等数理统计三书/`。
+- Google Drive 已创建目录 `04_概率统计_高等数理统计三书`（folder ID `1J_S5FQQYHMHbwiJzgwAcKcRrSdKcPH_F`）；同一账号的上传测试已被 `storageQuotaExceeded` 拒绝，因此本批没有虚报 PDF 上传成功。
 - 本目录保存审计清单与哈希；PDF 二进制不直接提交普通 Git 仓库。
 - 本批没有删除任何旧版。只有远端新文件可打开、页数与 SHA-256 复核一致，并确认旧文件不是唯一题源证据或独立分支后，才进入精确 ID 清理。
