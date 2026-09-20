@@ -1,0 +1,68 @@
+{
+  "project": "IPhO 原子·近代·量子物理全习题详解",
+  "version": "v014",
+  "date": "2026-09-20",
+  "source_lines": {
+    "completed_positions": 489,
+    "frozen_positions": 489,
+    "unsolved_book_positions": 0,
+    "variants": 1467,
+    "training_units": 1956
+  },
+  "quality_patch": {
+    "expanded_solutions": 26,
+    "redesigned_variant_groups": 11
+  },
+  "strict_union": {
+    "high_confidence_clusters": 22,
+    "aliases_covered": 53,
+    "confirmed_duplicate_reduction": 31,
+    "searchable_positions": 446,
+    "searchable_upper_bound": 415,
+    "seven_source_provisional_upper_bound": 458,
+    "final_denominator_frozen": false
+  },
+  "high_risk_audit": {
+    "checks": 100,
+    "pass": 100,
+    "fail": 0
+  },
+  "cumulative": {
+    "markdown_lines": 34369,
+    "pdf_pages": 819,
+    "pdf_bookmarks": 4311,
+    "image_references": 112,
+    "resolved_image_references": 112,
+    "full_page_render_pass": 819,
+    "edge_alerts": 0,
+    "low_ink_anomalies": 0,
+    "black_block_anomalies": 0
+  },
+  "delta": {
+    "markdown_lines": 1744,
+    "pdf_pages": 31,
+    "pdf_bookmarks": 109,
+    "pandoc_xelatex_compile": "passed"
+  },
+  "package": {
+    "filename": "IPhO_原子近代量子物理_全习题详解_v014_完整包_20260920.zip",
+    "size_bytes": 78214067,
+    "manifest_entries": 157,
+    "sha256": "5fefa24db1f9d00746107d70f419dba00b86c5e85e1a9dc21c18395db6f16364",
+    "zip_test": "passed"
+  },
+  "google_drive": {
+    "folder_id": "1cckK2P6s9PQYXgaSxRqx1L44N8SWEsuL",
+    "folder_created": true,
+    "files_uploaded": false,
+    "error": "403 storageQuotaExceeded"
+  },
+  "remaining_project_work": [
+    "recover Cheng 43 positions as native searchable Markdown",
+    "deduplicate Cheng positions against the previous six sources",
+    "freeze final strict-union denominator",
+    "extend second-pass high-risk audit",
+    "audit remaining short solutions and three-variant mechanism distinctness",
+    "build final numbering, aliases, knowledge/error/difficulty indexes and five-hour mock exams"
+  ]
+}
