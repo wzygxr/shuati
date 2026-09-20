@@ -1,0 +1,6 @@
+priority,book,evidence,source_status,next_action
+1,吴密霞、王松桂《线性模型引论（第二版）》,全项目ledger #83 = NOT STARTED；Library/Drive未命中同名单书母版,未取得原书习题页或现成累计母版,先锁定版次与全书formal inventory；取得题源后从第一题开始
+2,"胡迪鹤《应用随机过程引论》(哈尔滨工业大学出版社, 1984)",随机过程五书旧项目明确记录“本批没有新增逐题解答”；Library/Drive未命中同名单书母版,书目已锁，习题原文仍待取得,取得原书/扫描并冻结章节与题号，再从第一道可核习题开始
+3,林元烈《应用随机过程》(2002),随机过程五书旧项目书目中列出且明确“没有新增逐题解答”；Library/Drive未命中同名单书母版,未取得可靠原书习题页,恢复出版社、版次与原书扫描；建立独立单书ledger
+4,张波、商豪、邓军《应用随机过程》(2023),随机过程五书旧项目书目中列出且明确“没有新增逐题解答”；Library/Drive未命中同名单书母版,书目年份已知，原书习题页未入Library,取得原书目录/习题页，冻结正式题分母并从第一题开始
+5,"Yurii Nesterov, Lectures on Convex Optimization, 2nd ed. (2018)",全项目ledger #104 = PENDING REOPEN；Library/Drive未命中同名单书解答母版，仅有课程笔记引用,书目信息可锁；正式exercise题页/累计解答母版未找到,先建立chapter/exercise inventory；只对可核定题面开始逐题解答
