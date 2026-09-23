@@ -17,15 +17,15 @@
   "documents": {
     "markdown": {
       "name": "梁铨廷_物理光学学习指导与题解_累计v003_第1至2章整章闭合.md",
-      "bytes": 150253,
+      "bytes": 150257,
       "lines": 7180,
-      "sha256": "6edf04f154b21826423e474235fd9d22ea9f3fd36d4792d58e2d344df27f04fc"
+      "sha256": "de1c0a2872aea242f56483da8d45c163f02fc8244396b851ef320b352b1ac80a"
     },
     "pdf": {
       "name": "梁铨廷_物理光学学习指导与题解_累计v003_第1至2章整章闭合.pdf",
-      "bytes": 2687060,
+      "bytes": 2687056,
       "pages": 158,
-      "sha256": "2ad6b1d14880f7815250bfc061efacd483cbc6f84f90fb857c19571f86bc3147"
+      "sha256": "0151871a94cc9bd4c9181124382a88ac42ca303977b1e02ed08a92e093163476"
     }
   },
   "images": {
@@ -63,7 +63,13 @@
     "uploaded_text_files": [
       "LATEST_梁铨廷物理光学题解_v003.md",
       "README_编译与复现_v003.md",
-      "质量验收报告_v003.md"
+      "质量验收报告_v003.md",
+      "manifest_v003.json",
+      "GitHub_同步状态_v003.md",
+      "progress_ledger_v003.csv",
+      "remaining_books_v003.csv",
+      "外部补充材料与证据账_v003.md",
+      "RELEASE_MANIFEST_v003.md"
     ],
     "binary_note": "PDF/ZIP remain conversation artifacts because the available GitHub write action accepts UTF-8 text, not binary files."
   }
