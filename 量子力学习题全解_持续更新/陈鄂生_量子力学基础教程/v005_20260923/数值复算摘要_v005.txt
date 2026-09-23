@@ -1,0 +1,7 @@
+陈鄂生《量子力学基础教程》累计 v005 数学/数值复算
+NEW_ASSERTIONS_PASS=211033
+NEW_ASSERTIONS_FAIL=0
+INHERITED_V004_PASS=160709
+CUMULATIVE_PASS=371742
+CATEGORIES=15 original problems; symbolic operator identities; exact matrices; randomized probabilities; normalization; TRK; Markdown structure
+ALL_CHECKS=PASS

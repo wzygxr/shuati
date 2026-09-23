@@ -1,0 +1,56 @@
+陈鄂生《量子力学基础教程》全习题详解 v005
+PDF 完整性、编译与渲染验收
+日期：2026-09-23
+
+一、累计主文档
+文件：陈鄂生量子力学基础教程_全习题详解_累计_v005_第1至5章66题全闭合.pdf
+页数：261
+纸张：A4
+PDF 版本：1.5
+加密：否
+文件大小：3,137,144 字节
+XeLaTeX：连续两遍返回 0
+LaTeX error：0
+Overfull box：0
+Underfull box：0
+Missing character：0
+逐页渲染：261/261 PASS
+空白页：0
+页面边界触碰：0
+Ghostscript nullpage：PASS
+pdfinfo：PASS
+startxref：1 个
+%%EOF：1 个
+字体嵌入：全部 yes
+ToUnicode：全部 yes
+
+二、第五章独立增量
+文件：第五章_15题与45道配套题_独立增量_v005.pdf
+页数：66
+文件大小：615,914 字节
+XeLaTeX：连续两遍返回 0
+LaTeX error / Overfull / Underfull / Missing character：均为 0
+逐页渲染：66/66 PASS
+Ghostscript nullpage：PASS
+startxref / %%EOF：各 1 个
+
+三、最新进度与剩余总账
+文件：量子力学习题项目_最新进度与剩余总账_2026-09-23_v005.pdf
+页数：3
+文件大小：118,089 字节
+XeLaTeX：连续两遍返回 0
+LaTeX error / Overfull / Underfull / Missing character：均为 0
+逐页渲染：3/3 PASS
+Ghostscript nullpage：PASS
+startxref / %%EOF：各 1 个
+
+四、总体验收
+全部逐页渲染：330/330 PASS
+空白页：0
+页面边界失败：0
+新增数学、矩阵与随机断言：211033/211033 PASS
+继承 v004 断言：160709/160709 PASS
+累计断言：371742/371742 PASS
+qpdf：当前环境未安装，因此未宣称执行；PDF 字节尾、pdfinfo、Ghostscript 与逐页渲染均已独立通过。
+
+结论：v005 累计主文档、第五章独立增量与最新总账均通过源码编译、PDF 字节完整性、全文解释、逐页渲染和页面边界验收，可作为第六章后续版本的可靠基线。
