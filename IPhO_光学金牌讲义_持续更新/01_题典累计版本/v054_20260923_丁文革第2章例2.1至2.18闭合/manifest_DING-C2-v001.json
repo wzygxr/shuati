@@ -1,0 +1,50 @@
+{
+  "version": "DING-C2-v001",
+  "date": "2026-09-23",
+  "source": {
+    "name": "光学指导考研参考书-丁文革.pdf",
+    "pages": 218,
+    "bytes": 28275795,
+    "sha256": "2859f841147d8473f0db5074ae1133aea9f80f40a545bb76f06b1b73e23ef98f",
+    "used_pages": "45-59"
+  },
+  "scope": {
+    "formal_examples": ["2.1", "2.18"],
+    "formal_count": 18,
+    "variants_per_problem": 3,
+    "variant_count": 54,
+    "training_units": 72,
+    "ding_total_closed_positions": 77,
+    "next": "2.19"
+  },
+  "increment": {
+    "markdown": "丁文革_第2章例2.1-2.18全解_合流增量_DING-C2-v001.md",
+    "markdown_lines": 2560,
+    "markdown_bytes": 54882,
+    "markdown_sha256": "79cb5719814e6eb75ade116b04c07eac7413e5b53222a04a498530a36ca0af85",
+    "pdf": "丁文革_第2章例2.1-2.18全解_合流增量_DING-C2-v001.pdf",
+    "pdf_pages": 71,
+    "pdf_bytes": 2562659,
+    "pdf_sha256": "10e3bd81faf41d02d3a90916a51be644c4ea5ce46fe169842021df01eb842514"
+  },
+  "cumulative": {
+    "markdown": "光学统一累计_分支副本_基于DING-C1-v002并含例2.1-2.18_DING-C2-v001.md",
+    "markdown_lines": 119674,
+    "markdown_bytes": 3464947,
+    "markdown_sha256": "5df8c8cacee1676e7756ad485f6e2211b0a22689ed31090b0c46d55adfb30e8c",
+    "pdf": "光学统一累计_分支副本_基于DING-C1-v002并含例2.1-2.18_DING-C2-v001.pdf",
+    "pdf_pages": 4030,
+    "pdf_bytes": 97356149,
+    "pdf_sha256": "710dfb589b50ac00636f1beccee2b92be2f8ad578b1baaa95af38d83e46530b3"
+  },
+  "qa": {
+    "deterministic": "57/57",
+    "random_stress": "25000/25000",
+    "increment_render_pages": 71,
+    "cumulative_render_pages": 4030,
+    "blank_candidates": 0,
+    "black_candidates": 0,
+    "edge_candidates": 0,
+    "history_pixel_sample": "25/25 exact"
+  }
+}
