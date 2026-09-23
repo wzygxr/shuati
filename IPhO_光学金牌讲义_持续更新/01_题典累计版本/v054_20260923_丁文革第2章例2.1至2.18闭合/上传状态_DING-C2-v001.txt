@@ -1,0 +1,53 @@
+DING-C2-v001 persistent storage status
+Date: 2026-09-23
+
+[ChatGPT Library]
+Folder created:
+/IPhO_光学金牌讲义_持续更新/01_题典累计版本/v054_20260923_丁文革第2章例2.1至2.18闭合
+Folder id: 6ab39a37ef8c8191a99127feeb2c74e1
+File upload: FAILED
+Error: library_storage_limit_exceeded
+No old files were deleted, moved, or overwritten.
+
+[Google Drive]
+Folder created:
+/Google Drive/IPhO_光学金牌讲义_持续更新/01_题典累计版本/v054_20260923_丁文革第2章例2.1至2.18闭合
+Drive folder id: 1uiP_zBnc1HlResSv_MixFzpPwCna_p0D
+Direct upload: FAILED
+HTTP 403: storageQuotaExceeded
+No old files were deleted, moved, or overwritten.
+
+[GitHub]
+Repository: wzygxr/shuati
+Branch: master
+Directory:
+IPhO_光学金牌讲义_持续更新/01_题典累计版本/v054_20260923_丁文革第2章例2.1至2.18闭合
+Status: SUCCEEDED for text source bundle.
+Uploaded:
+- README.md
+- increment_part_00.md
+- increment_part_01.md
+- increment_part_02.md
+- increment_part_03.md
+- LATEST_光学_IPhO全习题项目_DING-C2-v001.md
+- 光学_最新合流说明与剩余总账_DING-C2-v001.md
+- 丁文革_第2章例2.1-2.18_原书勘误与独立复算账_DING-C2-v001.md
+- 光学_丁文革DING-C2-v001_来源审计与质量验收.md
+- manifest_DING-C2-v001.json
+
+GitHub commits (chronological):
+84fe4a13d0affb78d8da9ea28172f1048d1f2843
+ec7d91dae5d826105f365cf90652d433ee63e55e
+357ec60273c1f54bd85bbcb5fac2b6a935190123
+6819c63fc2c999f8e77c2bc4f6a1aedbef2e4289
+c6e9cd62b6f8c6176b1e5a4ac842c83a05a76bae
+1f3aea9a3d125aee7733b70a84746d8a7aa8332a
+90dab080733597d9d23ed1eb444a7f01cacce73e
+c33b6684f8dd8f82e66cab7d984f02b62d281848
+c77c6ab9accaa7b8a5635d3e047d3db38ef50367
+c82f402b87a5d39c999f2895fe556e4d1a7623d0
+
+The complete 54,882-byte increment Markdown is split losslessly into four parts because the GitHub connector supports UTF-8 text writes but not direct local binary-file upload. Concatenating the four parts in numeric order restores the original file with SHA-256:
+79cb5719814e6eb75ade116b04c07eac7413e5b53222a04a498530a36ca0af85
+
+The 71-page increment PDF, 4030-page cumulative PDF, 3.4MB cumulative Markdown, figures and QA bundle remain available as sandbox artifacts in this conversation.
