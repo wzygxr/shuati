@@ -1,0 +1,48 @@
+范小辉两书 Ch8 Q11-Q31 独立公式验证 v067
+SymPy version: 1.14.0
+Checks: 21/21 PASS
+
+[01] PASS - Q11 finite-rod components and special magnitude
+     Ex=Q*k/(L*sqrt(L**2 + r**2)) - Q*k/(L*r), Ey=-Q*k/(r*sqrt(L**2 + r**2)), E^2|L=sqrt(3)r=Q**2*k**2/(3*r**4)
+[02] PASS - Q12 shell charge recursion and equal fields
+     q1=8*Q, q2=16*Q, q3,in=-25*Q; EA-EB=0, EA-EC=0
+[03] PASS - Q13 compensation charges and far-field limit
+     Q+=8*Q/7, Q-=-Q/7, lim r^2E/(kQ)=1
+[04] PASS - Q14 uniformly charged hemisphere
+     E=pi*k*sigma
+[05] PASS - Q15 opposite-signed quarter spheres
+     Ex=0, Ez=-pi*k*sigma; with sigma=Q/(pi R^2), Ez=-kQ/R^2
+[06] PASS - Q16 quarter-circle arc
+     Ex=-k*lambda/R, Ey=-k*lambda/R, |E|=sqrt(2)*k*lambda/R
+[07] PASS - Q17 two semi-infinite parallel lines
+     integral=2/a, |E|=4*eta*k/a
+[08] PASS - Q18 eccentric cavity uniform field
+     E_component=a_x*rho/(3*eps0)
+[09] PASS - Q19 positive line-density normalization
+     integral |sin(phi)| dphi=4; total=(Q/4)*4=Q
+[10] PASS - Q20 charged-particle SHM period
+     omega^2=4*pi*k*q*rho/(3*m), T^2=3*pi*m/(k*q*rho)
+[11] PASS - Q21 perforated disk far-field charge
+     lim ell^2 E/[k pi sigma(R^2-a^2)]=2*(R**2/2 - a**2/2)/(R**2 - a**2)
+[12] PASS - Q22 rotating disk voltage sign and magnitude
+     V(R)-V(0)=-R**2*m*omega**2/(2*e)
+[13] PASS - Q23 ring-axis potential ratio
+     U2/U1=sqrt(10)/5
+[14] PASS - Q24 maximum speed between H and H/2
+     h0=sqrt(2)*H/2, vmax^2=H*g*(3 - 2*sqrt(2))
+[15] PASS - Q25 four-particle energy ledger and numerics
+     ve^2=e**2*k*(sqrt(2)/2 + 4)/(a*m); vp^2=sqrt(2)*e**2*k/(2*M*a); ve=345.273799 m/s, vp(2000me)=2.992362 m/s, vp(actual)=3.123020 m/s
+[16] PASS - Q26 piecewise hemispherical potential continuity
+     Uout(R2)-Uin=0
+[17] PASS - Q27 half-circle potential minimum
+     dU core under Q2=Q1*t^3 -> 0; tan^3(theta)=Q2/Q1
+[18] PASS - Q28 zero-potential diameter and positive-half center potential
+     pair potential=0, U_positive_half(O)=Q*k/R
+[19] PASS - Q29 spherical wedge potential
+     Uinside=k*q/R, Uoutside=k*q/rr
+[20] PASS - Q30 infinite point-charge train
+     series=2, Q2=-Q1/2
+[21] PASS - Q31 maximum separation and external work
+     energy residual=0, W=M*v0**2
+
+Overall: PASS
