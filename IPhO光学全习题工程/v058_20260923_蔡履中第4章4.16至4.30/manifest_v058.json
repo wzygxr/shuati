@@ -1,0 +1,9 @@
+{
+  "version": "v058",
+  "date": "2026-09-23",
+  "completed_range": "蔡履中《光学》第三版第4章正式习题4.16--4.30",
+  "batch": {"formal": 15, "variants": 45, "training_units": 60},
+  "cumulative": {"formal": 1418, "variants": 4254, "training_units": 5918, "markdown_lines": 119912, "pdf_pages": 4079, "pdf_bookmarks": 8390},
+  "verification": {"numeric_structure_checks": "69/69 PASS", "increment_render": "48/48 PASS", "cumulative_decode": "4079/4079 PASS", "pixel_hash": "10/10 PASS"},
+  "next_breakpoint": "4.31"
+}
