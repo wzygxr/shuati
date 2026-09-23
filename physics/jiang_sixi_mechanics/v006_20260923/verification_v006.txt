@@ -1,0 +1,24 @@
+江四喜《物理竞赛专题精编》力学全解 v006 验证摘要
+seed: 20260923
+samples_per_numeric_module: 10000
+
+J7-01_unfolded_range_two_branches: PASS
+J7-02_elastic_return: PASS
+J7-02_restitution_return: PASS
+J7-03_thales_circle_orthogonality: PASS
+J7-04_horizontal_vertical_period_sync: PASS
+J7-05_ring_regular_polygon_momentum: PASS
+J7-06_unfolded_rectangle_feasible_triangle: PASS
+J7-07_cone_self_consistent_formula: PASS; source_interval_inconsistent_cases=10000
+J8-01_road_field_equal_time_envelope: PASS
+J8-02_island_stationarity: PASS
+J8-03_current_stationarity: PASS
+J8-04_walk_swim_boat_speed: PASS; special_Vmax=2.8284271247461903
+J8-05_interface_corrected_geometry_snell: PASS; x=25.3594527253 mi; T=12.9519190321 h; sin_ratio=5/3
+structure: PASS; source=57; A=57; B=57; C=57; crosswalk=57; missing_images=0; control_chars=0
+
+all_numeric_pass: True
+structure_pass: True
+all_pass: True
+
+PDF: 390 pages; Ghostscript exit 0; PDFium 390/390; fonts embedded 7/7; %%EOF present.
