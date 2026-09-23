@@ -1,0 +1,29 @@
+江四喜《物理竞赛专题精编》力学全解 v007 验证摘要
+seed: 20260923
+samples_per_numeric_module: 10000
+
+J9-01_collision_accumulation_and_final_velocity: PASS
+J9-02_discrete_velocity_families_and_impossibility: PASS
+J9-03_unfolded_collision_ratios: PASS
+J9-04_three_lake_widths_and_phase_conditions: PASS
+J10-01_equilateral_cyclic_pursuit: PASS
+J10-02_dog_fox_capture_time_vs_solve_ivp: PASS; max_abs_error≈2.588e-7
+J10-03_wolf_dog_semicircle_path: PASS; max_abs_error≈1.42e-14
+J10-04_piecewise_intercept_minimum: PASS; max_abs_error≈5.68e-14
+structure: PASS; source=65; A=65; B=65; C=65; crosswalk=65; image_refs=81; missing_images=0; control_chars=0
+
+all_numeric_pass: True
+structure_pass: True
+all_pass: True
+
+PDF:
+pages=428
+pdf_preflight=PASS
+Ghostscript=exit 0
+PDFium full render=428/428
+pdftoppm key pages=9/9
+embedded_fonts=7/7
+replacement_char_count=0
+nul_count=0
+text_blocks_outside_mediabox=0
+%%EOF=True
