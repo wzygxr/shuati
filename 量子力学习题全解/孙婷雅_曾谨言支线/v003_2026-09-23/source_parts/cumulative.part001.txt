@@ -1,0 +1,875 @@
+---
+title: "孙婷雅《量子力学教程习题剖析》累计详解"
+subtitle: "v003：第1--3章共41道正式题全部完成；本轮清零3.1--3.18"
+author: "独立推导、补全与复核"
+date: "2026-09-23"
+documentclass: ctexbook
+classoption:
+  - oneside
+  - openany
+geometry:
+  - a4paper
+  - top=2.0cm
+  - bottom=2.0cm
+  - left=2.15cm
+  - right=2.15cm
+fontsize: 10.5pt
+linestretch: 1.16
+toc: true
+toc-depth: 3
+numbersections: false
+colorlinks: true
+linkcolor: blue
+urlcolor: blue
+mainfont: "Noto Serif CJK SC"
+sansfont: "Noto Sans CJK SC"
+monofont: "Noto Sans Mono CJK SC"
+CJKmainfont: "Noto Serif CJK SC"
+CJKsansfont: "Noto Sans CJK SC"
+header-includes:
+  - |
+    \usepackage{amsmath,amssymb,mathtools,bm,booktabs,longtable,array,graphicx,float,xcolor}
+    \usepackage{enumitem}
+    \setlist{nosep,leftmargin=2em}
+    \newcommand{\ii}{\mathrm{i}}
+    \newcommand{\ee}{\mathrm{e}}
+    \newcommand{\dd}{\mathrm{d}}
+    \newcommand{\avg}[1]{\left\langle #1\right\rangle}
+    \newcommand{\Prob}{\mathbb{P}}
+    \newcommand{\Var}{\operatorname{Var}}
+    \newcommand{\R}{\mathbb{R}}
+    \newcommand{\p}{\partial}
+    \newcommand{\order}{\mathcal{O}}
+    \allowdisplaybreaks
+    \setlength{\emergencystretch}{3em}
+    \hfuzz=2pt
+---
+
+\frontmatter
+
+# 本版状态、题源口径与不重复原则
+
+## 1. 本轮真正推进的内容
+
+本版完整继承 v002 已闭合的第 1 章 1.1--1.7 和第 2 章 2.1--2.16，不重写、不重复计数。本轮从唯一连续断点 **3.1** 开始，依据曾谨言第三版教材扫描第 75--76 印刷页和孙婷雅配套题解第 19--26 印刷页，连续完成第 3 章 **3.1--3.18**。3.18 后题目组结束，故本章严格分母冻结为 18 题。
+
+本轮重点不是把旧答案机械扩写，而是补齐旧解中最容易被省略的逻辑：
+
+1. 伴随算符为什么必须反转乘法次序；
+2. 非对易矢量算符为何不能直接照搬经典 BAC--CAB 公式；
+3. 正规次序多项式中的形式偏导究竟是什么意思；
+4. 径向动量的 $1/r$ 修正来自三维测度，并区分形式对称与真正自伴；
+5. 不确定关系何时给出精确基态能量、何时只给尺度下界；
+6. $L_x$ 测量为什么必须进行基底变换；
+7. BCH 与 Hadamard 公式的符号、截断条件和定义域前提；
+8. 每道正式题增加 1 道本质不同变式和 1 道同类巩固，全部给出完整解答。
+
+当前严格进度：
+
+$$
+\boxed{\text{第 1 章：7/7，已清零}},
+$$
+
+$$
+\boxed{\text{第 2 章：16/16，已清零}},
+$$
+
+$$
+\boxed{\text{第 3 章：18/18，已清零}}.
+$$
+
+累计正式原题为
+
+$$
+\boxed{7+16+18=41\text{ 道}}.
+$$
+
+累计本质不同变式 41 道、同类巩固 41 道，因此累计
+
+$$
+\boxed{41+41+41=123\text{ 个完整训练单元}}.
+$$
+
+下一连续断点为
+
+> **第 4 章，题 4.1。**
+
+## 2. 题号与配套关系
+
+本项目继续采用唯一口径：
+
+- **正式 canonical 题号**：曾谨言《量子力学教程》第三版；
+- **孙婷雅《习题剖析》**：恢复题面、核对旧解、提供第二意见；
+- **不重复原则**：教材和配套题解中的同一道题只计一次；
+- **正文证明**：全部重新推导，旧答案不能代替证明；
+- **模糊扫描**：只冻结能由原教材和配套书共同确认的题号、子问和符号。
+
+## 3. 完整页树与本轮题源页
+
+本地 `pdfinfo` 对原始 PDF 的物理页树给出：
+
+| 文件 | 物理页数 | 本轮直接核对页 |
+|:---|---:|:---|
+| 曾谨言《量子力学教程》第三版 | 298 | PDF 106--107（印刷页 75--76） |
+| 孙婷雅《量子力学教程习题剖析》 | 153 | PDF 24--31（印刷页 19--26） |
+
+因此界面约 150 页只是预览或解析层限制，不是文件终点。本轮直接从完整原文件页树渲染所需页，没有把预览层当作整本书。
+
+## 4. 本轮质量与复核
+
+第 3 章新增 5 幅自制图，累计自制图 18 幅。本章独立运行 **617/617** 项符号、矩阵、微分算符与数值检查；连同 v002 已冻结的 139 项，累计机器复核为
+
+$$
+\boxed{756\text{ 项}}.
+$$
+
+机器检查只作第二证据链，不能替代正文中对无界算符定义域、边界项和解析恒等式的证明。
+
+## 5. 第 3 章知识地图
+
+| 题号 | 主题 | 本版重点纠偏 |
+|:---:|:---|:---|
+| 3.1--3.2 | 厄米分解与厄米化 | 伴随反序；乘积厄米需对易 |
+| 3.3--3.4 | 对易子代数 | 固定算符次序；对易子是导子 |
+| 3.5--3.8 | 矢量算符与角动量 | 非对易分量不能套经典向量恒等式 |
+| 3.9 | 双重对易子 | 用 Euler 齐次函数定理一行收束 |
+| 3.10 | 径向动量 | Jacobian、边界项、形式对称和自伴性 |
+| 3.11--3.13 | 不确定关系与定态 | 下界可达性；右端为零不等于涨落都为零 |
+| 3.14--3.16 | 角动量测量 | 横向均值、方差和 $L_z\to L_x$ 基底变换 |
+| 3.17--3.18 | 指数算符 | 中心对易子截断、嵌套对易子级数 |
+
+\mainmatter
+
+# 第 0 章：做 1.1--1.7 前必须补齐的基础
+
+## 0.1 Schrödinger 方程与符号
+
+非相对论、无自旋、质量为 $m$ 的单粒子满足
+
+$$
+\ii\hbar\frac{\partial\psi}{\partial t}
+=\hat H\psi,
+\qquad
+\hat H=-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf r,t).
+$$
+
+其中：
+
+- $\psi(\mathbf r,t)$ 是概率幅，不是概率；
+- $\rho=|\psi|^2$ 才是每单位体积的概率密度；
+- $V$ 若为实函数，$\hat H$ 在适当定义域上通常是厄米的，概率总量守恒；
+- $V$ 若有虚部，时间演化一般不是幺正的。
+
+归一化条件是
+
+$$
+\int_{\R^3}|\psi(\mathbf r,t)|^2\dd^3r=1.
+$$
+
+对于平面波、delta 函数等广义态，上式不成立，要改用 delta 归一化和分布理论。
+
+## 0.2 分部积分为什么总会出现边界项
+
+动能期望值包含
+
+$$
+\int_\Omega \psi^*(-\nabla^2\psi)\dd^3r.
+$$
+
+利用恒等式
+
+$$
+\nabla\cdot(\psi^*\nabla\psi)
+=\nabla\psi^*\cdot\nabla\psi+\psi^*\nabla^2\psi,
+$$
+
+得到
+
+$$
+\int_\Omega\psi^*(-\nabla^2\psi)\dd^3r
+=\int_\Omega|\nabla\psi|^2\dd^3r
+-\oint_{\partial\Omega}\psi^*\nabla\psi\cdot\dd\mathbf S.
+$$
+
+只有在无穷远衰减足够快、周期边界相消、或边界条件使面积分为零时，才能直接把动能写成 $\int|\nabla\psi|^2$。以后每一次“分部积分后边界项消失”，都要知道依据是什么。
+
+## 0.3 概率流与控制体积
+
+实势情况下，概率密度和概率流为
+
+$$
+\rho=|\psi|^2,
+\qquad
+\mathbf j=\frac{\hbar}{2m\ii}
+\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right).
+$$
+
+它们满足
+
+$$
+\frac{\partial\rho}{\partial t}+\nabla\cdot\mathbf j=0.
+$$
+
+对任意固定体积 $\Omega$ 积分：
+
+$$
+\frac{\dd}{\dd t}\int_\Omega\rho\dd^3r
+=-\oint_{\partial\Omega}\mathbf j\cdot\dd\mathbf S.
+$$
+
+右边的负号非常重要：若净流量向外为正，则体积内概率减少。
+
+## 0.4 Fourier 变换约定
+
+一维动量表象采用对称归一化
+
+$$
+\psi(x)=\frac1{\sqrt{2\pi\hbar}}
+\int_{-\infty}^{\infty}\phi(p)\ee^{\ii px/\hbar}\dd p,
+$$
+
+$$
+\phi(p)=\frac1{\sqrt{2\pi\hbar}}
+\int_{-\infty}^{\infty}\psi(x)\ee^{-\ii px/\hbar}\dd x.
+$$
+
+三维时把 $2\pi\hbar$ 的指数改成 $3/2$。在这一约定下，Parseval 恒等式是
+
+$$
+\int|\psi(x)|^2\dd x=\int|\phi(p)|^2\dd p.
+$$
+
+不同教材可能把 $2\pi$ 和 $\hbar$ 放在不同位置。只要前后一致，物理结果相同；最危险的是在一道题中混用两套约定。
+
+## 0.5 三个常用 Gaussian 积分
+
+对 $a>0$，
+
+$$
+\int_{-\infty}^{\infty}\ee^{-ax^2}\dd x=\sqrt{\frac\pi a},
+$$
+
+$$
+\int_{-\infty}^{\infty}x^2\ee^{-ax^2}\dd x
+=\frac{\sqrt\pi}{2a^{3/2}},
+$$
+
+以及在适当支路和收敛因子意义下
+
+$$
+\int_{-\infty}^{\infty}\ee^{-\ii a x^2}\dd x
+=\sqrt{\frac\pi a}\ee^{-\ii\pi/4},
+\qquad a>0.
+$$
+
+最后一个是自由传播子的核心。严格处理时可先把 $a$ 换成 $a-\ii\varepsilon$ 或在指数中加入 $-\varepsilon x^2$，算完再令 $\varepsilon\downarrow0$。
+
+## 0.6 delta 函数不是普通函数
+
+$$
+\delta(x)=\frac1{2\pi\hbar}\int_{-\infty}^{\infty}
+\ee^{\ii px/\hbar}\dd p
+$$
+
+只能在分布意义下理解。它的“平方”一般没有普通函数意义，所以以 $\delta(x)$ 为初态时，不应把 $|\psi|^2$ 当成可积概率密度。传播子仍然有意义，因为它描述线性演化核：
+
+$$
+\psi(x,t)=\int K(x,t;x',0)\psi(x',0)\dd x'.
+$$
+
+## 0.7 量纲检查
+
+本章高频量纲为
+
+$$
+[\hbar]=ML^2T^{-1},\quad
+[p]=MLT^{-1},\quad
+[E]=ML^2T^{-2}.
+$$
+
+一维归一化波函数满足 $[\psi]=L^{-1/2}$；三维满足 $[\psi]=L^{-3/2}$。概率流在三维的量纲是 $L^{-2}T^{-1}$，能流密度的量纲是“能量/面积/时间”。量纲不对，推导一定有问题。
+
+\clearpage
+# 题 1.1：能量密度与局部能量守恒
+
+## 1.1.1 题意重述与必要假设
+
+设粒子在实的、与时间无关的势 $V(\mathbf r)$ 中运动。题目要求：
+
+1. 把能量期望值写成能量密度的空间积分；
+2. 找到能流密度，并证明局部连续性方程。
+
+为使结论严格成立，我们明确采用：
+
+- $V(\mathbf r)$ 为实函数；
+- $\partial_tV=0$；
+- $\psi$ 与一阶导数在无穷远衰减得足够快，或边界条件使所有面积分消失；
+- $\psi$ 足够光滑，使下面的求导和分部积分合法。
+
+定义
+
+$$
+W=\frac{\hbar^2}{2m}\nabla\psi^*\cdot\nabla\psi
++V|\psi|^2,
+$$
+
+$$
+\mathbf s=-\frac{\hbar^2}{2m}
+\left(
+\frac{\partial\psi^*}{\partial t}\nabla\psi
++\frac{\partial\psi}{\partial t}\nabla\psi^*
+\right).
+$$
+
+要证
+
+$$
+\avg H=\int W\dd^3r,
+\qquad
+\frac{\partial W}{\partial t}+\nabla\cdot\mathbf s=0.
+$$
+
+## 1.1.2 第一步：把动能期望值改写成正定梯度项
+
+Hamilton 算符为
+
+$$
+\hat H=-\frac{\hbar^2}{2m}\nabla^2+V.
+$$
+
+能量期望值
+
+$$
+\avg H
+=\int\psi^*\hat H\psi\dd^3r
+=-\frac{\hbar^2}{2m}\int\psi^*\nabla^2\psi\dd^3r
++\int V|\psi|^2\dd^3r.
+$$
+
+利用
+
+$$
+\nabla\cdot(\psi^*\nabla\psi)
+=\nabla\psi^*\cdot\nabla\psi+\psi^*\nabla^2\psi,
+$$
+
+得
+
+$$
+-\psi^*\nabla^2\psi
+=\nabla\psi^*\cdot\nabla\psi
+-\nabla\cdot(\psi^*\nabla\psi).
+$$
+
+积分后
+
+$$
+-\int\psi^*\nabla^2\psi\dd^3r
+=\int\nabla\psi^*\cdot\nabla\psi\dd^3r
+-\oint\psi^*\nabla\psi\cdot\dd\mathbf S.
+$$
+
+边界项按假设为零，所以
+
+$$
+\avg H
+=\int\left[
+\frac{\hbar^2}{2m}\nabla\psi^*\cdot\nabla\psi
++V|\psi|^2
+\right]\dd^3r.
+$$
+
+因此
+
+$$
+\boxed{\avg H=\int W\dd^3r}.
+$$
+
+注意：梯度项非负，但若 $V<0$，总能量密度 $W$ 不一定处处非负。
+
+## 1.1.3 第二步：直接计算 $\partial_tW$
+
+记
+
+$$
+a=\frac{\hbar^2}{2m}.
+$$
+
+因为 $V$ 不显含时间，
+
+$$
+\frac{\partial W}{\partial t}
+=a\left(
+\nabla\dot\psi^*\cdot\nabla\psi
++\nabla\psi^*\cdot\nabla\dot\psi
+\right)
++V(\dot\psi^*\psi+\psi^*\dot\psi).
+$$
+
+对前两项分别使用乘积法则：
+
+$$
+\nabla\dot\psi^*\cdot\nabla\psi
+=\nabla\cdot(\dot\psi^*\nabla\psi)-\dot\psi^*\nabla^2\psi,
+$$
+
+$$
+\nabla\psi^*\cdot\nabla\dot\psi
+=\nabla\cdot(\dot\psi\nabla\psi^*)-\dot\psi\nabla^2\psi^*.
+$$
+
+于是
+
+$$
+\begin{aligned}
+\frac{\partial W}{\partial t}
+={}&a\nabla\cdot
+(\dot\psi^*\nabla\psi+\dot\psi\nabla\psi^*)\\
+&+\dot\psi^*(-a\nabla^2\psi+V\psi)
++\dot\psi(-a\nabla^2\psi^*+V\psi^*).
+\end{aligned}
+$$
+
+Schrödinger 方程及其共轭为
+
+$$
+-a\nabla^2\psi+V\psi=\ii\hbar\dot\psi,
+$$
+
+$$
+-a\nabla^2\psi^*+V\psi^*=-\ii\hbar\dot\psi^*.
+$$
+
+代入最后两项：
+
+$$
+\dot\psi^*(\ii\hbar\dot\psi)
++\dot\psi(-\ii\hbar\dot\psi^*)=0.
+$$
+
+所以
+
+$$
+\frac{\partial W}{\partial t}
+=a\nabla\cdot
+(\dot\psi^*\nabla\psi+\dot\psi\nabla\psi^*).
+$$
+
+按照 $\mathbf s$ 的定义，右边就是 $-\nabla\cdot\mathbf s$，故
+
+$$
+\boxed{
+\frac{\partial W}{\partial t}+\nabla\cdot\mathbf s=0
+}.
+$$
+
+## 1.1.4 从局部方程得到整体能量守恒
+
+对固定体积 $\Omega$ 积分：
+
+$$
+\frac{\dd}{\dd t}\int_\Omega W\dd^3r
+=-\oint_{\partial\Omega}\mathbf s\cdot\dd\mathbf S.
+$$
+
+意思是：体积内能量的减少率，等于穿过边界向外流出的能量通量。若取全空间且无穷远通量为零，便有
+
+$$
+\frac{\dd}{\dd t}\avg H=0.
+$$
+
+## 1.1.5 易错点与自检
+
+1. 若 $V=V(\mathbf r,t)$，还会出现 $\dot V|\psi|^2$，能量不再自动守恒。
+2. 若 $V$ 为复数，上述共轭方程改变，抵消也会失败。
+3. 分部积分不能悄悄丢掉边界项。
+4. $W$ 的定义并非唯一：给 $W$ 加一个散度，同时相应调整 $\mathbf s$，仍可得到同一个总能量。题目给出的是一种自然选择。
+5. 对定态 $\psi=\phi\ee^{-\ii Et/\hbar}$，可验证
+   $$
+   \boxed{\mathbf s=E\mathbf j},
+   $$
+   量纲和物理意义都正确。
+
+### 本质不同变式：显含时间的势
+
+**题目。** 若 $V=V(\mathbf r,t)$ 为实函数，仍用同一个 $W$ 和 $\mathbf s$，求局部能量方程。
+
+**解答。** 现在对 $V|\psi|^2$ 求导多出
+
+$$
+\dot V|\psi|^2.
+$$
+
+其余推导完全相同，因此
+
+$$
+\boxed{
+\frac{\partial W}{\partial t}+\nabla\cdot\mathbf s
+=\frac{\partial V}{\partial t}|\psi|^2
+}.
+$$
+
+右边是外界通过改变势场向量子系统注入或抽取能量的功率密度。全空间积分给出
+
+$$
+\frac{\dd}{\dd t}\avg H
+=\avg{\frac{\partial H}{\partial t}}
+=\int\dot V|\psi|^2\dd^3r.
+$$
+
+### 同类巩固：定态的能流
+
+**题目。** 对定态 $\psi(\mathbf r,t)=\phi(\mathbf r)\ee^{-\ii Et/\hbar}$，证明 $\mathbf s=E\mathbf j$。
+
+**解答。** 有
+
+$$
+\dot\psi=-\frac{\ii E}{\hbar}\psi,
+\qquad
+\dot\psi^*=\frac{\ii E}{\hbar}\psi^*.
+$$
+
+代入能流：
+
+$$
+\begin{aligned}
+\mathbf s
+&=-\frac{\hbar^2}{2m}\frac{\ii E}{\hbar}
+(\psi^*\nabla\psi-\psi\nabla\psi^*)\\
+&=E\frac{\hbar}{2m\ii}
+(\psi^*\nabla\psi-\psi\nabla\psi^*)\\
+&=\boxed{E\mathbf j}.
+\end{aligned}
+$$
+
+\clearpage
+
+# 题 1.2：复势、概率源项与吸收势
+
+## 1.2.1 题意重述
+
+考虑
+
+$$
+\ii\hbar\frac{\partial\psi}{\partial t}
+=\left[-\frac{\hbar^2}{2m}\nabla^2+V_1(\mathbf r)+\ii V_2(\mathbf r)\right]\psi,
+$$
+
+其中 $V_1,V_2$ 都是实函数。要求证明概率不再一般守恒，并求固定体积内概率的变化率。
+
+## 1.2.2 为什么复势会破坏幺正性
+
+Hamilton 算符的伴随为
+
+$$
+\hat H^\dagger
+=-\frac{\hbar^2}{2m}\nabla^2+V_1-\ii V_2.
+$$
+
+若 $V_2\ne0$，则 $\hat H^\dagger\ne\hat H$。因此时间演化算符不再是普通幺正算符，范数可以衰减或增长。
+
+## 1.2.3 推导含源项的连续性方程
+
+写出原方程：
+
+$$
+\ii\hbar\dot\psi
+=-\frac{\hbar^2}{2m}\nabla^2\psi+(V_1+\ii V_2)\psi.
+$$
+
+共轭方程：
+
+$$
+-\ii\hbar\dot\psi^*
+=-\frac{\hbar^2}{2m}\nabla^2\psi^*+(V_1-\ii V_2)\psi^*.
+$$
+
+用第一式乘 $\psi^*$，第二式乘 $\psi$，再相减：
+
+$$
+\ii\hbar(\psi^*\dot\psi+\psi\dot\psi^*)
+=-\frac{\hbar^2}{2m}
+(\psi^*\nabla^2\psi-\psi\nabla^2\psi^*)
++2\ii V_2|\psi|^2.
+$$
+
+左边是 $\ii\hbar\partial_t|\psi|^2$。又因为
+
+$$
+\psi^*\nabla^2\psi-\psi\nabla^2\psi^*
+=\nabla\cdot(\psi^*\nabla\psi-\psi\nabla\psi^*),
+$$
+
+除以 $\ii\hbar$ 得
+
+$$
+\frac{\partial\rho}{\partial t}
++\nabla\cdot\mathbf j
+=\frac{2}{\hbar}V_2\rho,
+$$
+
+即
+
+$$
+\boxed{
+\frac{\partial|\psi|^2}{\partial t}
++\nabla\cdot\mathbf j
+=\frac{2V_2}{\hbar}|\psi|^2
+}.
+$$
+
+这不是“连续性方程失效”，而是连续性方程多了一个局部源汇项。
+
+## 1.2.4 对有限体积积分
+
+对固定体积 $\Omega$ 积分，并用 Gauss 定理：
+
+$$
+\boxed{
+\frac{\dd}{\dd t}\int_\Omega|\psi|^2\dd^3r
+=-\oint_{\partial\Omega}\mathbf j\cdot\dd\mathbf S
++\frac{2}{\hbar}\int_\Omega V_2|\psi|^2\dd^3r
+}.
+$$
+
+第一项是边界流出，第二项是体积内部的产生或吸收。
+
+若取全空间，且无穷远通量为零：
+
+$$
+\frac{\dd}{\dd t}\Vert\psi\Vert^2
+=\frac{2}{\hbar}\int V_2|\psi|^2\dd^3r.
+$$
+
+因此：
+
+- $V_2<0$：概率被吸收；
+- $V_2>0$：概率被放大；
+- $V_2$ 正负混合：总范数的方向取决于加权积分，不是看某一点的符号。
+
+## 1.2.5 物理解释与数值计算中的用途
+
+在开放系统或散射数值计算里，常在计算区域边缘加
+
+$$
+V_{\rm CAP}=-\frac{\ii}{2}\Gamma(\mathbf r),
+\qquad \Gamma\ge0,
+$$
+
+它会吸收到达边界的波包，减少有限网格边缘的非物理反射。它是有效模型，不是封闭系统的基本厄米 Hamilton 量。
+
+## 1.2.6 易错点与自检
+
+1. 源项系数是 $2V_2/\hbar$，容易漏掉 2。
+2. 不能把 $V_2<0$ 说成“概率流向外”；它是体积内部的损失，与边界通量是不同机制。
+3. 非厄米演化后若重新归一化，得到的是“条件于尚未被吸收”的状态；这一步会引入非线性，不能与原线性方程混淆。
+4. 若 $V_2$ 是常数，范数应呈指数变化，可作最简单自检。
+
+### 本质不同变式：均匀衰减势
+
+**题目。** 全空间取 $V_2=-\Gamma/2$，$\Gamma>0$ 为常数，且无穷远通量为零。求总概率 $P(t)$。
+
+**解答。** 有
+
+$$
+\frac{\dd P}{\dd t}
+=\frac{2}{\hbar}\left(-\frac\Gamma2\right)P
+=-\frac\Gamma\hbar P.
+$$
+
+解得
+
+$$
+\boxed{P(t)=P(0)\ee^{-\Gamma t/\hbar}}.
+$$
+
+波函数本身的整体幅度因子为 $\ee^{-\Gamma t/(2\hbar)}$，平方后才得到上式。
+
+### 同类巩固：局域吸收层
+
+**题目。** 一维区间 $[a,b]$ 内有 $V_2(x)=-W(x)$，$W\ge0$；区间两端概率流分别为 $j(a)$、$j(b)$。写出区间内概率变化率。
+
+**解答。** 一维散度积分给出
+
+$$
+\boxed{
+\frac{\dd}{\dd t}\int_a^b|\psi|^2\dd x
+=j(a)-j(b)-\frac{2}{\hbar}\int_a^bW(x)|\psi|^2\dd x
+}.
+$$
+
+第一、二项合起来是“流入减流出”，最后一项永远非正，是内部吸收。
+
+\clearpage
+
+# 题 1.3：自由粒子的平面波、delta 初态与传播子
+
+## 1.3.1 题意重述
+
+一维自由粒子 Hamilton 算符为
+
+$$
+\hat H=-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}.
+$$
+
+本题依次要求：
+
+1. 验证动量平面波也是能量本征态；
+2. 写出该平面波的含时演化；
+3. 判断 $\delta(x)$ 是否为能量本征态；
+4. 求 delta 初态的自由演化。
+
+## 1.3.2 平面波是广义能量本征态
+
+取
+
+$$
+\psi_p(x)=\frac1{\sqrt{2\pi\hbar}}\ee^{\ii px/\hbar}.
+$$
+
+求二阶导数：
+
+$$
+\frac{\dd^2\psi_p}{\dd x^2}
+=\left(\frac{\ii p}{\hbar}\right)^2\psi_p
+=-\frac{p^2}{\hbar^2}\psi_p.
+$$
+
+于是
+
+$$
+\hat H\psi_p
+=-\frac{\hbar^2}{2m}
+\left(-\frac{p^2}{\hbar^2}\right)\psi_p
+=\frac{p^2}{2m}\psi_p.
+$$
+
+所以
+
+$$
+\boxed{E_p=\frac{p^2}{2m}}.
+$$
+
+它不是普通平方可积态，而满足
+
+$$
+\int\psi_p^*(x)\psi_{p'}(x)\dd x=\delta(p-p').
+$$
+
+## 1.3.3 平面波的时间演化
+
+能量本征态只获得相位：
+
+$$
+\boxed{
+\psi_p(x,t)=\frac1{\sqrt{2\pi\hbar}}
+\exp\left(\frac{\ii px}{\hbar}-\frac{\ii p^2t}{2m\hbar}\right)
+}.
+$$
+
+概率密度与时间无关，因为时间因子的模为 1。
+
+## 1.3.4 为什么 $\delta(x)$ 不是能量本征态
+
+Fourier 表示为
+
+$$
+\delta(x)=\frac1{2\pi\hbar}\int_{-\infty}^{\infty}
+\ee^{\ii px/\hbar}\dd p.
+$$
+
+它包含所有动量 $p$。各分量的能量是 $p^2/(2m)$，并不相同。因此整个叠加态不能对应单一能量本征值。
+
+还可直接算：
+
+$$
+\hat H\delta(x)
+=-\frac{\hbar^2}{2m}\delta''(x).
+$$
+
+不存在常数 $E$ 使 $\delta''(x)=-(2mE/\hbar^2)\delta(x)$ 作为分布恒成立。因此
+
+$$
+\boxed{\delta(x)\text{ 不是自由 Hamilton 量的能量本征态}}.
+$$
+
+## 1.3.5 delta 初态的自由传播
+
+自由演化的 Fourier 展开为
+
+$$
+\psi(x,t)=\frac1{2\pi\hbar}
+\int_{-\infty}^{\infty}
+\exp\left[
+\frac{\ii px}{\hbar}-\frac{\ii p^2t}{2m\hbar}
+\right]\dd p.
+$$
+
+配方：
+
+$$
+px-\frac{p^2t}{2m}
+=-\frac{t}{2m}\left(p-\frac{mx}{t}\right)^2
++\frac{mx^2}{2t}.
+$$
+
+所以
+
+$$
+\psi(x,t)=
+\frac{\ee^{\ii mx^2/(2\hbar t)}}{2\pi\hbar}
+\int_{-\infty}^{\infty}
+\exp\left[-\frac{\ii t}{2m\hbar}
+\left(p-\frac{mx}{t}\right)^2\right]\dd p.
+$$
+
+利用 Fresnel Gaussian 积分，$t>0$ 时
+
+$$
+\int_{-\infty}^{\infty}
+\ee^{-\ii tq^2/(2m\hbar)}\dd q
+=\sqrt{\frac{2\pi m\hbar}{t}}\ee^{-\ii\pi/4}.
+$$
+
+因此
+
+$$
+\boxed{
+K(x,t;0,0)
+=\psi(x,t)
+=\sqrt{\frac{m}{2\pi\ii\hbar t}}
+\exp\left(\frac{\ii mx^2}{2\hbar t}\right)
+}.
+$$
+
+更一般地，
+
+$$
+\boxed{
+K(x,t;x',0)
+=\sqrt{\frac{m}{2\pi\ii\hbar t}}
+\exp\left[\frac{\ii m(x-x')^2}{2\hbar t}\right]
+}.
+$$
+
+## 1.3.6 为什么 $|K|^2$ 看起来是常数
+
+对固定 $t$，
+
+$$
+|K|^2=\frac{m}{2\pi\hbar t},
+$$
+
+确实与 $x$ 无关，积分发散。这不矛盾，因为 delta 初态本来就不是归一化态。传播子是积分核，不是一个普通概率态。把它作用在任意平方可积初态上后，所得波函数才可归一化。
+
+## 1.3.7 三个自检
+
+1. 量纲：$K$ 的量纲是 $L^{-1}$，因为 $K\dd x'$ 要产生 $L^{-1/2}$ 的波函数。
+2. 初值：分布意义下 $\lim_{t\downarrow0}K(x,t;x',0)=\delta(x-x')$。
+3. 组合律：
+   $$
+   \int K(x,t;y,t_1)K(y,t_1;x',0)\dd y=K(x,t;x',0).
+   $$
+
+### 本质不同变式：双点源干涉
+
