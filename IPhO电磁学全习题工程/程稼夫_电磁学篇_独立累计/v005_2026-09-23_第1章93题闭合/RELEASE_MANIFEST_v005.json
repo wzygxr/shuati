@@ -1,0 +1,35 @@
+{
+  "project": "程稼夫《中学奥林匹克竞赛物理教程·电磁学篇》全习题详解",
+  "version": "v005",
+  "date": "2026-09-23",
+  "source_pdf_physical_pages": 629,
+  "formal_denominator": 246,
+  "completed_formal": 93,
+  "completed_range": "1-1--1-93",
+  "remaining_formal": 153,
+  "next_breakpoint": "2-1",
+  "chapter1": "93/93 CLOSED",
+  "variants": 186,
+  "same_type_drills": 93,
+  "training_units": 372,
+  "new_batch": {"range":"1-61--1-93","formal":33,"variants":66,"drills":33,"units":132},
+  "verification": {
+    "formula_checks":"109/109 PASS",
+    "cumulative_pdf_pages":222,
+    "cumulative_rendered_pages":"222/222",
+    "increment_pdf_pages":52,
+    "increment_rendered_pages":"52/52",
+    "ghostscript":"PASS",
+    "pdfinfo":"PASS",
+    "fonts_embedded":true,
+    "eof":true,
+    "startxref_count":1,
+    "classic_xref_count":1
+  },
+  "sha256": {
+    "cumulative_md":"8cde12ec46f46f44b082ef57b322bd51f17fa68ca5d9aa7d1c2ccf262e1ea8bb",
+    "cumulative_pdf":"9924505ffc553c9851b9985c545b19dab607d87096edc56e3e96f4b639bd61c7",
+    "increment_md":"7e5bc6db12cf07ea53ccb990db6ae3d1d5ad0847f0f164796a2df4cd12db136c",
+    "increment_pdf":"a0d5cbdd4f1e56bbdd14b7b242376f2364800eb11420cae8ad066ff262706c83"
+  }
+}
