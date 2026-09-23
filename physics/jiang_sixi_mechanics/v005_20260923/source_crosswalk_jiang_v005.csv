@@ -1,0 +1,46 @@
+source_id,book,topic,problem,pdf_question_page,pdf_answer_pages,status,dedup_status,notes,training_variants
+J1-01,江四喜《物理竞赛专题精编》,1 相对运动,1,10,165,COMPLETE,provisionally_unique,挡风玻璃反射冰雹；结论 3:1,2+1
+J1-02,江四喜《物理竞赛专题精编》,1 相对运动,2,10,165-166,COMPLETE,provisionally_unique,斜跨河流往返；V≈8.27648 m/s,2+1
+J1-03,江四喜《物理竞赛专题精编》,1 相对运动,3,10,166,COMPLETE-CORRECTED,provisionally_unique,参考答案数值冲突；重新解二维相遇方程,2+1
+J1-04,江四喜《物理竞赛专题精编》,1 相对运动,4,10-11,166-167,COMPLETE,provisionally_unique,车队间隙最小穿越速率,2+1
+J1-05,江四喜《物理竞赛专题精编》,1 相对运动,5,11,167,COMPLETE,provisionally_unique,有风等边三角形绕行,2+1
+J1-06,江四喜《物理竞赛专题精编》,1 相对运动,6,11,167-168,COMPLETE-CONDITIONED,provisionally_unique,按字面欠定；一般解与标准隐含条件解并列,2+1
+J1-07,江四喜《物理竞赛专题精编》,1 相对运动,7,11,168,COMPLETE,provisionally_unique,正五边形隔点追逐,2+1
+J1-08,江四喜《物理竞赛专题精编》,1 相对运动,8,11,168,COMPLETE,provisionally_unique,加速斜面中的相对加速度,2+1
+J1-09,江四喜《物理竞赛专题精编》,1 相对运动,9,11,168-169,COMPLETE,provisionally_unique,半圆柱与绳长约束,2+1
+J1-10,江四喜《物理竞赛专题精编》,1 相对运动,10,11,169,COMPLETE,provisionally_unique,两梳子莫尔条纹；按移动梳子分两支,2+1
+J2-01,江四喜《物理竞赛专题精编》,2 速度与加速度关联,1,12,170,COMPLETE,provisionally_unique,收绳与小船；位置约束两次求导,2+1
+J2-02,江四喜《物理竞赛专题精编》,2 速度与加速度关联,2,12,170-171,COMPLETE,provisionally_unique,折线绳与滑珠；带符号坐标,2+1
+J2-03,江四喜《物理竞赛专题精编》,2 速度与加速度关联,3,12,171,COMPLETE-CORRECTED,provisionally_unique,修正参考答案最终 8/16 系数错误,2+1
+J2-04,江四喜《物理竞赛专题精编》,2 速度与加速度关联,4,12,171-172,COMPLETE,provisionally_unique,同绳多级滑轮；解释零张力奇异极限,2+1
+J2-05,江四喜《物理竞赛专题精编》,2 速度与加速度关联,5,12-13,172,COMPLETE,provisionally_unique,定长杆与收绳；法向/切向加速度,2+1
+J2-06,江四喜《物理竞赛专题精编》,2 速度与加速度关联,6,13,172-173,COMPLETE,provisionally_unique,切杆与固定圆；区分材料点和几何切点,2+1
+J2-07,江四喜《物理竞赛专题精编》,2 速度与加速度关联,7,13,173,COMPLETE,provisionally_unique,两轴滑杆；椭圆轨迹,2+1
+J2-08,江四喜《物理竞赛专题精编》,2 速度与加速度关联,8,13,173-174,COMPLETE,provisionally_unique,平移半圆柱顶杆；保留曲率项,2+1
+J2-09,江四喜《物理竞赛专题精编》,2 速度与加速度关联,9,13,174-175,COMPLETE-CORRECTED,provisionally_unique,修正漏印 1/8 与平方差错误,2+1
+J3-01,江四喜《物理竞赛专题精编》,3 杆系交叉点的速度,1,14,175,COMPLETE,provisionally_unique,两移动直杆交点；地面速度及相对两杆速度,2+1
+J3-02,江四喜《物理竞赛专题精编》,3 杆系交叉点的速度,2,14,175-176,COMPLETE,provisionally_unique,转杆与固定导轨；x=d tan(theta) 两次求导,2+1
+J3-03,江四喜《物理竞赛专题精编》,3 杆系交叉点的速度,3,14,176,COMPLETE,provisionally_unique,平移直杆与固定圆；区分向心与总加速度,2+1
+J3-04,江四喜《物理竞赛专题精编》,3 杆系交叉点的速度,4,14,176-177,COMPLETE,provisionally_unique,固定圆周角轨迹；交点角速度 2 omega,2+1
+J3-05,江四喜《物理竞赛专题精编》,3 杆系交叉点的速度,5,14,177,COMPLETE,provisionally_unique,两等半径圆交点；写明存在区间与奇异极限,2+1
+J3-06,江四喜《物理竞赛专题精编》,3 杆系交叉点的速度,6,14-15,177-178,COMPLETE-CORRECTED,provisionally_unique,字面题目欠定；补共同形变角后恢复 sqrt(17)v/6,2+1
+J3-07,江四喜《物理竞赛专题精编》,3 杆系交叉点的速度,7,15,178,COMPLETE,provisionally_unique,菱形顶点；二次微分杆长约束,2+1
+J4-01,江四喜《物理竞赛专题精编》,4 射程,1,15,178-180,COMPLETE,provisionally_unique,高处抛体最大水平射程；判别式与包络两路核对,2+1
+J4-02,江四喜《物理竞赛专题精编》,4 射程,2,15,180,COMPLETE,provisionally_unique,高低岸壕沟；选正时间根后求宽度与末速度,2+1
+J4-03,江四喜《物理竞赛专题精编》,4 射程,3,15-16,180-181,COMPLETE,provisionally_unique,斜坡沿坡射程；先能量后优化,2+1
+J4-04,江四喜《物理竞赛专题精编》,4 射程,4,16,181,COMPLETE-REFINED,provisionally_unique,区分严格增加与单调不减的临界等号,2+1
+J4-05,江四喜《物理竞赛专题精编》,4 射程,5,16,181-183,COMPLETE-CORRECTED,provisionally_unique,修正第二分支根号2因子并补反正弦第二有效角,2+1
+J4-06,江四喜《物理竞赛专题精编》,4 射程,6,16,183-185,COMPLETE,provisionally_unique,喷泉水幕包络与均匀灌溉孔密度,2+1
+J4-07,江四喜《物理竞赛专题精编》,4 射程,7,16,185-186,COMPLETE,provisionally_unique,空中抛物块；任意时刻总飞行时间与立即抛出最优,2+1
+J5-01,江四喜《物理竞赛专题精编》,5 类抛体运动,1,17,186-188,COMPLETE,provisionally_unique,线性剪切流渡河；积分求零漂移，逆流分量为平均流速,2+1
+J5-02,江四喜《物理竞赛专题精编》,5 类抛体运动,2,17,188,COMPLETE-REFINED,provisionally_unique,移动绝缘管带电球；能量来自移动约束做功，离管后磁场圆周,2+1
+J5-03,江四喜《物理竞赛专题精编》,5 类抛体运动,3,17-18,188-190,COMPLETE,provisionally_unique,滑环绳珠；抛物线约束、曲率半径、法向方程与断裂条件,2+1
+J5-04,江四喜《物理竞赛专题精编》,5 类抛体运动,4,18,190-193,COMPLETE-CORRECTED,provisionally_unique,电场磁场回返；给出任意 d>0 的一般非对称族，并单列对称子族,2+1
+J6-01,江四喜《物理竞赛专题精编》,6 有障碍的抛体运动,1,18,193-194,COMPLETE,provisionally_unique,双水平抛与地面反弹；速度比3，杆位R/2，杆高3H/4,2+1
+J6-02,江四喜《物理竞赛专题精编》,6 有障碍的抛体运动,2,18,194,COMPLETE,provisionally_unique,越墙最小初速度；tan角二次式判别式为零,2+1
+J6-03,江四喜《物理竞赛专题精编》,6 有障碍的抛体运动,3,19,194-196,COMPLETE,provisionally_unique,山顶遮挡；先判45度轨道是否可行，再处理高山相切分支,2+1
+J6-04,江四喜《物理竞赛专题精编》,6 有障碍的抛体运动,4,19,196,COMPLETE-REFINED,provisionally_unique,足球窄高度窗口；复算低角、高角两组边界,2+1
+J6-05,江四喜《物理竞赛专题精编》,6 有障碍的抛体运动,5,19,196,COMPLETE,provisionally_unique,圆环顶部缺口；弦长、抛体、能量和接触力联合检查,2+1
+J6-06,江四喜《物理竞赛专题精编》,6 有障碍的抛体运动,6,19,196-197,COMPLETE-REFINED,provisionally_unique,蚱蜢越圆柱；最小速度sqrt(2gR(1+sqrt2))，起跳角67.5度,2+1
+J6-07,江四喜《物理竞赛专题精编》,6 有障碍的抛体运动,7,19,197-198,COMPLETE-CORRECTED,provisionally_unique,灯泡碎片与天花板；修正低顶分支水平速度并核验连续性,2+1
+J6-08,江四喜《物理竞赛专题精编》,6 有障碍的抛体运动,8,19,198-199,COMPLETE-CORRECTED,provisionally_unique,斜掩蔽所；45度可行阈值补回因子2,2+1
