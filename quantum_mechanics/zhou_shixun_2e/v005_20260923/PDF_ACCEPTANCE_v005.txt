@@ -14,7 +14,7 @@
 - XeLaTeX：连续两遍返回0
 - PDF：422页
 - 页面尺寸：A4（595.28 × 841.89 pt）
-- 文件大小：4,567,998 bytes
+- 文件大小：4,568,633 bytes
 - 未加密；无JavaScript；无表单；可由PyMuPDF正常打开
 - PDF outline：972项
 - startxref：1处，正常
@@ -24,7 +24,7 @@
 - 中文正文字体：Noto Serif CJK，嵌入、子集化、Unicode映射正常
 - 中文粗体：Noto Serif CJK Bold，嵌入、子集化、Unicode映射正常
 - 数学字体：DejaVu Math TeX Gyre，嵌入、子集化、Unicode映射正常
-- pdftotext抽取字符：223,818
+- pdftotext抽取字符：224,025
 - Unicode替换字符U+FFFD：0
 - NUL字符：0
 - XeLaTeX日志：Fatal error、Emergency stop、Undefined control sequence、Missing character、LaTeX Error、Package Error均为0
@@ -50,5 +50,14 @@
 - 教材正文既有真实页数账：248页
 - 本轮读取与渲染学习指导PDF第121–160页，覆盖第6章6.1–6.6和第7章7.1–7.8
 - 未使用聊天界面约150页预览层作为整书终点
+
+七、跨项目总账刷新
+- 在最终封包前再次核对Library、GitHub与其他并行对话；
+- 井孝功更新为65/137、余72、下一8.1；
+- 钱伯初更新为61个可靠题位、下一6-10；
+- 苏汝铿更新为41/181、余140、下一3.1；
+- 关洪《量子力学基础》更新为51/184、余133、下一5.1；
+- 陈鄂生更新为66/150、余84、下一第6章第1题；
+- 顾樵卷I前两章28个显式计算题位闭合；汪德新前两章累计79个答案题位闭合。
 
 结论：v005累计PDF通过结构、字体、文本、全页渲染、数值复核和字节尾部检查；周世勋第二版54道正式课后题全部闭合。
