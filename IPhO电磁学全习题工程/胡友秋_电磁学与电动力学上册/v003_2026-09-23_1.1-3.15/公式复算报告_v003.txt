@@ -1,0 +1,51 @@
+PASS | 3.1 potential energy | 3.834688764698e-14 J
+PASS | 3.1 Coulomb force | 6.39114794116 N
+PASS | 3.1 derivative relation F=W/r
+PASS | 3.2 pair sum
+PASS | 3.2 alpha zero-energy variant
+PASS | 3.2 midpoint is unstable maximum
+PASS | 3.3 hexagon total energy
+PASS | 3.3 remove adjacent pair work
+PASS | 3.3 pair count
+PASS | 3.3 remove opposite rigid pair work
+PASS | 3.4 uniform volume self-energy integral
+PASS | 3.4 classical electron radius | 2.806212e-15 m
+PASS | 3.4 shell radius ratio
+PASS | 3.5 before connection energy | 1.819979237933e-04
+PASS | 3.5 after connection energy | 8.088796613035e-05
+PASS | 3.5 released energy positive
+PASS | 3.6 initial nuclear electrostatic energy | 792.702185 MeV
+PASS | 3.6 two-fragment factor
+PASS | 3.6 released energy | 293.331100 MeV
+PASS | 3.6 one kilogram energy | 1.204347e+14 J
+PASS | 3.7 energy density
+PASS | 3.7 integrated energy
+PASS | 3.7 equals Q^2/(2C)
+PASS | 3.8 half-energy geometric mean
+PASS | 3.8 spherical half-energy harmonic mean
+PASS | 3.9 voltage optimum derivative
+PASS | 3.9 energy optimum derivative
+PASS | 3.9 voltage-optimal numeric | 11036.383235 V
+PASS | 3.9 energy-optimal voltage numeric | 9097.959896 V
+PASS | 3.10 self plus mutual total
+PASS | 3.11 capacitance linear in inserted length
+PASS | 3.11 fixed-voltage force
+PASS | 3.12 equivalent capacitance
+PASS | 3.12 fixed-charge force formula
+PASS | 3.12 vacuum limit force zero
+PASS | 3.12 conductor limit t'=t
+PASS | 3.13 disconnected work
+PASS | 3.13 connected work
+PASS | 3.13 conductor disconnected
+PASS | 3.13 conductor connected
+PASS | 3.13 disconnected work exceeds connected
+PASS | 3.14 force coefficient
+PASS | 3.14 assembly energy coefficient in kq2/a
+PASS | 3.14 textbook energy coefficient
+PASS | 3.14 induced sigma negative
+PASS | 3.15 boundary fixes dipole coefficient
+PASS | 3.15 induced dipole moment
+PASS | 3.15 induced-charge self-energy
+PASS | 3.15 total induced energy change
+
+SUMMARY | PASS=49 FAIL=0 TOTAL=49
