@@ -27,13 +27,70 @@
     "startxref_count": 1
   },
   "files": [
-    {"name":"程稼夫电磁学篇_全习题详解_累计v003_1-1至1-40.md","bytes":172270,"sha256":"0f1eebd17582b316ed6c124e80095d0c37a1f925da4ea636e75090af92971b49"},
-    {"name":"程稼夫电磁学篇_全习题详解_累计v003_1-1至1-40.pdf","bytes":1592821,"sha256":"6d659cce79d0b78905521518be8993413833bb1e6596b324bbf90e24b1775103"},
-    {"name":"程稼夫电磁学篇_v003_新增卷_1-26至1-40.md","bytes":66256,"sha256":"9ed3fac39d5121eee6c01f78456679d0015528212c22e4d3d7c0ad9a95123e7a"},
-    {"name":"程稼夫电磁学篇_v003_公式复算.py","bytes":21156,"sha256":"e8b127ad1fe10f120334f8dc9f2b9cd1ed03b2f874b3e7bbecf0aeb8c5360f5f"},
-    {"name":"程稼夫电磁学篇_v003_公式复算报告.json","bytes":25573,"sha256":"ba374e9b47b3d985c026d3967debdafc654ba2e57d14836e012fd01ff3365ec5"},
-    {"name":"程稼夫电磁学篇_题位总账_v003.csv","bytes":23391,"sha256":"7abcd9a8bbfeaac5f6eb211514e7496d1c46162f8b409a804b6eb846e1ae998a"},
-    {"name":"程稼夫电磁学篇_题位总账_v003.json","bytes":117748,"sha256":"a26347592aa482aa00f9cbea3258bc0de7252eaf8541a0af57e2f24914dc6247"},
-    {"name":"程稼夫电磁学篇_题位总账_v003.md","bytes":4376,"sha256":"fb932dbea7ca40c6a40c73ed7c339431a121335f5c85f48ccb45e717a25e8454"}
+    {
+      "name": "程稼夫电磁学篇_全习题详解_累计v003_1-1至1-40.md",
+      "bytes": 172270,
+      "sha256": "0f1eebd17582b316ed6c124e80095d0c37a1f925da4ea636e75090af92971b49"
+    },
+    {
+      "name": "程稼夫电磁学篇_全习题详解_累计v003_1-1至1-40.pdf",
+      "bytes": 1592821,
+      "sha256": "6d659cce79d0b78905521518be8993413833bb1e6596b324bbf90e24b1775103"
+    },
+    {
+      "name": "程稼夫电磁学篇_v003_新增卷_1-26至1-40.md",
+      "bytes": 66256,
+      "sha256": "9ed3fac39d5121eee6c01f78456679d0015528212c22e4d3d7c0ad9a95123e7a"
+    },
+    {
+      "name": "程稼夫电磁学篇_v003_公式复算.py",
+      "bytes": 21156,
+      "sha256": "e8b127ad1fe10f120334f8dc9f2b9cd1ed03b2f874b3e7bbecf0aeb8c5360f5f"
+    },
+    {
+      "name": "程稼夫电磁学篇_v003_公式复算报告.json",
+      "bytes": 25573,
+      "sha256": "ba374e9b47b3d985c026d3967debdafc654ba2e57d14836e012fd01ff3365ec5"
+    },
+    {
+      "name": "程稼夫电磁学篇_题位总账_v003.csv",
+      "bytes": 23391,
+      "sha256": "7abcd9a8bbfeaac5f6eb211514e7496d1c46162f8b409a804b6eb846e1ae998a"
+    },
+    {
+      "name": "程稼夫电磁学篇_题位总账_v003.json",
+      "bytes": 117748,
+      "sha256": "a26347592aa482aa00f9cbea3258bc0de7252eaf8541a0af57e2f24914dc6247"
+    },
+    {
+      "name": "程稼夫电磁学篇_题位总账_v003.md",
+      "bytes": 4376,
+      "sha256": "fb932dbea7ca40c6a40c73ed7c339431a121335f5c85f48ccb45e717a25e8454"
+    },
+    {
+      "name": "程稼夫电磁学篇_v003_更新摘要.md",
+      "bytes": 1373,
+      "sha256": "ac8b8ffd20774be30f4c9f8a3a1b95a41421452fb34cb254ac727663b67b8a27"
+    },
+    {
+      "name": "程稼夫电磁学篇_v003_剩余总账.md",
+      "bytes": 1951,
+      "sha256": "3c6f0a832ef963481d524ee7f2d6202b7712852f11da09aba12141ed2fb935a8"
+    },
+    {
+      "name": "程稼夫电磁学篇_v003_质量与编译验收报告.md",
+      "bytes": 1957,
+      "sha256": "c3da4ff8c424b0d1266dd2da8828a968496fe485e61e99d2433caab0b402f77e"
+    },
+    {
+      "name": "程稼夫电磁学篇_v003_外部参考与补充阅读.md",
+      "bytes": 1235,
+      "sha256": "586915c452f2714e631b47e14ac4c90ea5f9fa6c04f08d85fe0e421e5665f427"
+    },
+    {
+      "name": "Drive_Library_GitHub_保存状态_v003.md",
+      "bytes": 1899,
+      "sha256": "0676d048fd14e99813a982ccc0f7d5ad44bea0e8f42c1243985d83e03515c873"
+    }
   ]
 }
