@@ -1,0 +1,8 @@
+{
+  "project":"《力学与理论力学（第二版）》习题详解",
+  "version":"v005",
+  "date":"2026-09-23",
+  "source":{"physical_pages":245,"preview_layer_pages":150,"formal_problem_total":385,"sha256":"bb45b642b498ae30410c90e9c6d22a08fe2273a01b53ef0a669782f4cf4d3140"},
+  "progress":{"formal_completed":141,"formal_remaining":244,"new_formal_this_version":23,"total_companion_problems":423,"total_training_units_in_cumulative":596,"next_breakpoint":"上册第8章 8.1"},
+  "qa":{"formula_numeric_structure_checks":"266/266 PASS","compiled_pdf_pages":298,"rendered_pages":"298/298 PASS @120dpi","unexpected_blank_pages":0,"very_low_content_pages":0,"edge_dark_suspects":0,"ghostscript_nullpage":"PASS","startxref_count":1,"eof_count":1}
+}
