@@ -1,0 +1,9 @@
+{
+  "version":"v073-TX008",
+  "date":"2026-09-23",
+  "source":{"physical_pages":376,"preview_layer_pages":150,"size_bytes":54896885,"sha256":"44d0b4e0e108ed2b65d03b32c969e2b09768bd8fec011df76c6862aa4314f031"},
+  "range":{"first":"1.123","last":"1.145","count":23,"progress":"145/350","remaining":205,"next":"1.146"},
+  "source_pages":{"problems":{"1.123-1.129":28,"1.130-1.135":29,"1.136-1.141":30,"1.142-1.145-start":31,"1.145-continuation":32},"answers":{"1.123-1.145":"164-186"}},
+  "qa":{"checks":650,"passed":650,"failed":0,"fragment_pages":66,"fragment_rendered_pages":66,"fragment_ghostscript":"PASS","cumulative_pages":5213,"cumulative_pymupdf":"5213/5213","cumulative_ghostscript":"PASS","eof":"PASS","startxref":"PASS"},
+  "counting":{"v072_originals":2171,"v072_variants":6513,"batch_originals":23,"batch_variants_and_drills":69,"safe_baseline_originals":2194,"safe_baseline_variants":6582,"safe_baseline_units":8776,"note":"parallel unmerged increments excluded to prevent double counting"}
+}
