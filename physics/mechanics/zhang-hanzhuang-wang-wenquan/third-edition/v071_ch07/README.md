@@ -42,9 +42,9 @@ a_2=\frac{(m+m_1+m_2)g}{3m+m_2+\frac32m_1}.
 
 三者等质量时为 `6g/11`。该修正已同步到 Markdown、独立分册 PDF、累计 PDF 和复算脚本。
 
-## GitHub 文本恢复格式
+## GitHub 与完整文本恢复
 
-为了绕开 GitHub Contents API 不能直接写入大型二进制 PDF 的限制，累计 Markdown 另生成：
+GitHub 版本目录已经写入 README、进度 JSON、第八章题位表、剩余总账和 QA 报告。PDF 与完整累计 Markdown 仍以本轮 ZIP 为主交付；为便于在本地或其他存储恢复，ZIP 中另放入累计 Markdown 的压缩文本：
 
 ```text
 力学习题全解_累计接续主文档_v071.md.gz.b64
@@ -57,7 +57,7 @@ base64 -d 力学习题全解_累计接续主文档_v071.md.gz.b64 \
   | gzip -d > 力学习题全解_累计接续主文档_v071.md
 ```
 
-恢复后应以 `SHA256SUMS_v071.txt` 中的散列值核对。
+恢复后应以 `SHA256SUMS_v071.txt` 中的散列值核对。该压缩文本保存在完整交付包中，当前没有冒充为已经写入 GitHub 的文件。
 
 ## 本地重新编译
 
