@@ -12,11 +12,11 @@
 - 同类巩固：60；
 - 训练单元：240。
 
-教材这一版的第 7—9 章没有独立编号的章末习题块，因此没有虚构题号。本项目当前可核验近代物理题位为 60/60。
+教材这一版的第 7—9 章没有独立编号的章末习题块，因此没有虚构题号。本项目当前可核验近代物理题位为 **60/60**。
 
-## 文件布局
+## 文件布局与恢复
 
-受当前 GitHub 连接器只支持 UTF-8 文本写入的限制，累计 Markdown 原文按行完整拆成 11 个片段，位于 `parts/`。运行：
+当前 GitHub 连接器只支持 UTF-8 文本写入，不能直接提交本轮 PDF、ZIP 等二进制文件。因此，累计 Markdown 先以确定性 gzip 压缩，再作 Base64 编码并拆成 6 个文本片段，位于 `archive/`。运行：
 
 ```bash
 python scripts/reassemble.py
@@ -28,7 +28,12 @@ python scripts/reassemble.py
 大学物理通用教程_近代物理_Ch5-9_全习题详解_累计_v002.md
 ```
 
-`manifest_v002.json`、质量报告、剩余总账及 SHA-256 信息一并保存。73 页编译 PDF 与完整 ZIP 的二进制文件未伪装成已上传；其校验值记录在 manifest 与 README 中。
+恢复脚本同时校验压缩流与原始 Markdown 的 SHA-256：
+
+- 原始 Markdown：`6e7f5c41673216c8f2dffa4dab998db0be62179e341f74a901a512f66bd4d319`；
+- gzip 流：`9deadb7760e3675f2dffef533be311fbcae5e75c3a8f1506bb1c8ff5e2b7418e`。
+
+`manifest_v002.json`、质量报告和剩余总账一并保存。73 页编译 PDF 与完整 ZIP 的二进制文件没有伪装成已经上传；它们仍由本轮 ChatGPT 交付链接提供。
 
 ## 二进制交付校验
 
