@@ -1,0 +1,23 @@
+v072-TX007 BUILD STATUS
+source_full_pages=376
+source_preview_layer_pages=150
+range=1.101-1.122
+new_originals=22
+new_variants=44
+new_similar_drills=22
+new_training_units=88
+book_progress=122/350
+remaining=228
+next_problem=1.123
+formula_structure_checks=378/378 PASS
+fragment_pages=71
+fragment_xelatex_warnings=0
+fragment_overfull=0
+fragment_missing_chars=0
+fragment_pdfium_render=71/71 PASS
+branch_cumulative_pages=5145
+branch_cumulative_pymupdf=5145/5145 PASS
+branch_cumulative_ghostscript=PASS
+branch_cumulative_startxref=PASS
+branch_cumulative_eof=PASS
+v072_arithmetic_baseline=2171 originals + 6513 variants = 8684 units
