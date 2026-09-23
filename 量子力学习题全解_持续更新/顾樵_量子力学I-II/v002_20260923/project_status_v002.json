@@ -1,0 +1,52 @@
+{
+  "version": "v002",
+  "date": "2026-09-23",
+  "sources": {
+    "volume_I": {
+      "pages": 333,
+      "bytes": 57190142,
+      "sha256": "88bede471f68a6dbe514c8753c25f543ab1226d62d2b73fa37e4f3d8e8be144d"
+    },
+    "volume_II": {
+      "pages": 319,
+      "bytes": 47665586,
+      "sha256": "d837cb61566e8ff70d2b20f53ee188452cb1de42f555c3df23ebcf6f3b26b2fc"
+    },
+    "total_pages": 652
+  },
+  "completed": {
+    "chapter_1": {
+      "source_problems": 13,
+      "distinct_variants": 26,
+      "reinforcements": 13
+    },
+    "chapter_2": {
+      "source_problems": 15,
+      "distinct_variants": 30,
+      "reinforcements": 15
+    },
+    "total_source_problems": 28,
+    "total_training_units": 112,
+    "figures": 12,
+    "calculation_checks": {
+      "passed": 51,
+      "total": 51
+    }
+  },
+  "next_breakpoint": "顾樵《量子力学 I》第3章，原始PDF物理页114（印刷页99）后的首个显式例题",
+  "artifacts": {
+    "markdown": {
+      "name": "顾樵_量子力学I-II_书内例题逐题详解_累计_v002_第1至2章全部显式例题闭合_20260923.md",
+      "sha256": "15fcfdff49f4761471716ac854c7cb78047049c29da24dc529d8c084ff1d1da4"
+    },
+    "pdf": {
+      "name": "顾樵_量子力学I-II_书内例题逐题详解_累计_v002_第1至2章全部显式例题闭合_20260923.pdf",
+      "pages": 88,
+      "sha256": "271bcc33a6ae6a6d786ddc93599d66364f0426bef21957d909ca1cdfe418298a"
+    },
+    "full_package": {
+      "name": "顾樵_量子力学I-II_书内例题逐题详解_v002_第1至2章完整交付包_20260923.zip",
+      "sha256": "838469b65531f3d6a349256eed82e70e7329951f33d46b409ce0ee0936b94922"
+    }
+  }
+}
