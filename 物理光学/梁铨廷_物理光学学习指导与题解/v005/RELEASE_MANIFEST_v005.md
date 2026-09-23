@@ -14,10 +14,10 @@
 |---|---:|---|
 | `梁铨廷_物理光学学习指导与题解_累计v005_第1至4章整章闭合.md` | 303326 | `cbe4ccaa4d2d062a4ad0016435ff9ae62451b86bf3bdfa79d4847717f0c12de2` |
 | `梁铨廷_物理光学学习指导与题解_累计v005_第1至4章整章闭合.pdf` | 6963723 | `dc4600f4f3f45d018e320c526da264b892a413fb117810feedf909fbaff22c4d` |
-| `梁铨廷_物理光学学习指导与题解_v005_源码与验收.zip` | 18506001 | `954d66617e7fc793220edbf4dc4547ab11bb815de415fc0947e1608d86edc9a0` |
+| `梁铨廷_物理光学学习指导与题解_v005_源码与验收.zip` | 18506996 | `138472e7275cad30b7de066d467527a8fcdaf419825a0f06e90ae0c664884c25` |
 
 ## 长期存储
 
 - Google Drive目录已存在，但写入被`storageQuotaExceeded`阻止；
 - Library已达存储上限；
-- GitHub分支保存版本索引、质量报告、进度账、剩余账、证据账与哈希；完整Markdown、PDF和ZIP作为会话附件交付。
+- GitHub分支`chatgpt/liang-optics-v005`与Pull Request #17保存版本索引、质量报告、进度账、剩余账、证据账和哈希；完整Markdown、PDF和ZIP作为会话附件交付。
