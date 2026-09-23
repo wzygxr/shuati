@@ -25,3 +25,7 @@
 - `CH9_SOURCE_INVENTORY_v072.csv`
 - `verify_v072.py`
 - `qa_formula_v072.json`
+
+## GitHub 持久化
+
+本轮核心 UTF-8 文本已实际写入并回读确认：`wzygxr/shuati` 的 `physics/mechanics/zhang-hanzhuang-wang-wenquan/third-edition/v072_ch08/`。
