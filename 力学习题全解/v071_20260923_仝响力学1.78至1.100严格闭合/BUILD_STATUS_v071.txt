@@ -1,0 +1,19 @@
+v071 BUILD STATUS
+source_full_pages=376
+range=1.78-1.100
+new_originals=23
+new_variants_and_drills=69
+formula_structure_checks=378/378 PASS
+fragment_pages=87
+fragment_compile_warnings=0
+fragment_pdfium=87/87 PASS
+fragment_ghostscript=PASS
+branch_cumulative_pages=5072
+branch_cumulative_pymupdf=5072/5072 PASS
+branch_cumulative_ghostscript=PASS
+branch_cumulative_xref_eof=PASS
+global_originals=2149
+global_variants=6447
+global_training_units=8596
+book_progress=100/350
+next_problem=1.101
