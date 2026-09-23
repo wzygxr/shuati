@@ -13,9 +13,9 @@
 
 ## GitHub 保存内容
 
-本目录保存 LATEST、严格进度总账、题源与纠错记录、编译渲染验收、同步状态和 QC 摘要。`sources/` 中的 `.gz` 文件是单文件累计 Markdown/LaTeX 和第 6--7 章 Markdown/LaTeX 的精确 gzip 快照；解压后即可得到原始源文件。
+本目录保存 LATEST、严格进度总账、题源与纠错记录、编译渲染验收、同步状态、QC 摘要和 README，用于长期恢复题号断点、勘误和验收状态。
 
-完整 PDF、源页渲染、图片和 ZIP 同时在对应 ChatGPT 对话交付。
+单文件累计 Markdown、LaTeX、PDF、源页渲染、图片和完整 ZIP 已在对应 ChatGPT 对话直接交付。由于当前 GitHub 连接的写入接口仅处理 UTF-8 文本，本目录不把未上传的大源文件或二进制文件虚报为已同步。
 
 ## 关键纠错
 
