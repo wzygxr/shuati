@@ -1,0 +1,70 @@
+{
+  "version": "v003",
+  "date": "2026-09-23",
+  "scope": "梁铨廷《物理光学》第4版第1--2章正式习题整章闭合",
+  "canonical_parent": "v002",
+  "counts": {
+    "formal_new": 21,
+    "variants_new": 63,
+    "training_new": 84,
+    "formal_cumulative": 54,
+    "variants_cumulative": 162,
+    "training_cumulative": 216,
+    "numeric_checks": 803,
+    "numeric_pass": 803,
+    "numeric_fail": 0
+  },
+  "documents": {
+    "markdown": {
+      "name": "梁铨廷_物理光学学习指导与题解_累计v003_第1至2章整章闭合.md",
+      "bytes": 150253,
+      "lines": 7180,
+      "sha256": "6edf04f154b21826423e474235fd9d22ea9f3fd36d4792d58e2d344df27f04fc"
+    },
+    "pdf": {
+      "name": "梁铨廷_物理光学学习指导与题解_累计v003_第1至2章整章闭合.pdf",
+      "bytes": 2687060,
+      "pages": 158,
+      "sha256": "2ad6b1d14880f7815250bfc061efacd483cbc6f84f90fb857c19571f86bc3147"
+    }
+  },
+  "images": {
+    "markdown_references": 28,
+    "chapter2_new_figures": 15,
+    "missing": 0
+  },
+  "qa": {
+    "xelatex_passes": 3,
+    "final_pages_stable": true,
+    "final_log_warnings": 0,
+    "numeric_and_structural_pass": 803,
+    "numeric_and_structural_fail": 0,
+    "rendered_pages": 158,
+    "blank_pages": 0,
+    "edge_block_alerts": 0,
+    "edge_pixel_alerts": 0,
+    "replacement_characters": 0,
+    "strict_pypdf_pages": 158,
+    "ghostscript_nullpage": "PASS",
+    "fonts_embedded": true,
+    "xref": true,
+    "startxref": true,
+    "single_eof": true,
+    "qpdf": "unavailable; not claimed"
+  },
+  "next_breakpoint": "第3章正式习题3.1",
+  "drive_status": "folder exists; uploads blocked by storageQuotaExceeded",
+  "library_status": "storage limit reached; not uploaded",
+  "github_status": {
+    "repository": "wzygxr/shuati",
+    "branch": "chatgpt/liang-optics-v003",
+    "pull_request": 1,
+    "state": "open",
+    "uploaded_text_files": [
+      "LATEST_梁铨廷物理光学题解_v003.md",
+      "README_编译与复现_v003.md",
+      "质量验收报告_v003.md"
+    ],
+    "binary_note": "PDF/ZIP remain conversation artifacts because the available GitHub write action accepts UTF-8 text, not binary files."
+  }
+}
