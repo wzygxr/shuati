@@ -30,8 +30,8 @@
     },
     "source_zip": {
       "name": "梁铨廷_物理光学学习指导与题解_v005_源码与验收.zip",
-      "bytes": 18506001,
-      "sha256": "954d66617e7fc793220edbf4dc4547ab11bb815de415fc0947e1608d86edc9a0"
+      "bytes": 18506996,
+      "sha256": "138472e7275cad30b7de066d467527a8fcdaf419825a0f06e90ae0c664884c25"
     }
   },
   "images": {
@@ -61,5 +61,11 @@
   "next_breakpoint": "第5章正式习题5.1",
   "drive_status": "folder exists; uploads blocked by storageQuotaExceeded",
   "library_status": "storage limit reached; not uploaded",
+  "github_status": {
+    "repository": "wzygxr/shuati",
+    "branch": "chatgpt/liang-optics-v005",
+    "pull_request": 17,
+    "state": "open"
+  },
   "binary_note": "The complete Markdown, PDF, and ZIP are delivered as conversation artifacts; this GitHub branch stores the version index and audit ledgers."
 }
