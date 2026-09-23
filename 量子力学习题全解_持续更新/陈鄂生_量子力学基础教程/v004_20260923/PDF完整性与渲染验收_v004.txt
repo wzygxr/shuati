@@ -1,0 +1,52 @@
+陈鄂生《量子力学基础教程》全习题详解 v004
+PDF 完整性与渲染验收
+日期：2026-09-23
+
+一、累计主文档
+文件：陈鄂生量子力学基础教程_全习题详解_累计_v004_第1至4章51题全闭合.pdf
+页数：198
+纸张：A4
+PDF 版本：1.5
+加密：否
+文件大小：2,768,201 字节
+XeLaTeX：连续两遍返回 0
+LaTeX error：0
+Overfull box：0
+Underfull box：0
+Missing character：0
+逐页渲染：198/198 PASS
+空白页：0
+页面边界触碰：0
+Ghostscript nullpage：PASS
+pdfinfo：PASS
+startxref：1 个
+%%EOF：1 个
+字体嵌入：全部 yes
+ToUnicode：全部 yes
+
+二、第四章独立增量
+文件：第四章_27题与81道配套题_独立增量_v004.pdf
+页数：67
+文件大小：744,524 字节
+XeLaTeX：连续两遍返回 0
+LaTeX error / Overfull / Underfull / Missing character：均为 0
+逐页渲染：67/67 PASS
+Ghostscript nullpage：PASS
+startxref / %%EOF：各 1 个
+
+三、最新进度与剩余总账
+文件：量子力学习题项目_最新进度与剩余总账_2026-09-23_v004.pdf
+页数：3
+文件大小：100,617 字节
+XeLaTeX：连续两遍返回 0
+LaTeX error / Overfull / Underfull / Missing character：均为 0
+逐页渲染：3/3 PASS
+Ghostscript nullpage：PASS
+startxref / %%EOF：各 1 个
+
+四、数学与数值验收
+累计复算：160709/160709 PASS
+失败项：0
+复算范围包括前三章继承测试、第四章微分对易子、有限维角动量矩阵、BCH/平移算符、转子能谱、突然近似展开、Fourier 动量分布、环上重叠、Gaussian 波包、定态期望值、旋转变换、柱对称守恒量、题位总账一致性。
+
+结论：v004 累计主文档、第四章独立增量和总账 PDF 均通过源码编译、PDF 字节完整性、全文解释、逐页渲染和页面边界验收，可作为下一版本的可靠基线。
