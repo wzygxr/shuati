@@ -17,17 +17,15 @@
 
 ## 本分支保存内容
 
-本目录保存可直接审阅的项目元数据：
+本目录保存可直接审阅的轻量项目元数据：
 
-- 逐题进度账本；
 - 章节分母与进度表；
 - QA 验收报告；
-- 底层 131 页渲染审计；
-- 成品 PDF 152 页渲染审计；
-- 总项目剩余总账与本轮增量说明；
+- 总项目剩余总账；
+- 本轮增量说明；
 - 完整交付包 SHA-256。
 
-累计 Markdown、XeLaTeX 源码、152 页 PDF、图片资源及完整 ZIP 已作为本次 ChatGPT 交付附件提供。Google Drive 当前返回 `storageQuotaExceeded`，GitHub 连接器又不能把本地二进制 PDF/ZIP 直接流式提交，因此这里不冒充已经上传了不存在的二进制文件。
+逐题账本、两份全页渲染审计、累计 Markdown、XeLaTeX 源码、152 页 PDF、17 幅图片资源及完整 ZIP 已作为本次 ChatGPT 交付附件提供。Google Drive 当前返回 `storageQuotaExceeded`；GitHub 连接器不能把本地二进制 PDF/ZIP 直接流式提交，所以这里明确区分“GitHub 元数据快照”和“本次对话完整附件”，不冒充上传成功。
 
 ## 文件哈希
 
