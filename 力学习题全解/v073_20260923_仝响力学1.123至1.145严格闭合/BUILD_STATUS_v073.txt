@@ -1,0 +1,27 @@
+v073-TX008 BUILD STATUS
+source_full_pages=376
+source_preview_layer_pages=150
+source_size_bytes=54896885
+source_sha256=44d0b4e0e108ed2b65d03b32c969e2b09768bd8fec011df76c6862aa4314f031
+range=1.123-1.145
+new_originals=23
+new_variants=46
+new_similar_drills=23
+new_training_units=92
+book_progress=145/350
+remaining=205
+next_problem=1.146
+formula_structure_checks=650/650 PASS
+fragment_pages=66
+fragment_xelatex_warnings=0
+fragment_overfull=0
+fragment_missing_chars=0
+fragment_pdfium_render=66/66 PASS
+fragment_ghostscript=PASS
+branch_cumulative_pages=5213
+branch_cumulative_pymupdf=5213/5213 PASS
+branch_cumulative_ghostscript=PASS
+branch_cumulative_startxref=PASS
+branch_cumulative_eof=PASS
+safe_arithmetic_baseline=2194 originals + 6582 variants = 8776 units
+parallel_unmerged_increments=excluded_to_prevent_double_counting
