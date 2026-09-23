@@ -1,0 +1,74 @@
+{
+  "version": "v071",
+  "date": "2026-09-23",
+  "book": "张汉壮、王文全《力学（第三版）》",
+  "completed_this_version": {
+    "chapter": 7,
+    "range": "7-1--7-43",
+    "source_problems": 43,
+    "variants": 129,
+    "training_units": 172
+  },
+  "book_progress": {
+    "1": [29,29],
+    "2": [28,28],
+    "3": [18,18],
+    "4": [33,33],
+    "5": [36,36],
+    "6": [16,16],
+    "7": [43,43],
+    "8": [0,18],
+    "9": "unfrozen",
+    "10": "unfrozen",
+    "11": "unfrozen",
+    "12": "unfrozen"
+  },
+  "book_source_total_completed": 203,
+  "book_variants_completed": 609,
+  "project_totals": {
+    "source_problems": 2158,
+    "variants": 6474,
+    "training_units": 8632
+  },
+  "next_breakpoint": "第八章 8-1（第八章分母已冻结为18）",
+  "source_pdf_pages": {
+    "physical": [228,236],
+    "printed": [213,221]
+  },
+  "next_chapter_source_inventory": {
+    "chapter": 8,
+    "source_problems": 18,
+    "physical_pages": [257,260],
+    "printed_pages": [242,245],
+    "status": "frozen_not_solved"
+  },
+  "notes": [
+    "完整423页源PDF读取，不采用预览层页数",
+    "一次源锁+独立推导+公式复算+PDF全页渲染，不做二轮审计",
+    "第八章物理页257--260已冻结为18题"
+  ],
+  "qa": {
+    "formula_checks": {
+      "total": 2601,
+      "passed": 2601,
+      "failed": 0,
+      "random_stress": 2300,
+      "structural_symbolic": 301
+    },
+    "pdfs": {
+      "chapter": {"pages":135,"size_bytes":6961731,"rendered_pages":135,"blank_pages":0,"edge_flags":0},
+      "cumulative": {"pages":350,"size_bytes":12168994,"rendered_pages":350,"blank_pages":0,"edge_flags":0},
+      "ledger": {"pages":7,"size_bytes":118927,"rendered_pages":7,"blank_pages":0,"edge_flags":0},
+      "qa_report": {"pages":9,"size_bytes":377614,"rendered_pages":9,"blank_pages":0,"edge_flags":0}
+    },
+    "ghostscript": "PASS",
+    "fonts_embedded_unicode": "PASS",
+    "eof_startxref": "PASS"
+  },
+  "critical_corrections": [{
+    "problem": "7-21",
+    "correct_formula": "a2=(m+m1+m2)g/(3m+m2+3m1/2)",
+    "equal_mass_case": "a2=6g/11",
+    "status": "corrected_in_all_final_sources_and_pdfs"
+  }]
+}
