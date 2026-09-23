@@ -1,0 +1,88 @@
+{
+  "project": "力学习题全解",
+  "version": "v072",
+  "date": "2026-09-23",
+  "book": "张汉壮、王文全《力学（第三版）》",
+  "book_physical_pages": 423,
+  "current_chapter": 8,
+  "chapter_title": "流体",
+  "chapter_formal_total": 18,
+  "chapter_formal_completed": 18,
+  "chapter_variants_completed": 54,
+  "chapter_training_units": 72,
+  "book_chapters": {
+    "1": {
+      "done": 29,
+      "total": 29
+    },
+    "2": {
+      "done": 28,
+      "total": 28
+    },
+    "3": {
+      "done": 18,
+      "total": 18
+    },
+    "4": {
+      "done": 33,
+      "total": 33
+    },
+    "5": {
+      "done": 36,
+      "total": 36
+    },
+    "6": {
+      "done": 16,
+      "total": 16
+    },
+    "7": {
+      "done": 43,
+      "total": 43
+    },
+    "8": {
+      "done": 18,
+      "total": 18
+    },
+    "9": {
+      "done": 0,
+      "total": 36,
+      "inventory_frozen": true
+    },
+    "10": {
+      "done": 0,
+      "total": null,
+      "inventory_frozen": false
+    },
+    "11": {
+      "done": 0,
+      "total": null,
+      "inventory_frozen": false
+    },
+    "12": {
+      "done": 0,
+      "total": null,
+      "inventory_frozen": false
+    }
+  },
+  "book_formal_completed_through_ch8": 221,
+  "project_formal_completed": 2176,
+  "project_variant_completed": 6528,
+  "project_training_units": 8704,
+  "next_breakpoint": "张汉壮、王文全《力学（第三版）》第九章习题 9-1",
+  "next_chapter_inventory": {
+    "chapter": 9,
+    "formal_total": 36,
+    "range": "9-1--9-36"
+  },
+  "verification": {
+    "formula_checks_total": 2405,
+    "formula_checks_pass": 2405,
+    "formula_checks_fail": 0,
+    "chapter_pdf_pages": 74,
+    "chapter_pdf_full_render": true,
+    "cumulative_pdf_pages": 424,
+    "cumulative_pdf_full_render": true,
+    "ledger_pdf_pages": 8,
+    "qa_report_pdf_pages": 3
+  }
+}
