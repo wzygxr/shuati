@@ -1,0 +1,83 @@
+{
+  "version": "v004",
+  "date": "2026-09-23",
+  "scope": "梁铨廷《物理光学》第4版第1--3章正式习题整章闭合",
+  "canonical_parent": "v003",
+  "counts": {
+    "formal_new": 31,
+    "variants_new": 93,
+    "training_new": 124,
+    "formal_cumulative": 85,
+    "variants_cumulative": 255,
+    "training_cumulative": 340,
+    "numeric_checks": 1952,
+    "numeric_pass": 1952,
+    "numeric_fail": 0
+  },
+  "documents": {
+    "markdown": {
+      "name": "梁铨廷_物理光学学习指导与题解_累计v004_第1至3章整章闭合.md",
+      "bytes": 222657,
+      "lines": 10205,
+      "sha256": "f9c5d4bd84255cde5378088aee1dd1cfc79104e900708e0678df89e49ecfe491"
+    },
+    "pdf": {
+      "name": "梁铨廷_物理光学学习指导与题解_累计v004_第1至3章整章闭合.pdf",
+      "bytes": 4710527,
+      "pages": 234,
+      "bookmarks": 911,
+      "sha256": "48afd6f4ba39eaebcf62260ad1339f201e972d3ca0498c46b1a4b5ec513489e6"
+    }
+  },
+  "images": {
+    "markdown_references": 47,
+    "chapter3_new_figures": 19,
+    "missing": 0
+  },
+  "qa": {
+    "xelatex_passes": 3,
+    "final_pages_stable": true,
+    "numeric_and_structural_pass": 1952,
+    "numeric_and_structural_fail": 0,
+    "rendered_pages": 234,
+    "blank_pages": 0,
+    "edge_pixel_alerts": 0,
+    "strict_pypdf_pages": 234,
+    "ghostscript_nullpage": "PASS",
+    "fonts_embedded": true,
+    "xref": true,
+    "startxref": true,
+    "single_eof": true,
+    "missing_character_count": 0,
+    "overfull_count": 0,
+    "underfull_count": 0,
+    "latex_warning_count": 0,
+    "package_warning_count": 0,
+    "fatal_error_count": 0,
+    "qpdf": "unavailable; not claimed",
+    "overall_pass": true
+  },
+  "next_breakpoint": "第4章正式习题4.1",
+  "drive_status": "folder exists; uploads blocked by storageQuotaExceeded",
+  "library_status": "storage limit reached; no upload claimed",
+  "github_status": {
+    "repository": "wzygxr/shuati",
+    "branch": "chatgpt/liang-optics-v004",
+    "pull_request": 10,
+    "state": "open",
+    "uploaded_text_files": [
+      "LATEST_梁铨廷物理光学题解_v004.md",
+      "README_编译与复现_v004.md",
+      "质量验收报告_v004.md",
+      "progress_ledger_v004.csv",
+      "remaining_books_v004.csv",
+      "外部补充材料与证据账_v004.md",
+      "Google_Drive_上传状态_v004.md",
+      "RELEASE_MANIFEST_v004.md",
+      "GitHub_同步状态_v004.md",
+      "library_crosschat_sync_v004.json",
+      "manifest_v004.json"
+    ],
+    "binary_note": "Complete Markdown/PDF/ZIP remain conversation artifacts; repository stores long-term index and evidence."
+  }
+}
