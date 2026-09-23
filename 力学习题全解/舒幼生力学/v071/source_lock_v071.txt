@@ -1,0 +1,22 @@
+v071 source lock — 舒幼生《力学（物理类）》
+Generated: 2026-09-23
+
+TEXTBOOK
+pages=408
+size_bytes=35636130
+sha256=76ad8e9cb6d3ee341b446e179cb5fd6f1f7b65fcc278ee16cd2b4f6dbb6b2100
+v071_problem_pages=81-83
+
+SOLUTIONS
+pages=370
+size_bytes=26402927
+sha256=606b85f5f51b12472907e9d6e9709269d8e2c386aa67dd4ac88d0697eb97c3e8
+v071_solution_pages=42-49
+
+Both files were read from complete original PDF bytes, not from the 150/151-page preview layer.
+PyMuPDF=open PASS
+pdfinfo=PASS
+encrypted=no
+startxref=present
+trailer=present
+EOF=present
