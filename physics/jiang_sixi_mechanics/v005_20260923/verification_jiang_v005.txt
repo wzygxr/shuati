@@ -1,0 +1,22 @@
+江四喜《物理竞赛专题精编》力学全解 v005 数值与结构复算
+seed: 20260923
+samples_per_numeric_module: 10000
+
+J5-01_linear_shear: pass=True max_abs_error=1.818989e-12 details={}
+J5-02_moving_tube: pass=True max_abs_error=3.637979e-12 details={}
+J5-03_rope_bead: pass=True max_abs_error=2.037268e-10 details={}
+J5-04_general_return: pass=True max_abs_error=7.678542e-08 details={"maximum_exit_x": -5.858673546299542e-09, "all_exit_points_left_of_O": true}
+J5-04_symmetric_return: pass=True max_abs_error=3.065281e-11 details={}
+J6-01_bounce: pass=True max_abs_error=5.684342e-14 details={}
+J6-02_min_speed_point: pass=True max_abs_error=1.136868e-13 details={}
+J6-03_hill: pass=True max_abs_error=7.275958e-12 details={}
+J6-04_soccer_windows: pass=True max_abs_error=0.000000e+00 details={"angles_deg": {"2.64": [29.85226586366237, 63.1701447139127], "3.44": [31.116657461676567, 62.81909011286733]}}
+J6-05_loop_gap: pass=True max_abs_error=5.684342e-14 details={}
+J6-06_log: pass=True max_abs_error=4.440892e-16 details={}
+J6-07_ceiling: pass=True max_abs_error=9.094947e-13 details={"minimum_wrong_formula_jump_at_threshold": 0.0014248437486774814}
+J6-08_shelter: pass=True max_abs_error=1.069566e-09 details={"random_cases_between_source_and_correct_threshold": 1044}
+structure: pass=True max_abs_error=0.000000e+00 details={"source_heading_count": 45, "unique_source_heading_count": 45, "variant_A_count": 45, "variant_B_count": 45, "drill_C_count": 45, "topic5_source_count": 4, "topic6_source_count": 8, "crosswalk_rows": 45, "crosswalk_unique_ids": 45, "image_ref_count": 52, "missing_images": [], "control_char_count": 0, "old_tail_ledger_present": false, "next_breakpoint_present": true}
+
+all_numeric_pass: True
+structure_pass: True
+all_pass: True
