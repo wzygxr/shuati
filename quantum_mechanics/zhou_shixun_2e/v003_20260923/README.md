@@ -11,21 +11,25 @@
 - 本质不同变式：`52`
 - 同类巩固：`26`
 - 完整训练单元：`104`
+- 尚余：`28`
 - 下一连续断点：`4.1`
 
 ## 本版质量验收
 
 - 累计 PDF：A4，236 页
+- XeLaTeX：连续两遍返回 0
 - 全页渲染：236/236
 - 数值与符号复核：253/253 PASS
 - 自制图：第三章新增 12 幅，累计 19 幅
 - PDF 字体嵌入、Unicode 映射、文本抽取、`startxref` 与 `%%EOF` 均通过
 
-## 仓库文件
+## 本目录中的持久记录
 
-- `zhou_shixun_qm_2e_v003_source_bundle.tar.gz`：完整文本源包，含累计 Markdown、TeX、构建脚本、制图脚本、复核脚本、PASS 输出、两份剩余总账、验收报告、元数据与 SHA-256 清单。
-- `zhou_shixun_qm_2e_v003_source_bundle_SHA256.txt`：源包校验值。
+- `PDF_ACCEPTANCE_v003.txt`：PDF 编译、字体、文本、逐页渲染与数值验收
+- `remaining_zhou_v003.csv`：本书逐章严格剩余账
+- `remaining_quantum_books_v003.csv`：量子力学多教材最新剩余账
+- `SHA256SUMS_core_v003.txt`：累计 Markdown、TeX、PDF、脚本和总账的校验值
 
-PDF 与含全部图片的完整交付 ZIP 已在本轮 ChatGPT 对话中生成。Google Drive 目标目录已创建，但账户存储配额已满，故本轮先把可复现文本源包持久化到 GitHub。
+累计 Markdown、LaTeX、PDF、全部图片和完整 ZIP 已在对应 ChatGPT 交付轮次中生成。这里不保留不完整或无法校验的二进制归档。
 
-正式题号以周世勋第二版教材为 canonical；配套学习指导和外部资料只作讲解、交叉核验与补充。
+正式题号以周世勋第二版教材为 canonical；配套《学习指导》和外部资料只作讲解、交叉核验与补充。
