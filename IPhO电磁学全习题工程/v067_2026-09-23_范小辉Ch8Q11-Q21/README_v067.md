@@ -9,9 +9,9 @@
 - 本批新增：11 题
 - 尚余：226 题
 - 每道正式题均含 2 道本质不同变式与 1 道同类自检
-- 下一断点：《实用题典》Ch8 Q22；《奥赛指导》Ch8 §3“电势”印刷页274起
+- 下一断点：《实用题典》Ch8 Q22；《奥赛指导》Ch8 §3“电势”印刷页 274 起
 
-## 主文件
+## 本轮本地完整交付
 
 - `范小辉两书_Ch8-11电磁学_累计主文档_v002.md`
 - `范小辉两书_Ch8-11电磁学_累计主文档_v002.pdf`
@@ -24,16 +24,22 @@
 - `draw_clean_diagrams_v066.py` 与 `draw_clean_diagrams_v067.py`
 - `build_release_v067.sh`
 - `PDF_Preflight_v067.json` 与 `PDF_Info_v067.txt`
+- 26 张重绘配图与完整 ZIP
 
-## 编译
+## GitHub 持久化方式
 
-在本目录最省事的执行方式是：
+Google Drive 与 ChatGPT Library 当前达到存储限额，所以 GitHub 中保存的是可复现文本源码归档。依次执行：
 
 ```bash
+bash reconstruct_text_sources.sh
 bash build_release_v067.sh
 ```
 
-也可以只编译主文档：
+第一条命令会拼接 `source_bundle_parts/` 中的分片、校验 SHA-256、解码并展开源码；第二条命令会重画 26 张配图、运行 22 项公式复算，并用 XeLaTeX 编译累计 PDF。
+
+详细校验值和归档清单见 `SOURCE_BUNDLE_MANIFEST.md`。
+
+## 单独编译主文档
 
 ```bash
 pandoc '范小辉两书_Ch8-11电磁学_累计主文档_v002.md' \
@@ -43,7 +49,7 @@ pandoc '范小辉两书_Ch8-11电磁学_累计主文档_v002.md' \
   -o '范小辉两书_Ch8-11电磁学_累计主文档_v002.pdf'
 ```
 
-需要 Noto Serif CJK、Noto Sans CJK、DejaVu Sans Mono 与 Latin Modern Math。图片位于 `assets/`。
+需要 Noto Serif CJK、Noto Sans CJK、DejaVu Sans Mono 与 Latin Modern Math。
 
 ## 继续规则
 
