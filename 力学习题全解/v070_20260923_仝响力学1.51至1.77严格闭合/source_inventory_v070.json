@@ -1,0 +1,99 @@
+{
+  "version": "v070",
+  "date": "2026-09-23",
+  "book": "仝响《物理奥林匹克竞赛大题典·力学卷》",
+  "source": {
+    "path": "/mnt/data/tong_mechanics_v062/Tong_Xiang_Physics_Olympiad_Mechanics.pdf",
+    "size_bytes": 54896885,
+    "sha256": "44d0b4e0e108ed2b65d03b32c969e2b09768bd8fec011df76c6862aa4314f031",
+    "physical_pages": 376,
+    "preview_layer_warning": "preview interface may show 150 pages; raw PDF has 376 pages"
+  },
+  "batch": {
+    "problems": "1.51--1.77",
+    "strict_source_count": 27,
+    "distinct_variants": 54,
+    "same_type_drills": 27,
+    "training_units": 108,
+    "book_progress": "77/350",
+    "book_remaining": 273,
+    "next_problem": "1.78"
+  },
+  "global_bridge": {
+    "previous_version": "v069",
+    "previous_counts": {
+      "strict_source": 2099,
+      "variants": 6297,
+      "units": 8396
+    },
+    "new_counts": {
+      "strict_source": 2126,
+      "variants": 6378,
+      "units": 8504
+    },
+    "note": "v069 counts reconstructed from latest cross-conversation ledger; current environment does not contain a physical v069 cumulative PDF, so only the Tong branch is physically merged."
+  },
+  "source_pages": [
+    {
+      "physical_page": 17,
+      "printed_page": 11,
+      "problems": "1.51--1.53"
+    },
+    {
+      "physical_page": 18,
+      "printed_page": 12,
+      "problems": "1.54--1.62 start"
+    },
+    {
+      "physical_page": 19,
+      "printed_page": 13,
+      "problems": "1.62 end--1.70 start"
+    },
+    {
+      "physical_page": 20,
+      "printed_page": 14,
+      "problems": "1.70 end--1.77"
+    }
+  ],
+  "answer_pages": [
+    {
+      "physical_pages": "111--118",
+      "problems": "1.51--1.60"
+    },
+    {
+      "physical_pages": "119--123",
+      "problems": "1.61--1.68"
+    },
+    {
+      "physical_pages": "124--131",
+      "problems": "1.69--1.77"
+    }
+  ],
+  "key_corrections": [
+    {
+      "problem": "1.52",
+      "issue": "题面末句疑似将最大间距误植为最大时间",
+      "result": "D_max=37.5 m at t=5 s"
+    },
+    {
+      "problem": "1.60",
+      "issue": "原书加速度末式与二次约束微分不一致",
+      "result": "a=v^2 h^2/s^3"
+    },
+    {
+      "problem": "1.64",
+      "issue": "原书末式若缺R则量纲错误",
+      "result": "v_A=vR/sqrt(4R^2-d^2)"
+    },
+    {
+      "problem": "1.69",
+      "issue": "由两角反求y_0时原书式漏负号",
+      "result": "y_0=-2v_0^2 cot(alpha_1+alpha_2)/(g(tan alpha_1+tan alpha_2))"
+    }
+  ],
+  "deliverables": {
+    "fragment_pdf_pages": 80,
+    "tong_branch_cumulative_pdf_pages": 310,
+    "formula_checks": "166 PASS / 0 FAIL"
+  }
+}
