@@ -1,0 +1,23 @@
+{
+  "project": "周世勋《量子力学教程》第二版全习题详解",
+  "version": "v004",
+  "date": "2026-09-23",
+  "formal_total": 54,
+  "formal_completed": 40,
+  "formal_remaining": 14,
+  "variants": 80,
+  "same_type_exercises": 40,
+  "training_units": 160,
+  "completed_chapters": [1, 2, 3, 4, 5],
+  "next_breakpoint": "6.1",
+  "figures_total": 32,
+  "figures_added_v004": 13,
+  "verification_historical": 253,
+  "verification_new": 682,
+  "verification_total": 935,
+  "pdf_pages": 332,
+  "pdf_page_size": "A4",
+  "source_guide_pages": 184,
+  "source_textbook_pages": 248,
+  "source_pages_used_v004": "79-120"
+}
