@@ -24,7 +24,7 @@
 
 - 累计页数：625；
 - A4，未加密；
-- 从干净辅助文件重新编译 3 遍，返回码均为 0；
+- 从干净辅助文件重新编译 3 遍，封包前更新跨对话最新稳定总账后再编译 2 遍；
 - 最后两遍 AUX 和 TOC 哈希分别一致；
 - Ghostscript 全页解释通过；
 - PDFium/Poppler 全页渲染：625/625；
@@ -47,8 +47,8 @@
 
 ## 哈希
 
-- Markdown：`432183634068cb76e818839431facd33d396a0118551f5cf1d506fd734d4b1c6`
-- TeX：`cf594cd04c121b2ca2ae0d08c161860010d7f42d0d73cc3f20b33eb2df76cd71`
-- PDF：`271740af9ba15d40d2efcc849a76240fd9b3975382741c4665377546f858b059`
+- Markdown：`0416ebd6bf9744f2bd02446b97d8ba095cc6123248f60d6a8445e797b30ff5d2`
+- TeX：`baa93d9842ca2535a1f8f1958950c93b148c7da454f794dc6e81698138a33111`
+- PDF：`07a83ba86390eb3d2ef399370323c3c34863159d605d45e8bff27a567c2d7e4c`
 - Ledger：`308fe58b26b994ed7d714589e42774f7512804e3ae4fc3fc415662a1d69f8c81`
 - Formula log：`897e00597d56f7aa3bc634021126c868c429d5eb1d445e32a4a3040ab968eee5`
