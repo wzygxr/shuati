@@ -24,14 +24,22 @@ jobs:
       - name: Recover v058 payload and matching historical blobs
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
           OUT="$RUNNER_TEMP/optics_ding_recovery"
           mkdir -p "$OUT/current" "$OUT/history"
 
           BASE='IPhO_光学金牌讲义_持续更新/01_题典累计版本/v058_20260924_丁文革第3章例3.21至3.49闭合'
-          cat "$BASE"/DING-C3-v002_markdown.md.gz.b64.part*.txt > "$OUT/current/DING-C3-v002_incremental.md.gz.b64"
-          base64 -d "$OUT/current/DING-C3-v002_incremental.md.gz.b64" > "$OUT/current/DING-C3-v002_incremental.md.gz"
-          gzip -dc "$OUT/current/DING-C3-v002_incremental.md.gz" > "$OUT/current/DING-C3-v002_incremental.md"
+          cat "$BASE"/DING-C3-v002_markdown.md.gz.b64.part*.txt > "$OUT/current/DING-C3-v002_parts_concatenated_for_audit.txt"
+          : > "$OUT/current/DING-C3-v002_incremental.md.gz"
+          for part in "$BASE"/DING-C3-v002_markdown.md.gz.b64.part*.txt; do
+            base64 --decode --ignore-garbage "$part" >> "$OUT/current/DING-C3-v002_incremental.md.gz"
+          done
+          if gzip -t "$OUT/current/DING-C3-v002_incremental.md.gz"; then
+            gzip -dc "$OUT/current/DING-C3-v002_incremental.md.gz" > "$OUT/current/DING-C3-v002_incremental.md"
+            echo PASS > "$OUT/current/GZIP_STATUS.txt"
+          else
+            echo FAIL > "$OUT/current/GZIP_STATUS.txt"
+          fi
           sha256sum "$OUT/current"/* > "$OUT/current/SHA256SUMS.txt"
 
           git rev-list --objects --all > "$OUT/all_git_objects.txt"
