@@ -1,0 +1,66 @@
+[01] PASS - Ch9 Q51 三读数消元与三状态回代
+     eps=18, r=80, Rx=200/3, residuals=[0, 0, 0]
+[02] PASS - Ch9 Q52 两次编码测量的五个输出互异
+     ratios=[10.6, 1.913, 0.165, 1.656, 2.304]
+[03] PASS - Ch9 Q53 伏安法悬空旁支不分流
+     R=U/I=150 ohm
+[04] PASS - Ch9 Q54 替代法同读数推出同阻值
+     solve=[Rx]
+[05] PASS - Ch9 Q55 平方伏安元件并联等效与自检
+     d=a*b/(sqrt(a) + sqrt(b))**2, P=54*sqrt(5)/5
+[06] PASS - Ch9 Q56 三角网络固定点正根与最终系数
+     x=-1/3 + sqrt(7)/3, fixed_residual=0, Rab/aR0=0.519063046277
+[07] PASS - Ch9 Q57 旋转正方形网络两个端口固定点
+     fixed=0, Rac=0.6589186226, Reg=0.3178372452
+[08] PASS - Ch9 Q58 三角晶格叠加关系
+     R14=2*R - r/2
+[09] PASS - Ch9 Q59 漏电两球稳态电荷与极限
+     residual=0, q=5.528514e-11
+[10] PASS - Ch9 Q60 总热量与内阻严格分配
+     Qr=6.24843789053E-9
+[11] PASS - Ch9 Q61 三电容热量和两次瞬时电流
+     heat=2*C*E**2/27, i+=19*E/(60*R), i-=E/(60*R)
+[12] PASS - Ch9 Q62 立方体旋转对称降维
+     R_equal=5/6, self=5/3
+[13] PASS - Ch9 Q63 正四面体两端口比值
+     R_AB=3R/4, R_CD=3R/8, ratio=2
+[14] PASS - Ch9 Q64 节点电势、电容电荷与能量
+     charges=[1, 5, 5, 1] microC, energy=26 microJ
+[15] PASS - Ch9 Q65 广义电桥平衡与电流比
+     condition=0, i5/i2=5/6, i7/i2=2/3
+[16] PASS - Ch9 Q66 同轴电容、漏电电导与弛豫时间
+     C/G=eps/sigma
+[17] PASS - Ch10 Q1 两种矢量三角形的未知磁场
+     B2=sqrt(3),sqrt(7)
+[18] PASS - Ch10 Q2 柔性导线曲率与粒子动量消去B
+     R=M*g/(B*I), p=M*g*q/I
+[19] PASS - Ch10 Q3 附加张力与抵消条件
+     dT=B*Q*R*w/(2*pi), roots=[B*Q/m]
+[20] PASS - Ch10 Q4 长直电流旁线圈力矩
+     M=6.00000000000E-7 N m
+[21] PASS - Ch10 Q5 定周长圆比正方形力矩大
+     ratio=4/pi=1.273239545
+[22] PASS - Ch10 Q6 两个指定刚度比的非零平衡角
+     root=1.895494267034
+[23] PASS - Ch10 Q7 正则化理想极限的数值自检
+     F=7.539822368616e-06 N
+[24] PASS - Ch10 Q8 薄圆筒半圆积分归一化
+     F/L=3.183098861838e-02 N/m
+[25] PASS - Ch10 Q9 双条带临界与两倍临界电压位置
+     x=2*d*(-1 + sqrt(2))
+[26] PASS - Ch10 Q10 最小速度和R=L击中范围
+     CD=(sqrt(3)+1)L
+[27] PASS - Ch10 Q11 同位素束发散角
+     alpha=0.04684553 rad=2.684051 deg
+[28] PASS - Ch10 Q12 质子与氘核最短公共周期
+     Tp=2*pi*m/(B*e), Td=4*pi*m/(B*e)
+[29] PASS - Ch10 Q13 两临界场及中间分段
+     BC=8/5, test=9/5, BA=2
+[30] PASS - Ch10 Q14 圆族边界展开与紧凑场强比例
+     boundary=-2*R*y + x**2 + y**2, Bplus/Bminus=1/2 at compact design
+[31] PASS - Ch10 Q15 立体角比例、弱场展开与饱和
+     eta series=s**2/4 + O(s**4)
+[32] PASS - Ch10 Q16 两半平面返回的离散场强比
+     B1/B2=(n + 1)/n
+
+Overall: 32/32 PASS
