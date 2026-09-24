@@ -1,10 +1,10 @@
 # v073 文本源码归档说明
 
-累计 PDF 和完整复现包体积较大，当前对话附件提供完整二进制交付；本目录保存可复现文本源码归档的校验值和恢复脚本。
+累计 PDF 和完整复现包体积较大，完整二进制交付以及 `source_bundle_parts/` 由本轮 ChatGPT 附件中的完整 ZIP 提供；GitHub 目录保存版本索引、校验值和恢复脚本，不虚报大文件已经上传。
 
 ## 归档内容
 
-恢复后的 `v073_text_sources.tar.gz` 包含：
+完整 ZIP 中恢复后的 `v073_text_sources.tar.gz` 包含：
 
 - 累计 Markdown v008；
 - Q17--Q50 增量 Markdown 和可独立编译 Markdown；
@@ -22,6 +22,8 @@
 - 分片数量：6，按 `part_000` 至 `part_005` 排序拼接。
 
 ## 恢复
+
+先从完整交付 ZIP 中取出 `source_bundle_parts/` 与 `reconstruct_text_sources_v073.sh`，置于同一目录，然后运行：
 
 ```bash
 bash reconstruct_text_sources_v073.sh
