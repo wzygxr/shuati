@@ -1,0 +1,46 @@
+江四喜《物理竞赛专题精编》力学全解 v010 验证摘要
+seed: 20260924
+samples_per_numeric_module: 10000
+
+J17-01 neutral ellipse: PASS
+J17-02 cube stability: PASS
+J17-03 float margin: PASS
+J17-04 ellipse neutral equilibrium: PASS
+J17-05 relative curvature: PASS
+J17-06 rotating hoop bifurcation: PASS
+J17-07 mercury roots/stability: PASS; derivatives=[-1,2/3]
+J17-08 gravity-gradient libration: PASS; factor=sqrt(3)
+J18-01 pressure chain: PASS
+J18-02 symmetric truss: PASS
+J18-03 roof member: PASS
+J18-04 layered support: PASS
+J18-05 section method: PASS; T9=-30
+J19-01 wall-floor rod: PASS
+J19-02 sphere-supported rod: PASS
+J19-03 low wall: PASS
+J19-04 cylinder-rim rod: PASS
+J19-05 ring-and-rod: PASS; mu=11/sqrt(39)
+J19-06 common-normal vector derivation: PASS
+J20-01 semicircle trajectory: PASS
+J20-02 two rotations: PASS
+J20-03 two blocks: PASS; branch boundary=35.2643896828 deg
+J20-04 hexagonal pencil: PASS
+J20-05 elastic-string static region: PASS
+
+structure: PASS
+source_headings=128
+variant_A=128
+variant_B=128
+drill_C=128
+crosswalk_rows=128 unique
+image_refs=130
+missing_images=0
+control_chars=0
+old_tail_ledger_present=false
+next_breakpoint_present=true
+
+all_numeric_pass: True
+structure_pass: True
+all_pass: True
+
+PDF: 611 pages A4; PDFium 611/611; Poppler key pages 18/18; Ghostscript exit 0; fonts embedded 7/7; blank abnormal pages 0; min content margins [70,28,70,32] px; startxref and %%EOF present.
