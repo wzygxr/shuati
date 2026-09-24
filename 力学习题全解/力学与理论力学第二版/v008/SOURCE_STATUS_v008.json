@@ -1,0 +1,36 @@
+{
+  "project": "《力学与理论力学（第二版）》习题详解",
+  "version": "v008",
+  "date": "2026-09-24",
+  "source": {
+    "physical_pages": 245,
+    "preview_layer_pages": 150,
+    "formal_problem_total": 385,
+    "upper_volume_formal_total": 272,
+    "lower_volume_formal_total": 113,
+    "sha256": "bb45b642b498ae30410c90e9c6d22a08fe2273a01b53ef0a669782f4cf4d3140"
+  },
+  "progress": {
+    "formal_completed": 272,
+    "formal_remaining": 113,
+    "new_formal_this_version": 48,
+    "total_companion_problems": 816,
+    "v001_supplement_units_retained": 32,
+    "total_training_units_in_cumulative": 1120,
+    "upper_volume_status": "272/272 CLOSED",
+    "next_breakpoint": "下册第1章 拉格朗日方程 1.1"
+  },
+  "qa": {
+    "formula_numeric_structure_checks": "1166/1166 PASS",
+    "compiled_pdf_pages": 504,
+    "rendered_pages": "504/504 PASS @100dpi",
+    "all_pages_a4_unrotated": true,
+    "unexpected_blank_pages": 0,
+    "very_low_content_pages": 0,
+    "edge_dark_suspects": 0,
+    "ghostscript_nullpage": "PASS",
+    "startxref_count": 1,
+    "eof_count": 1,
+    "ends_with_eof": true
+  }
+}
