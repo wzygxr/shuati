@@ -1,0 +1,15 @@
+source_id,book,topic,problem,pdf_question_page,pdf_answer_pages,status,dedup_status,notes,training_variants
+J9-01,江四喜《物理竞赛专题精编》,9 折返与交替运动,1,22-23,209-210,COMPLETE-CORRECTED,provisionally_unique,车厢物块摩擦反向与有限时间无限碰撞；修正车厢初加速度2.50 m/s²,2+1
+J9-02,江四喜《物理竞赛专题精编》,9 折返与交替运动,2,23,210-213,COMPLETE,provisionally_unique,木块木盒摩擦与等质量弹性碰撞交替；离散初速度族,2+1
+J9-03,江四喜《物理竞赛专题精编》,9 折返与交替运动,3,23,213-214,COMPLETE-REFINED,provisionally_unique,等质量弹性碰撞穿越等效；第五次中点迎碰有五个速率比,2+1
+J9-04,江四喜《物理竞赛专题精编》,9 折返与交替运动,4,23,214-216,COMPLETE-REFINED,provisionally_unique,两艘往返船；按事件顺序得到三种湖宽并判周期重现,2+1
+J10-01,江四喜《物理竞赛专题精编》,10 曲线运动中的追及与相遇,1,23-24,216-218,COMPLETE,provisionally_unique,正三角形循环追逐；相遇时间、路程与对数螺线,2+1
+J10-02,江四喜《物理竞赛专题精编》,10 曲线运动中的追及与相遇,2,24,218-219,COMPLETE,provisionally_unique,狐狸直线匀速、猎犬纯追踪；初加速度与追上时间,2+1
+J10-03,江四喜《物理竞赛专题精编》,10 曲线运动中的追及与相遇,3,24,219-220,COMPLETE,provisionally_unique,狼沿圆周、猎犬从圆心纯追踪；轨迹为定圆并求捕获时间,2+1
+J10-04,江四喜《物理竞赛专题精编》,10 曲线运动中的追及与相遇,4,24,220-222,COMPLETE,provisionally_unique,飞机投弹与炮弹拦截；自由落体系速度三角形的分支极值,2+1
+J11-01,江四喜《物理竞赛专题精编》,11 最速降线,1,24-25,222,COMPLETE,provisionally_unique,定点到斜面的最快直轨道；等时弦与切圆构造,2+1
+J11-02,江四喜《物理竞赛专题精编》,11 最速降线,2,25,222-223,COMPLETE,provisionally_unique,球面外点到球面的最快直轨道；最小相切辅助圆,2+1
+J11-03,江四喜《物理竞赛专题精编》,11 最速降线,3,25,223-224,COMPLETE,provisionally_unique,圆环内可转杆的最佳搭接点；内切等时圆尺规构造,2+1
+J11-04,江四喜《物理竞赛专题精编》,11 最速降线,4,25,224,COMPLETE-CORRECTED,provisionally_unique,椭圆直径下滑；阈值来自切点x²≥0而非R≤a/2,2+1
+J11-05,江四喜《物理竞赛专题精编》,11 最速降线,5,25,224-226,COMPLETE,provisionally_unique,圆弧与直弦时间比较；积分值及微元不等式,2+1
+J11-06,江四喜《物理竞赛专题精编》,11 最速降线,6,25,226-227,COMPLETE-REFINED,provisionally_unique,连续折射/变分推导摆线；补端点参数与最短时间,2+1
