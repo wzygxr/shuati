@@ -1,0 +1,39 @@
+{
+  "version": "v069",
+  "date": "2026-09-24",
+  "book": "胡友秋等《电磁学与电动力学（第二版，上册）》",
+  "scope": "第7章7.1--第10章10.10；与v068合流为第5--10章累计续编",
+  "formal_problems_added": 43,
+  "variants_added": 43,
+  "similar_practice_added": 43,
+  "training_units_added": 129,
+  "cumulative_formal_problems_in_document": 83,
+  "cumulative_variants_in_document": 83,
+  "cumulative_practice_in_document": 83,
+  "cumulative_training_units_in_document": 249,
+  "project_progress": "158/158",
+  "next_breakpoint": null,
+  "pdfs": {
+    "increment": {
+      "pages": 93,
+      "bytes": 3112308,
+      "sha256": "d4654ef9f558a972236e801384d7b59b2e07237b32e058e3d75c861e76c886c3"
+    },
+    "cumulative": {
+      "pages": 162,
+      "bytes": 3403128,
+      "sha256": "ba09c6dc92fa80e38d2257bdac2c9f13af9b08cb33746799cee8df0c39fc170a"
+    }
+  },
+  "qa": {
+    "verify": "29/29 PASS",
+    "increment_rendered_pages": 93,
+    "cumulative_rendered_pages": 162,
+    "increment_blank_pages": [],
+    "cumulative_blank_pages": [],
+    "increment_edge_touch_pages": [],
+    "cumulative_edge_touch_pages": [],
+    "ghostscript": "PASS",
+    "xelatex_second_pass_warnings": 0
+  }
+}
