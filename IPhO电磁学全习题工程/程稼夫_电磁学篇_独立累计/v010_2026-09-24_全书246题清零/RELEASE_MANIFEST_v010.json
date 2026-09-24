@@ -1,0 +1,52 @@
+{
+  "project": "程稼夫《中学奥林匹克竞赛物理教程·电磁学篇》全习题详解",
+  "version": "v010",
+  "date": "2026-09-24",
+  "source_pdf_physical_pages": 629,
+  "formal_denominator": 246,
+  "completed_formal": 246,
+  "remaining_formal": 0,
+  "completed_range": "1-1--6-9",
+  "status": "ALL CLOSED",
+  "chapters": {
+    "1": "93/93",
+    "2": "64/64",
+    "3": "29/29",
+    "4": "43/43",
+    "5": "8/8",
+    "6": "9/9"
+  },
+  "variants": 492,
+  "same_type_drills": 246,
+  "training_units": 984,
+  "new_batch": {
+    "range": "5-1--5-8 + 6-1--6-9",
+    "formal": 17,
+    "variants": 34,
+    "drills": 17,
+    "units": 68
+  },
+  "verification": {
+    "formula_checks": "989/989 PASS",
+    "cumulative_markdown_lines": 28656,
+    "cumulative_markdown_bytes": 639716,
+    "cumulative_pdf_pages": 464,
+    "cumulative_pdf_bytes": 20321155,
+    "cumulative_rendered_pages": "464/464",
+    "increment_markdown_lines": 2081,
+    "increment_markdown_bytes": 39739,
+    "increment_pdf_pages": 32,
+    "increment_pdf_bytes": 1314906,
+    "increment_rendered_pages": "32/32",
+    "poppler_samples": "17/17",
+    "ghostscript": "PASS",
+    "pdf_preflight": "PASS",
+    "all_fonts_embedded_unicode": true,
+    "blank_page_suspects": 0,
+    "black_page_suspects": 0,
+    "edge_touch_suspects": 0,
+    "eof_count": 1,
+    "startxref_count": 1,
+    "xref": "valid xref stream"
+  }
+}
