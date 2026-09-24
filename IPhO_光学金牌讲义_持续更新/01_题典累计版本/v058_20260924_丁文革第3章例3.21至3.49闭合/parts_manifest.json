@@ -1,0 +1,30 @@
+{
+  "source": "丁文革_第3章例3.21-3.49全解_合流增量_DING-C3-v002.md",
+  "source_bytes": 55485,
+  "source_sha256": "a919dfb57b94b6598a25626d7cc62fcb24f2cf227e0ccdf5111b87739ac0725c",
+  "gzip_bytes": 21163,
+  "gzip_sha256": "37204572b4c4c295280f2be5138f0c3b0a7726a5cf29c355eeb2a0a0d2875ced",
+  "base64_chars": 28220,
+  "parts": [
+    {
+      "file": "DING-C3-v002_markdown.md.gz.b64.part001-of-004.txt",
+      "chars": 7055,
+      "sha256": "6c91ec6151a97aef33c302abadca5a49c901092c50ae2f256d5502772dc4a000"
+    },
+    {
+      "file": "DING-C3-v002_markdown.md.gz.b64.part002-of-004.txt",
+      "chars": 7055,
+      "sha256": "19ea3d7975864b80233e4160b1b2bab1e13a4102dc333d64f44afdf96045b65c"
+    },
+    {
+      "file": "DING-C3-v002_markdown.md.gz.b64.part003-of-004.txt",
+      "chars": 7055,
+      "sha256": "3e43d51334b3c2fb0224e2799ba18e380fa15288aa00e4e89de5d7153adcb204"
+    },
+    {
+      "file": "DING-C3-v002_markdown.md.gz.b64.part004-of-004.txt",
+      "chars": 7055,
+      "sha256": "9a498a524bd2496797e80c9ef802804ba38deb2c193bd4b8bf694d7d075b1cff"
+    }
+  ]
+}
