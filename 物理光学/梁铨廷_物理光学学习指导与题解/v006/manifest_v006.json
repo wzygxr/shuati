@@ -1,0 +1,59 @@
+{
+  "version": "v006",
+  "created_date": "2026-09-23",
+  "final_audit_date": "2026-09-24",
+  "scope": "梁铨廷《物理光学》第4版第1--5章正式习题整章闭合",
+  "canonical_parent": "v005",
+  "counts": {
+    "formal_new": 41,
+    "variants_new": 123,
+    "training_new": 164,
+    "formal_cumulative": 147,
+    "variants_cumulative": 441,
+    "training_cumulative": 588,
+    "checks_total": 12693,
+    "checks_pass": 12693,
+    "checks_fail": 0
+  },
+  "documents": {
+    "markdown": {
+      "name": "梁铨廷_物理光学学习指导与题解_累计v006_第1至5章整章闭合.md",
+      "bytes": 397772,
+      "lines": 17771,
+      "sha256": "f27f95f0a0818f94866f3e164056a0fe886ac9a72f7f73cfc179901e50d4169c"
+    },
+    "pdf": {
+      "name": "梁铨廷_物理光学学习指导与题解_累计v006_第1至5章整章闭合.pdf",
+      "bytes": 9703973,
+      "pages": 404,
+      "bookmarks": 1664,
+      "sha256": "af0b69a3f2962b008b955d19f6cac65a740939f12adcebffa8d517329b47bc56"
+    }
+  },
+  "images": {"references": 81, "chapter5_new": 17, "missing": 0},
+  "qa": {
+    "rendered_pages": 404,
+    "blank_pages": 0,
+    "edge_alerts": 0,
+    "overflow_pages": 0,
+    "replacement_pages": 0,
+    "strict_pypdf": true,
+    "ghostscript_returncode": 0,
+    "fonts": 14,
+    "fonts_embedded_all": true,
+    "xref": true,
+    "startxref": true,
+    "eof_count": 1,
+    "tail_bytes_after_eof": 0,
+    "overall_pass": true
+  },
+  "next_breakpoint": "第6章正式习题6.1",
+  "drive_status": "prior uploads blocked by storageQuotaExceeded/forbidden",
+  "library_status": "storage limit reached; not uploaded",
+  "github": {
+    "repository": "wzygxr/shuati",
+    "branch": "chatgpt/liang-optics-v006",
+    "pull_request": null,
+    "binary_note": "PDF and ZIP remain conversation artifacts; GitHub branch stores text indices and evidence."
+  }
+}
