@@ -1,0 +1,54 @@
+{
+  "version": "ZXH-v056",
+  "date": "2026-09-24",
+  "project": "光学 IPhO 全习题项目 / 钟锡华《现代光学基础》",
+  "scope": {
+    "completed_source_problems": ["6.1--6.21", "7.1--7.4"],
+    "source_problem_count": 25,
+    "variant_count": 75,
+    "training_unit_count": 100,
+    "figure_count": 19,
+    "next_breakpoint": "8.1"
+  },
+  "zhong_xihua_progress": {
+    "chapter_counts": {"1":"8/8","2":"42/42","3":"10/10","4":"26/26","5":"16/16","6":"21/21","7":"4/4","8":"0/42","9":"0/17"},
+    "completed": 127,
+    "total": 186,
+    "remaining": 59
+  },
+  "unified_totals": {
+    "formal": 1447,
+    "variants": 4341,
+    "training_units": 6034,
+    "basis": "沿冻结版本逐批相加，非本轮全历史重新计数"
+  },
+  "source_files": {
+    "book": {"pages":488,"sha256":"9bf22f263e9b44a2c47bac0ef8a008c818ee07e930c01e9817b9684e5d470644","full_render":"488/488"},
+    "answer": {"pages":225,"sha256":"5066e025ead2e7c9540dce1a64a8d334ab8b0fe2abcea168687216f00cafd2d5","full_render":"225/225"}
+  },
+  "outputs": {
+    "cumulative_markdown": {"lines":125693,"bytes":3657760,"sha256":"6037620f9b5e5311a65450567f2139164023dd9b5b2e5c011d28b897e5c0f59b"},
+    "cumulative_pdf": {"pages":4188,"bookmarks":8304,"bytes":96828297,"sha256":"179107dae23f3be4266c912495717e47a80f4a97fabbf7f4d6b5b624d0ef0938"},
+    "increment_markdown": {"lines":2964,"bytes":88837,"sha256":"78a64427477ba9f29ab2e260f4ad8fd84613246cbfec21451f3b1e99fc3bcd44"},
+    "increment_pdf": {"pages":85,"bookmarks":30,"bytes":1513343,"sha256":"28bb0c80d0d746932b5f25630136770bc08af96387467e132d0bd7984ba0f35a"},
+    "evidence_pdf": {"pages":56,"bookmarks":56,"bytes":1087109,"sha256":"090b6516e8156ef0a5d9aab1615d43e4c53c0eecbc2acb7e1b5cce1f394bd014"}
+  },
+  "qa": {
+    "core_checks_pass":55,
+    "core_checks_fail":0,
+    "numeric_checks_pass":26,
+    "numeric_checks_fail":0,
+    "increment_render":"85/85",
+    "evidence_render":"56/56",
+    "cumulative_content_stream_load":"4188/4188",
+    "ghostscript_nullpage":true,
+    "pdf_markers":true,
+    "qpdf":"not_installed",
+    "increment_fonts_embedded":true,
+    "cumulative_historical_unembedded_fonts":["Heiti","STSong-Light"]
+  },
+  "persistence": {
+    "google_drive":"not retried; previous storage quota exceeded",
+    "github":{"repository":"wzygxr/shuati","branch":"master","status":"text progress files committed successfully","binary_pdfs":"delivered via sandbox"}
+  }
+}
