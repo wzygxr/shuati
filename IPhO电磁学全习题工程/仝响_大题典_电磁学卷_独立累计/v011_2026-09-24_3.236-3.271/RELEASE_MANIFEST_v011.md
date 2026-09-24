@@ -1,0 +1,23 @@
+# RELEASE MANIFEST v011
+
+- Project: 仝响《物理奥林匹克竞赛大题典·电磁学卷》逐题全解
+- Date: 2026-09-24
+- Batch: 3.236--3.271
+- New formal problems: 36
+- Cumulative formal problems: 271/295
+- Remaining: 24
+- Next breakpoint: 3.272
+- Different variants: 542
+- Same-type reinforcements: 271
+- Companion problems: 813
+- Training units: 1084
+- Formula/structure checks: 5774/5774 PASS
+- PDF pages: 786
+- Full-page rendering: 786/786 PASS
+- Poppler secondary rendering: 6/6 PASS
+- Asset files: 184
+- Markdown SHA-256: `04f2947485e58e238450545afda4079f62f28f87f7060c3b606e9885ad8032f8`
+- TeX SHA-256: `b49ca2bc89c28233cb664b4888e2c1db24b46d29e6cb1e92af36e77d21ab509a`
+- PDF SHA-256: `a2c892a61f980bf1f479954db3e3c48374b22abe20105ad4eec9a032fc9022eb`
+- Ledger SHA-256: `6f4ac7314a4c998a0263dbc904bcb151bbbf2e8cf66f6ec18a6a60835c9bfd20`
+- Formula log SHA-256: `9803c822f45f55ee92894033a13f6bf6cec084ed9a5862dd04e58a0e77581cf8`
