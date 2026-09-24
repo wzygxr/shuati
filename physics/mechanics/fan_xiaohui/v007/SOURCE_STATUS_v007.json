@@ -1,0 +1,66 @@
+{
+  "project": "范小辉双书力学全习题详解",
+  "version": "FXH007",
+  "date": "2026-09-24",
+  "baseline": {
+    "previous_version": "FXH006",
+    "stale_user_checkpoint_rejected": [
+      "实用题典 Ch3 Q31",
+      "奥赛指导 Ch2 §5 Ex1"
+    ],
+    "actual_starting_breakpoints": [
+      "实用题典 Ch4 Q11",
+      "奥赛指导 Ch2 §6 Ex1"
+    ]
+  },
+  "source": {
+    "practical_problem_book": {
+      "title": "新编高中物理奥赛实用题典",
+      "edition": "第4版",
+      "physical_pdf_pages": 666,
+      "size_bytes": 118702021,
+      "sha256": "505437c4915ae2b4d15f29197095a9f54d3463dccdefaedad717cc43c9b2af73",
+      "problem_page_physical": 52,
+      "problem_page_printed": 40,
+      "answer_page_physical": 300,
+      "answer_page_printed": 288
+    },
+    "guidance_book": {
+      "title": "新编高中物理奥赛指导",
+      "edition": "第6版",
+      "physical_pdf_pages": 537,
+      "size_bytes": 65491587,
+      "sha256": "e2d9c50c3b599a080e366a997f5a5a857c0489b3e75970aa13fe47f5618d5b8c",
+      "problem_and_solution_pages_physical": [71, 72],
+      "problem_and_solution_pages_printed": [61, 62]
+    },
+    "preview_layer_ignored": true,
+    "targeted_pages_rendered_this_version": "4/4",
+    "source_evidence_pdf_pages": 5
+  },
+  "source_note": {
+    "guidance_example_1": "原文称动摩擦因数，但临界不滑问题必须按最大静摩擦因数理解；本稿显式修正术语后严格求解。"
+  },
+  "completed_this_version": {
+    "practical_problem_book_ranges": ["Ch4 Q11"],
+    "guidance_book_range": "Ch2 §6 Ex1",
+    "source_positions": 2,
+    "strictly_completed": 2,
+    "conditional": 0,
+    "fundamentally_different_variants": 4,
+    "same_type_practice": 2,
+    "companion_training": 6
+  },
+  "cumulative": {
+    "source_positions_processed": 220,
+    "strictly_completed": 217,
+    "conditional": 3,
+    "fundamentally_different_variants": 438,
+    "same_type_practice": 219,
+    "companion_training": 657
+  },
+  "next_breakpoints": [
+    "实用题典 Ch4 Q12",
+    "奥赛指导 Ch2 §6 Ex2"
+  ]
+}
