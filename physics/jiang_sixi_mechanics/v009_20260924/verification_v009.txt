@@ -1,0 +1,28 @@
+江四喜《物理竞赛专题精编》力学全解 v009 数值与结构复算
+seed: 20260924
+samples_per_numeric_module: 10000
+
+J14-01_curb_torque: pass=True max_abs_error=2.164935e-15
+J14-02_ball_couple: pass=True max_abs_error=5.684342e-14
+J14-03_bowl_torque: pass=True max_abs_error=6.217249e-15
+J14-04_square_geometry: pass=True lower=2.414213562373095 upper=8.21110255092798
+J14-05_tetrahedral_separation: pass=True max_abs_error=4.440892e-16
+J14-06_rough_cylinder: pass=True rmax_over_r=0.6801012074962001
+J15-01_half_angle: pass=True max_abs_error=2.842171e-14
+J15-02_wedge_interval: pass=True max_abs_error=7.105427e-15
+J15-03_board_rods: pass=True max_abs_error=1.110223e-16
+J15-05_ladder: pass=True H_over_L=0.44562943533151683
+J15-06_wedge_lock: pass=True max_abs_error=8.384404e-13
+J16-01_corner_sphere: pass=True max_abs_error=1.065814e-14
+J16-02_spool_corner: pass=True cases=3785
+J16-03_composite_wheel: pass=True
+J16-04_two_cylinders: pass=True r_over_R=0.28994082840236685
+J16-05_wall_board_roll: pass=True phi_rad=2.3873020807545724 phi_deg=136.78233365003663
+J16-06_platform_incline: pass=True max_abs_error=1.110223e-16
+structure: pass=True; source=104; A=104; B=104; C=104; crosswalk=104 unique; image_refs=118; missing_images=0; control_chars=0
+
+all_numeric_pass: True
+structure_pass: True
+all_pass: True
+
+PDF: 539 pages A4; Poppler 539/539; PDFium key pages 15/15; Ghostscript exit 0; fonts embedded 7/7; minimum content margins [46,18,46,20] px; startxref and %%EOF present.
