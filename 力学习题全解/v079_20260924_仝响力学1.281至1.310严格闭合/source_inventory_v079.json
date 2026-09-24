@@ -1,0 +1,65 @@
+{
+  "version": "v079-TX014",
+  "date": "2026-09-24",
+  "source": {
+    "name": "物理奥林匹克竞赛大题典 力学卷",
+    "physical_pages": 376,
+    "preview_layer_pages": 150,
+    "size_bytes": 54896885,
+    "sha256": "44d0b4e0e108ed2b65d03b32c969e2b09768bd8fec011df76c6862aa4314f031"
+  },
+  "range": {
+    "first": "1.281",
+    "last": "1.310",
+    "count": 30,
+    "progress": "310/350",
+    "remaining": 40,
+    "next": "1.311"
+  },
+  "source_pages": {
+    "problems": {
+      "1.281-1.283": 55,
+      "1.284-1.289": 56,
+      "1.289-continuation-1.295": 57,
+      "1.295-continuation-1.302": 58,
+      "1.303-1.307": 59,
+      "1.308-1.310": 60
+    },
+    "answers": {
+      "1.281-1.287": "301-307",
+      "1.288-1.292": "307-313",
+      "1.293-1.304": "313-321",
+      "1.305-1.310": "321-326"
+    }
+  },
+  "artifacts": {
+    "fragment_markdown_bytes": 69661,
+    "fragment_pdf_pages": 94,
+    "fragment_pdf_bytes": 6224202,
+    "fragment_pdf_sha256": "df9250e27d2f61f8d2bf2001ca2608836400efdf1a0620e516606ca7dca9b585",
+    "cumulative_markdown_bytes": 5178518,
+    "cumulative_pdf_pages": 5819,
+    "cumulative_pdf_bytes": 220441172,
+    "cumulative_pdf_sha256": "ec69d3f1ea067bd308e2df946deb10f574dbc12274449a12dd385adc164e59b4"
+  },
+  "qa": {
+    "checks": 8157,
+    "passed": 8157,
+    "failed": 0,
+    "fragment_pdfium": "94/94",
+    "fragment_pymupdf": "94/94",
+    "fragment_ghostscript": "PASS",
+    "fragment_blank_content_pages": 0,
+    "cumulative_pymupdf": "5819/5819",
+    "cumulative_ghostscript_chunks": "12/12 PASS",
+    "cumulative_boundary_renders": "8/8 PASS",
+    "cumulative_startxref_offset_from_end": 29,
+    "cumulative_eof_offset_from_end": 7
+  },
+  "counting": {
+    "safe_baseline_originals": 2359,
+    "safe_baseline_variants": 7077,
+    "safe_baseline_units": 9436,
+    "parallel_unmerged_increments": "excluded to prevent double counting"
+  }
+}
