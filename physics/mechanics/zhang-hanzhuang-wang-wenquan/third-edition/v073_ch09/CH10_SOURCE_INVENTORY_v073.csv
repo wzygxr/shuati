@@ -1,0 +1,4 @@
+pdf_physical_page,printed_page,formal_problem_range,status,note
+324,309,10-1--10-11,LOCKED,"10-11 continues on next page"
+325,310,10-11 continuation;10-12--10-20 start,LOCKED,"10-20 continues on next page"
+326,311,10-20 continuation;10-21,LOCKED,"no further formal problem after 10-21"
