@@ -1,0 +1,49 @@
+{
+  "version": "HJ007",
+  "date": "2026-09-24",
+  "source_book_pages": 234,
+  "new_formal_units": 48,
+  "new_companion_units": 144,
+  "new_training_units": 192,
+  "formal_solved": 159,
+  "companion_solved": 477,
+  "training_units": 636,
+  "remaining_units": 28,
+  "next_breakpoint": "自测试题（三）第1问",
+  "pdf_pages": 415,
+  "pdf_size_bytes": 17967428,
+  "markdown_lines": 14867,
+  "verification": {
+    "seed": 20260924,
+    "checks": 225992,
+    "passed": 225992,
+    "failed": 0
+  },
+  "render": {
+    "rendered_pages": 415,
+    "expected_pages": 415,
+    "all_dimensions_same": true,
+    "dimensions": [993, 1404],
+    "blank_page_alerts": [],
+    "border_clipping_alerts": []
+  },
+  "pdf_preflight": {
+    "pages": 415,
+    "encrypted": false,
+    "eof_count": 1,
+    "startxref_count": 1,
+    "tail_has_eof": true,
+    "font_records": 11,
+    "all_fonts_embedded": true,
+    "has_xfa": false,
+    "has_javascript": false,
+    "xref_present": true
+  },
+  "package": {
+    "file_count": 121,
+    "internal_sha256_checks": 120,
+    "internal_sha256_failures": 0,
+    "sha256": "6ea71fe409da8d7de6ffb877bda7718eb6baf9b79521d3adfd1faa5f99260d8f"
+  },
+  "evidence_pages": [219, 220, 221, 222]
+}
