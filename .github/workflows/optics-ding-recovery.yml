@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - '.github/workflows/optics-ding-recovery.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/optics-ding-recovery-trigger.txt'
   workflow_dispatch:
 
 permissions:
@@ -36,9 +39,9 @@ jobs:
 
           python3 - <<'PY'
           from pathlib import Path
-          import re, subprocess, hashlib, csv
+          import re, subprocess, hashlib, csv, os
 
-          out = Path(__import__('os').environ['RUNNER_TEMP']) / 'optics_ding_recovery'
+          out = Path(os.environ['RUNNER_TEMP']) / 'optics_ding_recovery'
           rows = []
           source = out / 'matching_git_objects.txt'
           if source.exists():
