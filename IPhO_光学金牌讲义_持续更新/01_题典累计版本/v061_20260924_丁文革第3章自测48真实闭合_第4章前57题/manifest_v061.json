@@ -1,0 +1,57 @@
+{
+  "version": "v061",
+  "date": "2026-09-24",
+  "scope": "丁文革第3章自测48题真实闭合 + 第4章自测非综合题57题",
+  "source": {
+    "file": "光学指导考研参考书-丁文革.pdf",
+    "physical_pages": 218,
+    "bytes": 28275795,
+    "sha256": "2859f841147d8473f0db5074ae1133aea9f80f40a545bb76f06b1b73e23ef98f",
+    "chapter3_selftest_pages": "125--133",
+    "chapter4_noncomprehensive_pages": "169--174",
+    "preview_layer": "150 pages, truncated, not authoritative"
+  },
+  "batch": {
+    "chapter3_selftest": {"choice": 18, "fill": 15, "comprehensive": 15, "total": 48},
+    "chapter4_noncomprehensive": {"choice": 23, "fill": 18, "judgment": 4, "short_answer": 12, "total": 57},
+    "formal_total": 105,
+    "variants_per_problem": 3,
+    "variants_total": 315,
+    "training_units": 420
+  },
+  "structure_counts": {
+    "problem_headings": 105,
+    "variant_A": 105,
+    "variant_B": 105,
+    "variant_C": 105,
+    "source_position": 105,
+    "foundation": 105,
+    "solution": 105,
+    "conclusion": 105,
+    "mistakes": 105,
+    "selfcheck": 105
+  },
+  "next_breakpoint": "丁文革第4章综合计算题1",
+  "chapter4_remaining": "综合计算题1--33",
+  "markdown": {
+    "name": "光学全习题详解_累计推进_v061_丁文革C3自测48_C4前57.md",
+    "bytes": 179266,
+    "lines": 5081,
+    "sha256": "6d38f4d9a70c880da8bd17cf026e21fe1c4755236f9fab31d28b5a6f54440c62"
+  },
+  "pdf": {
+    "name": "光学全习题详解_累计推进_v061_丁文革C3自测48_C4前57.pdf",
+    "bytes": 1181315,
+    "pages": 113,
+    "sha256": "2c375b11fa0fb235373105b7669561f4e9392470bf8891613698eecbb6b2c179"
+  },
+  "qa": {
+    "formula_checks": "PASS",
+    "pdf_preflight": "PASS",
+    "ghostscript": "PASS",
+    "all_pages_rendered": 113,
+    "edge_touch_alerts": 0,
+    "visual_contact_sheets": "5/5 inspected",
+    "qpdf": "not installed in runtime; not treated as failure"
+  }
+}
