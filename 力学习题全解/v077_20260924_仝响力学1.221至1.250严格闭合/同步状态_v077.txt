@@ -1,0 +1,5 @@
+v077-TX012 sync status
+GitHub: lightweight release index, remaining-work ledger, QA report, references, source inventory, build status and release summary uploaded to wzygxr/shuati master.
+Google Drive: previous uploads returned storageQuotaExceeded; no repeated large-file upload attempted in this release.
+ChatGPT Library: previous uploads returned library_storage_limit_exceeded; no existing files were deleted without user instruction.
+Large cumulative PDF, full cumulative Markdown, source images and ZIP are delivered as ChatGPT conversation artifacts.
