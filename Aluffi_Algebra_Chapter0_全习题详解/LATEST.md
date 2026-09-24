@@ -11,9 +11,9 @@
 - Cumulative variants/drills: **1827**
 - Cumulative training units: **2436**
 - v023 increment PDF: **84 A4 pages**
-- increment PDF SHA-256: `e20829f1eeb61ec5c72437ff87d043c79444ec449e0a62291f4caef955549967`
+- increment PDF SHA-256: `b2d36bcdb462cfadbb4d92d1061ec60f31fd7f0615dda6c4d96b28b6a93405f7`
 - cumulative-continuation PDF: **276 A4 pages**
-- cumulative-continuation PDF SHA-256: `fbda641ab9790627ebc5b8d2658fd7142a195463669a94b22c7e74ae88bdb28a`
+- cumulative-continuation PDF SHA-256: `975c85550ee2af6fbce4cc364e9902b34e2200f2d80763baa9e18a6dee988c0c`
 - Next continuous checkpoint: **Chapter VI §3 Exercise 3.1**
 
 ## Closed ranges
