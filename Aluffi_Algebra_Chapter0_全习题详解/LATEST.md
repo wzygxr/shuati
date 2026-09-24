@@ -2,15 +2,19 @@
 
 ## Latest checkpoint
 
-- Version: **v021**
+- Version: **v022**
 - Date: **2026-09-24**
-- Newly closed: **Chapter V §4, Exercises 4.1–4.25 (25/25)**
-- Cumulative formal exercises: **525**
-- Cumulative variants/drills: **1575**
-- Cumulative training units: **2100**
-- v021 standalone increment PDF: **76 A4 pages**
-- v021 increment PDF SHA-256: `7ef722c45a6636fe791985b64f06e0c5efdc0a01f1112cc6bd82e2f5981932a9`
-- Next continuous checkpoint: **Chapter V §5 Exercise 5.1**
+- Newly closed: **Chapter V §5, Exercises 5.1–5.24 (24/24)**
+- Newly closed: **Chapter V §6, Exercises 6.1–6.21 (21/21)**
+- Newly closed formal exercises: **45**
+- Cumulative formal exercises: **570**
+- Cumulative variants/drills: **1710**
+- Cumulative training units: **2280**
+- v022 standalone increment PDF: **101 A4 pages**
+- v022 increment PDF SHA-256: `010d249cc33d34db4935026e1579acc878fb4f50d3118575f5cd0f4d475d647c`
+- Chapter V §§4–6 cumulative-continuation PDF: **190 A4 pages**
+- cumulative-continuation PDF SHA-256: `df9187addd6aea019e6f94d841c709db4a00f36a2a6a5d140c4280708eea0602`
+- Next continuous checkpoint: **Chapter VI §1 Exercise 1.1**
 
 ## Closed ranges
 
@@ -22,21 +26,35 @@
 - Chapter V §2: 25/25
 - Chapter V §3: 15/15
 - Chapter V §4: 25/25
+- Chapter V §5: 24/24
+- Chapter V §6: 21/21
+
+**Chapter V is now fully closed.**
 
 ## Current version directory
 
-See [`v021/`](./v021/) for:
+See [`v022/`](./v022/) for:
 
-- five continuous solution blocks covering V.4.1–V.4.25;
-- `PROJECT_STATUS_v021.md`;
-- `REMAINING_WORK_v021.md`;
-- `SOURCE_LEDGER_v021.md`;
-- `QA_REPORT_v021.md`.
+- `PROJECT_STATUS_v022.md`;
+- `QA_v022.md`;
+- `SOURCE_AUDIT_v022.md`;
+- `REMAINING_WORK_SUMMARY_v022.md`;
+- `DELIVERABLE_INDEX_v022.md`.
+
+## QA summary
+
+- deterministic mathematical/structural checks: **19,821,429 / 19,821,429 PASS**;
+- increment render: **101/101** pages;
+- cumulative-continuation render: **190/190** pages;
+- blank/black/edge-clipping candidates: **0/0/0**;
+- replacement glyph/NUL: **0/0**;
+- Ghostscript parse: **PASS**;
+- byte-level `startxref`/`%%EOF`: **1/1**.
 
 ## Artifact boundary
 
-The v020 checkpoint records a 1146-page historical cumulative PDF, but its full bytes are not available to the current runtime. Therefore v021 does **not** falsely claim that the 76-page increment has already been physically merged into that historical PDF. The full v021 Markdown, XeLaTeX source, 76-page PDF, QA evidence, and release ZIP are produced in the current ChatGPT artifact workspace; this GitHub directory is the durable UTF-8 text checkpoint.
+The historical v020 checkpoint records a 1146-page cumulative PDF, but its full bytes are not available to the current runtime. The 190-page v022 cumulative-continuation file is a genuine physical merge of the actually available v021 §4 and v022 §§5–6 sources. It is deliberately not mislabeled as a physical reconstruction of all 570 solutions. The full v022 Markdown, XeLaTeX sources, PDFs, verification script, figure, and release ZIP were generated in the ChatGPT artifact workspace; GitHub stores the durable UTF-8 checkpoint and exact artifact hashes.
 
-## Mathematical correction in V.4.25
+## Corrections implemented in v022
 
-The literal statement without a no-common-factor condition has the immediate scaling counterexample `(aF,bF,cF)`. v021 first records this obstruction, then proves the primitive corrected theorem over `C[t]`, proves the full classification of all solutions, and supplies an independent Mason–Stothers proof.
+The author’s corrected-second-printing errata affecting p.290 Exercise 5.22, p.295 bottom, and p.302 Exercise 6.19 were incorporated. In particular, V.6.9 uses a nonzero ideal and V.6.19 uses the standard Hurwitz integer ring. The counting range in V.6.18 includes zero so that the square-class set has exactly `(p+1)/2` elements.
