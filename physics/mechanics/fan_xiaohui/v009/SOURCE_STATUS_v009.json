@@ -1,0 +1,48 @@
+{
+  "project": "范小辉双书力学全习题详解",
+  "version": "FXH009",
+  "date": "2026-09-24",
+  "source": {
+    "practical_problem_book": {
+      "title": "新编高中物理奥赛实用题典",
+      "edition": "第4版",
+      "physical_pdf_pages": 666,
+      "size_bytes": 118702021,
+      "sha256": "505437c4915ae2b4d15f29197095a9f54d3463dccdefaedad717cc43c9b2af73",
+      "target_problem_pages_physical": "56-62",
+      "target_answer_pages_physical": "309-323"
+    },
+    "guidance_book": {
+      "title": "新编高中物理奥赛指导",
+      "edition": "第6版",
+      "physical_pdf_pages": 537,
+      "size_bytes": 65491587,
+      "sha256": "e2d9c50c3b599a080e366a997f5a5a857c0489b3e75970aa13fe47f5618d5b8c",
+      "target_problem_and_solution_pages_physical": "81-86"
+    },
+    "preview_layer_ignored": true,
+    "source_evidence_pdf_pages": 30
+  },
+  "completed_this_version": {
+    "source_positions": 30,
+    "strictly_completed": 30,
+    "fundamentally_different_variants": 60,
+    "same_type_practice": 30,
+    "companion_training": 90
+  },
+  "cumulative": {
+    "source_positions_processed": 273,
+    "strictly_completed": 270,
+    "conditional": 3,
+    "fundamentally_different_variants": 544,
+    "same_type_practice": 272,
+    "companion_training": 816
+  },
+  "verification": {
+    "symbolic": "23/23 PASS",
+    "random_parameter_checks": "100000/100000 PASS",
+    "main_pdf_pages": 127,
+    "source_evidence_pdf_pages": 30
+  },
+  "next_breakpoints": ["实用题典 Ch5 Q1", "奥赛指导 Ch3 §2 Ex2"]
+}
