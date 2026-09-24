@@ -1,0 +1,162 @@
+{
+  "version": "DING-C3-v001",
+  "date": "2026-09-24",
+  "source": {
+    "file": "光学指导考研参考书-丁文革.pdf",
+    "actual_physical_pages": 218,
+    "preview_pages": 150,
+    "bytes": 28275795,
+    "sha256": "2859f841147d8473f0db5074ae1133aea9f80f40a545bb76f06b1b73e23ef98f",
+    "used_physical_pages": "95--103",
+    "rendered_evidence_pages": "95--106"
+  },
+  "batch": {
+    "formal_range": "Chapter 3 Examples 3.1--3.20",
+    "formal_total": 20,
+    "variants_per_problem": 3,
+    "variants_total": 60,
+    "training_units": 80
+  },
+  "ding_progress": {
+    "chapter1": "59/59",
+    "chapter2": "130/130",
+    "chapter3": "Examples 3.1--3.20",
+    "continuous_positions": 209,
+    "next": "Chapter 3 Example 3.21"
+  },
+  "cumulative_counts": {
+    "formal": 1528,
+    "formal_variants": 4584,
+    "supplemental_main": 40,
+    "supplemental_variants": 162,
+    "anchored": 23,
+    "anchored_variants": 69,
+    "training_units": 6406
+  },
+  "files": [
+    {
+      "name": "丁文革_第3章例3.1-3.20全解_合流增量_DING-C3-v001.md",
+      "bytes": 53499,
+      "sha256": "1e19a2211b98925ef882d5a00f814f9057065eb8bfe455645ca4b7f307f0cd82",
+      "lines": 2105
+    },
+    {
+      "name": "丁文革_第3章例3.1-3.20全解_合流增量_DING-C3-v001.pdf",
+      "bytes": 1969909,
+      "sha256": "cab85eb40b2619e62770b14b40492c9bea7e306b9450255d2d7322688dd591aa",
+      "lines": null
+    },
+    {
+      "name": "丁文革_第3章例3.1-3.20全解_合流增量_DING-C3-v001.tex",
+      "bytes": 67113,
+      "sha256": "e2b9bedcc09e2c85f30fc2032883d794d7aaccf2ca200d7fdc107486bba08b72",
+      "lines": 2388
+    },
+    {
+      "name": "光学统一累计_分支副本_基于DING-C2-v003并含例3.1-3.20_DING-C3-v001.md",
+      "bytes": 3664259,
+      "sha256": "a4c91ecc90f3d491a884b84664fa24cd3fff1818884dee33bdef361ba586e862",
+      "lines": 125504
+    },
+    {
+      "name": "光学统一累计_分支副本_基于DING-C2-v003并含例3.1-3.20_DING-C3-v001.pdf",
+      "bytes": 103669187,
+      "sha256": "374348155517bda8e4f536f20b180111bd9f1ced6b3d81489fb2687dfff0e1ce",
+      "lines": null
+    },
+    {
+      "name": "LATEST_光学_IPhO全习题项目_DING-C3-v001.md",
+      "bytes": 522,
+      "sha256": "bec727e9bfff9d35c2f3d2f5ba65bde88e7a9a3a9fa36626fb40bc578166cc73",
+      "lines": 8
+    },
+    {
+      "name": "光学_最新合流说明与剩余总账_DING-C3-v001.md",
+      "bytes": 3645,
+      "sha256": "746a371c843f6c4f8d4287157e807e7b080f8d6fa13d564e0a7fb582a6010b93",
+      "lines": 62
+    },
+    {
+      "name": "丁文革_第3章例3.1-3.20_原书勘误与独立复算账_DING-C3-v001.md",
+      "bytes": 2001,
+      "sha256": "11b96a6ef4f30891171a01851e63335fae08d28a3b9726814d3983de9873c22d",
+      "lines": 22
+    },
+    {
+      "name": "光学_丁文革DING-C3-v001_来源审计与质量验收.md",
+      "bytes": 2599,
+      "sha256": "56914bd86672d69e0691118f5ba4452bfedd10032bd653c0aa59cd15c56a5343",
+      "lines": 50
+    },
+    {
+      "name": "光学_丁文革DING-C3-v001_交付摘要.md",
+      "bytes": 794,
+      "sha256": "2a2e526211afdf53562c3018f26eb7cfe58efb514b6c9f3f10c1bd6d41ffbde9",
+      "lines": 13
+    },
+    {
+      "name": "README_丁文革DING-C3-v001_编译复现与合流.md",
+      "bytes": 1192,
+      "sha256": "63704a7dfa5fe3fe749388f6882bafa4ae18d52f766952bbc67823d92d491fd6",
+      "lines": 40
+    }
+  ],
+  "qa": {
+    "deterministic": "31/31 PASS",
+    "random": "25000/25000 PASS",
+    "increment_render": "66/66",
+    "cumulative_render": "4306/4306",
+    "nonregression": "17/17 pixel-identical",
+    "ghostscript": "PASS",
+    "pdf_preflight": "PASS",
+    "increment_fonts": "all embedded",
+    "cumulative_historical_unembedded": "Heiti (pre-existing, not added in this batch)"
+  },
+  "persistence": {
+    "library": {
+      "folder": "/IPhO_光学金牌讲义_持续更新/01_题典累计版本/v057_20260924_丁文革第3章例3.1至3.20",
+      "folder_created": true,
+      "upload": "failed: library_storage_limit_exceeded"
+    },
+    "google_drive": {
+      "folder": "/Google Drive/IPhO_光学金牌讲义_持续更新/01_题典累计版本/v057_20260924_丁文革第3章例3.1至3.20",
+      "folder_id": "1jhcjUKaCw0eeHCzR3cmnwGqbzlQJ1jis",
+      "folder_created": true,
+      "upload": "failed: HTTP 403 storageQuotaExceeded"
+    },
+    "github": {
+      "repository": "wzygxr/shuati",
+      "branch": "master",
+      "path": "IPhO_光学金牌讲义_持续更新/01_题典累计版本/v057_20260924_丁文革第3章例3.1至3.20/",
+      "encoding": "gzip+base64 lossless 5-part persistence for main increment Markdown",
+      "decoded_markdown_sha256": "1e19a2211b98925ef882d5a00f814f9057065eb8bfe455645ca4b7f307f0cd82",
+      "commits": {
+        "compressed_part_1": "79806ffeb67553fea43ba74d6378ffad4e3b6135",
+        "compressed_part_2": "570b1d8181ac8b34331b602903c1c8740b070280",
+        "compressed_part_3": "bd3211b91bc8bd34bcd36b7db7d9ad029a7061a9",
+        "compressed_part_4": "07c0a36a2f96e59f0679970edd4a2e2a0480a47b",
+        "compressed_part_5": "6053f60aff381d5f044a600864fc9e1bb447eab7",
+        "recovery_readme": "68f586c8812915cbda30e06d9f632f0e4e856400",
+        "compressed_manifest": "1186aea71a27299702d73e7c47130e59c1e449c9",
+        "latest": "c5a4fcf7d7abe44e25d2dfe499b2c1f30612f98e",
+        "progress": "d13f23286cb450b1d24e34e5362404a6f3d55bd6",
+        "corrections": "ee251b92bda4e984d0e077f8810e66c91ee499c8",
+        "qa_report": "56d4977a1f22ff9e4507cd5f4b9d23ea491ac001",
+        "delivery_summary": "db55b7783f59c573d83c91028270865c38efbb3d",
+        "build_readme": "f3f3b50a9272f987d482f1cd7da99224ef5993ce"
+      }
+    }
+  },
+  "package": {
+    "name": "丁文革第3章例3.1-3.20_DING-C3-v001_增量源码与验收.zip",
+    "excludes": [
+      "103.7 MB cumulative PDF",
+      "28.3 MB original source PDF"
+    ],
+    "includes": "increment MD/PDF/TeX; cumulative MD; selected source renders; figures; full increment renders and QA; scripts; reports; GitHub recovery parts",
+    "bytes": 26951208,
+    "sha256": "de6333414b294510ca2e0fe19e1b12362b519416172547f7a5c0abca2f4d7e78",
+    "zip_integrity": "PASS",
+    "inner_files_excluding_checksum": 136
+  }
+}
