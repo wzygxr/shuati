@@ -1,30 +1,43 @@
 {
   "project": "《力学与理论力学（第二版）》习题详解",
   "version": "v007",
-  "date": "2026-09-23",
+  "date": "2026-09-24",
   "source": {
-    "physical_pages": 245,
-    "preview_layer_pages": 150,
+    "file_name": "力学与理论力学-第2版-习题解答.pdf",
     "size_bytes": 68736774,
     "sha256": "bb45b642b498ae30410c90e9c6d22a08fe2273a01b53ef0a669782f4cf4d3140",
-    "formal_problem_total": 385,
+    "physical_pages": 245,
+    "preview_layer_pages": 150,
     "upper_chapters": 11,
-    "lower_chapters": 4
+    "lower_chapters": 4,
+    "formal_problem_total": 385
   },
   "progress": {
+    "completed_chapters": "上册第1--9章",
     "formal_completed": 224,
     "formal_remaining": 161,
     "new_formal_this_version": 45,
-    "new_companion_problems_this_version": 135,
-    "total_companion_problems": 672,
+    "variants_A_B_total": 448,
+    "same_type_C_total": 224,
+    "companion_problems_total": 672,
     "v001_supplement_units_retained": 32,
-    "total_training_units_in_cumulative": 928,
+    "total_training_units": 928,
     "next_breakpoint": "上册第10章 10.1"
   },
+  "chapter_9": {
+    "problem_range": "9.1--9.45",
+    "source_physical_pages": "131--151",
+    "next_source_page": 152,
+    "next_chapter": "第10章 流体力学",
+    "figures": 6
+  },
   "qa": {
-    "formula_numeric_structure_checks": "433/433 PASS",
-    "compiled_pdf_pages": 436,
-    "rendered_pages": "436/436 PASS @120dpi",
+    "formula_numeric_structure_checks": "681/681 PASS",
+    "increment_pdf_pages": 78,
+    "cumulative_pdf_pages": 444,
+    "cumulative_pdf_a4_pages": "444/444",
+    "increment_rendered_pages": "78/78 at 120 dpi",
+    "cumulative_rendered_pages": "444/444 at 72 dpi",
     "unexpected_blank_pages": 0,
     "very_low_content_pages": 0,
     "edge_dark_suspects": 0,
@@ -32,7 +45,12 @@
     "ghostscript_nullpage": "PASS",
     "startxref_count": 1,
     "eof_count": 1,
-    "bookmarks": 1938,
-    "chapter9_problem_bookmarks": 45
+    "ends_with_eof": true,
+    "outline_items": 1903
+  },
+  "build": {
+    "increment": "Pandoc + XeLaTeX",
+    "cumulative_pdf": "v007 front + validated v006 pages 3--336 + v007 chapter 9 increment + validated v006 appendices",
+    "complete_text_source": "力学与理论力学第二版习题详解_累计_v007.md"
   }
 }
