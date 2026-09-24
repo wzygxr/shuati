@@ -1,0 +1,8 @@
+chapter,chapter_title,source_pdf_start_page,source_pdf_end_page,formal_problem_count,completed_v005,remaining_v005,status,next_problem
+1,晶体的结构,1,35,27,27,0,COMPLETE,—
+2,晶体的结合,36,51,15,15,0,COMPLETE,—
+3,晶格振动与晶体热学性质,52,71,23,23,0,COMPLETE,—
+4,晶体的缺陷,72,82,14,14,0,COMPLETE,—
+5,晶体中电子能带理论,83,111,22,0,22,PENDING,5.1
+6,自由电子论和电子的输运性质,112,131,22,0,22,PENDING,6.1
+TOTAL,,1,131,123,79,44,IN_PROGRESS,5.1
