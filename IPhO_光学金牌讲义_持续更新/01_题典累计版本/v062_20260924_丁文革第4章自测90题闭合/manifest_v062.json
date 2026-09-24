@@ -1,0 +1,40 @@
+{
+  "version": "v062",
+  "date": "2026-09-24",
+  "scope": "丁文革第4章综合计算题1--33；第4章自测90/90整栏闭合",
+  "source": {
+    "file": "光学指导考研参考书-丁文革.pdf",
+    "physical_pages": 218,
+    "bytes": 28275795,
+    "sha256": "2859f841147d8473f0db5074ae1133aea9f80f40a545bb76f06b1b73e23ef98f",
+    "preview_layer_pages": 150,
+    "preview_truncated": true,
+    "comprehensive_problem_pages": "174--178",
+    "remaining_example_pages": "140--169"
+  },
+  "batch": {"formal_new":33,"variants_new":99,"training_units_new":132},
+  "chapter4_selftest": {
+    "choice":"23/23","fill":"18/18","judgment":"4/4",
+    "short_answer":"12/12","comprehensive":"33/33","total":"90/90"
+  },
+  "chapter4_remaining": "典型例题4.1--4.35",
+  "next_breakpoint": "丁文革第4章典型例题4.1",
+  "markdown": {
+    "name":"光学全习题详解_累计推进_v062_丁文革第4章自测90题闭合.md",
+    "bytes":242214,"lines":6688,
+    "sha256":"f4bc804cace6bb78c5a385e8faf7452fc083c074b2147cad9bd3333a6fffd5fd"
+  },
+  "pdf": {
+    "name":"光学全习题详解_累计推进_v062_丁文革第4章自测90题闭合.pdf",
+    "bytes":1156522,"pages":151,
+    "sha256":"6a2cae76b78cf1bff9cf8003690054516dbdb211579c90b79bcbf7af745493c5"
+  },
+  "qa": {
+    "formula_checks":"20/20 PASS",
+    "pymupdf_preflight":"PASS",
+    "ghostscript":"PASS",
+    "render":"151/151",
+    "render_alerts":0,
+    "qpdf":"unavailable; not reported as PASS"
+  }
+}
