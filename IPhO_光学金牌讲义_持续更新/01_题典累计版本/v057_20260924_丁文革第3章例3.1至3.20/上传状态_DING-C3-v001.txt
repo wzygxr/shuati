@@ -1,0 +1,58 @@
+DING-C3-v001 持久化状态
+========================
+日期：2026-09-24
+
+一、ChatGPT Library
+-------------------
+目录已创建：
+/IPhO_光学金牌讲义_持续更新/01_题典累计版本/v057_20260924_丁文革第3章例3.1至3.20
+
+文件上传失败：library_storage_limit_exceeded
+未删除、移动或覆盖任何旧文件。
+
+二、Google Drive
+----------------
+目录已创建：
+/Google Drive/IPhO_光学金牌讲义_持续更新/01_题典累计版本/v057_20260924_丁文革第3章例3.1至3.20
+Folder ID: 1jhcjUKaCw0eeHCzR3cmnwGqbzlQJ1jis
+
+直接上传确认失败：HTTP 403 storageQuotaExceeded
+未删除、移动或覆盖任何旧文件。
+
+三、GitHub
+----------
+仓库：wzygxr/shuati
+分支：master
+目录：
+IPhO_光学金牌讲义_持续更新/01_题典累计版本/v057_20260924_丁文革第3章例3.1至3.20/
+
+权威增量Markdown已采用gzip+Base64五段无损保存：
+part001  79806ffeb67553fea43ba74d6378ffad4e3b6135
+part002  570b1d8181ac8b34331b602903c1c8740b070280
+part003  bd3211b91bc8bd34bcd36b7db7d9ad029a7061a9
+part004  07c0a36a2f96e59f0679970edd4a2e2a0480a47b
+part005  6053f60aff381d5f044a600864fc9e1bb447eab7
+恢复说明 68f586c8812915cbda30e06d9f632f0e4e856400
+分卷清单 1186aea71a27299702d73e7c47130e59c1e449c9
+LATEST   c5a4fcf7d7abe44e25d2dfe499b2c1f30612f98e
+剩余总账 d13f23286cb450b1d24e34e5362404a6f3d55bd6
+勘误账   ee251b92bda4e984d0e077f8810e66c91ee499c8
+QA报告   56d4977a1f22ff9e4507cd5f4b9d23ea491ac001
+交付摘要 db55b7783f59c573d83c91028270865c38efbb3d
+编译说明 f3f3b50a9272f987d482f1cd7da99224ef5993ce
+
+五段按README顺序拼接并解码解压后，应恢复：
+bytes = 53,499
+SHA-256 = 1e19a2211b98925ef882d5a00f814f9057065eb8bfe455645ca4b7f307f0cd82
+
+四、本地交付
+------------
+完整增量、累计Markdown/PDF、TeX、总账、勘误、QA和源码包位于：
+/mnt/data/ding_optics_v057/
+
+五、源码与验收包
+------------------
+文件：丁文革第3章例3.1-3.20_DING-C3-v001_增量源码与验收.zip
+字节：26,951,208
+SHA-256：de6333414b294510ca2e0fe19e1b12362b519416172547f7a5c0abca2f4d7e78
+ZIP完整性：PASS，136个内容文件加1份内层校验清单。
