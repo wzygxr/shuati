@@ -1,0 +1,23 @@
+江四喜《物理竞赛专题精编》力学全解 v007 数值与结构复算
+seed: 20260924
+samples_per_algebraic_module: 10000
+
+J9-01_chatter_series: pass=True; T_inf=3.5588561415967495; v_at_4s=9.6
+J9-02_discrete_families: pass=True
+J9-03_unfolding_and_collision_count: pass=True; ratios=[1/29,13/29,25/29,25/17,5]
+J9-04_three_event_orders: pass=True; L=[400,700,550+50sqrt(73)] m
+J10-01_regular_polygon_pursuit: pass=True
+J10-02_pure_pursuit: pass=True; ode_samples=120; max_sep_over_L_at_0.999_tc=0.000804104395208523
+J10-03_collinear_circle_track: pass=True
+J10-04_relative_velocity_triangle: pass=True; branch samples I=1927 II=3219 d_ge_L=4854
+J11-01_fastest_line_to_incline: pass=True
+J11-04_ellipse_tangent_threshold: pass=True; nonvertical=8952 vertical=1048
+J11-05_arc_vs_chord: pass=True; arc_coefficient=1.854074677301408; ratio=0.927037338650704
+J11-06_cycloid_invariant_and_time: pass=True
+structure: pass=True; source=71; A=71; B=71; C=71; crosswalk=71 unique; image_refs=85; missing_images=0; control_chars=0
+
+all_numeric_pass: True
+structure_pass: True
+all_pass: True
+
+PDF: 429 pages A4; Poppler 429/429; PDFium critical pages 22/22; Ghostscript exit 0; fonts embedded 7/7; startxref and %%EOF present.
