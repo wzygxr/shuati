@@ -1,0 +1,27 @@
+v076-TX011 BUILD STATUS
+source_full_pages=376
+source_preview_layer_pages=150
+range=1.196-1.220
+new_originals=25
+new_variants=50
+new_similar_drills=25
+new_training_units=100
+book_progress=220/350
+remaining=130
+next_problem=1.221
+formula_structure_checks=3880/3880 PASS
+fragment_pages=101
+fragment_xelatex_stderr_bytes=0
+fragment_preflight=PASS
+fragment_pdfium_render=101/101 PASS
+fragment_ghostscript=PASS
+fragment_fonts_embedded=PASS
+cumulative_pages=5509
+cumulative_preflight=PASS
+cumulative_pymupdf=5509/5509 PASS
+cumulative_ghostscript_chunks=14/14 PASS
+cumulative_boundary_renders=8/8 PASS
+cumulative_startxref_distance_from_end=29
+cumulative_eof_distance_from_end=7
+safe_arithmetic_baseline=2269 originals + 6807 variants = 9076 units
+parallel_unmerged_increments=excluded_to_prevent_double_counting
