@@ -1,0 +1,47 @@
+{
+  "project": "程稼夫电磁学篇全习题详解",
+  "version": "v009",
+  "date": "2026-09-24",
+  "source_pdf_physical_pages": 629,
+  "formal_denominator": 246,
+  "completed_formal": 229,
+  "remaining_formal": 17,
+  "completed_range": "1-1--4-43",
+  "next_breakpoint": "5-1",
+  "variants": 458,
+  "drills": 229,
+  "training_units": 916,
+  "new_batch": {
+    "range": "4-1--4-43",
+    "formal": 43,
+    "variants": 86,
+    "drills": 43,
+    "units": 172
+  },
+  "verification": {
+    "formula_checks": "336/336 PASS",
+    "cumulative_pdf_pages": 432,
+    "cumulative_rendered_pages": "432/432",
+    "increment_pdf_pages": 51,
+    "increment_rendered_pages": "51/51",
+    "ghostscript": "PASS",
+    "font_subsets_cumulative": 13,
+    "font_subsets_increment": 11,
+    "all_fonts_embedded_unicode": true,
+    "assets_references": 67,
+    "assets_unique": 62,
+    "assets_missing": 0,
+    "pdf_version": "1.5",
+    "xref": "valid xref stream",
+    "eof_count": 1,
+    "startxref_count": 1
+  },
+  "sha256": {
+    "cumulative_md": "211693eb19779f02549ec738e546b242b36c24344edc95437efaf1618c90bc79",
+    "cumulative_pdf": "d59de32d75748cfa75c43d36662419c8c32f185bd85e7842478db2edd87f9894",
+    "increment_md": "9c40081d120d73b38640da730bca9daf201f7b15db2db9e04893179dbfb38c40",
+    "increment_pdf": "b8b8b65c5103d307af8c9b05e1fcbb87cf6fab796216e66f6b0e9b85e136a0bc",
+    "verification_script": "a9cafd4c4f0a22e89e1775e2811717bf69f2ce2ea6fdb8825776a1bcccc9534c",
+    "verification_report": "a7cb815d372884de096f261ee0e4452e8fcc851dc6e7bb30b68da360d89a8460"
+  }
+}
