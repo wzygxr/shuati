@@ -1,0 +1,79 @@
+name: optics-ding-recovery
+
+on:
+  push:
+    paths:
+      - '.github/workflows/optics-ding-recovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Recover v058 payload and matching historical blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/optics_ding_recovery"
+          mkdir -p "$OUT/current" "$OUT/history"
+
+          BASE='IPhO_光学金牌讲义_持续更新/01_题典累计版本/v058_20260924_丁文革第3章例3.21至3.49闭合'
+          cat "$BASE"/DING-C3-v002_markdown.md.gz.b64.part*.txt > "$OUT/current/DING-C3-v002_incremental.md.gz.b64"
+          base64 -d "$OUT/current/DING-C3-v002_incremental.md.gz.b64" > "$OUT/current/DING-C3-v002_incremental.md.gz"
+          gzip -dc "$OUT/current/DING-C3-v002_incremental.md.gz" > "$OUT/current/DING-C3-v002_incremental.md"
+          sha256sum "$OUT/current"/* > "$OUT/current/SHA256SUMS.txt"
+
+          git rev-list --objects --all > "$OUT/all_git_objects.txt"
+          grep -Ei '丁文革|光学指导|DING-C3|DING_' "$OUT/all_git_objects.txt" > "$OUT/matching_git_objects.txt" || true
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, subprocess, hashlib, csv
+
+          out = Path(__import__('os').environ['RUNNER_TEMP']) / 'optics_ding_recovery'
+          rows = []
+          source = out / 'matching_git_objects.txt'
+          if source.exists():
+              for idx, line in enumerate(source.read_text('utf-8', errors='replace').splitlines(), 1):
+                  if not line.strip():
+                      continue
+                  parts = line.split(' ', 1)
+                  sha = parts[0]
+                  path = parts[1] if len(parts) > 1 else f'unnamed_{sha}'
+                  typ = subprocess.run(['git','cat-file','-t',sha], text=True, capture_output=True).stdout.strip()
+                  if typ != 'blob':
+                      rows.append([idx, sha, typ, path, '', '', 'not_blob'])
+                      continue
+                  size = int(subprocess.check_output(['git','cat-file','-s',sha], text=True).strip())
+                  if size > 120 * 1024 * 1024:
+                      rows.append([idx, sha, typ, path, size, '', 'skipped_over_120MiB'])
+                      continue
+                  data = subprocess.check_output(['git','cat-file','blob',sha])
+                  safe = re.sub(r'[^0-9A-Za-z._\-\u4e00-\u9fff]+', '_', Path(path).name)[:180] or sha
+                  dest = out / 'history' / f'{idx:04d}_{sha[:10]}_{safe}'
+                  dest.write_bytes(data)
+                  digest = hashlib.sha256(data).hexdigest()
+                  rows.append([idx, sha, typ, path, size, digest, str(dest.relative_to(out))])
+          with (out / 'history_index.csv').open('w', encoding='utf-8-sig', newline='') as f:
+              w = csv.writer(f)
+              w.writerow(['index','git_sha','type','historical_path','bytes','sha256','recovered_path_or_status'])
+              w.writerows(rows)
+          PY
+
+          find "$OUT" -maxdepth 3 -type f -printf '%P\t%s bytes\n' | sort > "$OUT/FILELIST.txt"
+
+      - name: Upload recovery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: optics-ding-recovery
+          path: ${{ runner.temp }}/optics_ding_recovery
+          if-no-files-found: error
+          retention-days: 7
