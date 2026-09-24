@@ -1,0 +1,49 @@
+{
+  "version": "HJ008",
+  "date": "2026-09-24",
+  "book": "韩军《物理光学学习指导》",
+  "source_book_pages": 234,
+  "status": "BOOK_COMPLETE",
+  "formal_total": 187,
+  "formal_solved": 187,
+  "formal_remaining": 0,
+  "companion_total": 561,
+  "training_units": 748,
+  "new_formal": 28,
+  "new_companion": 84,
+  "new_training_units": 112,
+  "main_markdown_lines": 16171,
+  "increment_markdown_lines": 1296,
+  "pdf_pages": 463,
+  "pdf_size_bytes": 20377254,
+  "verification": {
+    "checks": 238943,
+    "passed": 238943,
+    "failed": 0
+  },
+  "render": {
+    "rendered_pages": 463,
+    "expected_pages": 463,
+    "all_dimensions_same": true,
+    "dimensions": [993, 1404],
+    "blank_page_alerts": [],
+    "border_clipping_alerts": []
+  },
+  "pdf_integrity": {
+    "encrypted": false,
+    "eof_count": 1,
+    "startxref_count": 1,
+    "tail_has_eof": true,
+    "font_records": 12,
+    "all_fonts_embedded": true,
+    "has_xfa": false,
+    "has_javascript": false,
+    "xref_present": true
+  },
+  "source_pages": {
+    "questions": [222, 223],
+    "answers": [231, 232, 233]
+  },
+  "zip_sha256": "9db8bce9480ddc0313939e88a7bc31337046645344918311685d4aa035f967bf",
+  "next_action": "转入其他光学书目最新未完成断点；韩军单书仅维护勘误与版次映射。"
+}
