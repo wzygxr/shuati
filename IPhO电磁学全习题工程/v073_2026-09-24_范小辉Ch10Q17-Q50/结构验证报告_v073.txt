@@ -1,0 +1,32 @@
+[01] PASS - 题号连续 Q17--Q50
+     found=[17, 18, 19]...[48, 49, 50], count=34
+[02] PASS - 变式A数量
+     count=34
+[03] PASS - 变式B数量
+     count=34
+[04] PASS - 同类自检数量
+     count=34
+[05] PASS - 无不可见控制字符
+     control scan
+[06] PASS - 累计状态 195/247
+     front status markers
+[07] PASS - 累计包含 Q50
+     Q50 heading
+[08] PASS - 本轮边界文字
+     batch size markers
+[09] PASS - 本轮图片引用存在
+     images=4, missing=[]
+[10] PASS - 统一账正式分母247
+     formal=247
+[11] PASS - 统一账完成195
+     completed=195
+[12] PASS - 统一账剩余52
+     pending=52
+[13] PASS - 统一账变式585
+     variants=585
+[14] PASS - SUMMARY断点Q51
+     {'unified_id': 'SUMMARY', 'source_book': '两书统一账', 'chapter': '8-11', 'section': '', 'source_item': 'Ch8-11 total', 'question_printed_pages': '101-165', 'answer_printed_pages': '432-581', 'topic': '正式分母247题；已完成Ch8 Q1-Q79、Ch9 Q1-Q66及Ch10 Q1-Q50；尚余52题', 'status': 'active', 'formal_count': '195', 'variant_count': '585', 'quality_note': '《指导》4个独立例题及Ch8/Ch9/Ch10方法段另登记，不重复计入正式分母；v073新增34题并完成验证', 'duplicate_policy': '题典为正式主分母；指导为方法例题层', 'next_breakpoint': 'Ch10 Q51'}
+[15] PASS - Ch10 3--6方法段已登记
+     ['FAN-G-10.1-METHOD', 'FAN-G-10.2-METHOD', 'FAN-G-10.3-METHOD', 'FAN-G-10.4-METHOD', 'FAN-G-10.5-METHOD', 'FAN-G-10.6-METHOD']
+
+Overall: 15/15 PASS
