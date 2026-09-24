@@ -20,12 +20,12 @@
 
 ## 最终验收
 
-- PDF：249页A4，2,582,861 bytes；
-- PDF SHA-256：`b21110ea3b2fd8011f07580827e470204dc0c1b33b97cc9e436fa3a7205aba2b`；
+- PDF：249页A4，2,582,935 bytes；
+- PDF SHA-256：`05186d3d4592085e7f6af08293a8274eeef637cddfad80f63ff49f3f78877860`；
 - PDFium全页渲染：249/249；
 - Ghostscript全文件解析：PASS；
 - XeLaTeX错误、未定义控制序列、缺失字符、Overfull：均为0；
 - 独立数值与结构复核：103/103 PASS；
-- 完整交付ZIP SHA-256：`c573a95e600d68a9eb5093fddff3e7e7e727bcfe99bf76660e64fbec970bb0b9`。
+- 完整交付ZIP SHA-256：`ea7de4f3eb67affa5cb2420b60ff3f1937f36d20176e689a6bfe94022a9cea54`。
 
 Google Drive上传已真实尝试，但账户返回`storageQuotaExceeded`，所以本版状态和校验值先保存在本仓库；完整Markdown、PDF、TeX与ZIP由本轮ChatGPT交付附件提供。
