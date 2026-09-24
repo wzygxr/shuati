@@ -1,0 +1,16 @@
+source_id,book,topic,problem,pdf_question_page,pdf_answer_pages,status,dedup_status,notes,training_variants
+J12-01,江四喜《物理竞赛专题精编》,12 用物理方法求解曲率半径,1,26,229-230,COMPLETE-REFINED,provisionally_unique,抛物线物理构造；补绝对值2|A|与一般二次函数,2+1
+J12-02,江四喜《物理竞赛专题精编》,12 用物理方法求解曲率半径,2,26,230-231,COMPLETE,provisionally_unique,椭圆轨道特殊点速度；由万有引力法向分量求A/C曲率半径,2+1
+J12-03,江四喜《物理竞赛专题精编》,12 用物理方法求解曲率半径,3,26,231,COMPLETE-REFINED,provisionally_unique,摆线最高点4R；最低尖点曲率半径0按光滑分支极限解释,2+1
+J12-04,江四喜《物理竞赛专题精编》,12 用物理方法求解曲率半径,4,27,231-232,COMPLETE-REFINED,provisionally_unique,余弦轨道支持力全周期为正；补物理坐标y=Acos(kx)与有限初速阈值,2+1
+J12-05,江四喜《物理竞赛专题精编》,12 用物理方法求解曲率半径,5,27,232,COMPLETE,provisionally_unique,悬链线最低点曲率参数a；精确消元得L²/(8H)-H/2,2+1
+J13-01,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,1,27,232-233,COMPLETE,provisionally_unique,均匀半圆环质心2R/pi；积分与旋转张力法,2+1
+J13-02,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,2,27,233,COMPLETE,provisionally_unique,圆心角theta均匀圆弧质心2R sin(theta/2)/theta,2+1
+J13-03,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,3,27,233,COMPLETE,provisionally_unique,均匀扇形薄板质心4R sin(theta/2)/(3theta),2+1
+J13-04,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,4,27,233,COMPLETE,provisionally_unique,均匀半圆板质心4R/(3pi)；水平条积分复核,2+1
+J13-05,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,5,27-28,233-234,COMPLETE,provisionally_unique,薄半球壳质心R/2；水平球带质量均匀,2+1
+J13-06,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,6,28,234,COMPLETE,provisionally_unique,实心半球质心3R/8；圆盘微元积分,2+1
+J13-07,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,7,28,234-235,COMPLETE-REFINED,provisionally_unique,L形薄板无尺寸不虚构数值；给两次分割作图与一般坐标公式,2+1
+J13-08,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,8,28,235,COMPLETE,provisionally_unique,球壳改装高脚杯；质心离底R且与脚高h无关,2+1
+J13-09,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,9,28,235-236,COMPLETE,provisionally_unique,均匀三角板质心为中线交点且顶点比2比1,2+1
+J13-10,江四喜《物理竞赛专题精编》,13 不规则物体的重心（质心）位置,10,28,236,COMPLETE,provisionally_unique,均匀三角形线框质心为中位三角形内心（Spieker中心）,2+1
