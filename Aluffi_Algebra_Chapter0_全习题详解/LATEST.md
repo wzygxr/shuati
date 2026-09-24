@@ -39,7 +39,8 @@ See [`v022/`](./v022/) for:
 - `QA_v022.md`;
 - `SOURCE_AUDIT_v022.md`;
 - `REMAINING_WORK_SUMMARY_v022.md`;
-- `DELIVERABLE_INDEX_v022.md`.
+- `DELIVERABLE_INDEX_v022.md`;
+- `EXERCISE_LEDGER_v022.md`.
 
 ## QA summary
 
