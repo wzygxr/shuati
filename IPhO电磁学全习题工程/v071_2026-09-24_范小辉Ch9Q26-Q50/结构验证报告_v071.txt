@@ -1,0 +1,21 @@
+范小辉两书 v071 文档与账本结构验证
+Checks: 16/16 PASS
+
+[01] PASS - 累计正式题129
+[02] PASS - Ch8闭合79
+[03] PASS - Ch9连续1-50
+[04] PASS - v071新增25个题标题 Q26-Q50
+[05] PASS - 累计变式A129
+[06] PASS - 累计变式B129
+[07] PASS - 累计同类自检129
+[08] PASS - 账本变式与自检387
+[09] PASS - 下一断点Q51
+[10] PASS - 完整页数声明 666/537
+[11] PASS - Q28纠错已写
+[12] PASS - Q31证据等级已写
+[13] PASS - 无非法控制字符
+[14] PASS - 所有图片存在 images=66
+[15] PASS - PDF可打开且非加密 pages=260
+[16] PASS - PDF页面非空 pages=260
+
+Overall: PASS
