@@ -1,0 +1,64 @@
+{
+  "project": "韩军《物理光学学习指导》全习题详解",
+  "version": "HJ005",
+  "date": "2026-09-24",
+  "source": {
+    "file": "物理光学学习指导-韩军-西北工业大学.pdf",
+    "physical_pages": 234,
+    "new_source_pages": [185, 186, 187],
+    "printed_pages": [179, 180, 181],
+    "scope": "第6章‘傅里叶光学’章末习题1-26全部闭合",
+    "ocr_policy": "400/800/1600 dpi人工锁定，OCR不作为题面真值"
+  },
+  "progress": {
+    "new_formal": 26,
+    "new_variants": 78,
+    "new_training_units": 104,
+    "cumulative_formal": 93,
+    "cumulative_variants": 279,
+    "cumulative_training_units": 372,
+    "remaining_chapter_formal": 18,
+    "remaining_appendix_items": 76,
+    "remaining_total": 94,
+    "next_breakpoint": "第7章‘光的偏振及其应用’章末习题第1题"
+  },
+  "document": {
+    "md_bytes": 298261,
+    "md_lines": 11104,
+    "tex_bytes": 402726,
+    "tex_lines": 13071,
+    "pdf_bytes": 9652024,
+    "pdf_pages": 288,
+    "figures": 41,
+    "source_images": 3,
+    "outline_items": 1031,
+    "annotations": 1044,
+    "fonts_embedded": 10
+  },
+  "verification": {
+    "checks": 146214,
+    "passed": 146214,
+    "failed": 0
+  },
+  "render_audit": {
+    "rendered_pages": 288,
+    "expected_pages": 288,
+    "dimensions": [993, 1404],
+    "blank_page_alerts": [],
+    "border_clipping_alerts": [],
+    "render_engine": "pdfium",
+    "dpi": 120
+  },
+  "pdf_integrity": {
+    "pages": 288,
+    "eof_count": 1,
+    "startxref_count": 1,
+    "tail_has_eof": true,
+    "encrypted": false,
+    "font_rows": 10,
+    "nonembedded_font_rows": [],
+    "all_fonts_embedded": true,
+    "gs_exitcode": 0
+  },
+  "package_sha256": "83b5b90e23336a6c4dc358019d06abe720b78a17536063e8bad5f333c8d7c3cb"
+}
