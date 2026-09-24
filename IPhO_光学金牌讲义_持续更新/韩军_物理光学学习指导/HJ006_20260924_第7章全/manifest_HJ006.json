@@ -1,0 +1,52 @@
+{
+  "version": "HJ006",
+  "date": "2026-09-24",
+  "source_book_pages": 234,
+  "completed_chapters": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7
+  ],
+  "chapter3_no_independent_exercises": true,
+  "formal_solved": 111,
+  "companion_solved": 333,
+  "training_units": 444,
+  "new_formal": 18,
+  "new_companion": 54,
+  "remaining_self_test_units": 76,
+  "next_breakpoint": "自测试题（一）第1问",
+  "pdf_pages": 338,
+  "verification": {
+    "passed": 122038,
+    "failed": 0
+  },
+  "render": {
+    "version": "HJ006",
+    "rendered_pages": 338,
+    "expected_pages": 338,
+    "all_dimensions_same": true,
+    "dimensions": [
+      993,
+      1404
+    ],
+    "blank_page_alerts": [],
+    "border_clipping_alerts": [],
+    "min_dark_fraction": 0.010074901203933463,
+    "max_outer_border_dark_fraction": 0.0,
+    "mean_page_dark_fraction": 0.08599587848967502
+  },
+  "main_files": {
+    "markdown": "韩军_物理光学学习指导_全习题详解_累计HJ006_第1至2章及第4至7章全.md",
+    "latex": "韩军_物理光学学习指导_全习题详解_累计HJ006_第1至2章及第4至7章全.tex",
+    "pdf": "韩军_物理光学学习指导_全习题详解_累计HJ006_第1至2章及第4至7章全.pdf",
+    "increment": "韩军_HJ006_第7章18题增量.md"
+  },
+  "evidence_pages": [
+    216,
+    217,
+    218
+  ]
+}
