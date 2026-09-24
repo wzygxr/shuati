@@ -16,5 +16,10 @@
 | `梁铨廷_物理光学学习指导与题解_累计v008_第1至7章全书教材习题闭合.pdf` | 12854576 | `8b72553470b2cc8862e52bc9debed5811352f85261a6f4ed717d17d590a67e56` |
 | `第7章_新增卷_v008.md` | 89946 | `812b4c7f3510ee043227edd2f8f61e5a5313815b2d2c9ed0dd57d07711cfde87` |
 | `第7章_新增卷_v008.pdf` | 1549568 | `2e882c25ee229b3165bc57484e74c174c085407a04a05abf168361ea7e59e333` |
+| `梁铨廷_物理光学学习指导与题解_v008_源码与验收.zip` | 25985871 | `429a9681d2139f0a183be098c4236c1bac21061980cea587675afc2f226a2a1f` |
 
-源码ZIP在最终封装后另记SHA-256；完整Markdown、PDF、图片和验证脚本由对应ChatGPT会话附件交付。
+## 长期存储
+
+- GitHub：`wzygxr/shuati`，分支 `chatgpt/liang-optics-v008`，PR #27（OPEN）；
+- Google Drive：专属目录存在，但最终上传重试返回 `HTTP 403 storageQuotaExceeded`；
+- 完整二进制成品以本轮会话附件为权威。
