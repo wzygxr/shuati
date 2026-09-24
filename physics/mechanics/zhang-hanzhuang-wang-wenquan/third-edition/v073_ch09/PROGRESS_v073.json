@@ -1,0 +1,52 @@
+{
+  "project": "力学习题全解",
+  "version": "v073",
+  "date": "2026-09-24",
+  "book": "张汉壮、王文全《力学（第三版）》",
+  "book_physical_pages": 423,
+  "current_chapter": 9,
+  "chapter_title": "振动",
+  "chapter_formal_total": 36,
+  "chapter_formal_completed": 36,
+  "chapter_variants_completed": 108,
+  "chapter_training_units": 144,
+  "book_chapters": {
+    "1": {"done": 29, "total": 29},
+    "2": {"done": 28, "total": 28},
+    "3": {"done": 18, "total": 18},
+    "4": {"done": 33, "total": 33},
+    "5": {"done": 36, "total": 36},
+    "6": {"done": 16, "total": 16},
+    "7": {"done": 43, "total": 43},
+    "8": {"done": 18, "total": 18},
+    "9": {"done": 36, "total": 36},
+    "10": {"done": 0, "total": 21, "inventory_frozen": true},
+    "11": {"done": 0, "total": null, "inventory_frozen": false},
+    "12": {"done": 0, "total": null, "inventory_frozen": false}
+  },
+  "book_formal_completed_through_ch9": 257,
+  "project_formal_completed": 2212,
+  "project_variant_completed": 6636,
+  "project_training_units": 8848,
+  "next_breakpoint": "张汉壮、王文全《力学（第三版）》第十章习题10-1",
+  "next_chapter_inventory": {
+    "chapter": 10,
+    "formal_total": 21,
+    "range": "10-1--10-21",
+    "physical_pages": [324, 325, 326]
+  },
+  "formula_verification": {
+    "total_checks": 13904,
+    "passed": 13904,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "source_pages": {
+    "chapter_exercises": [287, 288, 289, 290, 291],
+    "answer_key": [407, 408, 409]
+  },
+  "known_correction": {
+    "problem": "9-10",
+    "issue": "second algebraic phase branch has negative signed amplitude under A>=0 convention"
+  }
+}
