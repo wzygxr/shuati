@@ -1,0 +1,115 @@
+{
+  "version": "ZXH-v057",
+  "date": "2026-09-24",
+  "project": "钟锡华《现代光学基础》全习题详解",
+  "scope": {
+    "completed": "8.1--8.42",
+    "source_problems": 42,
+    "variants": 126,
+    "training_units": 168,
+    "figures": 22,
+    "next_breakpoint": "9.1"
+  },
+  "progress": {
+    "chapters": {
+      "1": "8/8",
+      "2": "42/42",
+      "3": "10/10",
+      "4": "26/26",
+      "5": "16/16",
+      "6": "21/21",
+      "7": "4/4",
+      "8": "42/42",
+      "9": "0/17"
+    },
+    "completed": 169,
+    "total": 186,
+    "remaining": 17
+  },
+  "unified_totals": {
+    "formal": 1489,
+    "variants": 4467,
+    "training_units": 6202,
+    "basis": "沿冻结版本逐批相加，非本轮全历史语义去重"
+  },
+  "sources": {
+    "book": {
+      "pages": 488,
+      "sha256": "9bf22f263e9b44a2c47bac0ef8a008c818ee07e930c01e9817b9684e5d470644",
+      "exercise_pages": "441--445",
+      "full_render": "488/488"
+    },
+    "answer": {
+      "pages": 225,
+      "sha256": "5066e025ead2e7c9540dce1a64a8d334ab8b0fe2abcea168687216f00cafd2d5",
+      "answer_pages": "175--208",
+      "full_render": "225/225"
+    }
+  },
+  "outputs": {
+    "cumulative_markdown": {
+      "file": "光学_IPhO金牌讲义与全习题详解_累计_ZXH-v057_钟锡华第1-8章闭合.md",
+      "lines": 128820,
+      "bytes": 3736720,
+      "sha256": "4400d5e8b66ff634ba46937883bbe5a8c07104cbbd3c79f5d392a5061db0e48f"
+    },
+    "cumulative_pdf": {
+      "file": "光学_IPhO金牌讲义与全习题详解_累计_ZXH-v057_钟锡华第1-8章闭合.pdf",
+      "pages": 4304,
+      "bookmarks": 8048,
+      "bytes": 98418850,
+      "sha256": "cc33013f5cfe0f7bde44a5222b9fcf6bbd3f84c69611dc985ba76704683e24eb"
+    },
+    "increment_markdown": {
+      "file": "钟锡华现代光学基础_ZXH-v057_第8章8.1-8.42全闭合_增量.md",
+      "lines": 3180,
+      "bytes": 80670,
+      "sha256": "b2ba977b00514dc8323c8917c4207460460e08a3c9e3137b144a873aa4dd5c19"
+    },
+    "increment_pdf": {
+      "file": "钟锡华现代光学基础_ZXH-v057_第8章8.1-8.42全闭合_增量.pdf",
+      "pages": 116,
+      "bookmarks": 254,
+      "bytes": 1579995,
+      "sha256": "74dcbf5f4b7984ee943eba79ff8e32f60cd13550c25b7d552a50f55f0b19c39e"
+    },
+    "evidence_pdf": {
+      "file": "钟锡华现代光学基础_ZXH-v057_第8章8.1-8.42_题面与题解证据册.pdf",
+      "pages": 40,
+      "bookmarks": 42,
+      "bytes": 736343,
+      "sha256": "6ccfb4938cf6b24a9b2ac3ad9c3b7f14923b344190dcc6f66c16f8477cd1c74c"
+    }
+  },
+  "qa": {
+    "checks_total": 106,
+    "checks_passed": 106,
+    "checks_failed": 0,
+    "increment_render": "116/116",
+    "evidence_render": "40/40",
+    "cumulative_content_stream_load": "4304/4304",
+    "increment_blank_candidates": 0,
+    "evidence_blank_candidates": 0,
+    "qpdf": "not installed",
+    "increment_fonts_embedded": true,
+    "evidence_fonts_embedded": true,
+    "cumulative_legacy_unembedded_fonts": [
+      "STSong-Light",
+      "Heiti"
+    ]
+  },
+  "package": {
+    "name": "光学_IPhO全习题详解_ZXH-v057_轻量源码与验收包.zip",
+    "contains_cumulative_pdf": false,
+    "contains_source_page_pngs": false
+  },
+  "persistence": {
+    "github": {
+      "repository": "wzygxr/shuati",
+      "branch": "master",
+      "path": "IPhO_光学金牌讲义_持续更新/钟锡华现代光学基础/ZXH-v057_20260924_第8章全闭合",
+      "status": "LATEST, README, summary, remaining ledger and QA report committed successfully; binary PDFs delivered via sandbox"
+    },
+    "google_drive": "not retried because previous quota exceeded"
+  }
+}
