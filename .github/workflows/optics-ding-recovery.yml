@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   recover:
@@ -20,71 +21,203 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          lfs: false
 
-      - name: Recover v058 payload and matching historical blobs
+      - name: Byte-exact recovery and repository scan
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          set -u
+          set +e
           OUT="$RUNNER_TEMP/optics_ding_recovery"
-          mkdir -p "$OUT/current" "$OUT/history"
-
-          BASE='IPhO_光学金牌讲义_持续更新/01_题典累计版本/v058_20260924_丁文革第3章例3.21至3.49闭合'
-          cat "$BASE"/DING-C3-v002_markdown.md.gz.b64.part*.txt > "$OUT/current/DING-C3-v002_parts_concatenated_for_audit.txt"
-          : > "$OUT/current/DING-C3-v002_incremental.md.gz"
-          for part in "$BASE"/DING-C3-v002_markdown.md.gz.b64.part*.txt; do
-            base64 --decode --ignore-garbage "$part" >> "$OUT/current/DING-C3-v002_incremental.md.gz"
-          done
-          if gzip -t "$OUT/current/DING-C3-v002_incremental.md.gz"; then
-            gzip -dc "$OUT/current/DING-C3-v002_incremental.md.gz" > "$OUT/current/DING-C3-v002_incremental.md"
-            echo PASS > "$OUT/current/GZIP_STATUS.txt"
-          else
-            echo FAIL > "$OUT/current/GZIP_STATUS.txt"
-          fi
-          sha256sum "$OUT/current"/* > "$OUT/current/SHA256SUMS.txt"
-
-          git rev-list --objects --all > "$OUT/all_git_objects.txt"
-          grep -Ei '丁文革|光学指导|DING-C3|DING_' "$OUT/all_git_objects.txt" > "$OUT/matching_git_objects.txt" || true
+          mkdir -p "$OUT/current" "$OUT/history" "$OUT/actions_artifacts"
 
           python3 - <<'PY'
           from pathlib import Path
-          import re, subprocess, hashlib, csv, os
+          import base64, csv, gzip, hashlib, json, os, re, subprocess, zlib
 
+          root = Path.cwd()
           out = Path(os.environ['RUNNER_TEMP']) / 'optics_ding_recovery'
+          cur = out / 'current'
+          hist = out / 'history'
+          base = root / 'IPhO_光学金牌讲义_持续更新/01_题典累计版本/v058_20260924_丁文革第3章例3.21至3.49闭合'
+          expected_part_sha = [
+              '6c91ec6151a97aef33c302abadca5a49c901092c50ae2f256d5502772dc4a000',
+              '19ea3d7975864b80233e4160b1b2bab1e13a4102dc333d64f44afdf96045b65c',
+              '3e43d51334b3c2fb0224e2799ba18e380fa15288aa00e4e89de5d7153adcb204',
+              '9a498a524bd2496797e80c9ef802804ba38deb2c193bd4b8bf694d7d075b1cff',
+          ]
+          expected_gz_sha = '37204572b4c4c295280f2be5138f0c3b0a7726a5cf29c355eeb2a0a0d2875ced'
+          expected_md_sha = 'a919dfb57b94b6598a25626d7cc62fcb24f2cf227e0ccdf5111b87739ac0725c'
+          expected_pdf_sha = '2859f841147d8473f0db5074ae1133aea9f80f40a545bb76f06b1b73e23ef98f'
+
+          report = {'parts': [], 'candidates': [], 'history': {}}
+          part_paths = sorted(base.glob('DING-C3-v002_markdown.md.gz.b64.part*.txt'))
+          raw_parts = []
+          alphabet = set(b'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=')
+          for i, path in enumerate(part_paths):
+              raw = path.read_bytes()
+              raw_parts.append(raw)
+              sha = hashlib.sha256(raw).hexdigest()
+              invalid = [(j, b) for j, b in enumerate(raw) if b not in alphabet and b not in b'\r\n\t ']
+              item = {
+                  'file': path.name, 'bytes': len(raw), 'sha256': sha,
+                  'expected_sha256': expected_part_sha[i] if i < len(expected_part_sha) else None,
+                  'sha_match': i < len(expected_part_sha) and sha == expected_part_sha[i],
+                  'invalid_nonwhitespace_count': len(invalid),
+                  'head_repr': repr(raw[:96]), 'tail_repr': repr(raw[-96:]),
+              }
+              report['parts'].append(item)
+              (cur / path.name).write_bytes(raw)
+
+          raw_concat = b''.join(raw_parts)
+          candidates = {
+              'raw_concat': raw_concat,
+              'strip_ascii_whitespace': re.sub(rb'\s+', b'', raw_concat),
+              'base64_alphabet_only': bytes(b for b in raw_concat if b in alphabet),
+          }
+          seen = set()
+          for name, encoded in candidates.items():
+              if encoded in seen:
+                  continue
+              seen.add(encoded)
+              rec = {'name': name, 'encoded_bytes': len(encoded), 'mod4': len(encoded) % 4,
+                     'encoded_sha256': hashlib.sha256(encoded).hexdigest()}
+              (cur / f'{name}.b64').write_bytes(encoded)
+              try:
+                  decoded = base64.b64decode(encoded, validate=True)
+                  rec['strict_base64'] = 'PASS'
+              except Exception as e:
+                  rec['strict_base64'] = f'FAIL: {e}'
+                  try:
+                      decoded = base64.b64decode(encoded, validate=False)
+                      rec['tolerant_base64'] = 'PASS'
+                  except Exception as e2:
+                      rec['tolerant_base64'] = f'FAIL: {e2}'
+                      decoded = b''
+              rec['decoded_bytes'] = len(decoded)
+              rec['decoded_sha256'] = hashlib.sha256(decoded).hexdigest() if decoded else None
+              rec['gzip_sha_match'] = bool(decoded) and rec['decoded_sha256'] == expected_gz_sha
+              if decoded:
+                  gz_path = cur / f'{name}.md.gz'
+                  gz_path.write_bytes(decoded)
+                  rec['gzip_head_hex'] = decoded[:16].hex()
+                  rec['gzip_tail_hex'] = decoded[-16:].hex()
+                  try:
+                      text = gzip.decompress(decoded)
+                      rec['gzip_decompress'] = 'PASS'
+                      rec['text_bytes'] = len(text)
+                      rec['text_sha256'] = hashlib.sha256(text).hexdigest()
+                      rec['text_sha_match'] = rec['text_sha256'] == expected_md_sha
+                      (cur / f'{name}.md').write_bytes(text)
+                  except Exception as e:
+                      rec['gzip_decompress'] = f'FAIL: {e}'
+                      try:
+                          d = zlib.decompressobj(16 + zlib.MAX_WBITS)
+                          salvaged = d.decompress(decoded)
+                          rec['salvaged_bytes'] = len(salvaged)
+                          rec['salvaged_sha256'] = hashlib.sha256(salvaged).hexdigest()
+                          (cur / f'{name}.salvaged.md').write_bytes(salvaged)
+                      except Exception as e2:
+                          rec['salvage'] = f'FAIL: {e2}'
+              report['candidates'].append(rec)
+
+          # Scan every historical Git object in one batch. Recover named optics/Ding blobs,
+          # exact-size source candidates, and PDF blobs in a narrow size window.
+          rev = subprocess.run(['git', 'rev-list', '--objects', '--all'], text=True,
+                               capture_output=True, errors='replace')
+          object_lines = [line for line in rev.stdout.splitlines() if line.strip()]
+          sha_to_paths = {}
+          for line in object_lines:
+              sha, *rest = line.split(' ', 1)
+              sha_to_paths.setdefault(sha, []).append(rest[0] if rest else '')
+          shas = list(sha_to_paths)
+          p = subprocess.run(['git', 'cat-file', '--batch-check=%(objectname) %(objecttype) %(objectsize)'],
+                             input='\n'.join(shas) + '\n', text=True, capture_output=True, errors='replace')
+          meta = {}
+          for line in p.stdout.splitlines():
+              bits = line.split()
+              if len(bits) == 3 and bits[2].isdigit():
+                  meta[bits[0]] = (bits[1], int(bits[2]))
+          name_rx = re.compile(r'(丁文革|光学指导|DING[-_]?C3|光学.*第3章|optics.*ding)', re.I)
+          page_rx = re.compile(r'(page[-_ ]?1(?:2[5-9]|3[0-3])\.(?:png|jpg|jpeg)|(?:125|126|127|128|129|130|131|132|133)\.(?:png|jpg|jpeg))$', re.I)
           rows = []
-          source = out / 'matching_git_objects.txt'
-          if source.exists():
-              for idx, line in enumerate(source.read_text('utf-8', errors='replace').splitlines(), 1):
-                  if not line.strip():
-                      continue
-                  parts = line.split(' ', 1)
-                  sha = parts[0]
-                  path = parts[1] if len(parts) > 1 else f'unnamed_{sha}'
-                  typ = subprocess.run(['git','cat-file','-t',sha], text=True, capture_output=True).stdout.strip()
-                  if typ != 'blob':
-                      rows.append([idx, sha, typ, path, '', '', 'not_blob'])
-                      continue
-                  size = int(subprocess.check_output(['git','cat-file','-s',sha], text=True).strip())
-                  if size > 120 * 1024 * 1024:
-                      rows.append([idx, sha, typ, path, size, '', 'skipped_over_120MiB'])
-                      continue
-                  data = subprocess.check_output(['git','cat-file','blob',sha])
-                  safe = re.sub(r'[^0-9A-Za-z._\-\u4e00-\u9fff]+', '_', Path(path).name)[:180] or sha
-                  dest = out / 'history' / f'{idx:04d}_{sha[:10]}_{safe}'
-                  dest.write_bytes(data)
+          recovered = 0
+          pdf_examined = 0
+          for sha, paths in sha_to_paths.items():
+              typ, size = meta.get(sha, ('', -1))
+              if typ != 'blob':
+                  continue
+              joined = ' | '.join(paths)
+              named = bool(name_rx.search(joined))
+              page_named = bool(page_rx.search(joined)) and ('光学' in joined or 'optics' in joined.lower() or 'DING' in joined.upper())
+              exact_size = size in {28275795, 21163, 55485}
+              pdf_window = 20_000_000 <= size <= 40_000_000
+              if not (named or page_named or exact_size or pdf_window):
+                  continue
+              data = b''
+              status = ''
+              try:
+                  data = subprocess.check_output(['git', 'cat-file', 'blob', sha])
                   digest = hashlib.sha256(data).hexdigest()
-                  rows.append([idx, sha, typ, path, size, digest, str(dest.relative_to(out))])
+                  is_pdf = data.startswith(b'%PDF-')
+                  if pdf_window:
+                      pdf_examined += 1
+                  target = digest == expected_pdf_sha or size == 28275795
+                  should_save = named or page_named or exact_size or target
+                  if should_save and size <= 120 * 1024 * 1024:
+                      safe = re.sub(r'[^0-9A-Za-z._\-\u4e00-\u9fff]+', '_', Path(paths[0] if paths else sha).name)[:150] or sha
+                      dest = hist / f'{recovered:04d}_{sha[:10]}_{safe}'
+                      dest.write_bytes(data)
+                      status = str(dest.relative_to(out))
+                      recovered += 1
+                  else:
+                      status = 'examined_not_saved'
+                  rows.append([sha, typ, size, digest, is_pdf, target, joined, status])
+              except Exception as e:
+                  rows.append([sha, typ, size, '', '', '', joined, f'ERROR: {e}'])
           with (out / 'history_index.csv').open('w', encoding='utf-8-sig', newline='') as f:
               w = csv.writer(f)
-              w.writerow(['index','git_sha','type','historical_path','bytes','sha256','recovered_path_or_status'])
+              w.writerow(['git_sha','type','bytes','sha256','is_pdf','target_pdf_match','historical_paths','recovered_path_or_status'])
               w.writerows(rows)
+          report['history'] = {
+              'rev_list_objects': len(object_lines), 'unique_objects': len(shas),
+              'candidate_rows': len(rows), 'recovered_files': recovered,
+              'pdf_window_examined': pdf_examined,
+              'target_pdf_sha256': expected_pdf_sha,
+          }
+          (out / 'byte_recovery_report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
           PY
 
-          find "$OUT" -maxdepth 3 -type f -printf '%P\t%s bytes\n' | sort > "$OUT/FILELIST.txt"
+          # Search still-retained Actions artifacts from earlier optics/Ding runs.
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?per_page=100" > "$OUT/actions_artifacts/artifacts_page1.json" 2> "$OUT/actions_artifacts/gh_artifacts_error.txt"
+          python3 - <<'PY' > "$OUT/actions_artifacts/candidates.tsv"
+          import json, os, re
+          from pathlib import Path
+          p = Path(os.environ['RUNNER_TEMP'])/'optics_ding_recovery/actions_artifacts/artifacts_page1.json'
+          try:
+              obj=json.loads(p.read_text('utf-8'))
+          except Exception:
+              obj={}
+          rx=re.compile(r'(丁文革|DING|光学|optics)',re.I)
+          for a in obj.get('artifacts',[]):
+              if not a.get('expired') and rx.search(a.get('name','')) and int(a.get('size_in_bytes',0)) <= 600_000_000:
+                  print(a.get('id'), a.get('size_in_bytes'), a.get('name',''), sep='\t')
+          PY
+          while IFS=$'\t' read -r aid asize aname; do
+            [ -z "$aid" ] && continue
+            safe=$(printf '%s' "$aname" | tr '/\\ ' '___' | tr -cd '[:alnum:]_.-')
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$aid/zip" > "$OUT/actions_artifacts/${aid}_${safe}.zip" 2>> "$OUT/actions_artifacts/download_errors.txt"
+          done < "$OUT/actions_artifacts/candidates.tsv"
+
+          find "$OUT" -maxdepth 4 -type f -printf '%P\t%s bytes\n' | sort > "$OUT/FILELIST.txt"
+          sha256sum $(find "$OUT" -maxdepth 4 -type f -print0 | xargs -0 -r printf '%q ') > "$OUT/SHA256SUMS_attempt.txt" 2>/dev/null || true
+          exit 0
 
       - name: Upload recovery artifact
         uses: actions/upload-artifact@v4
         with:
-          name: optics-ding-recovery
+          name: optics-ding-recovery-run-${{ github.run_number }}
           path: ${{ runner.temp }}/optics_ding_recovery
           if-no-files-found: error
           retention-days: 7
