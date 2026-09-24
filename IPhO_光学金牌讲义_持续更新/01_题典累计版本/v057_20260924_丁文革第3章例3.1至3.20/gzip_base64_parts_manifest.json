@@ -1,0 +1,34 @@
+{
+  "encoding": "gzip+base64",
+  "reassembled_base64_chars": 27612,
+  "gzip_sha256": "42162f0a3a8c2160cd6c10f834824f2dd748e2cfc352c3d616398b6e9e7e92b8",
+  "decoded_markdown_bytes": 53499,
+  "decoded_markdown_sha256": "1e19a2211b98925ef882d5a00f814f9057065eb8bfe455645ca4b7f307f0cd82",
+  "parts": [
+    {
+      "file": "丁文革_DING-C3-v001_增量Markdown_gzip_base64_part001_of005.txt",
+      "chars": 5523,
+      "sha256": "996505a9ecef2957a4901b289f1bf68fdede33e3428c478778e10e06ea7b5945"
+    },
+    {
+      "file": "丁文革_DING-C3-v001_增量Markdown_gzip_base64_part002_of005.txt",
+      "chars": 5523,
+      "sha256": "20fa69cfac9191bf2b0e2f0ded1c0e19d3168284265aa84818d4dec35ad0d9a6"
+    },
+    {
+      "file": "丁文革_DING-C3-v001_增量Markdown_gzip_base64_part003_of005.txt",
+      "chars": 5522,
+      "sha256": "d885841ba68da1c40302a0d96e9b3015f463e24f5c55bd9ceec9eb5e8b9932b8"
+    },
+    {
+      "file": "丁文革_DING-C3-v001_增量Markdown_gzip_base64_part004_of005.txt",
+      "chars": 5522,
+      "sha256": "0c4d7e56d79738c03772d7aa3a986f4b64444744e8da6dd415c87d8d34277342"
+    },
+    {
+      "file": "丁文革_DING-C3-v001_增量Markdown_gzip_base64_part005_of005.txt",
+      "chars": 5522,
+      "sha256": "b686296b60b5168913a377a23354f4bbf43f52c3a519f3d6b777db5d65d57e04"
+    }
+  ]
+}
