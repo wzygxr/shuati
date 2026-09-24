@@ -1,0 +1,54 @@
+[01] PASS - Q51 自感变化率与断路高压
+     dI/dt=1.25, UL=120.0, switch=130.0
+[02] PASS - Q52 两级变压器匝数比
+     N1/N2=sqrt((P0 - P2)/(P0 - P1)), n1/n2=P2/(P1*sqrt((P0 - P2)/(P0 - P1)))
+[03] PASS - Q53 中心抽头匝数比
+     n2/n3=-1 + 4*sqrt(7)/7≈0.511857892
+[04] PASS - Q54 接触电阻
+     R=5.555555555556e-06 ohm
+[05] PASS - Q55 理想耦合线圈断开后放热
+     Q=E**2*T**2/(2*L), steady resistor power=E**2/R
+[06] PASS - Q56 印刷数据下脱离角
+     right=48.16010794°, left=48.21928277°, v=(1.154034064,1.155367397)
+[07] PASS - Q57 长螺线管磁压
+     p=I**2*mu0*n**2/2
+[08] PASS - Q58 金属框完全进入阈值
+     v(a)=-B0**2*a*b**2/(R*m) + v0; threshold=B0**2*a*b**2/(R*m)
+[09] PASS - Q59 绝热轨道缩放
+     R sqrt(B)=const; B2=3B1 -> R2/R1=sqrt(B1)/sqrt(B2)
+[10] PASS - Q60 总感应电荷
+     Q=800*B*R2*k_m*v/(R1*r0*(pi*r0 + 4*r1))
+[11] PASS - Q61 临界层数与停留时间
+     nc=60.500000, first blocked=61, t=0.172968s
+[12] PASS - Q62 碰撞速度族与正确弦长
+     chord=2R sin(theta); u2,k=sqrt(2)*B*sqrt(h)*sqrt(m)*q*u1/(2*sqrt(B)*m*sqrt(q)*sqrt(u1)*(pi*k - atan(sqrt(2)*sqrt(B)*sqrt(h)*sqrt(q)/(sqrt(m)*sqrt(u1))) + pi) + sqrt(2)*B*sqrt(h)*sqrt(m)*q)
+[13] PASS - Q63 运动导板与外接电容
+     U=-B*S*d*eps*v/(C*d + 2*S*eps)
+[14] PASS - Q64 收缩圆环时间
+     T=B**2*r0**2/(2*F*R0)
+[15] PASS - Q65 圆柱电流聚焦条件
+     omega_r L/v=sqrt(2)*sqrt(I)*L*sqrt(mu0)*sqrt(q)/(2*sqrt(pi)*R*sqrt(m)*sqrt(v)); focus=(2n-1)pi/2
+[16] PASS - Q66 第三族三角恒等式
+     sin(theta)=4*(2*n + 1)/(4*(2*n + 1)**2 + 1)
+[17] PASS - Q67 互感与开路电压
+     M=3L/5, |U2|=3*L*k/5
+[18] PASS - Q68 三灯泡精确电流
+     I1=E*(2*R - r)/(R*(2*R + 3*r)), I2=E*(2*R + r)/(R*(2*R + 3*r)), I=4*E/(2*R + 3*r)
+[19] PASS - Q69 旋转带电圆柱与切杆电动势
+     emf=R**2*beta*lam*mu0/8, ammeter=0
+[20] PASS - Q70 椭圆顶点零支持力
+     B2=R*b*sqrt(k)*sqrt(m)*sqrt(theta)/(a**2*sqrt(q))
+[21] PASS - Q71 Rowland磁针偏角
+     Brot=3.490658503989e-08T, alpha=5.99999391 arcmin
+[22] PASS - Q72 漂移圆曲率与整周期回返
+     rho_P=m*(sqrt(v0**2 + E**2/B**2) + E/B)**2/(B*q*sqrt(v0**2 + E**2/B**2)), T=2pi m/(qB), x(T)=0
+[23] PASS - Q73 磁制动总热量
+     Q=m*v0**2/2, stop distance=R*m*v0/(B**2*l**2)
+[24] PASS - Q74 磁绝缘临界场（完整洛伦兹方程）
+     ymax=2*E*m/(B**2*q); Bmin=sqrt(2)*sqrt(E)*sqrt(m)/(sqrt(b)*sqrt(q))
+[25] PASS - Q75 任意初速电子束同时回返
+     T=2*pi*m/(B*e), x(T)=0
+[26] PASS - Q76 超导线框分段运动与能量
+     omega=B0*a/(sqrt(L)*sqrt(M)), vc=B0*a*b/(sqrt(L)*sqrt(M)), vin=sqrt(-B0**2*a**2*b**2/(L*M) + v0**2), I=B0*a*b/L
+
+Overall: 26/26 PASS
