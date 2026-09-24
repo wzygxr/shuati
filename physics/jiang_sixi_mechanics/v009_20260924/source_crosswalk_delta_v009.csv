@@ -1,0 +1,19 @@
+source_id,book,topic,problem,pdf_question_page,pdf_answer_pages,status,dedup_status,notes,training_variants
+J14-01,江四喜《物理竞赛专题精编》,14 球、柱的堆放,1,28,236-237,COMPLETE-CORRECTED,provisionally_unique,六圆柱3-2-1堆放；临界翻倒求最小挡块高度,2+1
+J14-02,江四喜《物理竞赛专题精编》,14 球、柱的堆放,2,28,237,COMPLETE,provisionally_unique,开口圆筒内两球形成水平力偶；圆筒翻倒条件,2+1
+J14-03,江四喜《物理竞赛专题精编》,14 球、柱的堆放,3,28,237-238,COMPLETE,provisionally_unique,碗内两球；整体对碗心取矩求角度,2+1
+J14-04,江四喜《物理竞赛专题精编》,14 球、柱的堆放,4,29,238-239,COMPLETE-CORRECTED,provisionally_unique,四下球托上球；修正纯几何下界为(1+sqrt2)r,2+1
+J14-05,江四喜《物理竞赛专题精编》,14 球、柱的堆放,5,29,239-240,COMPLETE,provisionally_unique,三下球托质量3m上球；橡皮筋张力与剪断分离,2+1
+J14-06,江四喜《物理竞赛专题精编》,14 球、柱的堆放,6,29,240,COMPLETE-REFINED,provisionally_unique,粗糙筒内四球；严格使用mu=0.775得Rmax约0.68010r,2+1
+J15-01,江四喜《物理竞赛专题精编》,15 摩擦角,1,30,240-241,COMPLETE,provisionally_unique,同一拉力水平/30度两种临界，mu=2-sqrt3,2+1
+J15-02,江四喜《物理竞赛专题精编》,15 摩擦角,2,30,241,COMPLETE,provisionally_unique,加速劈形摩擦锥；水平力双边区间,2+1
+J15-03,江四喜《物理竞赛专题精编》,15 摩擦角,3,30,241,COMPLETE,provisionally_unique,斜板夹在平行杆间；质心位置分段条件,2+1
+J15-04,江四喜《物理竞赛专题精编》,15 摩擦角,4,30,241-242,COMPLETE,provisionally_unique,杆夹于互相垂直粗糙面；角度范围alpha±2phi,2+1
+J15-05,江四喜《物理竞赛专题精编》,15 摩擦角,5,30-31,242,COMPLETE-REFINED,provisionally_unique,折梯两脚摩擦不同；指出题面缺角度，源答案隐含rho=30度,2+1
+J15-06,江四喜《物理竞赛专题精编》,15 摩擦角,6,31,242,COMPLETE,provisionally_unique,楔块自锁条件alpha与两摩擦角,2+1
+J16-01,江四喜《物理竞赛专题精编》,16 多点摩擦的平衡,1,31,243,COMPLETE,provisionally_unique,墙角圆球受偏心竖直力；两接触极限摩擦,2+1
+J16-02,江四喜《物理竞赛专题精编》,16 多点摩擦的平衡,2,31,243-245,COMPLETE-CORRECTED,provisionally_unique,线轴斜拉绳；修正源答案分母mu平方项符号,2+1
+J16-03,江四喜《物理竞赛专题精编》,16 多点摩擦的平衡,3,31,245-246,COMPLETE,provisionally_unique,复合轮与两物体；极小极大分配得mu=1/3,2+1
+J16-04,江四喜《物理竞赛专题精编》,16 多点摩擦的平衡,4,31,246-247,COMPLETE,provisionally_unique,两圆柱靠墙堆放；mu2与半径比条件,2+1
+J16-05,江四喜《物理竞赛专题精编》,16 多点摩擦的平衡,5,31-32,247-248,COMPLETE-CORRECTED,provisionally_unique,墙板夹圆柱；精确转角136.78度,2+1
+J16-06,江四喜《物理竞赛专题精编》,16 多点摩擦的平衡,6,32,248-249,COMPLETE-REFINED,provisionally_unique,移动平台与斜面夹圆柱；分段自锁条件与模型边界,2+1
