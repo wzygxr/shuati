@@ -1,0 +1,19 @@
+v076 / TX-v011 同步状态
+
+GitHub repository: wzygxr/shuati
+Branch: master
+Directory: 力学习题全解/v076_20260924_仝响力学1.196至1.220严格闭合/
+
+Uploaded lightweight records:
+- README.md
+- 尚未解决的书与题目总账_v076.md
+- 质量与编译验收报告_v076.md
+- 外部参考与补充阅读_v076.md
+- source_inventory_v076.json
+- BUILD_STATUS_v076.txt
+- v076_更新与交付摘要.md
+- 同步状态_v076.txt
+
+Large cumulative PDF, cumulative Markdown, source images and complete ZIP are delivered as ChatGPT conversation artifacts to avoid inflating ordinary Git history.
+Google Drive previously returned storageQuotaExceeded.
+ChatGPT Library previously returned library_storage_limit_exceeded.
