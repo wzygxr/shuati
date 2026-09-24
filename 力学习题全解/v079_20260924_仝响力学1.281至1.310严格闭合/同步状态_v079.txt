@@ -1,0 +1,19 @@
+v079-TX014 synchronization status
+
+GitHub:
+- Repository: wzygxr/shuati
+- Branch: master
+- Version directory: 力学习题全解/v079_20260924_仝响力学1.281至1.310严格闭合/
+- Lightweight README, remaining-work ledger, QA report, references, source inventory, build status, release summary and build script uploaded successfully.
+- Global 力学习题全解/LATEST.md advanced to v079-TX014, 310/350, next 1.311.
+- LATEST commit: a9c963f4d762d851e3fc064ebe5b6e84669e11ca
+
+Google Drive:
+- Previous native uploads returned storageQuotaExceeded.
+- This release did not repeat a known-failing large-file upload and did not delete user files without instruction.
+
+ChatGPT Library:
+- Previous uploads returned library_storage_limit_exceeded.
+- This release did not delete historical project artifacts merely to create space.
+
+Large cumulative PDF, full cumulative Markdown, source images and ZIP are delivered as ChatGPT conversation artifacts to avoid inflating ordinary Git history.
