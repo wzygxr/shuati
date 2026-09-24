@@ -1,0 +1,87 @@
+{
+  "project": "范小辉双书力学全习题详解",
+  "version": "FXH008",
+  "date": "2026-09-24",
+  "baseline": {
+    "previous_version": "FXH007",
+    "starting_breakpoints": [
+      "实用题典 Ch4 Q12",
+      "奥赛指导 Ch2 §6 Ex2"
+    ]
+  },
+  "source": {
+    "practical_problem_book": {
+      "title": "新编高中物理奥赛实用题典",
+      "edition": "第4版",
+      "physical_pdf_pages": 666,
+      "size_bytes": 118702021,
+      "sha256": "505437c4915ae2b4d15f29197095a9f54d3463dccdefaedad717cc43c9b2af73",
+      "problem_pages_physical": "52-56",
+      "answer_pages_physical": "300-309",
+      "full_render": "666/666",
+      "intentional_blank_pages": [2, 6]
+    },
+    "guidance_book": {
+      "title": "新编高中物理奥赛指导",
+      "edition": "第6版",
+      "physical_pdf_pages": 537,
+      "size_bytes": 65491587,
+      "sha256": "e2d9c50c3b599a080e366a997f5a5a857c0489b3e75970aa13fe47f5618d5b8c",
+      "problem_and_solution_pages_physical": "72-74",
+      "full_render": "537/537"
+    },
+    "preview_layer_ignored": true,
+    "source_evidence_pdf_pages": 18
+  },
+  "completed_this_version": {
+    "practical_problem_book_ranges": ["Ch4 Q12-Q31"],
+    "guidance_book_range": "Ch2 §6 Ex2-Ex4",
+    "source_positions": 23,
+    "strictly_completed": 23,
+    "conditional": 0,
+    "fundamentally_different_variants": 46,
+    "same_type_practice": 23,
+    "companion_training": 69
+  },
+  "cumulative": {
+    "source_positions_processed": 243,
+    "strictly_completed": 240,
+    "conditional": 3,
+    "fundamentally_different_variants": 484,
+    "same_type_practice": 242,
+    "companion_training": 726
+  },
+  "next_breakpoints": [
+    "实用题典 Ch4 Q32",
+    "奥赛指导 Ch2 §6 Ex5"
+  ],
+  "qa": {
+    "symbolic_checks": "37/37 PASS",
+    "random_parameter_tests": "600000/600000 PASS",
+    "main_pdf_pages": 97,
+    "main_pdf_bytes": 1071456,
+    "main_pdf_sha256": "d4890253688b4ccccd1bdc6aa38ee37e0af54ee37fff041fe3396a17acc47323",
+    "source_evidence_pdf_pages": 18,
+    "source_evidence_pdf_bytes": 3100533,
+    "source_evidence_pdf_sha256": "c6fdf92772e213cc9b6339f34671022de0c4851d039221041551a5985323d5b1",
+    "main_render_pdfium": "97/97",
+    "main_render_poppler": "97/97",
+    "evidence_render_pdfium": "18/18",
+    "evidence_render_poppler": "18/18",
+    "ghostscript": "both PDFs PASS",
+    "pdfinfo": "both PDFs PASS",
+    "fonts_embedded_unicode": true,
+    "missing_glyphs": 0,
+    "overfull_boxes": 0,
+    "undefined_references": 0,
+    "tail_integrity": "both PDFs have one startxref, one %%EOF, and end with %%EOF"
+  },
+  "critical_corrections": [
+    "Ch4 Q14: cos(alpha)=1/4, cos(beta)=-11/16, L'/L=3/2",
+    "Ch4 Q17: the boundary means just failing to catch, not catching at a finite time",
+    "Ch4 Q23: preserve the original A/B labels throughout the motion",
+    "Ch4 Q31: equal pulling forces, not equal pulling speeds",
+    "Guide Ch2 §6 Ex3: the printed R^3 factor is dimensionally wrong; use R^2",
+    "Guide Ch2 §6 Ex4: the correct one-side tail equation is 1/k'=1/k+1/(k+k')"
+  ]
+}
