@@ -1,0 +1,70 @@
+[01] PASS - Ch10 Q17 60度/90度圆弧时间与聚焦阈值
+     t60=pi*r/(3*v), t90=pi*r/(2*v), threshold 2r<=ell
+[02] PASS - Ch10 Q18 空间分区与时间分段位移
+     r=1/10m, x_space=1/5m, x_time=3/5m
+[03] PASS - Ch10 Q19 速度与圆轨道半径表达式
+     v=Q*k*cot(th)/a, R=a**2*q*sin(th)*tan(th)**2/(Q*k*m)
+[04] PASS - Ch10 Q20 霍尔浓度公式回代
+     n=B*I/(U*d*e)
+[05] PASS - Ch10 Q21 磁场圆弧与电场返回坐标
+     xC=-0.19406664m, xP=0.083933358m
+[06] PASS - Ch10 Q22 外磁场反向的等效电流差
+     |Delta I|=B_e*e**2/(2*pi*m)
+[07] PASS - Ch10 Q23 速度选择、半径与屏宽分母条件
+     r=E*m/(B**2*e), bc=2*B**2*E*L*R*e*m/(-B**4*R**2*e**2 + E**2*m**2)
+[08] PASS - Ch10 Q24 杆作用力最小/最大值
+     Fmin=R*m*w**2, Fmax=sqrt(B**2*R**2*q**2*w**2 + R**2*m**2*w**4)
+[09] PASS - Ch10 Q25 复合场最小速率与时刻
+     vmin=sqrt(E**2*q**2 + g**2*m**2)/(B*q), t=E/(B*g)
+[10] PASS - Ch10 Q26 云室线性阻力速度公式
+     v0=2*B*eps*qm*s/(pi*(1 - eps))
+[11] PASS - Ch10 Q27 临界磁场与摆线触地
+     B0=sqrt(2)*sqrt(g)*m/(sqrt(h)*q), x(t)=sqrt(2)*sqrt(g)*sqrt(h)*t/2 - h*sin(sqrt(2)*sqrt(g)*t/sqrt(h))/2, y(t)=h*(cos(sqrt(2)*sqrt(g)*t/sqrt(h)) + 1)/2
+[12] PASS - Ch10 Q28 交叉场漂移圆的高度和切点
+     ymax=2*E*m/(B**2*q), xn=2*pi*E*m*n/(B**2*q)
+[13] PASS - Ch10 Q29 两杆稳定速度比
+     vP=v0/5, vQ=2*v0/5; weighted impulse check vP+2vQ=v0
+[14] PASS - Ch10 Q30 四种相对运动的电压表读数
+     readings=[B*l*v, B*l*v, 0, 0]
+[15] PASS - Ch10 Q31 机械功率与焦耳热闭合
+     v2=v1 - R*f/(B**2*L**2), Pdrag+Pj=f*v1
+[16] PASS - Ch10 Q32 终端速度对磁场的极值
+     B*=2*f*(R + r)/(E*L), vmax=E**2/(4*f*(R + r))
+[17] PASS - Ch10 Q33 涡流阻力矩正比关系
+     M=B**2*a**2*omega*rr**2*tau/rho
+[18] PASS - Ch10 Q34 缺口滚环最大电动势
+     emf_max=B*dl*v0
+[19] PASS - Ch10 Q35 旋转有阻圆环两点电压
+     Uab=-B*r**2*w/4
+[20] PASS - Ch10 Q36 穿越磁区终端速度和总时间
+     vt=R*g*m/(B**2*L**2), t=2*B**2*L**2*b/(R*g*m) + R*m/(B**2*L**2)
+[21] PASS - Ch10 Q37 电容引入的电磁惯性
+     F=a*(B**2*l**2*(C1 + C2) + m)
+[22] PASS - Ch10 Q38 长直导线旁旋转线框的对称性
+     geometric factor=(2*a**2 + 2*b**2)/(a**4 - 4*a**2*b**2*cos(theta)**2 + 2*a**2*b**2 + b**4)
+[23] PASS - Ch10 Q39 电子感应加速周数
+     emf=428.571428571V, N=280000.000
+[24] PASS - Ch10 Q40 B(t)x(t)乘积求导的3/2系数
+     dPhi/dt=3*B0*L*a*t**2*cos(alpha)/2
+[25] PASS - Ch10 Q41 异质半圆端电压
+     UAB=pi*R**2*k/6
+[26] PASS - Ch10 Q42 时变B与运动面积的乘积导数
+     dPhi/dt=B0*L*v - 2*L*k*t*v - L*k*x0
+[27] PASS - Ch10 Q43 偏心空腔均匀场投影
+     emf=sqrt(3)*L*d*k/4
+[28] PASS - Ch10 Q44 两电容重新连接的节点电荷守恒
+     U=pi*B0*R**2*(C1 - C2)/(2*T*(C1 + C2)), Q1=pi*B0*C1*R**2*(C1 - C2)/(2*T*(C1 + C2)), Q2=-pi*B0*C2*R**2*(C1 - C2)/(2*T*(C1 + C2))
+[29] PASS - Ch10 Q45 相交圆环撤场冲量
+     v=9*sqrt(3)*B0**2*R**3/(10*m*r)
+[30] PASS - Ch10 Q46 频率匹配与支持力零点
+     omega=B0*q/(2*m*tan(theta0)), positive zero=[sqrt(6)*R/3]
+[31] PASS - Ch10 Q47 带电环速度与角速度
+     v=B*q*(R**2 + a**2)/(2*R*m), Omega=B*q*(R**2 + a**2)/(2*R**2*m)
+[32] PASS - Ch10 Q48 感生与动生电动势叠加
+     emf=R**2*k*(pi/12 + sqrt(3)/4) - R*v*(B0 + k*t), v_cancel=R*k*(pi + 3*sqrt(3))/(12*(B0 + k*t))
+[33] PASS - Ch10 Q49 电压表内阻与理想开断高压
+     Rv=400000ohm, Uideal=4800000V
+[34] PASS - Ch10 Q50 并联理想电感的总电流与磁链关系
+     I1=(E*L2 + I0*L1*r)/(r*(L1 + L2)), I2=(E*L1 - I0*L1*r)/(r*(L1 + L2))
+
+Overall: 34/34 PASS
