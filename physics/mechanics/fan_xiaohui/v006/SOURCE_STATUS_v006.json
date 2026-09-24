@@ -1,0 +1,79 @@
+{
+  "project": "范小辉双书力学全习题详解",
+  "version": "FXH006",
+  "date": "2026-09-24",
+  "source": {
+    "practical_problem_book": {
+      "title": "新编高中物理奥赛实用题典",
+      "edition": "第4版",
+      "physical_pdf_pages": 666,
+      "size_bytes": 118702021,
+      "sha256": "505437c4915ae2b4d15f29197095a9f54d3463dccdefaedad717cc43c9b2af73"
+    },
+    "guidance_book": {
+      "title": "新编高中物理奥赛指导",
+      "edition": "第6版",
+      "physical_pdf_pages": 537,
+      "size_bytes": 65491587,
+      "sha256": "e2d9c50c3b599a080e366a997f5a5a857c0489b3e75970aa13fe47f5618d5b8c"
+    },
+    "preview_layer_ignored": true,
+    "full_source_render": {
+      "practical_problem_book": "666/666",
+      "guidance_book": "537/537",
+      "engine": "pdfium",
+      "dpi": 45
+    }
+  },
+  "completed_this_version": {
+    "practical_problem_book_ranges": ["Ch3 Q31-Q50", "Ch4 Q1-Q10"],
+    "guidance_book_range": "Ch2 §5 Ex1-Ex4",
+    "source_positions": 34,
+    "strictly_completed": 34,
+    "fundamentally_different_variants": 68,
+    "same_type_practice": 34,
+    "companion_training": 102
+  },
+  "cumulative": {
+    "source_positions_processed": 218,
+    "strictly_completed": 215,
+    "conditional": 3,
+    "fundamentally_different_variants": 434,
+    "same_type_practice": 217,
+    "companion_training": 651
+  },
+  "next_breakpoints": ["实用题典 Ch4 Q11", "奥赛指导 Ch2 §6 Ex1"],
+  "qa": {
+    "formula_structure_and_random_checks": "5591/5591 PASS",
+    "increment_pdf_pages": 75,
+    "dedicated_cumulative_pdf_pages": 409,
+    "source_evidence_pdf_pages": 30,
+    "huge_mother_pdf_pages": 4985,
+    "increment_render_pdftoppm": "75/75",
+    "increment_render_pdfium": "75/75",
+    "dedicated_cumulative_render_pdfium": "409/409",
+    "source_evidence_render_pdfium": "30/30",
+    "full_sources_render_pdfium": "1203/1203",
+    "blank_or_black_suspects_in_deliverables": 0,
+    "mother_regression_pages": [1, 1000, 2000, 3000, 4000, 4910],
+    "mother_regression": "all pixel-identical",
+    "ghostscript": "all four PDFs PASS",
+    "missing_glyphs": 0,
+    "overfull_boxes": 0,
+    "undefined_control_sequences": 0,
+    "undefined_references": 0
+  },
+  "main_files": {
+    "increment_pdf_sha256": "01383a6a3c6138beb9d1d8b59c8a4ddb6108f31f48657657aaa04da1803e3263",
+    "dedicated_cumulative_pdf_sha256": "efa6b51b623b84137bccc4d540350b7bb7a38ae5699e32a3e3a9b21c902f818b",
+    "source_evidence_pdf_sha256": "f8a5904c57881d443522532bb649d98a89d41205a5fa700641fd858919c7fd27",
+    "huge_mother_pdf_sha256": "533259da3c9d16de7239abbd9ab079238d37e76d89835111ba3dd5834e8c863a"
+  },
+  "critical_corrections": [
+    "Ch3 Q42: solving the tangent inequality must retain the extra cos(alpha) factor",
+    "Ch3 Q45: the admissible omega endpoints are inclusive even though the spatial interval is open",
+    "Ch4 Q2: for M:m=16:1 the ninth ball cannot be caught",
+    "Ch4 Q4: slack-string and taut-string stages require separate equations",
+    "Guide Ch2 §5 Ex3: bottom pressure after stratification depends on vessel geometry"
+  ]
+}
