@@ -12,13 +12,15 @@
 - 公式验证：27/27 PASS
 - 结构验证：13/13 PASS
 - 正式累计 PDF：190 页
-- Markdown 再编译：187 页，Pandoc/XeLaTeX 返回码 0
+- Markdown 再编译：精确排版版 187 页；可检索增强版 198 页；两者 Pandoc/XeLaTeX 返回码均为 0
 
 ## 核心校验值
 
-- 累计 Markdown：`9bb08fe6bd93f3b6eee70214ecbe9f4dc602f19c006d34c23924d63026507f8f`
-- 累计 PDF：`5479a0465e5b426576f7e64ebd72622457417f4e8ec31ec43d7c8c3c2422f957`
+- 精确排版累计 Markdown：`9bb08fe6bd93f3b6eee70214ecbe9f4dc602f19c006d34c23924d63026507f8f`
+- 可检索增强累计 Markdown：`ea55d1dd5223fca531d9f3387318c13345261e2e11f2aa00d21323167463d226`
+- 正式累计 PDF：`5479a0465e5b426576f7e64ebd72622457417f4e8ec31ec43d7c8c3c2422f957`
+- 可检索增强版编译 PDF：`98cda5256c54304444e96e9731e06c1a9583faf502510685e8b6dca98a834e53`
 - 统一账：`614de79c0488036a348dfb4b792398671c88e1160a3374ce66bd7a1be4b1085e`
-- 完整 ZIP：`62c87ca654f4daa353910815686189f83344ed631df12e588b2e9c47710a4ec8`
+- 完整 ZIP：`e099835223bcc5355476fe8c42ee5d3c9ae786446d45bcdf3270afc3d7c9f43d`
 
 二进制 PDF 与 ZIP 通过本轮 ChatGPT 附件交付；本目录持久记录版本范围、断点、校验值和质量结论。
