@@ -1,0 +1,67 @@
+{
+  "project": "顾樵《量子力学 I--II》书内例题与训练任务全解",
+  "version": "v005",
+  "date": "2026-09-23",
+  "source_pages": {
+    "volume_I": 333,
+    "volume_II": 319,
+    "total": 652
+  },
+  "completed_chapters": [1, 2, 3, 4, 5, 6],
+  "source_tasks": 75,
+  "distinct_variants": 150,
+  "same_type_reinforcement": 75,
+  "training_units": 300,
+  "figures": 46,
+  "verification": {
+    "chapter_1_5_passed": 226,
+    "chapter_6_passed": 445,
+    "passed": 671,
+    "failed": 0,
+    "total": 671
+  },
+  "pdf": {
+    "pages": 226,
+    "size_bytes": 4328675,
+    "page_size": "A4",
+    "rendered_pages": 226,
+    "renderer": "Poppler pdftoppm 72 dpi",
+    "sha256": "cc6be09eafe7866a82fbfe8425849c491bf1633f9cf3c0773761d88976fe5c9f"
+  },
+  "markdown": {
+    "lines": 10271,
+    "size_bytes": 215273,
+    "sha256": "af2d512229096a28419a5ab87a99ce5d6e10ed7582996e3d3c543a0ede982826"
+  },
+  "tex": {
+    "size_bytes": 308206,
+    "sha256": "1d4c50d2faf00b32ba29280238a3c8738297de8e8fbcfd785c2aca614db3c2da"
+  },
+  "package": {
+    "sha256": "b17120558eb4c146bf018d0f10db0f8b443e2bd3379185052d8aca215439f046"
+  },
+  "next_breakpoint": {
+    "chapter": 7,
+    "pdf_physical_page": 267,
+    "printed_page": 252,
+    "task": "第7章力学量的算符表示：首个显式例题或可独立作答的明确计算任务"
+  },
+  "source_sha256": {
+    "volume_I": "88bede471f68a6dbe514c8753c25f543ab1226d62d2b73fa37e4f3d8e8be144d",
+    "volume_II": "d837cb61566e8ff70d2b20f53ee188452cb1de42f555c3df23ebcf6f3b26b2fc"
+  },
+  "quality": {
+    "latex_errors": 0,
+    "max_overfull_pt": 3.92764,
+    "missing_figures": 0,
+    "replacement_chars": 0,
+    "nul_chars": 0,
+    "ghostscript": "PASS",
+    "pdfinfo": "PASS",
+    "startxref_count": 1,
+    "eof_count": 1,
+    "all_fonts_embedded": true,
+    "all_fonts_unicode": true,
+    "full_page_render": "226/226 PASS"
+  }
+}
