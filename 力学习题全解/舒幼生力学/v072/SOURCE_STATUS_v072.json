@@ -1,0 +1,64 @@
+{
+  "project": "舒幼生《力学（物理类）》全习题详解",
+  "version": "v072",
+  "date": "2026-09-23",
+  "source": {
+    "textbook_pages": 408,
+    "textbook_size_bytes": 35636130,
+    "textbook_sha256": "76ad8e9cb6d3ee341b446e179cb5fd6f1f7b65fcc278ee16cd2b4f6dbb6b2100",
+    "solutions_pages": 370,
+    "solutions_size_bytes": 26402927,
+    "solutions_sha256": "606b85f5f51b12472907e9d6e9709269d8e2c386aa67dd4ac88d0697eb97c3e8",
+    "problem_pages_1based": [84, 85],
+    "solution_pages_1based": [50, 57],
+    "preview_layer_ignored": true
+  },
+  "completed_this_version": {
+    "range": "2-13--2-22",
+    "source_problems": 10,
+    "fundamentally_different_variants": 20,
+    "same_type_practice": 10,
+    "training_units": 40
+  },
+  "shu_progress": {
+    "chapter_1": "1-1--1-37 complete",
+    "chapter_2_A": "2-1--2-22 complete",
+    "formal_completed": 59,
+    "companion_completed": 177,
+    "training_units": 236,
+    "next_breakpoint": "2-23"
+  },
+  "cross_conversation_dedup_totals": {
+    "formal": 2207,
+    "companion": 6621,
+    "training_units": 8828
+  },
+  "qa": {
+    "formula_and_structure_checks": "556/556 PASS",
+    "core_pdf_preflight": "129/129 PASS",
+    "quality_report_validation": "12/12 PASS",
+    "incremental_pdf_pages": 51,
+    "cumulative_pdf_pages": 300,
+    "evidence_pdf_pages": 11,
+    "ledger_pdf_pages": 4,
+    "summary_pdf_pages": 2,
+    "quality_report_pdf_pages": 4
+  },
+  "critical_corrections": [
+    {
+      "problem": "2-17",
+      "issue": "The companion solution has the wrong trigonometric factor in the final denominator.",
+      "correct_formula": "v0 = m v cos(alpha) / sqrt(M^2 cos^2(alpha) + (M+m)^2 sin^2(alpha))"
+    }
+  ],
+  "package": {
+    "sha256": "43d133460d88ab702fdb1bcc0f71d25eedd8f700cdd95a441075d9d1f6f880dc",
+    "size_bytes": 37074267,
+    "file_count": 522,
+    "zip_test": "PASS"
+  },
+  "storage": {
+    "github_text_index": "wzygxr/shuati/力学习题全解/舒幼生力学/v072/",
+    "google_drive": "upload attempted; HTTP 403"
+  }
+}
