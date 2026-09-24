@@ -1,0 +1,26 @@
+江四喜《物理竞赛专题精编》力学全解 v008 数值与结构复算
+seed: 20260924
+samples_per_numeric_module: 10000
+
+J12-01_parabola_curvature: pass=True max_abs_error=9.094947e-13
+J12-02_ellipse_orbit: pass=True max_abs_error=2.501110e-11
+J12-03_cycloid_curvature: pass=True max_abs_error=7.661510e-13
+J12-04_cosine_contact: pass=True max_abs_error=1.818989e-12 minimum_normal_per_mass=0.02043862148052422
+J12-05_catenary_radius: pass=True max_abs_error=2.629008e-11
+J13-01_semicircle_wire: pass=True max_abs_error=1.044262e-09
+J13-02_arc_centroid: pass=True max_abs_error=4.800937e-07
+J13-03_sector_centroid: pass=True max_abs_error=3.552714e-15
+J13-04_semicircle_plate: pass=True max_abs_error=0
+J13-05_hemisphere_shell: pass=True max_abs_error=1.542013e-06
+J13-06_solid_hemisphere: pass=True max_abs_error=1.776357e-15
+J13-07_L_plate: pass=True max_abs_error=9.769963e-15
+J13-08_goblet: pass=True max_abs_error=3.552714e-15
+J13-09_triangle_plate: pass=True max_abs_error=6.894342e-16
+J13-10_wire_triangle: pass=True max_abs_error=0
+structure: pass=True; source=86; A=86; B=86; C=86; crosswalk=86 unique; image_refs=98; missing_images=0; control_chars=0
+
+all_numeric_pass: True
+structure_pass: True
+all_pass: True
+
+PDF: 485 pages A4; PDFium 485/485; pdftoppm key pages 53/53; Ghostscript exit 0; fonts embedded 7/7; min content margins [61,25,61,28] px; startxref and %%EOF present.
