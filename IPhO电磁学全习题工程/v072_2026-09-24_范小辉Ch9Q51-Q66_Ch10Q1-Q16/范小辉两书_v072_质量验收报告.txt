@@ -1,0 +1,43 @@
+范小辉两书 Ch9 Q51-Q66、Ch10 Q1-Q16 质量与编译验收报告 v072
+日期：2026-09-24
+
+一、版本边界
+1. 完整源书：《实用题典》666页；《奥赛指导》537页。
+2. 本轮直接从 v071 连续断点 Ch9 Q51 推进，不做二轮审计。
+3. 新增正式题32道：Ch9 Q51-Q66（16道）+ Ch10 Q1-Q16（16道）。
+4. 每题2道本质不同变式+1道同类自检，本轮新增训练96道、学习单元128个。
+5. 累计正式进度161/247，尚余86；下一断点Ch10 Q17。
+
+二、文档统计
+- append_v072.md：3194行，54872字节。
+- increment_v072.md：3234行，55907字节。
+- 累计Markdown v007：17773行，379544字节。
+- 统一账：267行（含表头），正式completed=161、pending=86、方法映射=15、独立方法例题=4。
+
+三、独立公式和结构验证
+- 公式验证脚本：32/32 PASS。
+- 结构验证脚本：18/18 PASS。
+- 验证覆盖：三读数消元、非线性伏安元件、两个无限网络固定点、漏电介质、电容重分配、立方体/四面体网络、广义电桥、同轴电容；安培力、磁矩、回旋轨道、分段磁场、同位素发散、聚焦边界、立体角和离散返回条件。
+
+四、编译
+- 本轮增量：Pandoc生成LaTeX，XeLaTeX双遍编译成功，53页。
+- 增量第二遍日志：Missing character=0，Overfull hbox=0，Float too large=0。
+- 累计稿：Pandoc生成LaTeX，XeLaTeX双遍编译成功，313页。
+- 累计第二遍日志：Missing character=0；历史恢复段保留Overfull hbox=1013与Float too large=4警告。新增长卷本身无上述警告，且最终逐页渲染未发现视觉裁切。
+
+五、累计PDF字节与视觉验收
+- 页面：313；A4；未加密。
+- 字节：12994820。
+- SHA256：c7581b32b243b9b72fecfcdb82fb18587109a5b7d78ecab4ac6648f7f139afca。
+- %%EOF：1个，位于文件尾=True。
+- startxref：12980717，有效=True。
+- pdfinfo：PASS。
+- PyMuPDF打开、逐页取文：PASS；零文本页=[]。
+- Ghostscript nullpage：PASS。
+- PDF预检：Openable=True、Encrypted=False、XFA=False、Likely scanned=False。
+- 字体：Noto Serif CJK、Latin Modern Math、DejaVu Sans Mono均嵌入并带Unicode映射。
+- 全部313页以72dpi重新渲染；新增长卷53页另以130dpi渲染并检查联系表、公式页和末页。
+- 未发现空白尾页、公式黑块、中文缺字、图片丢失或页面裁切。
+
+六、结论
+v072可作为正式连续版本。Ch9整章66/66闭合；Ch10达到16/76。下一版必须从Ch10 Q17开始，不回退重做已经冻结的161道正式题。
