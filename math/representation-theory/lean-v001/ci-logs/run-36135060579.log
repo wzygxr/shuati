@@ -1,0 +1,64 @@
+✖ [2796/2800] Building RepVerify.P2MaschkeProjection (2.8s)
+trace: .> LEAN_PATH=/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/RepVerify/P2MaschkeProjection.lean -o /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/P2MaschkeProjection.olean -i /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/P2MaschkeProjection.ilean -c /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/P2MaschkeProjection.c --setup /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/P2MaschkeProjection.setup.json --json
+error: RepVerify/P2MaschkeProjection.lean:63:24: failed to synthesize
+  Module ?R V
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+warning: RepVerify/P2MaschkeProjection.lean:106:5: unused variable `hW`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: RepVerify/P2MaschkeProjection.lean:107:5: unused variable `hπf`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: RepVerify/P2MaschkeProjection.lean:107:30: unused variable `hπr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: RepVerify/P2MaschkeProjection.lean:140:42: unsolved goals
+G : Type u_1
+inst✝³ : Group G
+inst✝² : Fintype G
+V : Type u_2
+inst✝¹ : AddCommGroup V
+inst✝ : Module ℂ V
+ρ : Representation ℂ G V
+π : V →ₗ[ℂ] V
+W : Submodule ℂ V
+hW : ∀ (g : G), ∀ w ∈ W, (ρ g) w ∈ W
+hπf : ∀ w ∈ W, π w = w
+hπr : ∀ (v : V), π v ∈ W
+h : G
+key : (ρ h ∘ₗ avgProj ρ π) ∘ₗ ρ h⁻¹ = avgProj ρ π
+v : V
+⊢ (ρ h⁻¹) ((ρ h) v) = (ρ h⁻¹ * ρ h) v
+warning: RepVerify/P2MaschkeProjection.lean:191:7: unused variable `w`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: RepVerify/P2MaschkeProjection.lean:196:9: unused variable `v`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: Lean exited with code 1
+✔ [2797/2800] Built RepVerify.P4ConjClassSn (2.9s)
+ℹ [2798/2800] Built RepVerify.Probe (3.8s)
+info: RepVerify/Probe.lean:71:0: permMatrixHom : Perm (Fin 3) →* Matrix (Fin 3) (Fin 3) ℂ
+info: RepVerify/Probe.lean:74:0: Nat.factorial_zero : Nat.factorial 0 = 1
+info: RepVerify/Probe.lean:75:0: @Finset.prod_eq_single_of_mem : ∀ {ι : Type u_1} {M : Type u_2} [inst : CommMonoid M] {s : Finset ι} {f : ι → M},
+  ∀ a ∈ s, (∀ b ∈ s, b ≠ a → f b = 1) → ∏ x ∈ s, f x = f a
+info: RepVerify/Probe.lean:76:0: @LinearMap.proj : {R : Type u_1} →
+  {ι : Type u_2} →
+    [inst : Semiring R] →
+      {φ : ι → Type u_3} →
+        [inst_1 : (i : ι) → AddCommMonoid (φ i)] →
+          [inst_2 : (i : ι) → Module R (φ i)] → (i : ι) → ((i : ι) → φ i) →ₗ[R] φ i
+info: RepVerify/Probe.lean:77:0: Module.finrank_fintype_fun_eq_card : ∀ (R : Type u_1) {η : Type u_2} [inst : Semiring R] [StrongRankCondition R]
+  [inst_2 : Fintype η], Module.finrank R (η → R) = Fintype.card η
+info: RepVerify/Probe.lean:78:0: @LinearEquiv.finrank_eq : ∀ {R : Type u_1} {M : Type u_2} {N : Type u_3} [inst : Semiring R] [inst_1 : AddCommMonoid M]
+  [inst_2 : Module R M] [inst_3 : AddCommMonoid N] [inst_4 : Module R N] (f : M ≃ₗ[R] N),
+  Module.finrank R M = Module.finrank R N
+info: RepVerify/Probe.lean:79:0: @Representation.char_orthonormal : ∀ {G : Type u_1} {k : Type u_2} {V : Type u_3} {W : Type u_4} [inst : Group G]
+  [inst_1 : Field k] [inst_2 : AddCommGroup V] [inst_3 : Module k V] [FiniteDimensional k V] [inst_5 : AddCommGroup W]
+  [inst_6 : Module k W] [FiniteDimensional k W] (ρ : Representation k G V) (σ : Representation k G W)
+  [inst_8 : Fintype G] [Invertible ↑(Nat.card G)] [IsAlgClosed k] [ρ.IsIrreducible] [σ.IsIrreducible],
+  (↑(Nat.card G))⁻¹ * ∑ g, ρ.character g * σ.character g⁻¹ = if Nonempty (σ.Equiv ρ) then 1 else 0
+Some required targets logged failures:
+- RepVerify.P2MaschkeProjection
+error: build failed

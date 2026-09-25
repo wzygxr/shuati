@@ -4,3 +4,5 @@
   - status: EXIT=1
 - run 36133225667 @ 8311ec3fb11f0845db74e2696296d86a913d64c0
   - status: EXIT=1
+- run 36135060579 @ cd20a31b03273ac8795ae9d9ef8772c3f3ff46d8
+  - status: EXIT=1
