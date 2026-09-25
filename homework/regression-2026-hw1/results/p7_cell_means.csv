@@ -1,0 +1,9 @@
+sex,smoker,time,mean,count
+Female,No,Dinner,3.0441,29
+Female,No,Lunch,2.4596,25
+Female,Yes,Dinner,2.9491,23
+Female,Yes,Lunch,2.891,10
+Male,No,Dinner,3.1581,77
+Male,No,Lunch,2.9415,20
+Male,Yes,Dinner,3.1232,47
+Male,Yes,Lunch,2.7908,13
