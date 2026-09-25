@@ -1,0 +1,136 @@
+✖ [2796/2800] Building RepVerify.P4ConjClassSn (2.4s)
+trace: .> LEAN_PATH=/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/RepVerify/P4ConjClassSn.lean -o /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/P4ConjClassSn.olean -i /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/P4ConjClassSn.ilean -c /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/P4ConjClassSn.c --setup /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/P4ConjClassSn.setup.json --json
+error: RepVerify/P4ConjClassSn.lean:95:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∏ n ∈ Multiset.toFinset ?m, n ^ Multiset.count n ?m
+in the target expression
+  ∏ j ∈ Ioc 1 n, j ^ Multiset.count j σ.cycleType = σ.cycleType.prod
+
+n : ℕ
+hn : 1 ≤ n
+σ : Equiv.Perm (Fin n)
+hcyc : ∀ j ∈ Ioc 1 n, cycleCount σ j = Multiset.count j σ.cycleType
+hsub : σ.cycleType.toFinset ⊆ Ioc 1 n
+hvan : ∀ j ∈ Ioc 1 n, j ∉ σ.cycleType.toFinset → Multiset.count j σ.cycleType = 0
+⊢ ∏ j ∈ Ioc 1 n, j ^ Multiset.count j σ.cycleType = σ.cycleType.prod
+error: Lean exited with code 1
+✖ [2797/2800] Building RepVerify.Probe (3.7s)
+trace: .> LEAN_PATH=/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/RepVerify/Probe.lean -o /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/Probe.olean -i /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/Probe.ilean -c /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/Probe.c --setup /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/Probe.setup.json --json
+error: RepVerify/Probe.lean:53:72: unsolved goals
+case h
+σ : Perm (Fin 3)
+a : Fin 3
+x : ℂ
+i : Fin 3
+⊢ Function.update 0 a x ((Equiv.symm σ) i) = Function.update 0 (σ a) x i
+warning: RepVerify/Probe.lean:55:59: This simp argument is unused:
+  Equiv.eq_symm_apply
+
+Hint: Omit it from the simp argument list.
+  simp [LinearMap.funLeft, Function.comp_apply, Pi.single,̵ ̵E̵q̵u̵i̵v̵.̵e̵q̵_̵s̵y̵m̵m̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: RepVerify/Probe.lean:58:72: unsolved goals
+case h
+σ : Perm (Fin 3)
+a : Fin 3
+x : ℂ
+i : Fin 3
+⊢ (if (Equiv.symm σ) i = a then x else 0) = if i = σ a then x else 0
+warning: RepVerify/Probe.lean:60:55: This simp argument is unused:
+  Equiv.eq_symm_apply
+
+Hint: Omit it from the simp argument list.
+  simp [LinearMap.funLeft, Pi.single, Function.update,̵ ̵E̵q̵u̵i̵v̵.̵e̵q̵_̵s̵y̵m̵m̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: RepVerify/Probe.lean:66:36: unsolved goals
+σ : Perm (Fin 3)
+i j : Fin 3
+⊢ (if (Equiv.symm σ) i = j then 1 else 0) = if i = σ j then 1 else 0
+warning: RepVerify/Probe.lean:68:42: This simp argument is unused:
+  Equiv.eq_symm_apply
+
+Hint: Omit it from the simp argument list.
+  simp [LinearMap.toMatrix_apply, Pi.basisFun, LinearMap.funLeft, Pi.single, Function.comp_apply,
+  ̲  ̲ ̲ ̲F̵u̵n̵c̵t̵i̵o̵n̵.̵u̵p̵d̵a̵t̵e̵,̵ ̵E̵q̵u̵i̵v̵.̵e̵q̵_̵s̵y̵m̵m̵_̵a̵p̵p̵l̵y̵]̵F̲u̲n̲c̲t̲i̲o̲n̲.̲u̲p̲d̲a̲t̲e̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: RepVerify/Probe.lean:71:0: permMatrixHom : Perm (Fin 3) →* Matrix (Fin 3) (Fin 3) ℂ
+info: RepVerify/Probe.lean:74:0: Nat.factorial_zero : Nat.factorial 0 = 1
+info: RepVerify/Probe.lean:75:0: @Finset.prod_eq_single_of_mem : ∀ {ι : Type u_1} {M : Type u_2} [inst : CommMonoid M] {s : Finset ι} {f : ι → M},
+  ∀ a ∈ s, (∀ b ∈ s, b ≠ a → f b = 1) → ∏ x ∈ s, f x = f a
+info: RepVerify/Probe.lean:76:0: @LinearMap.proj : {R : Type u_1} →
+  {ι : Type u_2} →
+    [inst : Semiring R] →
+      {φ : ι → Type u_3} →
+        [inst_1 : (i : ι) → AddCommMonoid (φ i)] →
+          [inst_2 : (i : ι) → Module R (φ i)] → (i : ι) → ((i : ι) → φ i) →ₗ[R] φ i
+info: RepVerify/Probe.lean:77:0: Module.finrank_fintype_fun_eq_card : ∀ (R : Type u_1) {η : Type u_2} [inst : Semiring R] [StrongRankCondition R]
+  [inst_2 : Fintype η], Module.finrank R (η → R) = Fintype.card η
+info: RepVerify/Probe.lean:78:0: @LinearEquiv.finrank_eq : ∀ {R : Type u_1} {M : Type u_2} {N : Type u_3} [inst : Semiring R] [inst_1 : AddCommMonoid M]
+  [inst_2 : Module R M] [inst_3 : AddCommMonoid N] [inst_4 : Module R N] (f : M ≃ₗ[R] N),
+  Module.finrank R M = Module.finrank R N
+info: RepVerify/Probe.lean:79:0: @Representation.char_orthonormal : ∀ {G : Type u_1} {k : Type u_2} {V : Type u_3} {W : Type u_4} [inst : Group G]
+  [inst_1 : Field k] [inst_2 : AddCommGroup V] [inst_3 : Module k V] [FiniteDimensional k V] [inst_5 : AddCommGroup W]
+  [inst_6 : Module k W] [FiniteDimensional k W] (ρ : Representation k G V) (σ : Representation k G W)
+  [inst_8 : Fintype G] [Invertible ↑(Nat.card G)] [IsAlgClosed k] [ρ.IsIrreducible] [σ.IsIrreducible],
+  (↑(Nat.card G))⁻¹ * ∑ g, ρ.character g * σ.character g⁻¹ = if Nonempty (σ.Equiv ρ) then 1 else 0
+error: Lean exited with code 1
+✖ [2798/2800] Building RepVerify.P2MaschkeProjection (3.7s)
+trace: .> LEAN_PATH=/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/RepVerify/P2MaschkeProjection.lean -o /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/P2MaschkeProjection.olean -i /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/P2MaschkeProjection.ilean -c /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/P2MaschkeProjection.c --setup /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/P2MaschkeProjection.setup.json --json
+error: RepVerify/P2MaschkeProjection.lean:39:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'Complex.instInv', which is 'noncomputable'
+error: RepVerify/P2MaschkeProjection.lean:63:24: failed to synthesize
+  Module ?R V
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: RepVerify/P2MaschkeProjection.lean:64:7: Function expected at
+  (↑(Fintype.card G))⁻¹ • ?m.267
+but this term has type
+  ?m.270
+
+Note: Expected a function because this term is being applied to the argument
+  w
+error: RepVerify/P2MaschkeProjection.lean:74:7: Function expected at
+  (↑(Fintype.card G))⁻¹ • ?m.51
+but this term has type
+  ?m.54
+
+Note: Expected a function because this term is being applied to the argument
+  v
+error: RepVerify/P2MaschkeProjection.lean:129:8: Type mismatch
+  Equiv.sum_comp (Equiv.mulLeft h) ?m.458
+has type
+  ∑ i, ?m.458 ((Equiv.mulLeft h) i) = ∑ i, ?m.458 i
+but is expected to have type
+  ∑ g, (ρ (h * g)) (π ((ρ (h * g)⁻¹) v)) = ∑ g, (ρ g) (π ((ρ g⁻¹) v))
+error: RepVerify/P2MaschkeProjection.lean:139:30: Unknown constant `LinearMap.one_apply`
+error: RepVerify/P2MaschkeProjection.lean:145:39: Unknown constant `LinearMap.comp_one`
+error: RepVerify/P2MaschkeProjection.lean:144:50: unsolved goals
+G : Type u_1
+inst✝³ : Group G
+inst✝² : Fintype G
+V : Type u_2
+inst✝¹ : AddCommGroup V
+inst✝ : Module ℂ V
+ρ : Representation ℂ G V
+π : V →ₗ[ℂ] V
+W : Submodule ℂ V
+hW : ∀ (g : G), ∀ w ∈ W, (ρ g) w ∈ W
+hπf : ∀ w ∈ W, π w = w
+hπr : ∀ (v : V), π v ∈ W
+h : G
+key : (ρ h ∘ₗ avgProj ρ π) ∘ₗ ρ h⁻¹ = avgProj ρ π
+hid : ρ h⁻¹ ∘ₗ ρ h = 1
+⊢ ρ h ∘ₗ avgProj ρ π = (ρ h ∘ₗ avgProj ρ π) ∘ₗ 1
+warning: RepVerify/P2MaschkeProjection.lean:191:7: unused variable `w`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: RepVerify/P2MaschkeProjection.lean:196:9: unused variable `v`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- RepVerify.P4ConjClassSn
+- RepVerify.Probe
+- RepVerify.P2MaschkeProjection
+error: build failed
