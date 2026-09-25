@@ -1,0 +1,155 @@
+✖ [2796/2798] Building RepVerify.Probe (2.2s)
+trace: .> LEAN_PATH=/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/RepVerify/Probe.lean -o /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/Probe.olean -i /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/lib/lean/RepVerify/Probe.ilean -c /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/Probe.c --setup /home/runner/work/shuati/shuati/math/representation-theory/lean-v001/.lake/build/ir/RepVerify/Probe.setup.json --json
+info: RepVerify/Probe.lean:21:0: @Perm.card_isConj_eq : ∀ {α : Type u_1} [inst : DecidableEq α] [inst_1 : Fintype α] (g : Perm α),
+  Nat.card ↑{h | IsConj g h} =
+    (Fintype.card α).factorial /
+      ((Fintype.card α - g.cycleType.sum).factorial * g.cycleType.prod *
+        ∏ n ∈ g.cycleType.toFinset, (Multiset.count n g.cycleType).factorial)
+info: RepVerify/Probe.lean:22:0: @Perm.cycleType : {α : Type u_1} → [Fintype α] → [DecidableEq α] → Perm α → Multiset ℕ
+info: RepVerify/Probe.lean:23:0: @Perm.isConj_iff_cycleType_eq : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : DecidableEq α] {σ τ : Perm α},
+  IsConj σ τ ↔ σ.cycleType = τ.cycleType
+info: RepVerify/Probe.lean:24:0: ConjAct : Type u_1 → Type u_1
+info: RepVerify/Probe.lean:25:0: MulAction.card_orbit_mul_card_stabilizer_eq_card_group : ∀ (α : Type u_1) {β : Type u_2} [inst : Group α]
+  [inst_1 : MulAction α β] (b : β) [inst_2 : Fintype α] [inst_3 : Fintype ↑(MulAction.orbit α b)]
+  [inst_4 : Fintype ↥(MulAction.stabilizer α b)],
+  Fintype.card ↑(MulAction.orbit α b) * Fintype.card ↥(MulAction.stabilizer α b) = Fintype.card α
+error: RepVerify/Probe.lean:28:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'ofBijective', which is 'noncomputable'
+error: RepVerify/Probe.lean:31:2: Tactic `native_decide` failed. Error: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'Nat.card', which is 'noncomputable'
+error: RepVerify/Probe.lean:34:2: Tactic `native_decide` failed. Error: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'Nat.card', which is 'noncomputable'
+error: RepVerify/Probe.lean:37:2: Tactic `native_decide` failed. Error: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'Nat.card', which is 'noncomputable'
+error: RepVerify/Probe.lean:46:8: Unknown constant `Equiv.Perm.permMatrixHom`
+info: RepVerify/Probe.lean:47:0: @trace_permutation : ∀ {n : Type u_1} {R : Type u_2} [inst : DecidableEq n] (σ : Perm n) [inst_1 : Fintype n]
+  [inst_2 : AddCommMonoidWithOne R], (Perm.permMatrix R σ).trace = ↑(Function.fixedPoints ⇑σ).ncard
+info: RepVerify/Probe.lean:48:0: @toLin' : {R : Type u_1} →
+  [inst : CommSemiring R] →
+    {m : Type u_2} → {n : Type u_3} → [DecidableEq n] → [Fintype n] → Matrix m n R ≃ₗ[R] (n → R) →ₗ[R] m → R
+info: RepVerify/Probe.lean:49:0: LinearMap.trace_prodMap : ∀ (R : Type u_1) [inst : CommRing R] (M : Type u_2) [inst_1 : AddCommGroup M]
+  [inst_2 : Module R M] (N : Type u_3) [inst_3 : AddCommGroup N] [inst_4 : Module R N] [Module.Free R M]
+  [Module.Finite R M] [Module.Free R N] [Module.Finite R N],
+  LinearMap.trace R (M × N) ∘ₗ LinearMap.prodMapLinear R M N M N R =
+    LinearMap.id.coprod LinearMap.id ∘ₗ (LinearMap.trace R M).prodMap (LinearMap.trace R N)
+info: RepVerify/Probe.lean:50:0: LinearMap.trace_comp_comm : ∀ (R : Type u_1) [inst : CommRing R] (M : Type u_2) [inst_1 : AddCommGroup M]
+  [inst_2 : Module R M] (N : Type u_3) [inst_3 : AddCommGroup N] [inst_4 : Module R N] [Module.Free R M]
+  [Module.Finite R M] [Module.Free R N] [Module.Finite R N],
+  (LinearMap.llcomp R M N M).compr₂ (LinearMap.trace R M) = (LinearMap.llcomp R N M N).flip.compr₂ (LinearMap.trace R N)
+info: RepVerify/Probe.lean:51:0: @Submodule.prodEquivOfIsCompl : {R : Type u_1} →
+  [inst : Ring R] →
+    {E : Type u_2} →
+      [inst_1 : AddCommGroup E] → [inst_2 : Module R E] → (p q : Submodule R E) → IsCompl p q → (↥p × ↥q) ≃ₗ[R] E
+error: RepVerify/Probe.lean:52:8: Unknown constant `LinearEquiv.ofIsCompl`
+info: RepVerify/Probe.lean:53:0: @LinearMap.restrict : {R : Type u_1} →
+  {M : Type u_2} →
+    {M₁ : Type u_3} →
+      [inst : Semiring R] →
+        [inst_1 : AddCommMonoid M] →
+          [inst_2 : AddCommMonoid M₁] →
+            [inst_3 : Module R M] →
+              [inst_4 : Module R M₁] →
+                (f : M →ₗ[R] M₁) → {p : Submodule R M} → {q : Submodule R M₁} → (∀ x ∈ p, f x ∈ q) → ↥p →ₗ[R] ↥q
+info: RepVerify/Probe.lean:54:0: @LinearMap.finrank_range_add_finrank_ker : ∀ {K : Type u_1} {V : Type u_2} [inst : DivisionRing K]
+  [inst_1 : AddCommGroup V] [inst_2 : Module K V] {V₂ : Type u_3} [inst_3 : AddCommGroup V₂] [inst_4 : Module K V₂]
+  [FiniteDimensional K V] (f : V →ₗ[K] V₂), Module.finrank K ↥f.range + Module.finrank K ↥f.ker = Module.finrank K V
+info: RepVerify/Probe.lean:55:0: @Pi.single : {ι : Type u_1} →
+  {M : ι → Type u_2} → [(i : ι) → Zero (M i)] → [DecidableEq ι] → (i : ι) → M i → (j : ι) → M j
+info: RepVerify/Probe.lean:56:0: LinearMap.funLeft : (R : Type u_1) →
+  (M : Type u_2) →
+    [inst : Semiring R] →
+      [inst_1 : AddCommMonoid M] →
+        [inst_2 : Module R M] → {m : Type u_3} → {n : Type u_4} → (m → n) → (n → M) →ₗ[R] m → M
+info: RepVerify/Probe.lean:57:0: @Finsupp.basisSingleOne : {R : Type u_1} → {ι : Type u_2} → [inst : Semiring R] → Module.Basis ι R (ι →₀ R)
+info: RepVerify/Probe.lean:60:0: @Perm.sum_comp : ∀ {ι : Type u_1} {M : Type u_2} [inst : AddCommMonoid M] (σ : Perm ι) (s : Finset ι) (f : ι → M),
+  {a | σ a ≠ a} ⊆ ↑s → ∑ x ∈ s, f (σ x) = ∑ x ∈ s, f x
+info: RepVerify/Probe.lean:61:0: @Finset.sum_equiv : ∀ {ι : Type u_1} {κ : Type u_2} {M : Type u_3} [inst : AddCommMonoid M] {s : Finset ι}
+  {t : Finset κ} {f : ι → M} {g : κ → M} (e : ι ≃ κ),
+  (∀ (i : ι), i ∈ s ↔ e i ∈ t) → (∀ i ∈ s, f i = g (e i)) → ∑ i ∈ s, f i = ∑ i ∈ t, g i
+info: RepVerify/Probe.lean:62:0: @LinearMap.comp : {R₁ : Type u_1} →
+  {R₂ : Type u_2} →
+    {R₃ : Type u_3} →
+      {M₁ : Type u_4} →
+        {M₂ : Type u_5} →
+          {M₃ : Type u_6} →
+            [inst : Semiring R₁] →
+              [inst_1 : Semiring R₂] →
+                [inst_2 : Semiring R₃] →
+                  [inst_3 : AddCommMonoid M₁] →
+                    [inst_4 : AddCommMonoid M₂] →
+                      [inst_5 : AddCommMonoid M₃] →
+                        {module_M₁ : Module R₁ M₁} →
+                          {module_M₂ : Module R₂ M₂} →
+                            {module_M₃ : Module R₃ M₃} →
+                              {σ₁₂ : R₁ →+* R₂} →
+                                {σ₂₃ : R₂ →+* R₃} →
+                                  {σ₁₃ : R₁ →+* R₃} →
+                                    [RingHomCompTriple σ₁₂ σ₂₃ σ₁₃] →
+                                      (M₂ →ₛₗ[σ₂₃] M₃) → (M₁ →ₛₗ[σ₁₂] M₂) → M₁ →ₛₗ[σ₁₃] M₃
+info: RepVerify/Probe.lean:63:0: @LinearMap.comp_apply : ∀ {R₁ : Type u_1} {R₂ : Type u_2} {R₃ : Type u_3} {M₁ : Type u_4} {M₂ : Type u_5}
+  {M₃ : Type u_6} [inst : Semiring R₁] [inst_1 : Semiring R₂] [inst_2 : Semiring R₃] [inst_3 : AddCommMonoid M₁]
+  [inst_4 : AddCommMonoid M₂] [inst_5 : AddCommMonoid M₃] {module_M₁ : Module R₁ M₁} {module_M₂ : Module R₂ M₂}
+  {module_M₃ : Module R₃ M₃} {σ₁₂ : R₁ →+* R₂} {σ₂₃ : R₂ →+* R₃} {σ₁₃ : R₁ →+* R₃}
+  [inst_6 : RingHomCompTriple σ₁₂ σ₂₃ σ₁₃] (f : M₂ →ₛₗ[σ₂₃] M₃) (g : M₁ →ₛₗ[σ₁₂] M₂) (x : M₁), (f ∘ₛₗ g) x = f (g x)
+info: RepVerify/Probe.lean:64:0: @IsUnit.mk0 : ∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] (x : G₀), x ≠ 0 → IsUnit x
+info: RepVerify/Probe.lean:65:0: @NeZero : {R : Type u_1} → [Zero R] → R → Prop
+info: RepVerify/Probe.lean:66:0: @Fintype.sum_equiv : ∀ {ι : Type u_1} {κ : Type u_2} {M : Type u_3} [inst : Fintype ι] [inst_1 : Fintype κ]
+  [inst_2 : AddCommMonoid M] (e : ι ≃ κ) (f : ι → M) (g : κ → M), (∀ (x : ι), f x = g (e x)) → ∑ x, f x = ∑ x, g x
+error: RepVerify/Probe.lean:67:8: Unknown constant `LinearMap.Finset.sum_apply`
+info: RepVerify/Probe.lean:68:0: @Finset.sum_apply : ∀ {ι : Type u_1} {α : Type u_2} {M : α → Type u_3} [inst : (a : α) → AddCommMonoid (M a)] (a : α)
+  (s : Finset ι) (g : ι → (a : α) → M a), (∑ c ∈ s, g c) a = ∑ c ∈ s, g c a
+info: RepVerify/Probe.lean:71:0: Representation.leftRegular : (k : Type u_1) →
+  [inst : Semiring k] → (G : Type u_2) → [inst_1 : Monoid G] → Representation k G (G →₀ k)
+info: RepVerify/Probe.lean:72:0: Representation.ofMulAction : (k : Type u_1) →
+  [inst : Semiring k] →
+    (G : Type u_2) → [inst_1 : Monoid G] → (H : Type u_3) → [MulAction G H] → Representation k G (H →₀ k)
+info: RepVerify/Probe.lean:73:0: @Representation.character : {G : Type u_1} →
+  {k : Type u_2} →
+    {V : Type u_3} →
+      [inst : Monoid G] →
+        [inst_1 : Field k] → [inst_2 : AddCommGroup V] → [inst_3 : Module k V] → Representation k G V → G → k
+info: RepVerify/Probe.lean:74:0: @Representation.char_orthonormal : ∀ {G : Type u_1} {k : Type u_2} {V : Type u_3} {W : Type u_4} [inst : Group G]
+  [inst_1 : Field k] [inst_2 : AddCommGroup V] [inst_3 : Module k V] [FiniteDimensional k V] [inst_5 : AddCommGroup W]
+  [inst_6 : Module k W] [FiniteDimensional k W] (ρ : Representation k G V) (σ : Representation k G W)
+  [inst_8 : Fintype G] [Invertible ↑(Nat.card G)] [IsAlgClosed k] [ρ.IsIrreducible] [σ.IsIrreducible],
+  (↑(Nat.card G))⁻¹ * ∑ g, ρ.character g * σ.character g⁻¹ = if Nonempty (σ.Equiv ρ) then 1 else 0
+info: RepVerify/Probe.lean:75:0: @FDRep.character : {k : Type u_1} → [inst : Field k] → {G : Type u_1} → [inst_1 : Monoid G] → FDRep k G → G → k
+info: RepVerify/Probe.lean:76:0: @FDRep.char_orthonormal : ∀ {k : Type u_1} [inst : Field k] {G : Type u_1} [inst_1 : Group G] [IsAlgClosed k]
+  [inst_3 : Fintype G] [inst_4 : Invertible ↑(Fintype.card G)] (V W : FDRep k G) [CategoryTheory.Simple V]
+  [CategoryTheory.Simple W],
+  ⅟↑(Fintype.card G) • ∑ g, V.character g * W.character g⁻¹ = if Nonempty (V ≅ W) then 1 else 0
+info: RepVerify/Probe.lean:77:0: IsSemisimpleRing.exists_algEquiv_pi_matrix_of_isAlgClosed : ∀ (F : Type u_1) (R : Type u_2) [inst : Field F]
+  [IsAlgClosed F] [inst_2 : Ring R] [inst_3 : Algebra F R] [IsSemisimpleRing R] [FiniteDimensional F R],
+  ∃ n d, (∀ (i : Fin n), NeZero (d i)) ∧ Nonempty (R ≃ₐ[F] (i : Fin n) → Matrix (Fin (d i)) (Fin (d i)) F)
+info: RepVerify/Probe.lean:79:0: instFintype
+info: RepVerify/Probe.lean:80:0: fun a b => Fintype.decidableEqEquivFintype a b
+info: RepVerify/Probe.lean:83:0: @DihedralGroup.card : ∀ {n : ℕ} [inst : NeZero n], Fintype.card (DihedralGroup n) = 2 * n
+info: RepVerify/Probe.lean:84:0: @DihedralGroup.r_mul_sr : ∀ {n : ℕ} (i j : ZMod n), DihedralGroup.r i * DihedralGroup.sr j = DihedralGroup.sr (j - i)
+error: RepVerify/Probe.lean:88:76: unsolved goals
+⊢ 3 - 1 + -1 = 3 - 2
+error: RepVerify/Probe.lean:97:36: unsolved goals
+⊢ 4 - 3 = 1
+info: RepVerify/Probe.lean:101:0: Submodule.span : (R : Type u_1) →
+  {M : Type u_2} → [inst : Semiring R] → [inst_1 : AddCommMonoid M] → [inst_2 : Module R M] → Set M → Submodule R M
+info: RepVerify/Probe.lean:102:0: @LinearMap.ker : {R : Type u_1} →
+  {R₂ : Type u_2} →
+    {M : Type u_3} →
+      {M₂ : Type u_4} →
+        [inst : Semiring R] →
+          [inst_1 : Semiring R₂] →
+            [inst_2 : AddCommMonoid M] →
+              [inst_3 : AddCommMonoid M₂] →
+                [inst_4 : Module R M] → [inst_5 : Module R₂ M₂] → {τ₁₂ : R →+* R₂} → (M →ₛₗ[τ₁₂] M₂) → Submodule R M
+info: RepVerify/Probe.lean:103:0: @Pi.single_sub : ∀ {I : Type u_1} {f : I → Type u_2} [inst : DecidableEq I] [inst_1 : (i : I) → AddGroup (f i)] (i : I)
+  (x y : f i), Pi.single i (x - y) = Pi.single i x - Pi.single i y
+info: RepVerify/Probe.lean:104:0: @Finset.sum_sub_distrib : ∀ {ι : Type u_1} {G : Type u_2} {s : Finset ι} [inst : SubtractionCommMonoid G] (f g : ι → G),
+  ∑ x ∈ s, (f x - g x) = ∑ x ∈ s, f x - ∑ x ∈ s, g x
+info: RepVerify/Probe.lean:107:0: 4 : ℕ
+info: RepVerify/Probe.lean:108:0: Module.finrank_fintype_fun_eq_card : ∀ (R : Type u_1) {η : Type u_2} [inst : Semiring R] [StrongRankCondition R]
+  [inst_2 : Fintype η], Module.finrank R (η → R) = Fintype.card η
+info: RepVerify/Probe.lean:111:0: Nat.card.{u_3} (α : Type u_3) : ℕ
+info: RepVerify/Probe.lean:112:0: Set.ncard.{u_1} {α : Type u_1} (s : Set α) : ℕ
+info: RepVerify/Probe.lean:113:0: @Set.toFinset : {α : Type u_1} → (s : Set α) → [Fintype ↑s] → Finset α
+info: RepVerify/Probe.lean:114:0: @LinearMap.ker_eq_bot : ∀ {R : Type u_1} {R₂ : Type u_2} {M : Type u_3} {M₂ : Type u_4} [inst : Ring R]
+  [inst_1 : Ring R₂] [inst_2 : AddCommGroup M] [inst_3 : AddCommGroup M₂] [inst_4 : Module R M] [inst_5 : Module R₂ M₂]
+  {τ₁₂ : R →+* R₂} {f : M →ₛₗ[τ₁₂] M₂}, f.ker = ⊥ ↔ Function.Injective ⇑f
+error: Lean exited with code 1
+Some required targets logged failures:
+- RepVerify.Probe
+error: build failed
