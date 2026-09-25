@@ -27,8 +27,8 @@ variable {V : Type*} [AddCommGroup V] [Module ℂ V]
 variable (ρ : Representation ℂ G V) (π : V →ₗ[ℂ] V) (W : Submodule ℂ V)
 
 /-- 线性映射的有限和逐点取值律（自证，避免依赖具体 simp 名目）。 -/
-theorem linmap_sum_apply {ι : Type*} [DecidableEq ι] (s : Finset ι)
-    (F : ι → (V →ₗ[ℂ] V)) (v : V) :
+theorem linmap_sum_apply {R M ι : Type*} [Semiring R] [AddCommMonoid M] [Module R M]
+    [DecidableEq ι] (s : Finset ι) (F : ι → (M →ₗ[R] M)) (v : M) :
     (∑ i ∈ s, F i) v = ∑ i ∈ s, F i v := by
   induction s using Finset.induction with
   | empty => simp
@@ -36,7 +36,7 @@ theorem linmap_sum_apply {ι : Type*} [DecidableEq ι] (s : Finset ι)
     rw [Finset.sum_insert ha, Finset.sum_insert ha, LinearMap.add_apply, ih]
 
 /-- 平均化投影 `P = (1/|G|) ∑ g, ρ g ∘ₗ π ∘ₗ ρ g⁻¹`。 -/
-def avgProj : V →ₗ[ℂ] V :=
+noncomputable def avgProj : V →ₗ[ℂ] V :=
   (Fintype.card G : ℂ)⁻¹ • ∑ g : G, ρ g ∘ₗ π ∘ₗ ρ g⁻¹
 
 private theorem cardG_ne_zero : (Fintype.card G : ℂ) ≠ 0 :=
@@ -56,12 +56,12 @@ theorem avgProj_apply_of_mem
     rw [← map_mul, mul_inv_cancel, map_one]
     rfl
   have hsum : (∑ g : G, ρ g ∘ₗ π ∘ₗ ρ g⁻¹) w = (Fintype.card G : ℂ) • w := by
-    rw [linmap_sum_apply (V := V) Finset.univ
+    rw [linmap_sum_apply (R := ℂ) Finset.univ
         (fun g => ρ g ∘ₗ π ∘ₗ ρ g⁻¹) w]
     simp only [LinearMap.comp_apply]
     rw [Finset.sum_congr rfl (fun g _ => hstep g), Finset.sum_const,
       Finset.card_univ, ← Nat.cast_smul_eq_nsmul]
-  show ((Fintype.card G : ℂ)⁻¹ • _) w = w
+  show ((Fintype.card G : ℂ)⁻¹ • ∑ g : G, ρ g ∘ₗ π ∘ₗ ρ g⁻¹) w = w
   rw [LinearMap.smul_apply, hsum, smul_smul, inv_mul_cancel₀ (cardG_ne_zero (G := G)),
     one_smul]
 
@@ -71,10 +71,10 @@ theorem avgProj_apply_mem
     (hπr : ∀ v : V, π v ∈ W)
     (v : V) : avgProj ρ π v ∈ W := by
   classical
-  show ((Fintype.card G : ℂ)⁻¹ • _) v ∈ W
+  show ((Fintype.card G : ℂ)⁻¹ • ∑ g : G, ρ g ∘ₗ π ∘ₗ ρ g⁻¹) v ∈ W
   rw [LinearMap.smul_apply]
   apply Submodule.smul_mem
-  rw [linmap_sum_apply (V := V) Finset.univ
+  rw [linmap_sum_apply (R := ℂ) Finset.univ
       (fun g => ρ g ∘ₗ π ∘ₗ ρ g⁻¹) v]
   apply Submodule.sum_mem
   intro g _
@@ -126,7 +126,7 @@ theorem avgProj_conj
       = ∑ g : G, ρ (h * g) (π (ρ (h * g)⁻¹ v)) :=
         Finset.sum_congr rfl fun g _ => step g
     _ = ∑ g : G, ρ g (π (ρ g⁻¹ v)) :=
-        Equiv.sum_comp (Equiv.mulLeft h) _
+        Equiv.sum_comp (Equiv.mulLeft h) (fun g => ρ g (π (ρ g⁻¹ v)))
 
 /-- (b-2) `P` 与所有 `ρ h` 交换。 -/
 theorem avgProj_comm
@@ -134,15 +134,15 @@ theorem avgProj_comm
     (hπf : ∀ w ∈ W, π w = w) (hπr : ∀ v : V, π v ∈ W) (h : G) :
     ρ h ∘ₗ avgProj ρ π = avgProj ρ π ∘ₗ ρ h := by
   have key := avgProj_conj ρ π W hW hπf hπr h
-  have hid : ρ h⁻¹ ∘ₗ ρ h = (1 : V →ₗ[ℂ] V) := by
+  have hid : ρ h⁻¹ ∘ₗ ρ h = LinearMap.id := by
     ext v
-    rw [LinearMap.comp_apply, LinearMap.one_apply]
+    rw [LinearMap.comp_apply, LinearMap.id_apply]
     calc ρ h⁻¹ (ρ h v) = ρ (h⁻¹ * h) v := by rw [map_mul]
       _ = ρ 1 v := by rw [inv_mul_cancel]
       _ = v := by rw [map_one]; rfl
   calc ρ h ∘ₗ avgProj ρ π
       = ((ρ h ∘ₗ avgProj ρ π) ∘ₗ ρ h⁻¹) ∘ₗ ρ h := by
-        rw [LinearMap.comp_assoc, hid, LinearMap.comp_one]
+        rw [LinearMap.comp_assoc, hid, LinearMap.comp_id]
     _ = avgProj ρ π ∘ₗ ρ h := by rw [key]
 
 /-- (c-1) `ker P` 是 `G`-不变的。 -/

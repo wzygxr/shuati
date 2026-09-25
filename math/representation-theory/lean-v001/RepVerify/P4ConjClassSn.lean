@@ -92,7 +92,7 @@ theorem conj_class_size_formula {n : ℕ} (hn : 1 ≤ n) (σ : Equiv.Perm (Fin n
     intro j _ hj
     exact Multiset.count_eq_zero.mpr (by simpa using hj)
   have t1 : ∏ j ∈ Finset.Ioc 1 n, j ^ σ.cycleType.count j = σ.cycleType.prod := by
-    rw [← multiset_prod_eq_toFinset_pow]
+    rw [multiset_prod_eq_toFinset_pow]
     apply Eq.symm
     apply Finset.prod_subset hsub
     intro j hj hnin

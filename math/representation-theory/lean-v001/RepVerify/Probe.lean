@@ -52,12 +52,12 @@ example {G V : Type*} [Group G] [Fintype G] [DecidableEq G] [AddCommGroup V] [Mo
 example (σ : Equiv.Perm (Fin 3)) (a : Fin 3) (x : ℂ) :
     (LinearMap.funLeft ℂ ℂ ⇑σ⁻¹) (Pi.single a x) = Pi.single (σ a) x := by
   ext i
-  simp [LinearMap.funLeft, Function.comp_apply, Pi.single, Equiv.eq_symm_apply]
+  simp [LinearMap.funLeft, Function.comp_apply, Pi.single, Function.update_apply, Equiv.symm_apply_eq]
 
 example (σ : Equiv.Perm (Fin 3)) (a : Fin 3) (x : ℂ) :
     (LinearMap.funLeft ℂ ℂ ⇑σ⁻¹) (Pi.single a x) = Pi.single (σ a) x := by
   ext i
-  simp [LinearMap.funLeft, Pi.single, Function.update, Equiv.eq_symm_apply]
+  simp [LinearMap.funLeft, Pi.single, Function.update_apply, Equiv.symm_apply_eq]
 
 -- ## 新探针 3：basisFun 与 toMatrix 协同（矩阵元取值）
 example (σ : Equiv.Perm (Fin 3)) (i j : Fin 3) :
@@ -65,7 +65,7 @@ example (σ : Equiv.Perm (Fin 3)) (i j : Fin 3) :
       (LinearMap.funLeft ℂ ℂ ⇑σ⁻¹)) i j
       = if i = σ j then 1 else 0 := by
   simp [LinearMap.toMatrix_apply, Pi.basisFun, LinearMap.funLeft, Pi.single,
-    Function.comp_apply, Function.update, Equiv.eq_symm_apply]
+    Function.comp_apply, Function.update_apply, Equiv.symm_apply_eq]
 
 -- ## 新探针 4：杂项名称确认
 #check (permMatrixHom (R := ℂ) (n := Fin 3) :
