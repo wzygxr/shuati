@@ -1,12 +1,12 @@
 /-
-# Probe.lean — API 探针（不是正式定理文件）
+# Probe.lean — API 探针第 2 轮
 
-用途：在 CI(R) 上一次性确认 mathlib v4.29.1 中六个模块所需 API 的确切名称/签名/可计算性。
-本文件允许编译失败；CI 日志会逐条报告哪些 #check/example 成立。
-正式定理文件将引用本探针确认过的 API。
+目标：确认 S3 数值计算路线、ZMod 算术收尾、若干线性映射引理的确切名称。
+本文件允许编译失败；CI 日志逐条报告成败。正式定理文件只用探针确认过的 API。
 -/
 import Mathlib.GroupTheory.SpecificGroups.Dihedral
 import Mathlib.GroupTheory.Perm.Centralizer
+import Mathlib.GroupTheory.Perm.Cycle.Concrete
 import Mathlib.LinearAlgebra.Trace
 import Mathlib.LinearAlgebra.Matrix.Permutation
 import Mathlib.RepresentationTheory.Basic
@@ -15,100 +15,70 @@ import Mathlib.RepresentationTheory.Maschke
 import Mathlib.RingTheory.SimpleModule.IsAlgClosed
 import Mathlib.Algebra.MonoidAlgebra.Module
 
-open Equiv Matrix
+open Equiv Matrix BigOperators
 
--- ## M4: S_n 共轭类大小
-#check @Equiv.Perm.card_isConj_eq
-#check @Equiv.Perm.cycleType
-#check @Equiv.Perm.isConj_iff_cycleType_eq
-#check @ConjAct
-#check @MulAction.card_orbit_mul_card_stabilizer_eq_card_group
+-- ## 轮次1遗留：ZMod 算术收尾三选
+example : (3 : ZMod 5) - 1 + -1 = 3 - 2 := by decide
+example : (3 : ZMod 5) - 1 + -1 = 3 - 2 := by omega
+example : (3 : ZMod 5) - 1 + -1 = 3 - 2 := by norm_num
 
--- S3 数值可计算性测试（三大类：1, 3, 2）
-def pc3 : Equiv.Perm (Fin 3) := Equiv.ofBijective ![1, 2, 0] (by decide)
-
-example : Nat.card {h : Equiv.Perm (Fin 3) | IsConj (1 : Equiv.Perm (Fin 3)) h} = 1 := by
-  native_decide
-
-example : Nat.card {h : Equiv.Perm (Fin 3) | IsConj (Equiv.swap 0 1) h} = 3 := by
-  native_decide
-
-example : Nat.card {h : Equiv.Perm (Fin 3) | IsConj pc3 h} = 2 := by
-  native_decide
-
--- 公式本身的数值校验（模板公式：m_2=1,m_1=1 → 3）
-example : (3).factorial /
-    ((3 - ({2} : Multiset ℕ).sum).factorial * ({2} : Multiset ℕ).prod *
-      ∏ n ∈ ({2} : Multiset ℕ).toFinset, (({2} : Multiset ℕ).count n).factorial) = 3 := by
-  native_decide
-
--- ## M5: 置换特征标 = 不动点数
-#check @Equiv.Perm.permMatrixHom
-#check @Matrix.trace_permutation
-#check @Matrix.toLin'
-#check @LinearMap.trace_prodMap
-#check @LinearMap.trace_comp_comm
-#check @Submodule.prodEquivOfIsCompl
-#check @LinearEquiv.ofIsCompl
-#check @LinearMap.restrict
-#check @LinearMap.finrank_range_add_finrank_ker
-#check @Pi.single
-#check @LinearMap.funLeft
-#check @Finsupp.basisSingleOne
-
--- ## M2: Maschke 平均化投影所需的和/标量 API
-#check @Equiv.Perm.sum_comp
-#check @Finset.sum_equiv
-#check @LinearMap.comp
-#check @LinearMap.comp_apply
-#check @IsUnit.mk0
-#check @NeZero
-#check @Fintype.sum_equiv
-#check @LinearMap.Finset.sum_apply
-#check @Finset.sum_apply
-
--- ## M3: 正则表示 / 特征标 / Wedderburn–Artin
-#check @Representation.leftRegular
-#check @Representation.ofMulAction
-#check @Representation.character
-#check @Representation.char_orthonormal
-#check @FDRep.character
-#check @FDRep.char_orthonormal
-#check @IsSemisimpleRing.exists_algEquiv_pi_matrix_of_isAlgClosed
-
-#synth Fintype (Equiv.Perm (Fin 3))
-#synth DecidableEq (Equiv.Perm (Fin 3))
-
--- ## M1: 二面体群
-#check @DihedralGroup.card
-#check @DihedralGroup.r_mul_sr
-
--- 共轭公式 r^m * (sr i) * r^{-m} = sr (i - 2m) 的 simp 可行性（mathlib 中 sr i = s·r^i，n=5 测试）
+-- Dihedral simp+decide 组合是否能闭合共轭公式
 example : (DihedralGroup.r (1 : ZMod 5)) * (DihedralGroup.sr (3 : ZMod 5)) *
     (DihedralGroup.r (1 : ZMod 5))⁻¹ = DihedralGroup.sr (3 - 2 : ZMod 5) := by
-  simp
-
--- 旋转自逆测试 sr * sr = 1 与 r 旋转共轭
-example : (DihedralGroup.sr (3 : ZMod 5)) * (DihedralGroup.sr (3 : ZMod 5)) =
-    (1 : DihedralGroup 5) := by
-  simp
-
+  simp <;> decide
 example : (DihedralGroup.sr (3 : ZMod 5)) * (DihedralGroup.sr (4 : ZMod 5)) =
     DihedralGroup.r (1 : ZMod 5) := by
-  simp
+  simp <;> decide
 
--- ## M6: 不可约性与子空间
-#check @Submodule.span
-#check @LinearMap.ker
-#check @Pi.single_sub
-#check @Finset.sum_sub_distrib
+-- ## S3 数值路线 A：cycleType 可计算性
+example : (Equiv.swap (0 : Fin 3) (1 : Fin 3)).cycleType = {2} := by native_decide
+example : (Equiv.swap (0 : Fin 3) (1 : Fin 3)).cycleType = {2} := by decide
+example : (c[(0 : Fin 3), 1, 2]).cycleType = {3} := by native_decide
+example : Fintype.card (Equiv.Perm (Fin 3)) = 6 := by native_decide
 
--- 求和泛函 sumFun v = ∑ i, v i 的核维数 = n - 1（Fin 4 上 finrank 数值测试）
-#check (4 : ℕ)
-#check @Module.finrank_fintype_fun_eq_card
+-- ## S3 数值路线 B：Fintype.card 子类型的 decide/native_decide
+example : Fintype.card {h : Equiv.Perm (Fin 3) // IsConj (Equiv.swap 0 1) h} = 3 := by
+  native_decide
+example : Fintype.card {h : Equiv.Perm (Fin 3) // IsConj (1 : Equiv.Perm (Fin 3)) h} = 1 := by
+  native_decide
+example : Fintype.card {h : Equiv.Perm (Fin 3) // IsConj (c[(0 : Fin 3), 1, 2]) h} = 2 := by
+  native_decide
 
--- 健全性对照（必须全部成功）
-#check Nat.card
-#check Set.ncard
-#check @Set.toFinset
-#check @LinearMap.ker_eq_bot
+-- ## S3 数值路线 C：mathlib 公式 rw 后纯算术
+example : Nat.card {h : Equiv.Perm (Fin 3) | IsConj (Equiv.swap 0 1) h} = 3 := by
+  rw [Equiv.Perm.card_isConj_eq, Fintype.card_fin]
+  native_decide
+example : Nat.card {h : Equiv.Perm (Fin 3) | IsConj (c[(0 : Fin 3), 1, 2]) h} = 2 := by
+  rw [Equiv.Perm.card_isConj_eq, Fintype.card_fin]
+  native_decide
+
+-- ## 名称确认
+#check @Matrix.permMatrixHom
+#check @Fin.castPred
+#check @Fin.sum_univ_castSucc
+#check @Equiv.Perm.isSwap_iff_cycleType
+#check @Finset.mul_prod_erase
+#check @Nat.cast_smul_eq_nsmul
+#check @Equiv.sum_comp
+#check @Equiv.mulLeft
+#check @Pi.basisFun
+#check @LinearMap.trace_eq_matrix_trace
+#check @codisjoint_iff
+#check @LinearMap.funLeft
+#check @Finsupp.basisSingleOne
+#check @Representation
+
+-- LinearMap 和的取值律：候选写法逐一测试
+example {G V : Type*} [Group G] [Fintype G] [AddCommGroup V] [Module ℂ V]
+    (F : G → (V →ₗ[ℂ] V)) (v : V) :
+    (∑ g : G, F g) v = ∑ g : G, (F g) v := by
+  exact Finset.sum_apply _ _ _
+example {G V : Type*} [Group G] [Fintype G] [AddCommGroup V] [Module ℂ V]
+    (F : G → (V →ₗ[ℂ] V)) (v : V) :
+    (∑ g : G, F g) v = ∑ g : G, (F g) v := by
+  simp only [LinearMap.coeFn_sum, sum_apply]
+
+-- Units 可判定性/有限性（IsConj 计算链条）
+#synth Fintype (Equiv.perm (Fin 3)) -- 故意写错：应报 unknown
+#synth Fintype (Equiv.Perm (Fin 3))
+#synth DecidableEq (Equiv.Perm (Fin 3))
