@@ -1,0 +1,8 @@
+/lake-packages
+/.lake
+build_output.log
+build_status.txt
+*.olean
+*.olean.hash
+*.ilean
+*.trace

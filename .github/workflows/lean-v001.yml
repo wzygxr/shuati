@@ -1,0 +1,92 @@
+name: lean-verify-v001
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [arena/01a0d80d-shuati]
+    paths:
+      - 'math/representation-theory/lean-v001/**'
+      - '!math/representation-theory/lean-v001/ci-logs/**'
+      - '.github/workflows/lean-v001.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lean-v001-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Cache lake artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            math/representation-theory/lean-v001/lake-packages
+            math/representation-theory/lean-v001/.lake
+          key: lean-${{ runner.os }}-v4.29.1-${{ hashFiles('math/representation-theory/lean-v001/lake-manifest.json') }}
+          restore-keys: |
+            lean-${{ runner.os }}-v4.29.1-
+            lean-${{ runner.os }}-
+
+      - name: Toolchain
+        working-directory: math/representation-theory/lean-v001
+        run: |
+          elan toolchain install "$(cat lean-toolchain)" || true
+          lake --version
+
+      - name: Resolve dependencies
+        working-directory: math/representation-theory/lean-v001
+        run: lake update 2>&1 | tail -20
+
+      - name: Fetch mathlib cache (oleans)
+        working-directory: math/representation-theory/lean-v001
+        run: lake exe cache get 2>&1 | tail -5 || echo "cache get failed"
+
+      - name: Lake build
+        working-directory: math/representation-theory/lean-v001
+        run: |
+          lake build 2>&1 | tee build_output.log
+          echo "EXIT=${PIPESTATUS[0]}" > build_status.txt
+
+      - name: No-sorry check
+        working-directory: math/representation-theory/lean-v001
+        run: |
+          if grep -RIn --include='*.lean' 'sorry' RepVerify RepVerify.lean; then
+            echo "SORRY FOUND" | tee -a build_status.txt
+          else
+            echo "no sorry in RepVerify sources"
+          fi
+
+      - name: Push CI logs back to branch
+        if: always()
+        run: |
+          git config user.email "lean-ci-bot@users.noreply.github.com"
+          git config user.name "lean-ci-bot"
+          cd math/representation-theory/lean-v001
+          mkdir -p ci-logs
+          cp build_output.log "ci-logs/run-${{ github.run_id }}.log" 2>/dev/null \
+            || echo "no build log produced" > "ci-logs/run-${{ github.run_id }}.log"
+          cp build_status.txt "ci-logs/status-${{ github.run_id }}.txt" 2>/dev/null \
+            || echo "EXIT=MISSING" > "ci-logs/status-${{ github.run_id }}.txt"
+          {
+            echo "- run ${{ github.run_id }} @ ${{ github.sha }}"
+            echo "  - status: $(cat build_status.txt 2>/dev/null || echo '?')"
+          } >> ci-logs/INDEX.md
+          git add ci-logs
+          git commit -m "ci-logs: lean-v001 run ${{ github.run_id }}" || echo "nothing to commit"
+          for i in 1 2 3; do
+            git pull --rebase origin "${{ github.ref_name }}" && git push && break || sleep 15
+          done
