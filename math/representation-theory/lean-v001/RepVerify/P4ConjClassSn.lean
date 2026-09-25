@@ -45,8 +45,10 @@ theorem multiset_prod_eq_toFinset_pow (m : Multiset ℕ) :
         · subst hna
           rw [hc_a, if_pos rfl, pow_succ]
         · rw [Multiset.count_cons_of_ne hna m, if_neg hna, mul_one]
-      rw [Finset.prod_congr rfl step, Finset.prod_mul_distrib, Finset.prod_ite_eq,
-        if_pos (Multiset.mem_toFinset.mpr ha), mul_comm]
+      rw [Finset.prod_congr rfl step, Finset.prod_mul_distrib,
+        Finset.prod_eq_single_of_mem a (Multiset.mem_toFinset.mpr ha)
+          (fun n _ hn => if_neg hn),
+        if_pos rfl, mul_comm]
     · -- `a` 未出现：`toFinset` 增加 `a`，其重数为 1
       rw [Multiset.toFinset_cons,
         Finset.prod_insert (by simpa using ha)]
@@ -73,28 +75,12 @@ theorem conj_class_size_formula {n : ℕ} (hn : 1 ≤ n) (σ : Equiv.Perm (Fin n
     Nat.card {τ : Equiv.Perm (Fin n) | IsConj σ τ} =
       n.factorial / ∏ j ∈ Finset.Icc 1 n, j ^ cycleCount σ j * (cycleCount σ j).factorial := by
   rw [Equiv.Perm.card_isConj_eq, Fintype.card_fin]
-  congr 1
-  -- 分出 j = 1 的因子（即 (n - cycleType.sum)!）
-  have h1in : (1 : ℕ) ∈ Finset.Icc 1 n := by simp [hn]
-  rw [← Finset.mul_prod_erase _ _ h1in, Finset.Icc_erase_left]
-  have hcyc1 : cycleCount σ 1 = n - σ.cycleType.sum := rfl
-  rw [hcyc1, one_pow, one_mul, mul_assoc]
-  apply Nat.mul_left_cancel (Nat.factorial_pos _)
-  -- 剩下的 j ≥ 2 的因子：`cycleCount σ j = cycleType.count j`
+  -- 辅助量：分母的三因子形式与 `Icc` 单因子形式的换算
   have hcyc : ∀ j ∈ Finset.Ioc 1 n, cycleCount σ j = σ.cycleType.count j := by
     intro j hj
     have h1 : 1 < j := (Finset.mem_Ioc.mp hj).1
     have hj1 : j ≠ 1 := by omega
     simp only [cycleCount, hj1, if_false]
-  have hcycProd :
-      ∏ j ∈ Finset.Ioc 1 n,
-          j ^ σ.cycleType.count j * (σ.cycleType.count j).factorial =
-        ∏ j ∈ Finset.Ioc 1 n,
-          j ^ cycleCount σ j * (cycleCount σ j).factorial :=
-    Finset.prod_congr rfl fun j hj => by rw [hcyc j hj]
-  rw [← hcycProd]
-  rw [Finset.prod_mul_distrib]
-  -- 两个因子都化到 `toFinset` 上（区间外重数为 0，贡献 1）
   have hsub : σ.cycleType.toFinset ⊆ Finset.Ioc 1 n := by
     intro j hj
     rw [Finset.mem_Ioc]
@@ -105,17 +91,31 @@ theorem conj_class_size_formula {n : ℕ} (hn : 1 ≤ n) (σ : Equiv.Perm (Fin n
       σ.cycleType.count j = 0 := by
     intro j _ hj
     exact Multiset.count_eq_zero.mpr (by simpa using hj)
-  have t1 : ∏ j ∈ Finset.Ioc 1 n, j ^ σ.cycleType.count j
-      = ∏ j ∈ σ.cycleType.toFinset, j ^ σ.cycleType.count j := by
+  have t1 : ∏ j ∈ Finset.Ioc 1 n, j ^ σ.cycleType.count j = σ.cycleType.prod := by
+    rw [← multiset_prod_eq_toFinset_pow]
+    apply Eq.symm
     apply Finset.prod_subset hsub
     intro j hj hnin
     rw [hvan j hj hnin, pow_zero]
   have t2 : ∏ j ∈ Finset.Ioc 1 n, (σ.cycleType.count j).factorial
       = ∏ j ∈ σ.cycleType.toFinset, (σ.cycleType.count j).factorial := by
+    apply Eq.symm
     apply Finset.prod_subset hsub
     intro j hj hnin
     rw [hvan j hj hnin]
-    simp
-  rw [t1, t2, ← multiset_prod_eq_toFinset_pow]
+    rfl
+  have hden : ∏ j ∈ Finset.Icc 1 n, j ^ cycleCount σ j * (cycleCount σ j).factorial
+      = (n - σ.cycleType.sum).factorial * σ.cycleType.prod *
+        ∏ j ∈ σ.cycleType.toFinset, (σ.cycleType.count j).factorial := by
+    have h1in : (1 : ℕ) ∈ Finset.Icc 1 n := by simp [hn]
+    rw [← Finset.mul_prod_erase _ _ h1in, Finset.Icc_erase_left]
+    have hcyc1 : cycleCount σ 1 = n - σ.cycleType.sum := by simp [cycleCount]
+    rw [hcyc1, one_pow, one_mul]
+    have hcycProd : ∏ j ∈ Finset.Ioc 1 n, j ^ cycleCount σ j * (cycleCount σ j).factorial
+        = ∏ j ∈ Finset.Ioc 1 n,
+            j ^ σ.cycleType.count j * (σ.cycleType.count j).factorial :=
+      Finset.prod_congr rfl fun j hj => by rw [hcyc j hj]
+    rw [hcycProd, Finset.prod_mul_distrib, t1, t2, mul_assoc]
+  rw [hden]
 
 end RepVerify

@@ -13,19 +13,27 @@
 
 这给出 Maschke 定理的证明：`W` 有 `G`-不变补空间。
 -/
+import Mathlib.Data.Complex.Basic
 import Mathlib.RepresentationTheory.Basic
 import Mathlib.Algebra.Module.NatInt
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 open Finset
 
-noncomputable section
-
 namespace RepVerify
 
 variable {G : Type*} [Group G] [Fintype G]
 variable {V : Type*} [AddCommGroup V] [Module ℂ V]
 variable (ρ : Representation ℂ G V) (π : V →ₗ[ℂ] V) (W : Submodule ℂ V)
+
+/-- 线性映射的有限和逐点取值律（自证，避免依赖具体 simp 名目）。 -/
+theorem linmap_sum_apply {ι : Type*} [DecidableEq ι] (s : Finset ι)
+    (F : ι → (V →ₗ[ℂ] V)) (v : V) :
+    (∑ i ∈ s, F i) v = ∑ i ∈ s, F i v := by
+  induction s using Finset.induction with
+  | empty => simp
+  | insert a s ha ih =>
+    rw [Finset.sum_insert ha, Finset.sum_insert ha, LinearMap.add_apply, ih]
 
 /-- 平均化投影 `P = (1/|G|) ∑ g, ρ g ∘ₗ π ∘ₗ ρ g⁻¹`。 -/
 def avgProj : V →ₗ[ℂ] V :=
@@ -40,6 +48,7 @@ theorem avgProj_apply_of_mem
     (hπf : ∀ w ∈ W, π w = w)
     {w : V} (hw : w ∈ W) :
     avgProj ρ π w = w := by
+  classical
   have hstep : ∀ g : G, ρ g (π (ρ g⁻¹ w)) = w := by
     intro g
     rw [hπf _ (hW g⁻¹ w hw)]
@@ -47,9 +56,11 @@ theorem avgProj_apply_of_mem
     rw [← map_mul, mul_inv_cancel, map_one]
     rfl
   have hsum : (∑ g : G, ρ g ∘ₗ π ∘ₗ ρ g⁻¹) w = (Fintype.card G : ℂ) • w := by
-    simp only [LinearMap.coeFn_sum, Finset.sum_apply, LinearMap.comp_apply]
-    rw [Finset.sum_congr rfl (fun g _ => hstep g), Finset.sum_const, Finset.card_univ,
-      ← Nat.cast_smul_eq_nsmul]
+    rw [linmap_sum_apply (V := V) Finset.univ
+        (fun g => ρ g ∘ₗ π ∘ₗ ρ g⁻¹) w]
+    simp only [LinearMap.comp_apply]
+    rw [Finset.sum_congr rfl (fun g _ => hstep g), Finset.sum_const,
+      Finset.card_univ, ← Nat.cast_smul_eq_nsmul]
   show ((Fintype.card G : ℂ)⁻¹ • _) w = w
   rw [LinearMap.smul_apply, hsum, smul_smul, inv_mul_cancel₀ (cardG_ne_zero (G := G)),
     one_smul]
@@ -59,10 +70,12 @@ theorem avgProj_apply_mem
     (hW : ∀ (g : G) (w : V), w ∈ W → ρ g w ∈ W)
     (hπr : ∀ v : V, π v ∈ W)
     (v : V) : avgProj ρ π v ∈ W := by
+  classical
   show ((Fintype.card G : ℂ)⁻¹ • _) v ∈ W
   rw [LinearMap.smul_apply]
   apply Submodule.smul_mem
-  rw [LinearMap.coeFn_sum, Finset.sum_apply]
+  rw [linmap_sum_apply (V := V) Finset.univ
+      (fun g => ρ g ∘ₗ π ∘ₗ ρ g⁻¹) v]
   apply Submodule.sum_mem
   intro g _
   show ρ g (π (ρ g⁻¹ v)) ∈ W
@@ -94,8 +107,8 @@ theorem avgProj_conj
     (hπf : ∀ w ∈ W, π w = w) (hπr : ∀ v : V, π v ∈ W) (h : G) :
     (ρ h ∘ₗ avgProj ρ π) ∘ₗ ρ h⁻¹ = avgProj ρ π := by
   ext v
-  simp only [LinearMap.comp_apply, avgProj, LinearMap.smul_apply, LinearMap.coeFn_sum,
-    Finset.sum_apply, LinearMap.comp_apply, map_smul, map_sum]
+  simp only [LinearMap.comp_apply, avgProj, LinearMap.smul_apply, LinearMap.coe_sum,
+    map_smul, map_sum, Finset.sum_apply, LinearMap.comp_apply]
   congr 1
   have step : ∀ g : G,
       ρ h (ρ g (π (ρ g⁻¹ (ρ h⁻¹ v)))) = ρ (h * g) (π (ρ (h * g)⁻¹ v)) := by
@@ -182,7 +195,5 @@ theorem maschke_projection_package
    fun h => avgProj_comm ρ π W hW hπf hπr h,
    fun h v hv => avgProj_ker_invariant ρ π W hW hπf hπr h hv,
    avgProj_isCompl ρ π W hW hπf hπr⟩
-
-end
 
 end RepVerify
