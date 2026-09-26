@@ -1,0 +1,75 @@
+{
+  "version": "v076-ZY001",
+  "formula_structure_verification": {
+    "passed": 130543,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "pdfs": {
+    "chapter": {
+      "name": "第93分册_郑永令贾起民方小敏力学第二版_第一章39题严格全解_v076.pdf",
+      "size_bytes": 1913129,
+      "sha256": "2260fbb2d0256c62c1cae857cd8d05291d4883978939919c02435636ea03a142",
+      "pages": 74,
+      "rendered_pages": 74,
+      "blank_candidates": [],
+      "edge_candidates": [],
+      "bad_images": [],
+      "ghostscript": "PASS",
+      "fonts_embedded": true,
+      "fonts_unicode": true,
+      "startxref_count": 1,
+      "eof_count": 1,
+      "status": "PASS"
+    },
+    "cumulative": {
+      "name": "力学习题全解_累计接续逻辑母版_v076_郑永令第一章闭合.pdf",
+      "size_bytes": 1917820,
+      "sha256": "cbff3781f832e3cc8c92c8c2c1df4b409fb9e0939c917193eb5c466e09530c18",
+      "pages": 77,
+      "rendered_pages": 77,
+      "blank_candidates": [],
+      "edge_candidates": [],
+      "bad_images": [],
+      "ghostscript": "PASS",
+      "fonts_embedded": true,
+      "fonts_unicode": true,
+      "startxref_count": 1,
+      "eof_count": 1,
+      "status": "PASS"
+    },
+    "ledger": {
+      "name": "尚未解决的书与题目总账_v076.pdf",
+      "size_bytes": 77096,
+      "sha256": "43692a6b2b3d625837bbd8b0f02e8659751659442a2c77f096b8d1d3382326fe",
+      "pages": 8,
+      "rendered_pages": 8,
+      "blank_candidates": [],
+      "edge_candidates": [],
+      "bad_images": [],
+      "ghostscript": "PASS",
+      "fonts_embedded": true,
+      "fonts_unicode": true,
+      "startxref_count": 1,
+      "eof_count": 1,
+      "status": "PASS"
+    },
+    "qa_report": {
+      "name": "公式复算与构建验收报告_v076.pdf",
+      "size_bytes": 90905,
+      "sha256": "5f7036551e7b69620c3e07eee0f1a518ddc8e247e4db2a83cbf5369db9b645d3",
+      "pages": 7,
+      "rendered_pages": 7,
+      "blank_candidates": [],
+      "edge_candidates": [],
+      "bad_images": [],
+      "ghostscript": "PASS",
+      "fonts_embedded": true,
+      "fonts_unicode": true,
+      "startxref_count": 1,
+      "eof_count": 1,
+      "status": "PASS"
+    }
+  },
+  "overall_status": "PASS"
+}
