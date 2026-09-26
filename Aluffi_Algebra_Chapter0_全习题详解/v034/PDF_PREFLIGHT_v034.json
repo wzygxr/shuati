@@ -1,0 +1,54 @@
+{
+  "version": "v034",
+  "files": {
+    "increment": {
+      "pages": 75,
+      "rendered_pages": 75,
+      "blank_candidates": [],
+      "black_candidates": [],
+      "edge_clip_candidates": [],
+      "replacement_glyph_pages": [],
+      "nul_pages": [],
+      "fonts_embedded_all": true,
+      "fonts_tounicode_all": true,
+      "ghostscript_ok": true,
+      "mutool_ok": true,
+      "startxref": true,
+      "eof": true,
+      "pass": true
+    },
+    "cumulative": {
+      "pages": 366,
+      "rendered_pages": 366,
+      "blank_candidates": [],
+      "black_candidates": [],
+      "edge_clip_candidates": [],
+      "replacement_glyph_pages": [],
+      "nul_pages": [],
+      "fonts_embedded_all": true,
+      "fonts_tounicode_all": true,
+      "ghostscript_ok": true,
+      "mutool_ok": true,
+      "startxref": true,
+      "eof": true,
+      "pass": true
+    },
+    "status": {
+      "pages": 2,
+      "rendered_pages": 2,
+      "blank_candidates": [],
+      "black_candidates": [],
+      "edge_clip_candidates": [],
+      "replacement_glyph_pages": [],
+      "nul_pages": [],
+      "fonts_embedded_all": true,
+      "fonts_tounicode_all": true,
+      "ghostscript_ok": true,
+      "mutool_ok": true,
+      "startxref": true,
+      "eof": true,
+      "pass": true
+    }
+  },
+  "totals": {"pdf_pages": 443, "rendered_pages": 443, "all_pass": true}
+}
