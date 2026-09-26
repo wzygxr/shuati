@@ -1,0 +1,22 @@
+{
+  "project": "曾谨言量子力学四书全习题项目",
+  "version": "v014",
+  "date": "2026-09-26",
+  "source_pdf_pages": 569,
+  "new_originals": 31,
+  "new_variants": 62,
+  "new_same_type": 31,
+  "new_training_units": 124,
+  "project_status_training_units": 1056,
+  "physical_cumulative_originals": 150,
+  "physical_cumulative_companion_problems": 450,
+  "physical_cumulative_training_units": 600,
+  "pdf_pages": 370,
+  "formula_checks": {"pass": 8665, "fail": 0, "total": 8665},
+  "xelatex_runs": [0, 0, 0],
+  "pdfium_pages": 370,
+  "poppler_key_pages": 9,
+  "next_breakpoint": "第四版卷 I 第14章习题14.1",
+  "next_batch": "14.1--14.17",
+  "next_batch_count": 17
+}
