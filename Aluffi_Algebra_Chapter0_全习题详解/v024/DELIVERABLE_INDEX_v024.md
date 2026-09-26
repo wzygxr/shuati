@@ -20,7 +20,7 @@
 
 | Artifact | Pages/Rows | SHA-256 |
 |---|---:|---|
-| `Aluffi_Algebra_Chapter0_v024_状态质量与剩余总账.pdf` | 5 | `24216474d47337ff279029fe6a82f3d8f4be656904ac1604d15c0470248997a0` |
+| `Aluffi_Algebra_Chapter0_v024_状态质量与剩余总账.pdf` | 6 | `6bc865a19e988b30520038d94ff95cc6a59a0203515bed8c5691551622c523d2` |
 | `verification_v024.py` | — | `370b9a06194bd4090302dd1ae750d1dda4944b588879a2d257aae055e9ff1d54` |
 | `exercise_ledger_v024.csv` | 37 rows | `78623092617e1aa3cf16f54396b742de1b0d0031fdca1423360391a8e80f12ab` |
 | `assets/VI_4_koszul_complex.png` | 1 figure | `49a2bbe692d4b906d26491f73297e54c1d940b0c40d8812ebb38aaef2666fa35` |
@@ -31,7 +31,7 @@
 - variants A/B: 37/37 + 37/37
 - drills: 37/37
 - mathematical checks: 872,490/872,490 PASS
-- rendered pages: 78/78 + 352/352 + 5/5
+- rendered pages: 78/78 + 352/352 + 6/6
 - invalid/blank/black/edge candidates: 0/0/0/0
 - replacement glyph/NUL/question-runs: 0/0/0
 - fonts embedded/subset/Unicode: 6/6 increment; 7/7 cumulative/status
