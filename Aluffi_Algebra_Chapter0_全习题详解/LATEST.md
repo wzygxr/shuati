@@ -2,19 +2,20 @@
 
 ## Latest checkpoint
 
-- Version: **v023**
+- Version: **v024**
 - Date: **2026-09-24**
-- Newly closed: **Chapter VI §1, Exercises 1.1–1.20 (20/20)**
-- Newly closed: **Chapter VI §2, Exercises 2.1–2.19 (19/19)**
-- Newly closed formal exercises: **39**
-- Cumulative formal exercises: **609**
-- Cumulative variants/drills: **1827**
-- Cumulative training units: **2436**
-- v023 increment PDF: **84 A4 pages**
-- increment PDF SHA-256: `b2d36bcdb462cfadbb4d92d1061ec60f31fd7f0615dda6c4d96b28b6a93405f7`
-- cumulative-continuation PDF: **276 A4 pages**
-- cumulative-continuation PDF SHA-256: `975c85550ee2af6fbce4cc364e9902b34e2200f2d80763baa9e18a6dee988c0c`
-- Next continuous checkpoint: **Chapter VI §3 Exercise 3.1**
+- Newly closed: **Chapter VI §3, Exercises 3.1–3.20 (20/20)**
+- Newly closed: **Chapter VI §4, Exercises 4.1–4.17 (17/17)**
+- Newly closed formal exercises: **37**
+- Cumulative formal exercises: **646**
+- Cumulative variants/drills: **1938**
+- Cumulative training units: **2584**
+- v024 increment PDF: **78 A4 pages**
+- increment PDF SHA-256: `ed936427764bfd4477aa2f2d6de1d37c94979b70995bd1fb32d1d250b1f81e41`
+- cumulative-continuation PDF: **352 A4 pages**
+- cumulative-continuation PDF SHA-256: `73bb768bdecb2bc125af126ee048d9043e2bdcf701b2c8e98893d40b5a952c1d`
+- full delivery ZIP SHA-256: `b1a1a03f98e7948fcb6b75b9393523fd7296556adf512fb46dd14b615d0b7145`
+- Next continuous checkpoint: **Chapter VI §5 Exercise 5.1**
 
 ## Closed ranges
 
@@ -25,33 +26,35 @@
 - Chapter V §§1–6: 102/102
 - Chapter VI §1: 20/20
 - Chapter VI §2: 19/19
+- Chapter VI §3: 20/20
+- Chapter VI §4: 17/17
 
 ## Current version directory
 
-See [`v023/`](./v023/) for:
+See [`v024/`](./v024/) for:
 
-- `PROJECT_STATUS_v023.md`;
-- `QA_v023.md`;
-- `SOURCE_AUDIT_v023.md`;
-- `REMAINING_WORK_SUMMARY_v023.md`;
-- `EXERCISE_LEDGER_v023.md`;
-- `DELIVERABLE_INDEX_v023.md`.
+- `PROJECT_STATUS_v024.md`;
+- `QA_v024.md`;
+- `SOURCE_AUDIT_v024.md`;
+- `REMAINING_WORK_SUMMARY_v024.md`;
+- `EXERCISE_LEDGER_v024.md`;
+- `DELIVERABLE_INDEX_v024.md`.
 
 ## QA summary
 
-- structure audit: **PASS**
-- deterministic/random checks: **824,723 / 824,723 PASS**
-- PDF renders: **84/84 + 276/276 + 11/11**
-- blank/black/edge candidates: **0/0/0**
+- structure audit: **37/37 PASS**
+- deterministic/random checks: **872,490 / 872,490 PASS**
+- PDF renders: **78/78 + 352/352 + 5/5**
+- invalid/blank/black/edge candidates: **0/0/0/0**
 - replacement glyph/NUL/question-runs: **0/0/0**
-- fonts embedded/subset/Unicode: **7/7**
+- fonts embedded/subset/Unicode: **6/6 increment; 7/7 cumulative/status**
 - Ghostscript parse: **PASS**
 - byte-level `startxref`/`%%EOF`: **1/1**
 
 ## Artifact boundary
 
-The 276-page cumulative-continuation file is a genuine physical merge of the source files actually available in the current runtime: Chapter V §§4–6 and Chapter VI §§1–2, totaling 109 formal exercises. The historical v020 1146-page mother file is not available as bytes, so this file is not mislabeled as a physical reconstruction of all 609 formal exercises.
+The 352-page cumulative-continuation file is a genuine physical merge of the source files actually available in the current runtime: Chapter V §§4–6 and Chapter VI §§1–4, totaling 146 formal exercises. The historical v020 1146-page mother file is not available as bytes, so this file is not mislabeled as a physical reconstruction of all 646 formal exercises.
 
-## Corrections implemented in v023
+## Corrections implemented in v024
 
-The author’s corrected-second-printing errata affecting p.314 Exercise 1.19 and p.326 Exercise 2.10 were incorporated. VI.1.19 constructs a nonzero sparse multiple supported on prime exponents. VI.2.10 distinguishes equality of row spaces from natural isomorphism, rather than equality, of column spaces. Noncommutative left/right module actions and Smith-normal-form termination were also written out explicitly.
+The author’s corrected-second-printing errata affecting p.333, p.341, p.343, and p.347 Exercise 4.6 were incorporated. The text preserves the easily lost conditions `Ann(M) ≠ 0` and `Ass_R(M) ≠ ∅`, keeps Nakayama’s finite-generation and Jacobson-radical hypotheses, uses one consistent sign convention for the three-variable Koszul complex, and verifies the final Smith calculation in every characteristic.
