@@ -1,0 +1,14 @@
+{
+  "repository": "wzygxr/shuati",
+  "base_branch": "mechanics-v075-20260924",
+  "head_branch": "mechanics-v076-zheng-ch1-20260926",
+  "pull_request_number": 40,
+  "pull_request_url": "https://github.com/wzygxr/shuati/pull/40",
+  "pull_request_state": "open",
+  "changed_text_files": 16,
+  "markdown_parts": 4,
+  "round_trip_file": "PROGRESS_v076.json",
+  "round_trip_verified": true,
+  "binary_upload_claimed": false,
+  "binary_delivery": "ChatGPT complete ZIP"
+}
