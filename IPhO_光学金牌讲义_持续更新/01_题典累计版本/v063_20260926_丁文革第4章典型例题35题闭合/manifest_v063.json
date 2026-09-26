@@ -1,0 +1,89 @@
+{
+  "version": "v063",
+  "date": "2026-09-26",
+  "scope": "丁文革第4章典型例题4.1--4.35；第4章125项正式内容全部闭合",
+  "source": {
+    "file": "光学指导考研参考书-丁文革.pdf",
+    "physical_pages": 218,
+    "bytes": 28275795,
+    "sha256": "2859f841147d8473f0db5074ae1133aea9f80f40a545bb76f06b1b73e23ef98f",
+    "preview_layer_pages": 150,
+    "preview_truncated": true,
+    "pages_used": "140--169",
+    "next_boundary_pages": "190--218"
+  },
+  "batch": {
+    "formal_new": 35,
+    "variants_per_problem": 3,
+    "variants_new": 105,
+    "training_units_new": 140
+  },
+  "chapter4": {
+    "examples": "35/35",
+    "selftest": "90/90",
+    "formal_total": "125/125",
+    "status": "COMPLETE"
+  },
+  "chapter5_frozen_denominator": {
+    "examples": 38,
+    "selftest_choice": 21,
+    "selftest_fill": 18,
+    "selftest_short_answer": 9,
+    "selftest_comprehensive": 10,
+    "selftest_total": 58,
+    "formal_total": 96
+  },
+  "next_breakpoint": "丁文革第5章典型例题5.1--5.38",
+  "documents": {
+    "cumulative_markdown": {
+      "name": "光学全习题详解_累计推进_v063_丁文革第4章典型例题35题闭合.md",
+      "bytes": 341362,
+      "sha256": "0f9ca922687a6537b5fbc13f2cebda0495ef0b62ae296482870c4c411e2d3001"
+    },
+    "cumulative_pdf": {
+      "name": "光学全习题详解_累计推进_v063_丁文革第4章典型例题35题闭合.pdf",
+      "bytes": 2686701,
+      "pages": 214,
+      "sha256": "483d5791d4ad34dc9b9e0d9ab58d3e424219666b316f529be028b2e5c6ccf0c3"
+    },
+    "increment_markdown": {
+      "name": "丁文革第4章典型例题4.1-4.35全解_v063.md",
+      "bytes": 97653,
+      "sha256": "6fcae760097c970d9b13625b10f6bfd06a8540302b6d4448337c349c9775cedb"
+    },
+    "increment_pdf": {
+      "name": "丁文革第4章典型例题4.1-4.35全解_v063.pdf",
+      "bytes": 1908805,
+      "pages": 63,
+      "sha256": "06faf2543034c3627d19633a6a8208169b35f5f5c51a5212d58df6a575a0d095"
+    },
+    "delivery_zip": {
+      "name": "光学全习题项目_v063_丁文革第4章典型例题35题闭合_正式交付包.zip",
+      "bytes": 8705557,
+      "sha256": "4eb9155bb43759c4b1474aa970d656473750219afabe4e1b4e996a22e436f347"
+    }
+  },
+  "qa": {
+    "structure": "35/35 PASS",
+    "variants": "A/B/C各35/35",
+    "formula": "20/20 PASS",
+    "render_cumulative": "214/214",
+    "render_increment": "63/63",
+    "blank_black_edge_alerts": 0,
+    "ghostscript": "PASS",
+    "pymupdf_preflight": "PASS",
+    "pdf_byte_structure": "PASS",
+    "fonts_embedded": {
+      "cumulative": "7/7",
+      "increment": "6/6"
+    },
+    "qpdf": "unavailable; not reported as PASS"
+  },
+  "supplementary_sources": [
+    "OpenStax University Physics Volume 3 §1.7",
+    "MIT OCW 8.03 Lectures 17--18",
+    "MIT OCW Quarter-wave Plate demonstration",
+    "NIST Optical Polarization Metrology",
+    "NIST SCATMECH JonesMatrix"
+  ]
+}
