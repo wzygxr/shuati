@@ -1,0 +1,18 @@
+{
+  "seed": 20260926,
+  "checks": 296181,
+  "passed": 296181,
+  "failed": 0,
+  "sections": {
+    "structure": {"checks": 181, "passed": 181, "failed": 0},
+    "cancellation": {"checks": 60000, "passed": 60000, "failed": 0},
+    "pushout_mono": {"checks": 15000, "passed": 15000, "failed": 0},
+    "short_five_lemma": {"checks": 15000, "passed": 15000, "failed": 0},
+    "image_quotients": {"checks": 25000, "passed": 25000, "failed": 0},
+    "complexes": {"checks": 54000, "passed": 54000, "failed": 0},
+    "differential_objects": {"checks": 72000, "passed": 72000, "failed": 0},
+    "euler_characteristic": {"checks": 35000, "passed": 35000, "failed": 0},
+    "exactness_rank_criterion": {"checks": 20000, "passed": 20000, "failed": 0}
+  },
+  "failures": []
+}
