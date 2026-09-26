@@ -16,6 +16,8 @@
 - increment PDF SHA-256: `2df4fea26d343cae3ed5c1185028c9de8328e1b30ee0e30ea09522bea6e1efe2`
 - cumulative-continuation PDF: **427 A4 pages**
 - cumulative-continuation PDF SHA-256: `d0c80a3e02bf4c48b138626cb78abc4a7249cbb0566426eeb97e1ee56cb922bf`
+- full delivery ZIP SHA-256: `3257899d37aed18f39a01c69c0a97f4f2bd4f25985e21b38537daa8e71f1f0ca`
+- GitHub-ready ZIP SHA-256: `03b681f668718178751ac0647eb1ab7a78b0d558f33aa70de34aa6ceb66e05a0`
 - Next continuous checkpoint: **Chapter VII §1 Exercise 1.1**
 
 ## Closed ranges
@@ -36,7 +38,7 @@ See [`v025/`](./v025/) for:
 - `SOURCE_AUDIT_v025.md`;
 - `REMAINING_WORK_SUMMARY_v025.md`;
 - `EXERCISE_LEDGER_v025.md`;
-- `DELIVERABLE_INDEX_v025.md` after final artifact indexing.
+- `DELIVERABLE_INDEX_v025.md`.
 
 ## QA summary
 
@@ -45,7 +47,7 @@ See [`v025/`](./v025/) for:
 - PDF renders: **91/91 + 427/427 + 5/5**
 - invalid/blank/black/edge candidates: **0/0/0/0**
 - replacement glyph/NUL/question-runs: **0/0/0**
-- fonts embedded/subset/Unicode: **7/7 increment; 8/8 cumulative**
+- fonts embedded/subset/Unicode: **7/7 increment; 8/8 cumulative/status**
 - Ghostscript parse: **PASS**
 - byte-level `startxref`/`%%EOF`: **1/1**
 
