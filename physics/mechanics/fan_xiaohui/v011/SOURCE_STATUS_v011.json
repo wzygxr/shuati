@@ -1,0 +1,87 @@
+{
+  "project": "范小辉双书力学全习题详解",
+  "version": "FXH011",
+  "date": "2026-09-26",
+  "baseline": {
+    "previous_authoritative_version": "FXH010",
+    "processed": 301,
+    "strict": 298,
+    "conditional": 3,
+    "fundamental_variants": 600,
+    "same_type_practice": 300,
+    "companion_training": 900
+  },
+  "source": {
+    "practical_problem_book": {
+      "title": "新编高中物理奥赛实用题典",
+      "edition": "第4版",
+      "physical_pdf_pages": 666,
+      "size_bytes": 118702021,
+      "sha256": "505437c4915ae2b4d15f29197095a9f54d3463dccdefaedad717cc43c9b2af73",
+      "target_problem_pages_physical": "68-75",
+      "target_answer_pages_physical": "335-350"
+    },
+    "guidance_book": {
+      "title": "新编高中物理奥赛指导",
+      "edition": "第6版",
+      "physical_pdf_pages": 537,
+      "size_bytes": 65491587,
+      "sha256": "e2d9c50c3b599a080e366a997f5a5a857c0489b3e75970aa13fe47f5618d5b8c",
+      "target_problem_and_solution_pages_physical": "90-93"
+    },
+    "preview_layer_ignored": true,
+    "source_evidence_pdf_pages": 29
+  },
+  "completed_this_version": {
+    "practical_problem_book_range": "Ch5 Q26-Q55",
+    "guidance_book_range": "Ch3 §3 Ex1-Ex4",
+    "source_positions": 34,
+    "strictly_completed": 34,
+    "fundamentally_different_variants": 68,
+    "same_type_practice": 34,
+    "companion_training": 102,
+    "training_units": 136
+  },
+  "cumulative": {
+    "source_positions_processed": 335,
+    "strictly_completed": 332,
+    "conditional": 3,
+    "fundamentally_different_variants": 668,
+    "same_type_practice": 334,
+    "companion_training": 1002
+  },
+  "verification": {
+    "symbolic": "36/36 PASS",
+    "random_parameter_families": "34/34 PASS",
+    "random_scalar_checks": "1700000/1700000 PASS",
+    "max_relative_residual": 2.030320356283255e-14,
+    "main_pdf_pages": 349,
+    "source_evidence_pdf_pages": 29,
+    "main_pdf_pdfium_render": "349/349",
+    "main_pdf_poppler_render": "349/349",
+    "evidence_pdf_pdfium_render": "29/29",
+    "evidence_pdf_poppler_render": "29/29",
+    "ghostscript": "both PASS",
+    "blank_or_black_suspects": 0,
+    "fatal_tex_errors": 0,
+    "missing_glyphs": 0,
+    "overfull_boxes": 0,
+    "undefined_references": 0
+  },
+  "main_files": {
+    "markdown_bytes": 432585,
+    "markdown_lines": 21864,
+    "markdown_sha256": "aaaaaca4e8e1fc1f4ff70a4dff53f3064817c6a89d4fd16007262e765fea807c",
+    "tex_bytes": 578783,
+    "tex_lines": 25849,
+    "tex_sha256": "d4ebed3689e2155987e1c64c7ad46b62ee1ece0ad78adab3db75985c689be30e",
+    "pdf_bytes": 3205783,
+    "pdf_sha256": "c1570f4012a5217faea2d3b4bfc50ad7b7ed88140d569344227d426c1102e81c",
+    "evidence_pdf_bytes": 4826500,
+    "evidence_pdf_sha256": "f46b72b92f7706f0dd287b4dfaaa3bc6e7d8bd45284c008a5d55ca69b2d40228"
+  },
+  "next_breakpoints": [
+    "实用题典 Ch5 Q56",
+    "奥赛指导 Ch3 §4 Ex1"
+  ]
+}
