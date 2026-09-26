@@ -2,13 +2,18 @@
 
 ## Aluffi 主线
 
-连续闭合：Chapter I 45/45、Chapter II 149/149、Chapter III 130/130、Chapter IV 119/119、Chapter V 102/102、Chapter VI 146/146、Chapter VII §1 30/30、Chapter VII §2 21/21。
+连续闭合：
 
-累计：
+- Chapter I: 45/45
+- Chapter II: 149/149
+- Chapter III: 130/130
+- Chapter IV: 119/119
+- Chapter V §§1–6: 127/127
+- Chapter VI §§1–7: 135/135
+- Chapter VII §1: 30/30
+- Chapter VII §2: 21/21
 
-- formal: 756
-- variants/drills: 2268
-- training units: 3024
+累计：formal 756；variants/drills 2268；training units 3024。
 
 下一唯一连续入口：
 
