@@ -14,8 +14,8 @@
 - increment PDF SHA-256: `56ca50a2060a0f9e57e8e73b746f326be967aa92c416828791dcf1a0fffe82ae`
 - cumulative-continuation PDF: **558 A4 pages**
 - cumulative-continuation PDF SHA-256: `ab47610af1fb43478b45fe2836f2af8793e0f9b3b493d0f05620f6127578f7e9`
-- full delivery ZIP SHA-256: `0b7b66c14ea34e60929a96d6049010f7fb016840fb482de24ae59439b7913665`
-- GitHub-ready ZIP SHA-256: `ee89ab0b912db809b4aacb4d0abf8b4f53ed534c4e5cf5fe7661a8e8396fb1c6`
+- full delivery ZIP SHA-256: `ffed013b9644b59e9ac36874796f34609970f44ab6e78b4a53286b71ac28e026`
+- GitHub-ready ZIP SHA-256: `6086404e03c8c7eddee7e8965677b8af8cacb27b554930d315e19b6a27479b16`
 - Next continuous checkpoint: **Chapter VII §3 Exercise 3.1**
 
 ## Closed ranges
@@ -24,8 +24,8 @@
 - Chapter II: 149/149
 - Chapter III: 130/130
 - Chapter IV: 119/119
-- Chapter V §§1–6: 102/102
-- Chapter VI §§1–7: 146/146
+- Chapter V §§1–6: 127/127
+- Chapter VI §§1–7: 135/135
 - Chapter VII §1: 30/30
 - Chapter VII §2: 21/21
 
