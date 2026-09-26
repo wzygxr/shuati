@@ -14,7 +14,7 @@
 - increment PDF SHA-256: `ed936427764bfd4477aa2f2d6de1d37c94979b70995bd1fb32d1d250b1f81e41`
 - cumulative-continuation PDF: **352 A4 pages**
 - cumulative-continuation PDF SHA-256: `73bb768bdecb2bc125af126ee048d9043e2bdcf701b2c8e98893d40b5a952c1d`
-- full delivery ZIP SHA-256: `b1a1a03f98e7948fcb6b75b9393523fd7296556adf512fb46dd14b615d0b7145`
+- full delivery ZIP SHA-256: `aafb9bd1bfe31d8ae3f7eb54d103b693b62abb408a1dfd4a43949731e203dd65`
 - Next continuous checkpoint: **Chapter VI §5 Exercise 5.1**
 
 ## Closed ranges
@@ -44,7 +44,7 @@ See [`v024/`](./v024/) for:
 
 - structure audit: **37/37 PASS**
 - deterministic/random checks: **872,490 / 872,490 PASS**
-- PDF renders: **78/78 + 352/352 + 5/5**
+- PDF renders: **78/78 + 352/352 + 6/6**
 - invalid/blank/black/edge candidates: **0/0/0/0**
 - replacement glyph/NUL/question-runs: **0/0/0**
 - fonts embedded/subset/Unicode: **6/6 increment; 7/7 cumulative/status**
