@@ -1,0 +1,87 @@
+{
+  "project": "范小辉双书力学全习题详解",
+  "version": "FXH016",
+  "date": "2026-09-26",
+  "baseline": {
+    "previous_authoritative_version": "FXH015",
+    "processed": 469,
+    "strict": 466,
+    "conditional": 3,
+    "fundamental_variants": 936,
+    "same_type_practice": 468,
+    "companion_training": 1404
+  },
+  "source": {
+    "guidance_book": {
+      "title": "新编高中物理奥赛指导",
+      "edition": "第6版",
+      "physical_pdf_pages": 537,
+      "size_bytes": 65491587,
+      "sha256": "e2d9c50c3b599a080e366a997f5a5a857c0489b3e75970aa13fe47f5618d5b8c",
+      "target_problem_and_solution_pages_physical": "180-214",
+      "next_chapter_boundary_page_physical": 215
+    },
+    "preview_layer_ignored": true,
+    "source_pages_rendered": "36/36",
+    "source_evidence_pdf_pages": 37
+  },
+  "completed_this_version": {
+    "guidance_book_range": "Ch6 §§1-5 all examples",
+    "section_counts": [4, 4, 4, 4, 6],
+    "source_positions": 22,
+    "strictly_completed": 22,
+    "fundamentally_different_variants": 44,
+    "same_type_practice": 22,
+    "companion_training": 66,
+    "training_units": 88
+  },
+  "cumulative": {
+    "source_positions_processed": 491,
+    "strictly_completed": 488,
+    "conditional": 3,
+    "fundamentally_different_variants": 980,
+    "same_type_practice": 490,
+    "companion_training": 1470
+  },
+  "verification": {
+    "symbolic": "36/36 PASS",
+    "random_parameter_families": "24/24 PASS",
+    "random_scalar_checks": "1200000/1200000 PASS",
+    "max_abs_residual": 7.821654435247183e-11,
+    "main_pdf_pages": 712,
+    "source_evidence_pdf_pages": 37,
+    "main_pdf_pdfium_render": "712/712",
+    "main_pdf_poppler_render": "712/712",
+    "evidence_pdf_pdfium_render": "37/37",
+    "evidence_pdf_poppler_render": "37/37",
+    "ghostscript": "both PASS",
+    "blank_or_black_suspects": 0,
+    "fatal_tex_errors": 0,
+    "missing_glyphs": 0,
+    "overfull_boxes": 0,
+    "underfull_boxes": 0,
+    "undefined_references": 0
+  },
+  "main_files": {
+    "markdown_bytes": 797468,
+    "markdown_lines": 36689,
+    "markdown_sha256": "b527a222dad7ad52f8a9462687a347141af5e2ebaa301fdfe09238801b7a414d",
+    "tex_bytes": 1072574,
+    "tex_lines": 43050,
+    "tex_sha256": "7b27551a4e866a05f93a989c31f4c03befa285b8ddc87cdf149ea87625c055c8",
+    "pdf_bytes": 7427042,
+    "pdf_sha256": "9848a446cfa7fa80a0c0ce877367e934361160cd62974253aa08ff317719da6f",
+    "evidence_pdf_bytes": 34256686,
+    "evidence_pdf_sha256": "c614b5093aa9a91c8ac96bf7b4a82f3929a20448a6046e35bd80fc0a905a9afc",
+    "increment_bytes": 49949,
+    "increment_lines": 1722,
+    "increment_sha256": "30c326c4c76f18894cf878346d36f51115ee7e95f7af587c2a45d0b10db3eb30"
+  },
+  "next_breakpoints": [],
+  "milestones": [
+    "奥赛指导第6章整章闭合",
+    "实用题典第1-6章力学部分闭合",
+    "奥赛指导第1-6章力学部分连续处理完毕",
+    "范小辉双书力学主线闭合"
+  ]
+}
