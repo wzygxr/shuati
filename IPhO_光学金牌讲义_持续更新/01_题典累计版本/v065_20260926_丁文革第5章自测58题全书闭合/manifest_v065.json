@@ -1,0 +1,85 @@
+{
+  "version": "v065",
+  "date": "2026-09-26",
+  "scope": "丁文革第5章自测58题全部闭合；丁文革第1--5章全书正式内容闭合",
+  "source": {
+    "file": "光学指导考研参考书-丁文革.pdf",
+    "physical_pages": 218,
+    "bytes": 28275795,
+    "sha256": "2859f841147d8473f0db5074ae1133aea9f80f40a545bb76f06b1b73e23ef98f",
+    "preview_layer_pages": 150,
+    "preview_truncated": true,
+    "pages_used": "211--218"
+  },
+  "batch": {
+    "choice": 21,
+    "fill": 18,
+    "short_answer": 9,
+    "comprehensive": 10,
+    "formal_new": 58,
+    "variants_per_problem": 3,
+    "variants_new": 174,
+    "training_units_new": 232
+  },
+  "chapter5": {
+    "examples": "38/38",
+    "selftest": "58/58",
+    "formal_total": "96/96",
+    "status": "COMPLETE"
+  },
+  "ding_book": {
+    "chapters": "1--5",
+    "status": "COMPLETE"
+  },
+  "documents": {
+    "increment_markdown": {
+      "name": "丁文革第5章自测58题全解_v065.md",
+      "bytes": 114390,
+      "sha256": "7020a1e09c1168c113d6d36e065fa43ec6a808fe0a8a43209ae6d2ba539f3a12",
+      "lines": 3776
+    },
+    "increment_pdf": {
+      "name": "丁文革第5章自测58题全解_v065.pdf",
+      "bytes": 2617881,
+      "sha256": "6449727baf5a493d0946e1d9d9540f32a9c3aa6dff60790250c7c266ac48f5fa",
+      "pages": 91
+    },
+    "cumulative_markdown": {
+      "name": "光学全习题详解_累计推进_v065_丁文革第5章96项全部闭合.md",
+      "bytes": 561138,
+      "sha256": "e413eda5d3c2994e289919c07580e149fd4058dd21e3ef29398d2983f45990b7",
+      "lines": 16149
+    },
+    "cumulative_pdf": {
+      "name": "光学全习题详解_累计推进_v065_丁文革第5章96项全部闭合.pdf",
+      "bytes": 6818359,
+      "sha256": "37061f39b4eb5f85b9380c9b5108d95696a91d39569117beba8e12e031320ea8",
+      "pages": 380
+    },
+    "delivery_zip": {
+      "name": "光学全习题项目_v065_丁文革第5章自测58题全书闭合_正式交付包.zip",
+      "bytes": 22924071,
+      "sha256": "7772837d4474cb09bb3bf091892d83c26c66d846409ee24d6564400d1b5c9e3a"
+    }
+  },
+  "qa": {
+    "structure": "58/58 PASS",
+    "variants": "A/B/C each 58/58",
+    "formula": "29/29 PASS",
+    "random_stress": "10000/10000 PASS",
+    "render_increment": "91/91",
+    "render_cumulative": "380/380",
+    "render_total": 471,
+    "blank_black_edge_alerts": 0,
+    "ghostscript": "PASS",
+    "pymupdf_preflight": "PASS",
+    "pdf_byte_structure": "PASS",
+    "fonts_embedded": {
+      "increment": "6/6",
+      "cumulative": "7/7"
+    },
+    "qpdf": "unavailable; not reported as PASS",
+    "cumulative_compile_note": "clean single-pass XeLaTeX release; second-pass aux expansion timed out and was not used; no unresolved ?? in final text"
+  },
+  "next_breakpoint": "蔡履中《光学》第三版第7章7.1--7.26（26题）"
+}
