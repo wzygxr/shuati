@@ -20,7 +20,7 @@
 
 | Artifact | Pages/Rows | SHA-256 |
 |---|---:|---|
-| `Aluffi_Algebra_Chapter0_v026_状态质量与剩余总账.pdf` | 4 | `f17b41b4702dc66ef37514f01b9a8c727d9bedd220f2a132660e92112f0d1ed2` |
+| `Aluffi_Algebra_Chapter0_v026_状态质量与剩余总账.pdf` | 4 | `5add671cba3d4930fd5f73bf7b995583394251c84a4f813fc0b80ce8e70f9436` |
 | `verification_v026.py` | — | `51cd9df3d60d1dfc22354d1113f3f35ff40400664fe4bec48a81deebd0f0de27` |
 | `exercise_ledger_v026.csv` | 51 rows | `0af13452312bbf255f1dea8b807af0876a516c6c1641835bb8a4676c177c63e8` |
 | `assets/VII_1_field_tower.png` | 1 figure | `df4b64d8bb7ecb585756779059c3c9a5213bfc3aa83c8524ac3aad45d787831d` |
@@ -40,6 +40,6 @@
 - Ghostscript: PASS
 - `startxref`/`%%EOF`: 1/1
 
-Full delivery ZIP SHA-256: `0b7b66c14ea34e60929a96d6049010f7fb016840fb482de24ae59439b7913665`.
+Full delivery ZIP SHA-256: `ffed013b9644b59e9ac36874796f34609970f44ab6e78b4a53286b71ac28e026`.
 
-GitHub-ready ZIP SHA-256: `ee89ab0b912db809b4aacb4d0abf8b4f53ed534c4e5cf5fe7661a8e8396fb1c6`.
+GitHub-ready ZIP SHA-256: `6086404e03c8c7eddee7e8965677b8af8cacb27b554930d315e19b6a27479b16`.
