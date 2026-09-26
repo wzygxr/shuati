@@ -48,4 +48,4 @@ dfd1f5e1b161a9f17d371512d50ea4b9da0d6be525130441da3eaabfd33fcabe  qa/contacts_fi
 1dc11d9953719b0a348a84fad374e146bd336c1cb7e61e60a245fdcd7b681cf1  qa/contacts_final/cumulative_04.jpg
 ad83144d99e9af09273ddab95ff75e073133012ab1737ed4dd6e6434d3ba68c9  qa/contacts_final/ledger_01.jpg
 76ba99baf3b5c0ade2f9a0515199afd07a5dea8cf0b42e4e78d156bbc28f52b8  qa/contacts_final/qa_report_01.jpg
-40f78165c93ba6ce7e72ada486075053c8a8da6ed3f4f76e83ec6073fb9f6d6b  RELEASE_MANIFEST_v076.json
+# RELEASE_MANIFEST_v076.json 自身不纳入 GitHub 版 SHA 表，避免自引用哈希误导；完整 ZIP 中的本地 SHA 表另含其确定哈希。
