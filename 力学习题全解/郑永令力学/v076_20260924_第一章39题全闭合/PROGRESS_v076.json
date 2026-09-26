@@ -1,0 +1,40 @@
+{
+  "version": "v076-ZY001",
+  "snapshot_date": "2026-09-24",
+  "packaged_at": "2026-09-26",
+  "book": "郑永令、贾起民、方小敏《力学（第二版）》",
+  "source_pdf": {
+    "name": "力学-第二版-郑永令.pdf",
+    "physical_pages": 588,
+    "size_bytes": 23786533,
+    "sha256": "cabf737cffcb5f6a93d0e7bdc4be160026bf8b99ee518a4f60cb8d5234bb188f",
+    "chapter1_source_pages": "64--70",
+    "chapter1_answer_pages": "566--568"
+  },
+  "completed_range": "1-1--1-39",
+  "new_formal": 39,
+  "new_variant_A": 39,
+  "new_variant_B": 39,
+  "new_similar_drills": 39,
+  "new_companion": 117,
+  "new_training_units": 156,
+  "book_chapter1_completed": 39,
+  "book_chapter1_total": 39,
+  "book_total_denominator_status": "尚未全书冻结；第二章已冻结为2-1--2-40",
+  "project_baseline_v075": {
+    "formal": 2261,
+    "companion": 6783,
+    "training_units": 9044
+  },
+  "project_totals_after_v076": {
+    "formal": 2300,
+    "companion": 6900,
+    "training_units": 9200
+  },
+  "next_breakpoint": "第二章2-1",
+  "next_frozen_range": "2-1--2-40",
+  "math_structure_checks": 130543,
+  "math_failures": 0,
+  "math_status": "PASS",
+  "byte_continuity": "逻辑累计；v075旧累计大文件原始字节未在本轮运行目录中，未虚构物理拼接"
+}
