@@ -2,23 +2,21 @@
 
 ## Latest checkpoint
 
-- Version: **v025**
+- Version: **v026**
 - Date: **2026-09-26**
-- Newly closed: **Chapter VI §5, Exercises 5.1–5.17 (17/17)**
-- Newly closed: **Chapter VI §6, Exercises 6.1–6.22 (22/22)**
-- Newly closed: **Chapter VI §7, Exercises 7.1–7.20 (20/20)**
-- Newly closed formal exercises: **59**
-- Cumulative formal exercises: **705**
-- Cumulative variants/drills: **2115**
-- Cumulative training units: **2820**
-- **Chapter VI §§1–7 is fully closed**
-- v025 increment PDF: **91 A4 pages**
-- increment PDF SHA-256: `2df4fea26d343cae3ed5c1185028c9de8328e1b30ee0e30ea09522bea6e1efe2`
-- cumulative-continuation PDF: **427 A4 pages**
-- cumulative-continuation PDF SHA-256: `d0c80a3e02bf4c48b138626cb78abc4a7249cbb0566426eeb97e1ee56cb922bf`
-- full delivery ZIP SHA-256: `3257899d37aed18f39a01c69c0a97f4f2bd4f25985e21b38537daa8e71f1f0ca`
-- GitHub-ready ZIP SHA-256: `03b681f668718178751ac0647eb1ab7a78b0d558f33aa70de34aa6ceb66e05a0`
-- Next continuous checkpoint: **Chapter VII §1 Exercise 1.1**
+- Newly closed: **Chapter VII §1, Exercises 1.1–1.30 (30/30)**
+- Newly closed: **Chapter VII §2, Exercises 2.1–2.21 (21/21)**
+- Newly closed formal exercises: **51**
+- Cumulative formal exercises: **756**
+- Cumulative variants/drills: **2268**
+- Cumulative training units: **3024**
+- v026 increment PDF: **96 A4 pages**
+- increment PDF SHA-256: `56ca50a2060a0f9e57e8e73b746f326be967aa92c416828791dcf1a0fffe82ae`
+- cumulative-continuation PDF: **558 A4 pages**
+- cumulative-continuation PDF SHA-256: `ab47610af1fb43478b45fe2836f2af8793e0f9b3b493d0f05620f6127578f7e9`
+- full delivery ZIP SHA-256: `0b7b66c14ea34e60929a96d6049010f7fb016840fb482de24ae59439b7913665`
+- GitHub-ready ZIP SHA-256: `ee89ab0b912db809b4aacb4d0abf8b4f53ed534c4e5cf5fe7661a8e8396fb1c6`
+- Next continuous checkpoint: **Chapter VII §3 Exercise 3.1**
 
 ## Closed ranges
 
@@ -27,34 +25,36 @@
 - Chapter III: 130/130
 - Chapter IV: 119/119
 - Chapter V §§1–6: 102/102
-- Chapter VI §§1–7: 135/135
+- Chapter VI §§1–7: 146/146
+- Chapter VII §1: 30/30
+- Chapter VII §2: 21/21
 
 ## Current version directory
 
-See [`v025/`](./v025/) for:
+See [`v026/`](./v026/) for:
 
-- `PROJECT_STATUS_v025.md`;
-- `QA_v025.md`;
-- `SOURCE_AUDIT_v025.md`;
-- `REMAINING_WORK_SUMMARY_v025.md`;
-- `EXERCISE_LEDGER_v025.md`;
-- `DELIVERABLE_INDEX_v025.md`.
+- `PROJECT_STATUS_v026.md`;
+- `QA_v026.md`;
+- `SOURCE_AUDIT_v026.md`;
+- `REMAINING_WORK_SUMMARY_v026.md`;
+- `EXERCISE_LEDGER_v026.md`;
+- `DELIVERABLE_INDEX_v026.md`.
 
 ## QA summary
 
-- structure audit: **59/59 PASS**
-- deterministic/random checks: **62,443 / 62,443 PASS**
-- PDF renders: **91/91 + 427/427 + 5/5**
+- structure audit: **51/51 PASS**
+- deterministic/random checks: **1,307,020 / 1,307,020 PASS**
+- PDF renders: **96/96 + 558/558 + 4/4**
 - invalid/blank/black/edge candidates: **0/0/0/0**
 - replacement glyph/NUL/question-runs: **0/0/0**
-- fonts embedded/subset/Unicode: **7/7 increment; 8/8 cumulative/status**
+- fonts embedded/subset/Unicode: **8/8 increment; 9/9 cumulative; 7/7 status**
 - Ghostscript parse: **PASS**
 - byte-level `startxref`/`%%EOF`: **1/1**
 
 ## Artifact boundary
 
-The 427-page cumulative-continuation file is a genuine physical merge of the source files actually available in the current runtime: Chapter V §§4–6 and Chapter VI §§1–7, totaling 205 formal exercises. The historical v020 1146-page mother file is not available as bytes, so this file is not mislabeled as a physical reconstruction of all 705 formal exercises.
+The 558-page cumulative-continuation file is a genuine physical merge of the source files actually available in the current runtime: Chapter V §§4–6, Chapter VI §§1–7, and Chapter VII §§1–2, totaling 256 formal exercises. The historical v020 1146-page mother file is not available as bytes, so this file is not mislabeled as a physical reconstruction of all 756 formal exercises.
 
-## Corrections implemented in v025
+## Corrections implemented in v026
 
-The author’s corrected-second-printing errata affecting Chapter VI p.366 Lemma 6.14, p.367 bottom, p.370 top, and p.371 Exercise 6.21 were incorporated. The text distinguishes PID/Bézout/Noetherian hypotheses, nonzero versus unit determinants, complex-inner-product conjugation conventions, descent of similarity after scalar extension, and the dependency order among Schur decomposition and the spectral theorems.
+The author’s corrected-second-printing errata affecting Chapter VII §§1–2 were incorporated. The text corrects the common error of evaluating all of `k(t)` at an algebraic element, distinguishes ring epimorphisms from surjections, handles finite-field indicator polynomials with the correct complement, distinguishes a projective standard chart from the whole projective space, and separates the cusp local ring from the regular local ring of a parabola.
