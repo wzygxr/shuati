@@ -2,20 +2,21 @@
 
 ## Latest checkpoint
 
-- Version: **v024**
-- Date: **2026-09-24**
-- Newly closed: **Chapter VI §3, Exercises 3.1–3.20 (20/20)**
-- Newly closed: **Chapter VI §4, Exercises 4.1–4.17 (17/17)**
-- Newly closed formal exercises: **37**
-- Cumulative formal exercises: **646**
-- Cumulative variants/drills: **1938**
-- Cumulative training units: **2584**
-- v024 increment PDF: **78 A4 pages**
-- increment PDF SHA-256: `ed936427764bfd4477aa2f2d6de1d37c94979b70995bd1fb32d1d250b1f81e41`
-- cumulative-continuation PDF: **352 A4 pages**
-- cumulative-continuation PDF SHA-256: `73bb768bdecb2bc125af126ee048d9043e2bdcf701b2c8e98893d40b5a952c1d`
-- full delivery ZIP SHA-256: `aafb9bd1bfe31d8ae3f7eb54d103b693b62abb408a1dfd4a43949731e203dd65`
-- Next continuous checkpoint: **Chapter VI §5 Exercise 5.1**
+- Version: **v025**
+- Date: **2026-09-26**
+- Newly closed: **Chapter VI §5, Exercises 5.1–5.17 (17/17)**
+- Newly closed: **Chapter VI §6, Exercises 6.1–6.22 (22/22)**
+- Newly closed: **Chapter VI §7, Exercises 7.1–7.20 (20/20)**
+- Newly closed formal exercises: **59**
+- Cumulative formal exercises: **705**
+- Cumulative variants/drills: **2115**
+- Cumulative training units: **2820**
+- **Chapter VI §§1–7 is fully closed**
+- v025 increment PDF: **91 A4 pages**
+- increment PDF SHA-256: `2df4fea26d343cae3ed5c1185028c9de8328e1b30ee0e30ea09522bea6e1efe2`
+- cumulative-continuation PDF: **427 A4 pages**
+- cumulative-continuation PDF SHA-256: `d0c80a3e02bf4c48b138626cb78abc4a7249cbb0566426eeb97e1ee56cb922bf`
+- Next continuous checkpoint: **Chapter VII §1 Exercise 1.1**
 
 ## Closed ranges
 
@@ -24,37 +25,34 @@
 - Chapter III: 130/130
 - Chapter IV: 119/119
 - Chapter V §§1–6: 102/102
-- Chapter VI §1: 20/20
-- Chapter VI §2: 19/19
-- Chapter VI §3: 20/20
-- Chapter VI §4: 17/17
+- Chapter VI §§1–7: 135/135
 
 ## Current version directory
 
-See [`v024/`](./v024/) for:
+See [`v025/`](./v025/) for:
 
-- `PROJECT_STATUS_v024.md`;
-- `QA_v024.md`;
-- `SOURCE_AUDIT_v024.md`;
-- `REMAINING_WORK_SUMMARY_v024.md`;
-- `EXERCISE_LEDGER_v024.md`;
-- `DELIVERABLE_INDEX_v024.md`.
+- `PROJECT_STATUS_v025.md`;
+- `QA_v025.md`;
+- `SOURCE_AUDIT_v025.md`;
+- `REMAINING_WORK_SUMMARY_v025.md`;
+- `EXERCISE_LEDGER_v025.md`;
+- `DELIVERABLE_INDEX_v025.md` after final artifact indexing.
 
 ## QA summary
 
-- structure audit: **37/37 PASS**
-- deterministic/random checks: **872,490 / 872,490 PASS**
-- PDF renders: **78/78 + 352/352 + 6/6**
+- structure audit: **59/59 PASS**
+- deterministic/random checks: **62,443 / 62,443 PASS**
+- PDF renders: **91/91 + 427/427 + 5/5**
 - invalid/blank/black/edge candidates: **0/0/0/0**
 - replacement glyph/NUL/question-runs: **0/0/0**
-- fonts embedded/subset/Unicode: **6/6 increment; 7/7 cumulative/status**
+- fonts embedded/subset/Unicode: **7/7 increment; 8/8 cumulative**
 - Ghostscript parse: **PASS**
 - byte-level `startxref`/`%%EOF`: **1/1**
 
 ## Artifact boundary
 
-The 352-page cumulative-continuation file is a genuine physical merge of the source files actually available in the current runtime: Chapter V §§4–6 and Chapter VI §§1–4, totaling 146 formal exercises. The historical v020 1146-page mother file is not available as bytes, so this file is not mislabeled as a physical reconstruction of all 646 formal exercises.
+The 427-page cumulative-continuation file is a genuine physical merge of the source files actually available in the current runtime: Chapter V §§4–6 and Chapter VI §§1–7, totaling 205 formal exercises. The historical v020 1146-page mother file is not available as bytes, so this file is not mislabeled as a physical reconstruction of all 705 formal exercises.
 
-## Corrections implemented in v024
+## Corrections implemented in v025
 
-The author’s corrected-second-printing errata affecting p.333, p.341, p.343, and p.347 Exercise 4.6 were incorporated. The text preserves the easily lost conditions `Ann(M) ≠ 0` and `Ass_R(M) ≠ ∅`, keeps Nakayama’s finite-generation and Jacobson-radical hypotheses, uses one consistent sign convention for the three-variable Koszul complex, and verifies the final Smith calculation in every characteristic.
+The author’s corrected-second-printing errata affecting Chapter VI p.366 Lemma 6.14, p.367 bottom, p.370 top, and p.371 Exercise 6.21 were incorporated. The text distinguishes PID/Bézout/Noetherian hypotheses, nonzero versus unit determinants, complex-inner-product conjugation conventions, descent of similarity after scalar extension, and the dependency order among Schur decomposition and the spectral theorems.
