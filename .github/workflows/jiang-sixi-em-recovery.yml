@@ -1,0 +1,213 @@
+name: jiang-sixi-em-recovery
+
+on:
+  push:
+    paths:
+      - '.github/workflows/jiang-sixi-em-recovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      - name: Recover Jiang Sixi electromagnetic cumulative sources and historical artifacts
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          OUT="$RUNNER_TEMP/jiang_sixi_em_recovery"
+          mkdir -p "$OUT/current_bundle" "$OUT/git_history" "$OUT/actions_artifacts" "$OUT/reports"
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, gzip, hashlib, json, os, re, shutil, subprocess, tarfile
+
+          root = Path.cwd()
+          out = Path(os.environ['RUNNER_TEMP']) / 'jiang_sixi_em_recovery'
+          current = out / 'current_bundle'
+          hist = out / 'git_history'
+          report = {'bundles': [], 'history': {}}
+
+          # Reconstruct every retained Jiang Sixi source bundle, including v003/v004.
+          bases = sorted(root.glob('IPhO电磁学全习题工程/江四喜_专题精编_电磁专题累计/v*/source_bundle_parts'))
+          for parts_dir in bases:
+              parts = sorted(parts_dir.glob('*.b64part'))
+              # Exclude split duplicates if the unsplit parent exists.
+              names = {p.name for p in parts}
+              filtered = []
+              for p in parts:
+                  m = re.match(r'(part_\d+)_\d+\.b64part$', p.name)
+                  if m and f'{m.group(1)}.b64part' in names:
+                      continue
+                  filtered.append(p)
+              parts = filtered
+              rec = {'directory': str(parts_dir.relative_to(root)), 'parts': []}
+              encoded = b''
+              for p in parts:
+                  raw = p.read_bytes()
+                  rec['parts'].append({'name': p.name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
+                  encoded += re.sub(rb'\s+', b'', raw)
+              rec['encoded_bytes'] = len(encoded)
+              rec['encoded_mod4'] = len(encoded) % 4
+              target = current / parts_dir.parent.name
+              target.mkdir(parents=True, exist_ok=True)
+              (target / 'concatenated.b64').write_bytes(encoded)
+              decoded = b''
+              try:
+                  decoded = base64.b64decode(encoded, validate=True)
+                  rec['base64_decode'] = 'PASS'
+              except Exception as e:
+                  rec['base64_decode'] = f'FAIL: {e}'
+                  try:
+                      decoded = base64.b64decode(encoded + b'=' * ((4-len(encoded)%4)%4), validate=False)
+                      rec['base64_tolerant_decode'] = 'PASS'
+                  except Exception as e2:
+                      rec['base64_tolerant_decode'] = f'FAIL: {e2}'
+              if decoded:
+                  archive = target / 'reconstructed_source.tar.gz'
+                  archive.write_bytes(decoded)
+                  rec['decoded_bytes'] = len(decoded)
+                  rec['decoded_sha256'] = hashlib.sha256(decoded).hexdigest()
+                  try:
+                      with tarfile.open(archive, 'r:gz') as tf:
+                          members = tf.getmembers()
+                          tf.extractall(target / 'extracted', filter='data')
+                      rec['tar_extract'] = 'PASS'
+                      rec['member_count'] = len(members)
+                      rec['members'] = [m.name for m in members]
+                  except Exception as e:
+                      rec['tar_extract'] = f'FAIL: {e}'
+                      try:
+                          text = gzip.decompress(decoded)
+                          (target / 'decompressed_payload.bin').write_bytes(text)
+                          rec['gzip_decompress'] = 'PASS'
+                          rec['payload_bytes'] = len(text)
+                          rec['payload_sha256'] = hashlib.sha256(text).hexdigest()
+                      except Exception as e2:
+                          rec['gzip_decompress'] = f'FAIL: {e2}'
+              report['bundles'].append(rec)
+
+          # Search every reachable historical Git blob. Save named Jiang files and plausible PDFs/ZIPs.
+          rev = subprocess.run(['git','rev-list','--objects','--all'], text=True, capture_output=True, errors='replace')
+          sha_paths = {}
+          for line in rev.stdout.splitlines():
+              if not line.strip():
+                  continue
+              sha, *rest = line.split(' ', 1)
+              sha_paths.setdefault(sha, []).append(rest[0] if rest else '')
+          shas = list(sha_paths)
+          proc = subprocess.run(['git','cat-file','--batch-check=%(objectname) %(objecttype) %(objectsize)'],
+                                input='\n'.join(shas)+'\n', text=True, capture_output=True, errors='replace')
+          meta = {}
+          for line in proc.stdout.splitlines():
+              b = line.split()
+              if len(b) == 3 and b[2].isdigit():
+                  meta[b[0]] = (b[1], int(b[2]))
+
+          name_rx = re.compile(r'(江四喜|jiang[_ -]?sixi|专题精编.*电磁|电磁专题累计|累计v00[1-9].*专题)', re.I)
+          rows = []
+          saved = 0
+          for sha, paths in sha_paths.items():
+              typ, size = meta.get(sha, ('', -1))
+              if typ != 'blob':
+                  continue
+              joined = ' | '.join(paths)
+              named = bool(name_rx.search(joined))
+              likely_pdfzip = named and any(p.lower().endswith(('.pdf','.zip','.md','.tex','.json','.csv','.txt','.b64part')) for p in paths)
+              if not (named or likely_pdfzip):
+                  continue
+              try:
+                  data = subprocess.check_output(['git','cat-file','blob',sha])
+                  digest = hashlib.sha256(data).hexdigest()
+                  ext = Path(paths[0]).suffix if paths else ''
+                  safe = re.sub(r'[^0-9A-Za-z._\-\u4e00-\u9fff]+','_', Path(paths[0] if paths else sha).name)[:160]
+                  dest = ''
+                  if size <= 150*1024*1024:
+                      dest_path = hist / f'{saved:04d}_{sha[:10]}_{safe or sha}{ext if not safe.endswith(ext) else ""}'
+                      dest_path.write_bytes(data)
+                      dest = str(dest_path.relative_to(out))
+                      saved += 1
+                  rows.append({'sha':sha,'bytes':size,'sha256':digest,'paths':paths,'saved':dest,
+                               'pdf_magic':data.startswith(b'%PDF-'),'zip_magic':data.startswith(b'PK\x03\x04')})
+              except Exception as e:
+                  rows.append({'sha':sha,'bytes':size,'paths':paths,'error':str(e)})
+          report['history'] = {'objects':len(shas),'matching_blobs':len(rows),'saved':saved,'rows':rows}
+          (out/'reports'/'recovery_report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+
+          # Search every retained Actions artifact, download candidates, and list ZIP contents.
+          page=1
+          : > "$OUT/actions_artifacts/artifacts_all.jsonl"
+          while [ "$page" -le 20 ]; do
+            resp=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?per_page=100&page=$page" 2>>"$OUT/actions_artifacts/gh_errors.txt") || break
+            printf '%s\n' "$resp" >> "$OUT/actions_artifacts/artifacts_all.jsonl"
+            count=$(printf '%s' "$resp" | python3 -c 'import json,sys; print(len(json.load(sys.stdin).get("artifacts",[])))' 2>/dev/null || echo 0)
+            [ "$count" -lt 100 ] && break
+            page=$((page+1))
+          done
+
+          python3 - <<'PY' > "$OUT/actions_artifacts/candidates.tsv"
+          import json, os, re
+          from pathlib import Path
+          p=Path(os.environ['RUNNER_TEMP'])/'jiang_sixi_em_recovery/actions_artifacts/artifacts_all.jsonl'
+          rx=re.compile(r'(江四喜|jiang|sixi|专题精编|电磁|electromag)',re.I)
+          seen=set()
+          for line in p.read_text('utf-8',errors='ignore').splitlines():
+              try: obj=json.loads(line)
+              except Exception: continue
+              for a in obj.get('artifacts',[]):
+                  aid=a.get('id')
+                  if aid in seen: continue
+                  seen.add(aid)
+                  name=a.get('name','')
+                  size=int(a.get('size_in_bytes',0) or 0)
+                  if (not a.get('expired')) and size <= 1_500_000_000 and rx.search(name):
+                      print(aid,size,name,sep='\t')
+          PY
+
+          while IFS=$'\t' read -r aid asize aname; do
+            [ -z "$aid" ] && continue
+            safe=$(printf '%s' "$aname" | tr '/\\ ' '___' | tr -cd '[:alnum:]_.-')
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$aid/zip" > "$OUT/actions_artifacts/${aid}_${safe}.zip" 2>> "$OUT/actions_artifacts/download_errors.txt" || true
+          done < "$OUT/actions_artifacts/candidates.tsv"
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, zipfile
+          base=Path(os.environ['RUNNER_TEMP'])/'jiang_sixi_em_recovery/actions_artifacts'
+          index=[]
+          for z in sorted(base.glob('*.zip')):
+              rec={'file':z.name,'bytes':z.stat().st_size}
+              try:
+                  with zipfile.ZipFile(z) as f:
+                      rec['members']=f.namelist()
+                      dest=base/(z.stem+'_extracted')
+                      f.extractall(dest)
+                  rec['extract']='PASS'
+              except Exception as e:
+                  rec['extract']=f'FAIL: {e}'
+              index.append(rec)
+          (base/'artifact_zip_index.json').write_text(json.dumps(index,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+
+          find "$OUT" -type f -printf '%P\t%s\n' | sort > "$OUT/FILELIST.tsv"
+          (cd "$OUT" && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - name: Upload Jiang Sixi recovery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jiang-sixi-em-recovery-${{ github.run_number }}
+          path: ${{ runner.temp }}/jiang_sixi_em_recovery
+          if-no-files-found: error
+          retention-days: 14
