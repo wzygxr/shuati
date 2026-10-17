@@ -15,13 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      SOURCE_URL: "https://sdmntprwestus3.oaiusercontent.com/files/00000000-f698-81fd-89a9-ac06b7171f3d/raw?se=2026-10-17T12%3A28%3A23Z&sp=r&sv=2026-02-06&sr=b&scid=fc76f27c-ccc7-5b74-a4a4-d806a3517a99&skoid=5e713cdb-766b-475e-a3ca-8adb6cf99aa0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-16T20%3A34%3A30Z&ske=2026-10-17T20%3A34%3A30Z&sks=b&skv=2026-02-06&sig=QbJ0BKatvBb3h2hQRm3KPi%2BLXLdd7pJxSq%2BcPVV6gJg%3D"
+      SOURCE_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-2ac4-81f4-91c4-be878e938694/raw?se=2026-10-17T12%3A35%3A03Z&sp=r&sv=2026-02-06&sr=b&scid=49454b9c-9db5-5303-9a1e-a95e5c22b617&skoid=5e713cdb-766b-475e-a3ca-8adb6cf99aa0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-16T20%3A51%3A12Z&ske=2026-10-17T20%3A51%3A12Z&sks=b&skv=2026-02-06&sig=KKnuKu%2BVqeOuDnskUnva8VK9uzMEu0FZnbTEUyUg%2BtU%3D"
       STEM: "2003_白俄罗斯共和国物理奥林匹克决赛_10年级第2题_小行星球形空腔反演_完整精讲"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Download exact Markdown source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          curl --fail --location --retry 3 "$SOURCE_URL" -o "build/${STEM}.md"
+          test -s "build/${STEM}.md"
 
       - name: Install document toolchain
         shell: bash
@@ -31,14 +39,6 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             pandoc latexmk lmodern texlive-xetex texlive-lang-chinese texlive-latex-extra \
             texlive-fonts-recommended fonts-noto-cjk fonts-dejavu-core zip
-
-      - name: Download exact Markdown source
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p build
-          curl --fail --location --retry 3 "$SOURCE_URL" -o "build/${STEM}.md"
-          test -s "build/${STEM}.md"
 
       - name: Generate LaTeX source
         shell: bash
