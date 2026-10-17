@@ -1,0 +1,102 @@
+name: Build BelPhO 2003 10-2 bundle
+
+on:
+  push:
+    paths:
+      - 'generated/belpho_2003_10_2/build.trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SOURCE_URL: "https://sdmntprwestus3.oaiusercontent.com/files/00000000-f698-81fd-89a9-ac06b7171f3d/raw?se=2026-10-17T12%3A28%3A23Z&sp=r&sv=2026-02-06&sr=b&scid=fc76f27c-ccc7-5b74-a4a4-d806a3517a99&skoid=5e713cdb-766b-475e-a3ca-8adb6cf99aa0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-16T20%3A34%3A30Z&ske=2026-10-17T20%3A34%3A30Z&sks=b&skv=2026-02-06&sig=QbJ0BKatvBb3h2hQRm3KPi%2BLXLdd7pJxSq%2BcPVV6gJg%3D"
+      STEM: "2003_白俄罗斯共和国物理奥林匹克决赛_10年级第2题_小行星球形空腔反演_完整精讲"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install document toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            pandoc latexmk texlive-xetex texlive-lang-chinese texlive-latex-extra \
+            texlive-fonts-recommended fonts-noto-cjk fonts-dejavu-core zip
+
+      - name: Download exact Markdown source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          curl --fail --location --retry 3 "$SOURCE_URL" -o "build/${STEM}.md"
+          test -s "build/${STEM}.md"
+
+      - name: Generate LaTeX source
+        shell: bash
+        run: |
+          set -euo pipefail
+          pandoc "build/${STEM}.md" \
+            --standalone --toc --number-sections \
+            -V documentclass=ctexart \
+            -V classoption=UTF8 \
+            -V mainfont="TeX Gyre Termes" \
+            -V sansfont="Noto Sans CJK SC" \
+            -V monofont="DejaVu Sans Mono" \
+            -V CJKmainfont="Noto Serif CJK SC" \
+            -V mathfont="Latin Modern Math" \
+            -V geometry:margin=2.1cm \
+            -V fontsize=11pt \
+            -o "build/${STEM}.tex"
+          test -s "build/${STEM}.tex"
+
+      - name: Compile XeLaTeX PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd build
+          latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error "${STEM}.tex"
+          test -s "${STEM}.pdf"
+
+      - name: Package and checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd build
+          cat > README.txt <<'EOF'
+          本压缩包对应 2003 年白俄罗斯共和国物理奥林匹克决赛 10 年级第 2 题。
+          内容：Markdown 源、Pandoc 生成的完整 LaTeX 源、XeLaTeX PDF、来源说明与 SHA-256 校验。
+          主结论：a/R=0.5030060602，r/R=0.2503298898。
+          EOF
+          cat > SOURCES.txt <<'EOF'
+          BelPhO 年度页：https://belpho.org/problems/final/2003/
+          BelPhO 独立题页：https://belpho.org/problems/final/2003/10-2/
+          官方题卷：https://belpho.org/problems/final/2003problems.pdf （第3页）
+          官方解答：https://belpho.org/problems/final/2003solutions.pdf （第6页）
+          AAPT Past Exams：https://www.aapt.org/Common2022/pastexams.cfm
+          OIbF 归档：https://olimpicos.net/oibf/
+          OIbF 2000 题卷：https://olimpicos.net/files/oibf/OIbF_2000_Q1-5.pdf
+          EOF
+          sha256sum "${STEM}.md" "${STEM}.tex" "${STEM}.pdf" README.txt SOURCES.txt > SHA256SUMS.txt
+          zip -9 "${STEM}.zip" "${STEM}.md" "${STEM}.tex" "${STEM}.pdf" README.txt SOURCES.txt SHA256SUMS.txt
+
+      - name: Upload complete bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: belpho-2003-10-2-complete
+          path: |
+            build/*.md
+            build/*.tex
+            build/*.pdf
+            build/*.zip
+            build/README.txt
+            build/SOURCES.txt
+            build/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 7
