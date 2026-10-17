@@ -29,7 +29,7 @@ jobs:
           set -euo pipefail
           sudo apt-get update -y
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            pandoc latexmk texlive-xetex texlive-lang-chinese texlive-latex-extra \
+            pandoc latexmk lmodern texlive-xetex texlive-lang-chinese texlive-latex-extra \
             texlive-fonts-recommended fonts-noto-cjk fonts-dejavu-core zip
 
       - name: Download exact Markdown source
