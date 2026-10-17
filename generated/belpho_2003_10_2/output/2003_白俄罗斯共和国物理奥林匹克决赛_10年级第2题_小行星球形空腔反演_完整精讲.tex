@@ -1,0 +1,1589 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+  UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{chinese}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\usepackage{booktabs,longtable,array,enumitem,xcolor,fancyhdr,lastpage}
+\definecolor{BelBlue}{HTML}{1F4E79}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small 2003 BelPhO 10-2}\fancyhead[R]{\small 小行星球形空腔反演}\fancyfoot[C]{\small\thepage/\pageref{LastPage}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={2003 年白俄罗斯共和国物理奥林匹克决赛·10 年级第 2 题：小行星球形空腔反演},
+  pdfauthor={中文竞赛精讲与独立复算版},
+  pdflang={zh-CN},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{2003 年白俄罗斯共和国物理奥林匹克决赛·10 年级第 2
+题：小行星球形空腔反演}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{题源核验、完整建模、零跳步推导、官方答案复算与同类题迁移}
+\author{中文竞赛精讲与独立复算版}
+\date{2026-10-17}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\hypertarget{ux4f7fux7528ux8bf4ux660eux4e0eux5b8cux6210ux58f0ux660e}{%
+\section{使用说明与完成声明}\label{ux4f7fux7528ux8bf4ux660eux4e0eux5b8cux6210ux58f0ux660e}}
+
+本文只围绕用户指定的数据库条目展开。数据库行把 2003 年中组理论题记为共 8
+题；BelPhO 官方年度页依次列出 9 年级理论题 1---4 和 10 年级理论题
+1---4，因此顺序号 6 对应官方 \textbf{10 年级第 2
+题}。官方独立题页把它标为``2003 年共和国物理奥林匹克，10 年级，第 2
+题''，站内难度 4/5；年度合订题卷第 3 页给出题面，年度解答第 6
+页给出解法。
+
+\textbf{建议文件名：}
+\texttt{2003\_白俄罗斯共和国物理奥林匹克决赛\_10年级第2题\_小行星球形空腔反演\_完整精讲.md}
+
+\textbf{来源定位：}
+
+\begin{itemize}
+\tightlist
+\item
+  官方年度页：\texttt{https://belpho.org/problems/final/2003/}
+\item
+  官方独立题页：\texttt{https://belpho.org/problems/final/2003/10-2/}
+\item
+  官方题卷：\texttt{https://belpho.org/problems/final/2003problems.pdf}，PDF
+  第 3 页。
+\item
+  官方解答：\texttt{https://belpho.org/problems/final/2003solutions.pdf}，PDF
+  第 6 页。
+\item
+  本文对官方公式和数值进行了独立复算；凡属本文补充的推导、误差分析和推广，均明确标为``独立推导''或``补充背景''。
+\end{itemize}
+
+\hypertarget{ux9898ux6e90ux96beux5ea6ux5206ux7c7bux4e0eux8badux7ec3ux76eeux6807}{%
+\section{1.
+题源、难度、分类与训练目标}\label{ux9898ux6e90ux96beux5ea6ux5206ux7c7bux4e0eux8badux7ec3ux76eeux6807}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+内容
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+赛事 & 白俄罗斯共和国物理奥林匹克全国决赛 \\
+年份与组别 & 2003 年，10 年级 \\
+官方题号 & 理论第 2 题，记作 10-2 \\
+数据库顺序号 & 中组理论题第 6/8 题 \\
+官方站难度 & 4/5 \\
+本文统一难度 & 难，6/10 \\
+分类标签 &
+力学---万有引力；球壳定理；叠加原理；反问题；连续介质；无量纲化 \\
+主考点 &
+把空腔等效为``缺失质量球''；由两个对径测点反演空腔中心位置和半径；检查球外场公式的适用条件 \\
+\end{longtable}
+
+\hypertarget{ux4e3aux4ec0ux4e48ux662fux96be610}{%
+\subsection{1.1
+为什么是``难，6/10''}\label{ux4e3aux4ec0ux4e48ux662fux96be610}}
+
+代数本身不长，真正的门槛有四个：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  看到``挖出球形空腔''时，必须想到``完整均匀球减去一个同密度小球''，而不是直接积分剩余不规则天体。
+\item
+  必须判断重力最小点、最大点与空腔中心共线，并正确写出到空腔中心的两个距离
+  \(a\) 与 \(2R-a\)。
+\item
+  必须区分缺失质量按 \(r^3\) 缩放和场强按距离平方衰减。
+\item
+  需要从两个异常值中消去未知密度、万有引力常量和空腔半径，先反演位置，再反演大小。
+\end{enumerate}
+
+它属于国家决赛常规难题，但推导链清晰，不需要国际奥赛极难题级别的多次创造性突破，因此定为
+6/10，而不是 8---10 分。
+
+\hypertarget{ux5b98ux65b9ux539fux9898ux7684ux5408ux89c4ux5448ux73b0ux4e0eux5b8cux6574ux4e2dux6587ux9898ux610f}{%
+\section{2.
+官方原题的合规呈现与完整中文题意}\label{ux5b98ux65b9ux539fux9898ux7684ux5408ux89c4ux5448ux73b0ux4e0eux5b8cux6574ux4e2dux6587ux9898ux610f}}
+
+受公开材料的转载限制，本文不逐字大段复制俄文题面，只保留一个短节选并给出不省略条件的中文重述。完整俄文原文请直接查看官方
+PDF 第 3 页。
+
+\textbf{俄文短节选：} ``В глубинах Вселенной был обнаружен однородный
+астероид сферической формы радиуса R \ldots{}''
+
+\hypertarget{ux5b8cux6574ux4e2dux6587ux9898ux610fux91cdux8ff0}{%
+\subsection{2.1
+完整中文题意重述}\label{ux5b8cux6574ux4e2dux6587ux9898ux610fux91cdux8ff0}}
+
+在宇宙深处发现了一颗密度均匀、半径为 \(R\)
+的球形小行星。最初用高精度重力仪测量时，表面各点的重力加速度大小都相同，记为
+\(g_0\)。
+
+后来在小行星内部采矿，形成一个没有与表面相交的球形空腔。再次测量发现：
+
+\begin{itemize}
+\tightlist
+\item
+  表面某点 \(A\) 的重力加速度最小，\(g_{\min}=0.938g_0\)，即相对原值减少
+  \(η_1=6.2\%\)；
+\item
+  与 \(A\) 直径相对的表面点
+  \(B\)，重力加速度最大，\(g_{\max}=0.993g_0\)，即相对原值减少
+  \(η_2=0.70\%\)。
+\end{itemize}
+
+根据这些测量数据，确定球形空腔中心的位置、中心在表面下的埋深
+\(a\)，以及空腔半径 \(r\)。
+
+\hypertarget{ux56feux5f62ux7b26ux53f7ux4e0eux65b9ux5411ux7ea6ux5b9a}{%
+\section{3.
+图形、符号与方向约定}\label{ux56feux5f62ux7b26ux53f7ux4e0eux65b9ux5411ux7ea6ux5b9a}}
+
+沿直径 \(AB\) 建立一维几何关系：
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A {-}{-}{-}{-}{-}{-}{-}{-} C {-}{-}{-}{-}{-}{-}{-}{-} O {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} B}
+\NormalTok{|\textless{}{-}{-} a {-}{-}\textgreater{}|\textless{}{-}{-} R{-}a {-}{-}\textgreater{}|\textless{}{-}{-}{-}{-}{-}{-} R {-}{-}{-}{-}{-}{-}\textgreater{}|}
+
+
+\NormalTok{A：重力最小点}
+\NormalTok{B：重力最大点，且与 A 对径}
+\NormalTok{O：原小行星球心}
+\NormalTok{C：空腔中心}
+\NormalTok{AC=a，CB=2R{-}a，OC=R{-}a}
+\NormalTok{空腔半径为 r}
+\end{Highlighting}
+\end{Shaded}
+
+符号统一如下：
+
+\begin{itemize}
+\tightlist
+\item
+  \(R\)：原小行星半径。
+\item
+  \(ρ\)：原小行星物质的均匀密度。
+\item
+  \(M=(4π/3)ρR^3\)：原完整小行星质量。
+\item
+  \(g_0\)：未采矿时表面重力大小。
+\item
+  \(r\)：空腔半径。
+\item
+  \(m=(4π/3)ρr^3\)：被挖去物质的质量。
+\item
+  \(a=AC\)：空腔中心到最近表面点 \(A\) 的距离，也就是题目所称中心埋深。
+\item
+  \(η_1=0.062\)，\(η_2=0.007\)：两处相对重力减少量。
+\end{itemize}
+
+【卡点提醒】\(a\) 是``表面点 \(A\)
+到空腔中心''的距离，不是空腔上边界到表面的净覆岩厚度。后者应为 \(a-r\)。
+
+\hypertarget{ux8bfbux9898ux62c6ux89e3}{%
+\section{4. 读题拆解}\label{ux8bfbux9898ux62c6ux89e3}}
+
+\hypertarget{ux5927ux767dux8bddux63cfux8ff0}{%
+\subsection{4.1 大白话描述}\label{ux5927ux767dux8bddux63cfux8ff0}}
+
+原来是一个完全球对称的小行星，所以表面处处重力相同。挖掉一团球形物质后，离空腔最近的表面点少受的引力最多，离空腔最远的对径点少受的引力最少。题目给了这两个``缺失引力''的大小，要我们反推出空腔在哪儿、有多大。
+
+\hypertarget{ux663eux5f0fux6761ux4ef6}{%
+\subsection{4.2 显式条件}\label{ux663eux5f0fux6761ux4ef6}}
+
+\begin{itemize}
+\tightlist
+\item
+  原天体是均匀实心球，半径 \(R\)。
+\item
+  空腔为球形，且完全位于小行星内部。
+\item
+  \(A\)、\(B\) 为对径点。
+\item
+  \(g_{\min}=0.938g_0\)，\(g_{\max}=0.993g_0\)。
+\item
+  求空腔中心位置、埋深 \(a\) 和半径 \(r\)。
+\end{itemize}
+
+\hypertarget{ux9690ux85cfux6761ux4ef6ux4e0eux547dux9898ux7ed3ux6784}{%
+\subsection{4.3
+隐藏条件与命题结构}\label{ux9690ux85cfux6761ux4ef6ux4e0eux547dux9898ux7ed3ux6784}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{重力最小点必在空腔最近侧。}
+  缺失质量造成的场修正最大处，就是到空腔中心距离最小的表面点。
+\item
+  \textbf{两个极值点与空腔中心共线。}
+  对球形缺失质量，外部场只依赖到球心的距离；距离在表面球上取得最小和最大值的位置，正是通过两个球心的直线与表面的两个交点。
+\item
+  \textbf{\(A\)、\(C\)、\(O\)、\(B\) 的顺序是 \(A-C-O-B\)。} 因为 \(A\)
+  是最近点，空腔中心位于 \(A\) 一侧。
+\item
+  \textbf{\(A\)、\(B\) 都在``被挖去的小球''的外部。} 空腔不出露，故
+  \(a>r\)；远点显然也在外部。因此缺失球在两点的场可按点质量处理。
+\item
+  \textbf{\(g_{\max}\) 仍小于 \(g_0\)。}
+  ``最大''只是在采矿后的各表面点之间比较，不代表它超过采矿前的正常值。
+\end{enumerate}
+
+\hypertarget{ux547dux9898ux4ebaux771fux6b63ux60f3ux8003ux4ec0ux4e48}{%
+\subsection{4.4
+命题人真正想考什么}\label{ux547dux9898ux4ebaux771fux6b63ux60f3ux8003ux4ec0ux4e48}}
+
+不是考繁琐积分，而是考是否会把复杂几何改写成线性叠加：
+
+\[\text{有空腔的小行星}=\text{完整均匀球}-\text{空腔位置处的均匀小球}.\]
+
+这就是``负密度球''或``补回缺失质量''的方法。负密度只是计算记账，不表示真实存在负质量。
+
+\hypertarget{ux7269ux7406ux5efaux6a21ux516dux6b65ux6cd5}{%
+\section{5.
+物理建模六步法}\label{ux7269ux7406ux5efaux6a21ux516dux6b65ux6cd5}}
+
+\hypertarget{ux7b2cux4e00ux6b65ux7814ux7a76ux5bf9ux8c61ux4e0eux7cfbux7edfux8fb9ux754c}{%
+\subsection{第一步：研究对象与系统边界}\label{ux7b2cux4e00ux6b65ux7814ux7a76ux5bf9ux8c61ux4e0eux7cfbux7edfux8fb9ux754c}}
+
+研究表面点 \(A\)、\(B\)
+处单位质量试探物体受到的引力场。引力源拆成：完整大球与一个位于
+\(C\)、质量为 \(m\) 的``被移除小球''。
+
+\hypertarget{ux7b2cux4e8cux6b65ux53c2ux8003ux7cfbux548cux5750ux6807}{%
+\subsection{第二步：参考系和坐标}\label{ux7b2cux4e8cux6b65ux53c2ux8003ux7cfbux548cux5750ux6807}}
+
+取小行星质心附近的非旋转参考系，沿 \(A\to B\)
+建立坐标轴。由于本题只比较静态引力，不涉及惯性力或运动学过程。
+
+\hypertarget{ux7b2cux4e09ux6b65ux72b6ux6001ux4e0eux8fc7ux7a0b}{%
+\subsection{第三步：状态与过程}\label{ux7b2cux4e09ux6b65ux72b6ux6001ux4e0eux8fc7ux7a0b}}
+
+这是采矿前后两个静态引力场的比较：
+
+\begin{itemize}
+\tightlist
+\item
+  采矿前：完整均匀球，表面场大小为 \(g_0\)。
+\item
+  采矿后：完整球场减去缺失球原本产生的场。
+\end{itemize}
+
+\hypertarget{ux7b2cux56dbux6b65ux76f8ux4e92ux4f5cux7528ux4e0eux51e0ux4f55ux7ea6ux675f}{%
+\subsection{第四步：相互作用与几何约束}\label{ux7b2cux56dbux6b65ux76f8ux4e92ux4f5cux7528ux4e0eux51e0ux4f55ux7ea6ux675f}}
+
+只有牛顿引力。几何约束为
+\(AC=a\)、\(CB=2R-a\)、\(OC=R-a\)，并且空腔完全在内部，最终必须检验
+\(a-r>0\)。
+
+\hypertarget{ux7b2cux4e94ux6b65ux9002ux7528ux5b9aux5f8bux4e0eux6210ux7acbux6761ux4ef6}{%
+\subsection{第五步：适用定律与成立条件}\label{ux7b2cux4e94ux6b65ux9002ux7528ux5b9aux5f8bux4e0eux6210ux7acbux6761ux4ef6}}
+
+\begin{itemize}
+\tightlist
+\item
+  牛顿万有引力定律。
+\item
+  引力场线性叠加原理。
+\item
+  均匀球的球壳定理：球外场等效于质量集中在球心。
+\item
+  均匀实心球表面场 \(g_0=GM/R^2\)。
+\end{itemize}
+
+\hypertarget{ux7b2cux516dux6b65ux7ed3ux679cux81eaux68c0ux8ba1ux5212}{%
+\subsection{第六步：结果自检计划}\label{ux7b2cux516dux6b65ux7ed3ux679cux81eaux68c0ux8ba1ux5212}}
+
+至少完成：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  量纲检查；
+\item
+  反代两处异常比例；
+\item
+  验证 \(a>r\)，空腔没有穿出表面；
+\item
+  验证 \(η_1>η_2\) 对应空腔中心偏向 \(A\)；
+\item
+  检查极限 \(η_1=η_2\) 是否给出同心空腔。
+\end{enumerate}
+
+\hypertarget{ux7a81ux7834ux53e3ux5206ux6790}{%
+\section{6. 突破口分析}\label{ux7a81ux7834ux53e3ux5206ux6790}}
+
+\hypertarget{ux7b2cux4e00ux53cdux5e94ux5148ux7b97ux5c11ux6389ux591aux5c11ux5f15ux529bux4e0dux8981ux76f4ux63a5ux7b97ux5269ux4f59ux5929ux4f53}{%
+\subsection{6.1
+第一反应：先算``少掉多少引力''，不要直接算剩余天体}\label{ux7b2cux4e00ux53cdux5e94ux5148ux7b97ux5c11ux6389ux591aux5c11ux5f15ux529bux4e0dux8981ux76f4ux63a5ux7b97ux5269ux4f59ux5929ux4f53}}
+
+有空腔后，整体不再球对称。若直接对剩余体积积分，会把一道两式消元题做成三维积分。更稳定的路线是把被挖去的物质``补回去''：
+
+\[g_0=g_{\text{after}}+g_{\text{missing sphere}}.\]
+
+于是两处测量给出的正好是缺失球原本会产生的场。
+
+\hypertarget{ux4e3aux4ec0ux4e48ux5148ux53d6ux6bd4ux503c}{%
+\subsection{6.2
+为什么先取比值}\label{ux4e3aux4ec0ux4e48ux5148ux53d6ux6bd4ux503c}}
+
+在 \(A\)、\(B\) 两点，缺失球的质量 \(m\) 相同，万有引力常量 \(G\)
+相同。两式相除会同时消去 \(G\)、\(m\)、\(ρ\) 和
+\(r\)，只留下几何距离比，所以应当先求位置 \(a\)。
+
+\hypertarget{ux8003ux573aux51e0ux5341ux79d2ux8bc6ux522bux903bux8f91}{%
+\subsection{6.3
+考场几十秒识别逻辑}\label{ux8003ux573aux51e0ux5341ux79d2ux8bc6ux522bux903bux8f91}}
+
+看到以下组合时立即想到``负质量球 + 比值消元''：
+
+\begin{itemize}
+\tightlist
+\item
+  均匀球；
+\item
+  内部球形空腔；
+\item
+  外部或表面场测量；
+\item
+  两个不同位置的异常值；
+\item
+  求空腔位置和大小。
+\end{itemize}
+
+\hypertarget{ux770bux4f3cux5408ux7406ux4f46ux8d70ux4e0dux901aux7684ux8defux7ebf}{%
+\subsection{6.4
+看似合理但走不通的路线}\label{ux770bux4f3cux5408ux7406ux4f46ux8d70ux4e0dux901aux7684ux8defux7ebf}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{把有洞天体整体当作地心点质量。}
+  错在剩余质量分布不再球对称；只知道总质量不足以确定表面不同位置的场。
+\item
+  \textbf{把距离写成 \(a-r\)。} 平方反比律中的源点是空腔中心
+  \(C\)，不是空腔上边界。
+\item
+  \textbf{直接令 \(a=R/2\)、\(r=R/4\)。}
+  这只是数值近似，不能在推导前当作精确几何条件。
+\end{itemize}
+
+\hypertarget{ux7b2cux4e00ux79cdux5b8cux6574ux89e3ux6cd5ux8865ux56deux7f3aux5931ux8d28ux91cf}{%
+\section{7.
+第一种完整解法：补回缺失质量}\label{ux7b2cux4e00ux79cdux5b8cux6574ux89e3ux6cd5ux8865ux56deux7f3aux5931ux8d28ux91cf}}
+
+\hypertarget{ux539fux5b8cux6574ux5c0fux884cux661fux7684ux8868ux9762ux91cdux529b}{%
+\subsection{7.1
+原完整小行星的表面重力}\label{ux539fux5b8cux6574ux5c0fux884cux661fux7684ux8868ux9762ux91cdux529b}}
+
+原质量为
+
+\[M=(4π/3)ρR^3.\]
+
+表面重力为
+
+\[g_0=GM/R^2=(4πGρ/3)R.\]
+
+【思路由来】把 \(g_0\) 写成含 \(ρ\)
+的形式，是为了稍后与缺失球的场相除，让 \(G\) 与 \(ρ\) 自动消去。
+
+\hypertarget{ux88abux6316ux53bbux7269ux8d28ux7684ux8d28ux91cf}{%
+\subsection{7.2
+被挖去物质的质量}\label{ux88abux6316ux53bbux7269ux8d28ux7684ux8d28ux91cf}}
+
+球形空腔半径为 \(r\)，原本该区域装有同密度物质，所以缺失质量为
+
+\[m=(4π/3)ρr^3.\]
+
+【卡点提醒】质量按半径三次方缩放；若误写成
+\(r^2\)，后面即使代数无误，物理量纲也会失败。
+
+\hypertarget{ux70b9-a-ux7684ux91cdux529bux5f02ux5e38}{%
+\subsection{7.3 点 A
+的重力异常}\label{ux70b9-a-ux7684ux91cdux529bux5f02ux5e38}}
+
+采矿后点 \(A\) 的重力减少量为
+
+\[Δg_A=g_0-g_{\min}=(1-0.938)g_0=0.062g_0=η_1g_0.\]
+
+点 \(A\) 到缺失球中心的距离为 \(a\)。因 \(A\) 在缺失球外部，球壳定理给出
+
+\[Δg_A=Gm/a^2.\]
+
+因此
+
+\[η_1g_0=Gm/a^2. \tag{1}\]
+
+\hypertarget{ux70b9-b-ux7684ux91cdux529bux5f02ux5e38}{%
+\subsection{7.4 点 B
+的重力异常}\label{ux70b9-b-ux7684ux91cdux529bux5f02ux5e38}}
+
+点 \(B\) 的减少量为
+
+\[Δg_B=g_0-g_{\max}=(1-0.993)g_0=0.007g_0=η_2g_0.\]
+
+从 \(B\) 到空腔中心的距离是
+
+\[BC=BA-AC=2R-a.\]
+
+所以
+
+\[η_2g_0=Gm/(2R-a)^2. \tag{2}\]
+
+\hypertarget{ux4e24ux5f0fux76f8ux9664ux5148ux6c42ux4e2dux5fc3ux57cbux6df1}{%
+\subsection{7.5
+两式相除，先求中心埋深}\label{ux4e24ux5f0fux76f8ux9664ux5148ux6c42ux4e2dux5fc3ux57cbux6df1}}
+
+用式 (1) 除以式 (2)：
+
+\[η_1/η_2=(2R-a)^2/a^2.\]
+
+所有量均为正，取正平方根：
+
+\[√(η_1/η_2)=(2R-a)/a.\]
+
+逐步移项：
+
+\[a√η_1=(2R-a)√η_2,\]
+
+\[a√η_1+a√η_2=2R√η_2,\]
+
+\[a(√η_1+√η_2)=2R√η_2.\]
+
+于是
+
+\[a/R=2√η_2/(√η_1+√η_2). \tag{3}\]
+
+代入 \(η_1=0.062\)、\(η_2=0.007\)：
+
+\[√η_1≈0.248998,\]
+
+\[√η_2≈0.0836660,\]
+
+\[a/R≈2(0.0836660)/(0.248998+0.0836660)=0.503006.\]
+
+所以
+
+\[a≈0.503R.\]
+
+空腔中心相对小行星球心的位置为
+
+\[OC=R-a≈0.496994R,\]
+
+方向从 \(O\) 指向 \(A\)。
+
+\hypertarget{ux518dux6c42ux7a7aux8154ux534aux5f84}{%
+\subsection{7.6
+再求空腔半径}\label{ux518dux6c42ux7a7aux8154ux534aux5f84}}
+
+由式 (1)：
+
+\[η_1g_0=Gm/a^2.\]
+
+代入 \(g_0=(4πGρ/3)R\) 和 \(m=(4πρ/3)r^3\)：
+
+\[η_1(4πGρ/3)R=G(4πρ/3)r^3/a^2.\]
+
+两边约去共同因子 \(4πGρ/3\)：
+
+\[η_1R=r^3/a^2.\]
+
+因此
+
+\[r^3=η_1Ra^2.\]
+
+除以 \(R^3\)：
+
+\[(r/R)^3=η_1(a/R)^2.\]
+
+代入式 (3)，可得闭式
+
+\[r/R=[4η_1η_2/(√η_1+√η_2)^2]^{1/3}. \tag{4}\]
+
+数值为
+
+\[(r/R)^3≈0.01568694,\]
+
+\[r/R≈0.2503299.\]
+
+所以
+
+\[r≈0.250R.\]
+
+\hypertarget{ux7b2cux4e00ux89e3ux6cd5ux6700ux7ec8ux7ed3ux8bba}{%
+\subsection{7.7
+第一解法最终结论}\label{ux7b2cux4e00ux89e3ux6cd5ux6700ux7ec8ux7ed3ux8bba}}
+
+\begin{itemize}
+\tightlist
+\item
+  空腔中心位于直径 \(AO\) 上、靠近 \(A\) 的一侧。
+\item
+  中心埋深：\(a=0.503006R≈0.503R≈R/2\)。
+\item
+  相对球心偏移：\(OC=0.496994R\)，方向指向 \(A\)。
+\item
+  空腔半径：\(r=0.250330R≈0.250R≈R/4\)。
+\item
+  空腔最靠近表面的边界深度：\(a-r≈0.252676R\)。
+\end{itemize}
+
+【卡点提醒】\(R/2\) 与 \(R/4\) 只是三位有效数字下的近似，不是精确答案。
+
+\hypertarget{ux7b2cux4e8cux79cdux5b8cux6574ux89e3ux6cd5ux65e0ux91cfux7eb2ux53cdux6f14}{%
+\section{8.
+第二种完整解法：无量纲反演}\label{ux7b2cux4e8cux79cdux5b8cux6574ux89e3ux6cd5ux65e0ux91cfux7eb2ux53cdux6f14}}
+
+这条路线从一开始就把未知量压缩成两个无量纲数，适合考场快速复算。
+
+定义
+
+\[x=a/R,\]
+
+\[f=m/M=(r/R)^3.\]
+
+完整球表面场是 \(g_0=GM/R^2\)。缺失球在 \(A\) 处造成的相对异常为
+
+\[η_1=(Gm/a^2)/(GM/R^2)=f/x^2. \tag{5}\]
+
+在 \(B\) 处：
+
+\[η_2=(Gm/(2R-a)^2)/(GM/R^2)=f/(2-x)^2. \tag{6}\]
+
+式 (5)、(6) 开平方：
+
+\[√f=x√η_1,\]
+
+\[√f=(2-x)√η_2.\]
+
+令右边相等：
+
+\[x√η_1=(2-x)√η_2,\]
+
+从而
+
+\[x=2√η_2/(√η_1+√η_2)=0.503006.\]
+
+再由 \(f=η_1x^2\)：
+
+\[f=0.062(0.503006)^2=0.01568694.\]
+
+因为 \(f=(r/R)^3\)，故
+
+\[r/R=f^{1/3}=0.2503299.\]
+
+\hypertarget{ux89e3ux6cd5ux5bf9ux6bd4}{%
+\subsection{8.1 解法对比}\label{ux89e3ux6cd5ux5bf9ux6bd4}}
+
+\begin{itemize}
+\tightlist
+\item
+  第一解法最适合首次学习：清楚展示质量、密度、球壳定理和``补回物质''的物理含义。
+\item
+  第二解法最适合考场：未知量只有
+  \(x\)、\(f\)，方程直接揭示``位置由异常比决定，大小由异常绝对量决定''。
+\item
+  两者组织方式不同，但物理根基相同；不能把换符号后的同一推导冒充完全独立的第三种理论。
+\end{itemize}
+
+\hypertarget{ux5b98ux65b9ux89e3ux7b54ux4e0eux72ecux7acbux590dux7b97ux5bf9ux7167}{%
+\section{9.
+官方解答与独立复算对照}\label{ux5b98ux65b9ux89e3ux7b54ux4e0eux72ecux7acbux590dux7b97ux5bf9ux7167}}
+
+官方解答采用``把挖去的物质补回去''的路线，先由两处异常之比求 \(a\)，再求
+\(r\)。官方给出的最终数值为
+
+\[a=0.503R≈R/2,\]
+
+\[r=0.250R≈R/4.\]
+
+独立复算保留更多位数：
+
+\[a=0.5030060602R,\]
+
+\[r=0.2503298898R.\]
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2222}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+官方值
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+独立复算值
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+差异
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结论
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+中心埋深 \(a/R\) & 0.503 & 0.5030060602 & 约 \(6.1×10^{-6}\) &
+正常舍入，一致 \\
+空腔半径 \(r/R\) & 0.250 & 0.2503298898 & 约 \(3.30×10^{-4}\) &
+官方保留三位小数，一致 \\
+近似口径 & \(R/2\)、\(R/4\) & 仅为近似 & --- & 不应写成精确等号 \\
+\end{longtable}
+
+\hypertarget{ux5b98ux65b9ux89e3ux7b54ux4e2dux7684ux4e00ux4e2aux91cfux7eb2ux7b14ux8bef}{%
+\subsection{9.1
+官方解答中的一个量纲笔误}\label{ux5b98ux65b9ux89e3ux7b54ux4e2dux7684ux4e00ux4e2aux91cfux7eb2ux7b14ux8bef}}
+
+官方解答在写点 \(A\) 的异常场时包含密度因子 \(ρ\)；紧接着单独展示点
+\(B\) 异常场的那一行，排版文本漏掉了
+\(ρ\)，写成的量纲不再是加速度。但随后列出的联立方程又恢复了
+\(ρ\)，最后公式与数值也都按正确表达式计算。
+
+正确表达式应为
+
+\[Δg_B=G(4πρr^3/3)/(2R-a)^2.\]
+
+因此这是局部排版笔误，不影响官方最终答案。本文同时保留``官方原貌存在漏因子''和``严格复算采用正确式子''，不作静默修改。
+
+\hypertarget{ux56dbux91cdux6b63ux786eux6027ux68c0ux67e5}{%
+\section{10.
+四重正确性检查}\label{ux56dbux91cdux6b63ux786eux6027ux68c0ux67e5}}
+
+\hypertarget{ux6587ux672cux68c0ux67e5}{%
+\subsection{10.1 文本检查}\label{ux6587ux672cux68c0ux67e5}}
+
+\begin{itemize}
+\tightlist
+\item
+  题目给的是 \(g_{\min}=0.938g_0\) 与
+  \(g_{\max}=0.993g_0\)，相对减少量分别为 0.062 与 0.007。
+\item
+  \(B\) 与 \(A\) 对径，所以 \(AB=2R\)。
+\item
+  所求 \(a\) 是中心埋深 \(AC\)，而不是空腔边界深度。
+\end{itemize}
+
+\hypertarget{ux6570ux5b66ux53cdux4ee3}{%
+\subsection{10.2 数学反代}\label{ux6570ux5b66ux53cdux4ee3}}
+
+取
+
+\[x=a/R=0.5030060602,\]
+
+\[f=(r/R)^3=0.01568693599.\]
+
+则
+
+\[f/x^2=0.0620000000=η_1,\]
+
+\[f/(2-x)^2=0.0070000000=η_2.\]
+
+两处测量均被精确复现到显示精度。
+
+\hypertarget{ux7269ux7406ux68c0ux67e5}{%
+\subsection{10.3 物理检查}\label{ux7269ux7406ux68c0ux67e5}}
+
+\hypertarget{ux91cfux7eb2}{%
+\subsubsection{量纲}\label{ux91cfux7eb2}}
+
+\(Gm/a^2\) 的量纲是加速度；\(η_1\)、\(η_2\)、\(a/R\)、\(r/R\) 均无量纲。
+
+\hypertarget{ux65b9ux5411ux548cux5927ux5c0f}{%
+\subsubsection{方向和大小}\label{ux65b9ux5411ux548cux5927ux5c0f}}
+
+\(η_1>η_2\)，说明 \(A\) 离空腔中心更近，故空腔偏向 \(A\)
+一侧。\(g_{\max}=0.993g_0\) 虽是采矿后表面最大值，仍小于原来的
+\(g_0\)，符合``移走正质量只会减弱引力''的判断。
+
+\hypertarget{ux7a7aux8154ux786eux5b9eux5b8cux5168ux4f4dux4e8eux5185ux90e8}{%
+\subsubsection{空腔确实完全位于内部}\label{ux7a7aux8154ux786eux5b9eux5b8cux5168ux4f4dux4e8eux5185ux90e8}}
+
+最近侧净覆岩厚度为
+
+\[a-r=(0.503006-0.250330)R=0.252676R>0.\]
+
+远侧到表面的剩余距离为
+
+\[2R-a-r=1.246664R>0.\]
+
+所以所得几何与``空腔不出露''自洽。
+
+\hypertarget{ux7f3aux5931ux8d28ux91cfux6bd4ux4f8b}{%
+\subsubsection{缺失质量比例}\label{ux7f3aux5931ux8d28ux91cfux6bd4ux4f8b}}
+
+\[m/M=(r/R)^3≈0.0156869.\]
+
+只移除了约 \(1.57\%\) 的总质量，却使最近表面点的重力减少
+\(6.2\%\)。这不矛盾，因为缺失质量离 \(A\) 的距离仅约
+\(0.503R\)，远小于完整天体质量中心到表面的距离 \(R\)。
+
+\hypertarget{ux6781ux9650ux68c0ux67e5}{%
+\subsection{10.4 极限检查}\label{ux6781ux9650ux68c0ux67e5}}
+
+若 \(η_1=η_2\)，式 (3) 给出
+
+\[a/R=1,\]
+
+即空腔中心与大球中心重合。此时所有表面点的重力减少量相同，不会出现方向性差异，完全符合球对称性。
+
+若 \(η_2\to0\) 而 \(η_1\) 保持有限，则 \(a/R\to0\)，意味着空腔中心逼近点
+\(A\)；远点异常趋于很小，也符合直觉。不过空腔仍需满足
+\(r<a\)，所以实际参数不能无限逼近该极限。
+
+\hypertarget{ux8868ux8fbeux68c0ux67e5}{%
+\subsection{10.5 表达检查}\label{ux8868ux8fbeux68c0ux67e5}}
+
+\begin{itemize}
+\tightlist
+\item
+  所有最终比值都注明相对于 \(R\)。
+\item
+  近似号与等号严格区分。
+\item
+  官方值、独立复算值、补充推广分别标注。
+\end{itemize}
+
+\hypertarget{ux5e38ux89c1ux8befux533a}{%
+\section{11. 常见误区}\label{ux5e38ux89c1ux8befux533a}}
+
+\hypertarget{ux8befux533aux4e00ux7528-a-r-ux4ee3ux66ff-a}{%
+\subsection{\texorpdfstring{误区一：用 \(a-r\) 代替
+\(a\)}{误区一：用 a-r 代替 a}}\label{ux8befux533aux4e00ux7528-a-r-ux4ee3ux66ff-a}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{错误表现：} 写 \(Δg_A=Gm/(a-r)^2\)。
+\item
+  \textbf{错误原因：}
+  把``到空腔上边界的距离''误当成``到等效点质量的距离''。
+\item
+  \textbf{如何自检：}
+  球壳定理把球外场等效为质量集中在球心，不会集中在最近表面点。
+\item
+  \textbf{正确改法：} 源点放在空腔中心 \(C\)，距离为 \(AC=a\)。
+\end{itemize}
+
+\hypertarget{ux8befux533aux4e8cux628aux8d28ux91cfux6bd4ux4f8bux5199ux6210ux9762ux79efux6bd4ux4f8b}{%
+\subsection{误区二：把质量比例写成面积比例}\label{ux8befux533aux4e8cux628aux8d28ux91cfux6bd4ux4f8bux5199ux6210ux9762ux79efux6bd4ux4f8b}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{错误表现：} 令 \(m/M=(r/R)^2\)。
+\item
+  \textbf{错误原因：} 忘记三维球体的体积按半径三次方缩放。
+\item
+  \textbf{如何自检：} 密度乘面积不是质量，量纲缺少一个长度。
+\item
+  \textbf{正确改法：} \(m/M=(r/R)^3\)。
+\end{itemize}
+
+\hypertarget{ux8befux533aux4e09ux8ba4ux4e3a-g_max-ux5927ux4e8e-g_0}{%
+\subsection{\texorpdfstring{误区三：认为 \(g_{\max}\) 大于
+\(g_0\)}{误区三：认为 g\_\{\textbackslash max\} 大于 g\_0}}\label{ux8befux533aux4e09ux8ba4ux4e3a-g_max-ux5927ux4e8e-g_0}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{错误表现：} 写 \(g_{\max}-g_0=0.007g_0\)。
+\item
+  \textbf{错误原因：}
+  混淆``采矿后各点中的最大值''与``相对采矿前是否增大''。
+\item
+  \textbf{如何自检：}
+  移走正质量后，不可能在同一点增加其朝向原天体的引力。
+\item
+  \textbf{正确改法：} \(g_0-g_{\max}=0.007g_0\)。
+\end{itemize}
+
+\hypertarget{ux8befux533aux56dbux628aux6709ux6d1eux5929ux4f53ux5f53ux4f5cux603bux8d28ux91cfux96c6ux4e2dux5728-o}{%
+\subsection{误区四：把有洞天体当作总质量集中在
+O}\label{ux8befux533aux56dbux628aux6709ux6d1eux5929ux4f53ux5f53ux4f5cux603bux8d28ux91cfux96c6ux4e2dux5728-o}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{错误表现：} 用剩余总质量 \(M-m\) 写所有表面点的场都等于
+  \(G(M-m)/R^2\)。
+\item
+  \textbf{错误原因：} 球壳定理要求球对称；偏心空腔破坏了球对称。
+\item
+  \textbf{如何自检：}
+  这种错误模型会预言所有表面点重力相同，与题目给出的两个极值直接冲突。
+\item
+  \textbf{正确改法：} 完整大球场与缺失小球场分别计算，再作向量叠加。
+\end{itemize}
+
+\hypertarget{ux8befux533aux4e94ux5728ux4efbux610fux8868ux9762ux70b9ux53eaux51cfux573aux5f3aux5927ux5c0f}{%
+\subsection{误区五：在任意表面点只减场强大小}\label{ux8befux533aux4e94ux5728ux4efbux610fux8868ux9762ux70b9ux53eaux51cfux573aux5f3aux5927ux5c0f}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{错误表现：} 对不在轴线上的点写 \(g=g_0-Gm/s^2\)。
+\item
+  \textbf{错误原因：} 两个场一般不共线，必须按向量相加。
+\item
+  \textbf{如何自检：} 只有 \(A\)、\(B\)
+  这两个轴上点，完整球场与缺失球场才共线。
+\item
+  \textbf{正确改法：} 一般位置使用分量或向量公式。
+\end{itemize}
+
+\hypertarget{ux8befux533aux516dux628aux8fd1ux4f3cux5206ux6570ux5f53ux7cbeux786eux51e0ux4f55}{%
+\subsection{误区六：把近似分数当精确几何}\label{ux8befux533aux516dux628aux8fd1ux4f3cux5206ux6570ux5f53ux7cbeux786eux51e0ux4f55}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{错误表现：} 直接宣布 \(a=R/2\)、\(r=R/4\)。
+\item
+  \textbf{错误原因：} 只看三位小数的漂亮形式，没有保留原始测量数据。
+\item
+  \textbf{如何自检：} 取 \(a=R/2\)、\(r=R/4\)
+  反代，得到的异常不会同时精确等于 0.062 与 0.007。
+\item
+  \textbf{正确改法：} 先写 \(0.503006R\) 与
+  \(0.250330R\)，最后再说明近似于 \(R/2\)、\(R/4\)。
+\end{itemize}
+
+\hypertarget{ux4e00ux822cux5316ux4e0eux9ad8ux7b49ux7269ux7406ux80ccux666f}{%
+\section{12.
+一般化与高等物理背景}\label{ux4e00ux822cux5316ux4e0eux9ad8ux7b49ux7269ux7406ux80ccux666f}}
+
+\hypertarget{ux5bc6ux5ea6ux5deeux4e0dux7b49ux4e8eux539fux5bc6ux5ea6ux65f6}{%
+\subsection{12.1
+密度差不等于原密度时}\label{ux5bc6ux5ea6ux5deeux4e0dux7b49ux4e8eux539fux5bc6ux5ea6ux65f6}}
+
+若空腔不是全空，而是被密度 \(ρ_c\) 的物质填充，定义密度亏损比例
+
+\[κ=(ρ-ρ_c)/ρ.\]
+
+异常方程变为
+
+\[η_1=κ(r/R)^3/(a/R)^2,\]
+
+\[η_2=κ(r/R)^3/(2-a/R)^2.\]
+
+两式相除后 \(κ\) 仍消去，所以中心位置 \(a\) 不变；但半径变为
+
+\[r/R=[4η_1η_2/(κ(√η_1+√η_2)^2)]^{1/3}.\]
+
+若 \(κ\) 未知，仅凭两点数据只能确定组合
+\(κr^3\)，不能分别唯一确定密度差与半径。这是反问题中的``参数不可辨识性''。
+
+\hypertarget{ux4e00ux822cux8868ux9762ux70b9ux7684ux5411ux91cfux573a}{%
+\subsection{12.2
+一般表面点的向量场}\label{ux4e00ux822cux8868ux9762ux70b9ux7684ux5411ux91cfux573a}}
+
+设小行星中心为原点，空腔中心位置向量为 \(\boldsymbol c\)，表面点位置为
+\(\boldsymbol x\)，\(|\boldsymbol x|=R\)。则采矿后场为
+
+\[\boldsymbol g(\boldsymbol x)=-GM\boldsymbol x/R^3+Gm(\boldsymbol x-\boldsymbol c)/|\boldsymbol x-\boldsymbol c|^3.\]
+
+第二项带正号，是因为我们从完整球场中减去了``被挖去正质量球''原本产生的、指向
+\(C\) 的场。沿 \(OC\)
+轴的近点与远点正是表面场异常的极值候选；离轴点必须保留向量方向。
+
+\hypertarget{ux504fux5fc3ux7403ux5f62ux7a7aux8154ux5185ux90e8ux4e3aux4f55ux662fux5300ux5f3aux573a}{%
+\subsection{12.3
+偏心球形空腔内部为何是匀强场}\label{ux504fux5fc3ux7403ux5f62ux7a7aux8154ux5185ux90e8ux4e3aux4f55ux662fux5300ux5f3aux573a}}
+
+对完整均匀大球，球内某点的位置向量为 \(\boldsymbol x\) 时
+
+\[\boldsymbol g_1=-(4πGρ/3)\boldsymbol x.\]
+
+空腔可视为叠加一个中心在 \(\boldsymbol c\)、密度为 \(-ρ\)
+的小球。空腔内部相对小球中心的位置向量为
+\(\boldsymbol x-\boldsymbol c\)，负密度球产生
+
+\[\boldsymbol g_2=+(4πGρ/3)(\boldsymbol x-\boldsymbol c).\]
+
+相加得到
+
+\[\boldsymbol g=-(4πGρ/3)\boldsymbol c,\]
+
+与空腔内具体位置 \(\boldsymbol x\)
+无关。因此偏心球形空腔内部是匀强引力场。这个结论与静电学中均匀带电球的偏心球形空腔完全类比。
+
+\hypertarget{ux53c2ux6570ux7075ux654fux5ea6}{%
+\subsection{12.4 参数灵敏度}\label{ux53c2ux6570ux7075ux654fux5ea6}}
+
+令 \(p=√η_1\)、\(q=√η_2\)。由
+
+\[a/R=2q/(p+q)\]
+
+可得一阶相对灵敏度
+
+\[∂\ln a/∂\ln η_1=-p/[2(p+q)],\]
+
+\[∂\ln a/∂\ln η_2=+p/[2(p+q)].\]
+
+对半径有
+
+\[∂\ln r/∂\ln η_1=q/[3(p+q)],\]
+
+\[∂\ln r/∂\ln η_2=p/[3(p+q)].\]
+
+本题 \(p>q\)，所以远点的小异常 \(η_2\)
+对位置和半径反演都相当重要。实验上，越小的异常通常相对误差越大，这会成为实际反演的主要不确定度来源。
+
+\hypertarget{ux771fux5b9eux7adeux8d5bux540cux7c7bux9898ux4e002021-fma-ux7b2c-19-ux9898}{%
+\section{13. 真实竞赛同类题一：2021 F=ma 第 19
+题}\label{ux771fux5b9eux7adeux8d5bux540cux7c7bux9898ux4e002021-fma-ux7b2c-19-ux9898}}
+
+\hypertarget{ux6765ux6e90ux4e0eux5bf9ux5e94ux5173ux7cfb}{%
+\subsection{13.1
+来源与对应关系}\label{ux6765ux6e90ux4e0eux5bf9ux5e94ux5173ux7cfb}}
+
+\begin{itemize}
+\tightlist
+\item
+  赛事：2021 年美国物理队 F=ma 选拔考试。
+\item
+  题号：第 19 题。
+\item
+  官方归档：AAPT Past Exams 页面列出 2021 F=ma 试卷与官方解答。
+\item
+  难度：中，5/10。
+\item
+  核心对应：同样使用``完整球减去缺失球''；本题把观测点放在非共线位置，强迫我们进行向量分解。
+\end{itemize}
+
+\hypertarget{ux9898ux610fux91cdux8ff0}{%
+\subsection{13.2 题意重述}\label{ux9898ux610fux91cdux8ff0}}
+
+一个质量为 \(M\)、半径为 \(R\)、密度均匀的球形行星中，挖去一个半径为
+\(R/2\) 的球形空腔。大球中心取 \(O=(0,0)\)，观测点 \(P=(0,R)\)
+位于大球顶部；空腔中心取 \(C=(R/2,0)\)，空腔与大球在右侧内切。求点 \(P\)
+处剩余天体的引力场大小。选项系数为
+0.200、0.457、0.829、0.900、0.912，均乘 \(GM/R^2\)。
+
+\hypertarget{ux5efaux6a21}{%
+\subsection{13.3 建模}\label{ux5efaux6a21}}
+
+完整大球在 \(P\) 处的场为
+
+\[\boldsymbol g_{\text{full}}=-(GM/R^2)\boldsymbol e_y.\]
+
+缺失球半径为 \(R/2\)，密度相同，所以质量为
+
+\[m=M(1/2)^3=M/8.\]
+
+从空腔中心到 \(P\) 的向量为
+
+\[\overrightarrow{PC}=(R/2,-R),\]
+
+距离为
+
+\[PC=R√5/2.\]
+
+\hypertarget{ux89e3ux6cd5ux4e00ux5206ux91cfux6cd5}{%
+\subsection{13.4
+解法一：分量法}\label{ux89e3ux6cd5ux4e00ux5206ux91cfux6cd5}}
+
+缺失球原本在 \(P\) 处产生的场大小为
+
+\[g_c=G(M/8)/(5R^2/4)=GM/(10R^2).\]
+
+从 \(P\) 指向 \(C\) 的单位向量为
+
+\[(1/√5,-2/√5).\]
+
+剩余天体场等于完整球场减去缺失球原场：
+
+\[\boldsymbol g=\boldsymbol g_{\text{full}}-\boldsymbol g_c.\]
+
+所以
+
+\[g_x=-(GM/R^2)/(10√5),\]
+
+\[g_y=[-1+1/(5√5)]GM/R^2.\]
+
+场强大小为
+
+\[g/(GM/R^2)=√{[1/(10√5)]^2+[1-1/(5√5)]^2}.\]
+
+数值为
+
+\[g≈0.91165GM/R^2≈0.912GM/R^2.\]
+
+因此选 \textbf{E}。
+
+\hypertarget{ux89e3ux6cd5ux4e8cux4f59ux5f26ux5b9aux7406ux5f0fux7684ux5411ux91cfux6a21ux957f}{%
+\subsection{13.5
+解法二：余弦定理式的向量模长}\label{ux89e3ux6cd5ux4e8cux4f59ux5f26ux5b9aux7406ux5f0fux7684ux5411ux91cfux6a21ux957f}}
+
+完整球场大小为 1 个单位，缺失球原场大小为 0.1 个单位。它们的夹角满足
+
+\[\cos θ=2/√5.\]
+
+剩余场是两向量之差，因此
+
+\[g^2/(GM/R^2)^2=1^2+0.1^2-2(1)(0.1)(2/√5).\]
+
+\[=1.01-0.4/√5.\]
+
+开平方同样得到 0.91165，选 E。
+
+\hypertarget{ux4e0eux4e3bux95eeux9898ux7684ux5bf9ux5e94ux5173ux7cfbux4e0eux53d8ux5f0fux70b9}{%
+\subsection{13.6
+与主问题的对应关系与变式点}\label{ux4e0eux4e3bux95eeux9898ux7684ux5bf9ux5e94ux5173ux7cfbux4e0eux53d8ux5f0fux70b9}}
+
+\begin{itemize}
+\tightlist
+\item
+  共同模型：负密度球叠加。
+\item
+  主问题只在共线的极值点测量，可用标量差；F=ma
+  题在离轴点测量，必须做向量运算。
+\item
+  新卡点：减去的是``缺失球原本产生的向量场''，不是简单从完整场强大小中减去
+  0.1。
+\end{itemize}
+
+\hypertarget{ux9ad8ux9891ux9519ux8bef}{%
+\subsection{13.7 高频错误}\label{ux9ad8ux9891ux9519ux8bef}}
+
+\begin{itemize}
+\tightlist
+\item
+  把空腔质量写成 \(M/4\)，忘记体积是三次方。
+\item
+  把 \(PC\) 误写成 \(R\)。
+\item
+  直接算 \(1-0.1=0.9\)，忽略两场不共线。
+\end{itemize}
+
+\hypertarget{ux771fux5b9eux7adeux8d5bux540cux7c7bux9898ux4e8c2000-oibf-ux7406ux8bbaux7b2c-4-ux9898}{%
+\section{14. 真实竞赛同类题二：2000 OIbF 理论第 4
+题}\label{ux771fux5b9eux7adeux8d5bux540cux7c7bux9898ux4e8c2000-oibf-ux7406ux8bbaux7b2c-4-ux9898}}
+
+\hypertarget{ux6765ux6e90ux4e0eux6838ux9a8cux72b6ux6001}{%
+\subsection{14.1
+来源与核验状态}\label{ux6765ux6e90ux4e0eux6838ux9a8cux72b6ux6001}}
+
+\begin{itemize}
+\tightlist
+\item
+  赛事：第五届伊比利亚美洲物理奥林匹克，2000 年，西班牙 Jaca。
+\item
+  题号：理论第 4 题，10 分。
+\item
+  西班牙语题名：\emph{Un uso práctico de la medida de la gravedad}。
+\item
+  官方题卷：\texttt{https://olimpicos.net/files/oibf/OIbF\_2000\_Q1-5.pdf}，合订卷第
+  4---5 页。
+\item
+  本轮公开归档中未取得官方解答或评分细则，所以下列结果均标为独立复算，不冒充官方答案。
+\item
+  难度：中，5/10。
+\end{itemize}
+
+\textbf{西班牙语短节选：} ``Prospecciones geofísicas indican que
+\ldots{} existe una cavidad aproximadamente esférica \ldots{}''
+
+\hypertarget{ux5b8cux6574ux4e2dux6587ux9898ux610fux91cdux8ff0-1}{%
+\subsection{14.2
+完整中文题意重述}\label{ux5b8cux6574ux4e2dux6587ux9898ux610fux91cdux8ff0-1}}
+
+地球地壳中存在一个近似球形空腔，平均半径
+\(R_c=2.1\,\mathrm{km}\)。空腔内为甲烷，其密度远小于周围地球物质密度。在地表上离空腔最近的点
+\(P\) 测得重力
+
+\[g=0.99997g_0,\]
+
+其中 \(g_0\) 是把地球视为半径 \(R_T=6370\,\mathrm{km}\) 的均匀球体时，点
+\(P\) 的正常重力。忽略地球自转。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  估算空腔中心到点 \(P\) 的距离 \(d\)。
+\item
+  用摆长精确已知的单摆测量 \(g\)。若要求重力绝对误差不超过
+  \(Δg=10^{-4}\,\mathrm{N/kg}\)，周期的相对精度 \(ΔT/T\)
+  至少应达到多少？
+\end{enumerate}
+
+\hypertarget{ux4e0eux4e3bux95eeux9898ux7684ux5bf9ux5e94ux5173ux7cfb}{%
+\subsection{14.3
+与主问题的对应关系}\label{ux4e0eux4e3bux95eeux9898ux7684ux5bf9ux5e94ux5173ux7cfb}}
+
+两题都把空腔视为缺失质量球。主问题给了近点和远点两个异常，因此能同时反演位置与半径；OIbF
+只给一个测点，但直接给出空腔半径，所以仍可求深度。若半径也未知，单点异常只能确定
+\(R_c^3/d^2\)，会出现``大小---深度退化''。
+
+\hypertarget{ux7b2cux4e00ux95eeux89e3ux6cd5ux4e00ux5bc6ux5ea6ux6d88ux5143}{%
+\subsection{14.4
+第一问解法一：密度消元}\label{ux7b2cux4e00ux95eeux89e3ux6cd5ux4e00ux5bc6ux5ea6ux6d88ux5143}}
+
+重力相对减少量为
+
+\[ε=(g_0-g)/g_0=1-0.99997=3.0×10^{-5}.\]
+
+设地球均匀密度为 \(ρ\)。完整地球表面重力为
+
+\[g_0=(4πGρ/3)R_T.\]
+
+空腔缺失质量为
+
+\[m_c=(4π/3)ρR_c^3.\]
+
+点 \(P\) 在空腔球外，故异常大小为
+
+\[g_0-g=Gm_c/d^2=(4πGρ/3)R_c^3/d^2.\]
+
+除以 \(g_0\)：
+
+\[ε=R_c^3/(R_Td^2).\]
+
+因此
+
+\[d=√[R_c^3/(εR_T)].\]
+
+代入千米单位：
+
+\[d=√[(2.1)^3/(3.0×10^{-5}×6370)]\,\mathrm{km}.\]
+
+\[d=6.96\,\mathrm{km}≈7.0\,\mathrm{km}.\]
+
+空腔顶部到地表的净深度为
+
+\[d-R_c=4.86\,\mathrm{km}.\]
+
+\hypertarget{ux7b2cux4e00ux95eeux89e3ux6cd5ux4e8cux8d28ux91cfux6bd4ux4e0eux8dddux79bbux6bd4}{%
+\subsection{14.5
+第一问解法二：质量比与距离比}\label{ux7b2cux4e00ux95eeux89e3ux6cd5ux4e8cux8d28ux91cfux6bd4ux4e0eux8dddux79bbux6bd4}}
+
+均匀密度下
+
+\[m_c/M_T=(R_c/R_T)^3.\]
+
+两处场强之比为
+
+\[ε=(Gm_c/d^2)/(GM_T/R_T^2).\]
+
+整理：
+
+\[ε=(R_c/R_T)^3(R_T/d)^2=R_c^3/(R_Td^2).\]
+
+于是仍得
+
+\[d=6.96\,\mathrm{km}.\]
+
+这条路线更短，适合考场复算；第一条路线更清楚地展示了密度和常数如何消去。
+
+\hypertarget{ux7b2cux4e8cux95eeux89e3ux6cd5ux4e00ux5bf9ux6570ux5faeux5206}{%
+\subsection{14.6
+第二问解法一：对数微分}\label{ux7b2cux4e8cux95eeux89e3ux6cd5ux4e00ux5bf9ux6570ux5faeux5206}}
+
+小振幅单摆周期为
+
+\[T=2π√(\ell/g).\]
+
+改写为
+
+\[g=4π^2\ell/T^2.\]
+
+摆长 \(\ell\) 精确已知，对数微分：
+
+\[dg/g=-2dT/T.\]
+
+取误差大小：
+
+\[ΔT/T=(1/2)Δg/g.\]
+
+取地表 \(g≈9.8\,\mathrm{N/kg}\)：
+
+\[ΔT/T≈10^{-4}/(2×9.8)=5.10×10^{-6}.\]
+
+即约 5.1 ppm。
+
+\hypertarget{ux7b2cux4e8cux95eeux89e3ux6cd5ux4e8cux7cbeux786eux6270ux52a8ux68c0ux67e5}{%
+\subsection{14.7
+第二问解法二：精确扰动检查}\label{ux7b2cux4e8cux95eeux89e3ux6cd5ux4e8cux7cbeux786eux6270ux52a8ux68c0ux67e5}}
+
+若周期测量值为 \(T_m=T(1+δ)\)，则
+
+\[g_m/g=(1+δ)^{-2}.\]
+
+展开：
+
+\[(1+δ)^{-2}=1-2δ+3δ^2-\cdots.\]
+
+当 \(δ≈5.1×10^{-6}\) 时，二次项约为
+\(7.8×10^{-11}\)，远小于目标精度，所以一阶公式完全足够。
+
+\hypertarget{oibf-ux9010ux5c0fux95eeux8986ux76d6ux77e9ux9635}{%
+\subsection{14.8 OIbF
+逐小问覆盖矩阵}\label{oibf-ux9010ux5c0fux95eeux8986ux76d6ux77e9ux9635}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+小问
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+条件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+定律
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+独立结论
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完成状态
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 &
+\(R_c=2.1\,\mathrm{km}\)，\(R_T=6370\,\mathrm{km}\)，\(g/g_0=0.99997\) &
+球壳定理、叠加、比例消元 & \(d=6.96\,\mathrm{km}\) & 完成 \\
+2 & 单摆摆长精确，\(Δg=10^{-4}\,\mathrm{N/kg}\) & 单摆周期、误差传播 &
+\(ΔT/T≈5.1×10^{-6}\) & 完成 \\
+\end{longtable}
+
+\hypertarget{ux53efux590dux7528ux65b9ux6cd5ux8bbaux603bux7ed3}{%
+\section{15.
+可复用方法论总结}\label{ux53efux590dux7528ux65b9ux6cd5ux8bbaux603bux7ed3}}
+
+面对``均匀球 + 球形空腔 + 引力测量''题，固定执行以下流程：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{补全母体：} 把实际物体写成完整均匀球加一个负密度球。
+\item
+  \textbf{先判球内还是球外：}
+  球外用点质量场，球内用与位置成正比的线性场。
+\item
+  \textbf{画清中心距离：} 平方反比律永远使用测点到空腔中心的距离。
+\item
+  \textbf{优先取比值：} 多测点数据可消去
+  \(G\)、密度和缺失质量，先反演几何位置。
+\item
+  \textbf{再用绝对异常：} 得到位置后，再求体积、半径或密度差。
+\item
+  \textbf{离轴必须矢量化：} 只有共线测点才可直接比较场强大小。
+\item
+  \textbf{反代全部观测：} 一个答案必须同时复现所有测量值。
+\item
+  \textbf{检查几何可行性：}
+  空腔边界不能越出母球，且所用球内/球外公式必须自洽。
+\end{enumerate}
+
+\hypertarget{ux4e3bux95eeux9898ux9010ux5c0fux95eeux8986ux76d6ux77e9ux9635}{%
+\section{16.
+主问题逐小问覆盖矩阵}\label{ux4e3bux95eeux9898ux9010ux5c0fux95eeux8986ux76d6ux77e9ux9635}}
+
+虽然原题没有用 a、b、c 分列，但它包含三个明确输出，必须分别覆盖。
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+输出要求
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原题数据
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+关键关系
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+最终答案
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+图形依赖
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+状态
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+空腔中心所在方向 & \(A\) 为最小重力点，\(B\) 为对径最大点 &
+异常随到空腔中心距离减小而增大 & 中心在直径 \(AO\) 上、偏向 \(A\) & 依赖
+\(A-C-O-B\) 共线图 & 完成 \\
+中心埋深 \(a\) & \(η_1=0.062\)，\(η_2=0.007\) & \(√(η_1/η_2)=(2R-a)/a\)
+& \(a=0.503006R≈0.503R\) & 使用 \(AC=a\)、\(BC=2R-a\) & 完成 \\
+空腔半径 \(r\) & 已求 \(a\) 与任一异常值 & \((r/R)^3=η_1(a/R)^2\) &
+\(r=0.250330R≈0.250R\) & 使用球外场与体积比 & 完成 \\
+几何自洽 & 空腔不出露 & \(a-r>0\) & \(a-r=0.252676R\) & 近侧边界 &
+完成 \\
+\end{longtable}
+
+\hypertarget{ux6700ux7ec8ux7b54ux6848ux6c47ux603b}{%
+\section{17. 最终答案汇总}\label{ux6700ux7ec8ux7b54ux6848ux6c47ux603b}}
+
+\hypertarget{ux4e3bux95eeux9898}{%
+\subsection{主问题}\label{ux4e3bux95eeux9898}}
+
+\[a/R=2√η_2/(√η_1+√η_2)=0.5030060602,\]
+
+\[r/R=[4η_1η_2/(√η_1+√η_2)^2]^{1/3}=0.2503298898.\]
+
+因此：
+
+\begin{itemize}
+\tightlist
+\item
+  空腔中心位于 \(AO\) 上，朝 \(A\) 偏离原球心；
+\item
+  中心埋深 \(a≈0.503R\)；
+\item
+  空腔半径 \(r≈0.250R\)；
+\item
+  中心距原球心 \(OC≈0.497R\)；
+\item
+  最近边界距表面约 \(0.253R\)。
+\end{itemize}
+
+官方三位小数答案与独立复算一致。官方解答中点 \(B\)
+异常场的单行公式漏写密度
+\(ρ\)，属量纲可识别的排版笔误，后续方程和最终答案均使用正确关系。
+
+\hypertarget{ux540cux7c7bux9898ux4e00}{%
+\subsection{同类题一}\label{ux540cux7c7bux9898ux4e00}}
+
+2021 F=ma 第 19 题：
+
+\[g_P≈0.912GM/R^2,\]
+
+选 E。
+
+\hypertarget{ux540cux7c7bux9898ux4e8c}{%
+\subsection{同类题二}\label{ux540cux7c7bux9898ux4e8c}}
+
+2000 OIbF 理论第 4 题：
+
+\[d≈6.96\,\mathrm{km},\]
+
+\[ΔT/T≈5.1×10^{-6}.\]
+
+\hypertarget{ux4e09ux4e2aux5173ux952eux7a81ux7834ux53e3ux4e0eux4e09ux4e2aux9ad8ux9891ux9519ux8bef}{%
+\section{18.
+三个关键突破口与三个高频错误}\label{ux4e09ux4e2aux5173ux952eux7a81ux7834ux53e3ux4e0eux4e09ux4e2aux9ad8ux9891ux9519ux8bef}}
+
+\hypertarget{ux4e09ux4e2aux5173ux952eux7a81ux7834ux53e3}{%
+\subsection{三个关键突破口}\label{ux4e09ux4e2aux5173ux952eux7a81ux7834ux53e3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  有空腔天体写成``完整均匀球减去缺失小球''。
+\item
+  用近、远两点异常之比先消去空腔大小，反演中心位置。
+\item
+  区分共线标量问题与离轴向量问题。
+\end{enumerate}
+
+\hypertarget{ux4e09ux4e2aux6700ux9ad8ux9891ux9519ux8bef}{%
+\subsection{三个最高频错误}\label{ux4e09ux4e2aux6700ux9ad8ux9891ux9519ux8bef}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  把中心距离 \(a\) 错写为边界距离 \(a-r\)。
+\item
+  把质量比例写成 \((r/R)^2\)，或忘记球体体积的三次方。
+\item
+  把近似 \(a≈R/2\)、\(r≈R/4\) 写成精确等号。
+\end{enumerate}
+
+\hypertarget{ux6765ux6e90ux4e0eux53c2ux8003ux8d44ux6599}{%
+\section{19.
+来源与参考资料}\label{ux6765ux6e90ux4e0eux53c2ux8003ux8d44ux6599}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  BelPhO 2003
+  年共和国物理奥林匹克年度归档：\texttt{https://belpho.org/problems/final/2003/}。
+\item
+  BelPhO 2003 年 10 年级第 2
+  题独立页：\texttt{https://belpho.org/problems/final/2003/10-2/}。
+\item
+  官方题卷：\texttt{https://belpho.org/problems/final/2003problems.pdf}，第
+  3 页。
+\item
+  官方解答：\texttt{https://belpho.org/problems/final/2003solutions.pdf}，第
+  6 页。
+\item
+  AAPT Past
+  Exams：\texttt{https://www.aapt.org/Common2022/pastexams.cfm}，2021
+  F=ma 试卷与解答。
+\item
+  OIbF 归档：\texttt{https://olimpicos.net/oibf/}。
+\item
+  OIbF 2000
+  理论题合订卷：\texttt{https://olimpicos.net/files/oibf/OIbF\_2000\_Q1-5.pdf}。
+\end{enumerate}
+
+\hypertarget{ux5f53ux524dux5b8cux6210ux72b6ux6001}{%
+\section{20. 当前完成状态}\label{ux5f53ux524dux5b8cux6210ux72b6ux6001}}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  数据库序号与官方题号映射核验。
+\item[$\boxtimes$]
+  官方题面位置与官方解答位置核验。
+\item[$\boxtimes$]
+  完整中文题意重述与符号说明。
+\item[$\boxtimes$]
+  读题拆解、六步建模、突破口分析。
+\item[$\boxtimes$]
+  两种组织不同的完整解法。
+\item[$\boxtimes$]
+  官方答案与独立复算对照。
+\item[$\boxtimes$]
+  官方局部排版笔误说明。
+\item[$\boxtimes$]
+  量纲、反代、极限、几何和物理合理性检查。
+\item[$\boxtimes$]
+  常见误区与正确改法。
+\item[$\boxtimes$]
+  两道真实同类竞赛题的来源、对应关系和完整推导。
+\item[$\boxtimes$]
+  一般化、参数可辨识性、向量场、空腔内匀强场与灵敏度分析。
+\item[$\boxtimes$]
+  逐输出覆盖矩阵与最终答案汇总。
+\end{itemize}
+
+\textbf{本文应命名为：}
+\texttt{2003\_白俄罗斯共和国物理奥林匹克决赛\_10年级第2题\_小行星球形空腔反演\_完整精讲.md}
+
+\end{document}
