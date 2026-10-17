@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      SOURCE_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-2ac4-81f4-91c4-be878e938694/raw?se=2026-10-17T12%3A35%3A03Z&sp=r&sv=2026-02-06&sr=b&scid=49454b9c-9db5-5303-9a1e-a95e5c22b617&skoid=5e713cdb-766b-475e-a3ca-8adb6cf99aa0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-16T20%3A51%3A12Z&ske=2026-10-17T20%3A51%3A12Z&sks=b&skv=2026-02-06&sig=KKnuKu%2BVqeOuDnskUnva8VK9uzMEu0FZnbTEUyUg%2BtU%3D"
+      SOURCE_URL: "https://sdmntprwestus.oaiusercontent.com/files/00000000-04b4-8230-ae32-503949dc62e9/raw?se=2026-10-17T12%3A38%3A03Z&sp=r&sv=2026-02-06&sr=b&scid=bdf66817-881a-53b8-a8cf-cfead8a14817&skoid=5e713cdb-766b-475e-a3ca-8adb6cf99aa0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-16T20%3A36%3A51Z&ske=2026-10-17T20%3A36%3A51Z&sks=b&skv=2026-02-06&sig=cmi%2BxCD9VpvPYgbMmeLIWbvrCAM2AbyAv20XykBG070%3D"
       STEM: "2003_白俄罗斯共和国物理奥林匹克决赛_10年级第2题_小行星球形空腔反演_完整精讲"
     steps:
       - name: Checkout
@@ -48,11 +48,6 @@ jobs:
             --standalone --toc --number-sections \
             -V documentclass=ctexart \
             -V classoption=UTF8 \
-            -V mainfont="TeX Gyre Termes" \
-            -V sansfont="Noto Sans CJK SC" \
-            -V monofont="DejaVu Sans Mono" \
-            -V CJKmainfont="Noto Serif CJK SC" \
-            -V mathfont="Latin Modern Math" \
             -V geometry:margin=2.1cm \
             -V fontsize=11pt \
             -o "build/${STEM}.tex"
