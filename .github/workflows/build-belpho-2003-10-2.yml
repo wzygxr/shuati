@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   actions: write
 
 jobs:
@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install document toolchain
         shell: bash
@@ -100,3 +102,23 @@ jobs:
             build/SHA256SUMS.txt
           if-no-files-found: error
           retention-days: 7
+
+      - name: Publish generated files to repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          DEST="generated/belpho_2003_10_2/output"
+          rm -rf "$DEST"
+          mkdir -p "$DEST"
+          cp "build/${STEM}.md" "$DEST/"
+          cp "build/${STEM}.tex" "$DEST/"
+          cp "build/${STEM}.pdf" "$DEST/"
+          cp "build/${STEM}.zip" "$DEST/"
+          cp build/README.txt build/SOURCES.txt build/SHA256SUMS.txt "$DEST/"
+          printf 'run_id=%s\nsource_commit=%s\nbuilt_at=%s\nstatus=success\n' \
+            "$GITHUB_RUN_ID" "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > "$DEST/BUILD_STATUS.txt"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$DEST"
+          git commit -m "Build BelPhO 2003 10-2 document bundle [skip ci]"
+          git push
