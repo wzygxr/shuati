@@ -25,7 +25,7 @@ jobs:
           set -euo pipefail
           sudo apt-get update -y
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl file poppler-utils python3 zip
-      - name: Fetch official archive and select 2010-2019 A Lykeiou PDFs
+      - name: Fetch official archive and select 2016-2019 rows
         shell: bash
         run: |
           set -euo pipefail
@@ -37,47 +37,66 @@ jobs:
           from html.parser import HTMLParser
           from pathlib import Path
 
-          class P(HTMLParser):
+          class RowParser(HTMLParser):
               def __init__(self):
-                  super().__init__(); self.cur=None; self.buf=[]; self.links=[]
+                  super().__init__(); self.in_tr=False; self.text=[]; self.hrefs=[]; self.rows=[]
               def handle_starttag(self, tag, attrs):
-                  if tag.lower()=='a':
-                      self.cur=dict(attrs).get('href'); self.buf=[]
+                  tag=tag.lower()
+                  if tag=='tr':
+                      self.in_tr=True; self.text=[]; self.hrefs=[]
+                  elif self.in_tr and tag=='a':
+                      href=dict(attrs).get('href')
+                      if href: self.hrefs.append(href)
               def handle_data(self, data):
-                  if self.cur is not None: self.buf.append(data)
+                  if self.in_tr: self.text.append(data)
               def handle_endtag(self, tag):
-                  if tag.lower()=='a' and self.cur is not None:
-                      self.links.append((self.cur,' '.join(''.join(self.buf).split())))
-                      self.cur=None; self.buf=[]
+                  if tag.lower()=='tr' and self.in_tr:
+                      self.rows.append((' '.join(''.join(self.text).split()), list(self.hrefs)))
+                      self.in_tr=False; self.text=[]; self.hrefs=[]
 
           base='https://chem.schools.ac.cy/index.php/el/diagonismoi-olympiades-pagkypria-olympiada-chimeias-themata-lyseis-lykeiou'
           text=Path('adjacent/html/archive.html').read_text('utf-8',errors='replace')
-          p=P(); p.feed(text)
-          rows=[]
-          for href,label in p.links:
-              url=urllib.parse.urljoin(base,html.unescape(href))
-              norm=' '.join(label.split())
-              m=re.search(r'\b(201[0-9])\b',norm)
+          p=RowParser(); p.feed(text)
+          selected=[]
+          audit=[]
+          for row_text, hrefs in p.rows:
+              abs_urls=[urllib.parse.urljoin(base,html.unescape(h)) for h in hrefs]
+              audit.append({'row_text':row_text,'urls':abs_urls})
+              m=re.search(r'\b(201[6-9])\b',row_text)
               if not m: continue
-              # Select only first-year Lyceum (A/Alpha) question and solution files.
-              if 'Λυκείου' not in norm: continue
-              if not re.search(r'(?:^|[-–—\s])Α\s*[\'΄’]?',norm): continue
-              if not ('.pdf' in url.lower() or 'Θέματα' in norm or 'Λύσεις' in norm): continue
-              rows.append({'year':int(m.group(1)),'label':norm,'url':url})
-          rows.sort(key=lambda r:(r['year'],r['label']))
-          Path('adjacent/html/selected.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2),'utf-8')
+              for url in abs_urls:
+                  if '.pdf' in url.lower() or '/sm/' in url.lower() or 'download' in url.lower():
+                      selected.append({'year':int(m.group(1)),'label':row_text,'url':url})
+          # Fallback: inspect every anchor URL when the table uses unusual markup.
+          if not selected:
+              for row in audit:
+                  m=re.search(r'\b(201[6-9])\b',row['row_text'])
+                  if m:
+                      for url in row['urls']:
+                          selected.append({'year':int(m.group(1)),'label':row['row_text'],'url':url})
+          # Stable de-duplication.
+          out=[]; seen=set()
+          for r in sorted(selected,key=lambda x:(x['year'],x['label'],x['url'])):
+              key=(r['year'],r['url'])
+              if key not in seen:
+                  seen.add(key); out.append(r)
+          Path('adjacent/html/all-rows.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2),'utf-8')
+          Path('adjacent/html/selected.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),'utf-8')
           with Path('adjacent/html/selected.tsv').open('w',encoding='utf-8') as f:
-              for i,r in enumerate(rows,1):
+              for i,r in enumerate(out,1):
                   f.write(f"{i:02d}\t{r['year']}\t{r['label']}\t{r['url']}\n")
-          print('selected',len(rows))
+          print('rows',len(p.rows),'selected',len(out))
           PY
           test -s adjacent/html/selected.tsv
 
           while IFS=$'\t' read -r idx year label url; do
+            group=unknown
+            [[ "$label" == *"Α' Λυκείου"* || "$label" == *"Α΄ Λυκείου"* || "$label" == *"A' Λυκείου"* ]] && group=A
+            [[ "$label" == *"Β' Λυκείου"* || "$label" == *"Β΄ Λυκείου"* || "$label" == *"B' Λυκείου"* ]] && group=B
             kind=other
             [[ "$label" == *"Θέματα"* ]] && kind=questions
             [[ "$label" == *"Λύσεις"* ]] && kind=solutions
-            stem="${year}_A_Lykeiou_${kind}_${idx}"
+            stem="${year}_${group}_Lykeiou_${kind}_${idx}"
             printf '%s\n%s\n' "$label" "$url" > "adjacent/pdfs/${stem}.source.txt"
             curl --fail --location --retry 4 --retry-all-errors --connect-timeout 20 --max-time 180 -A "$ua" "$url" -o "adjacent/pdfs/${stem}.pdf" || continue
             if ! head -c 5 "adjacent/pdfs/${stem}.pdf" | grep -q '%PDF-'; then
@@ -86,10 +105,10 @@ jobs:
             fi
             file "adjacent/pdfs/${stem}.pdf" > "adjacent/pdfs/${stem}.file.txt"
             pdfinfo "adjacent/pdfs/${stem}.pdf" > "adjacent/pdfs/${stem}.pdfinfo.txt" || true
-            pdftotext -layout -enc UTF-8 "adjacent/pdfs/${stem}.pdf" "adjacent/text/${stem}.txt"
+            pdftotext -layout -enc UTF-8 "adjacent/pdfs/${stem}.pdf" "adjacent/text/${stem}.txt" || true
           done < adjacent/html/selected.tsv
 
-          grep -RniE 'Lewis|ηλεκτρονικ|δεσμ|Περιοδικ|ομοιοπολ|ιοντικ|σθένο' adjacent/text > adjacent/topic_hits.txt || true
+          grep -RniE 'Lewis|ηλεκτρονικ|δεσμ|Περιοδικ|ομοιοπολ|ιοντικ|σθένο|χημικ.*τύπ' adjacent/text > adjacent/topic_hits.txt || true
           find adjacent -type f -print0 | sort -z | xargs -0 sha256sum > adjacent/SHA256SUMS.txt
           zip -9 -r cychem-adjacent-a-lykeiou.zip adjacent
       - name: Upload adjacent source selector
