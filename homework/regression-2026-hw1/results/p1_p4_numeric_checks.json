@@ -1,0 +1,75 @@
+{
+  "P1": {
+    "mean_yhat_minus_ybar": 3.552713678800501e-15,
+    "SSreg_minus_b1sq_Sxx": 3.410605131648481e-13,
+    "R2_minus_r2xy": 4.440892098500626e-16,
+    "SST_minus_SSreg_SSE": -3.765876499528531e-13,
+    "SSreg_minus_sumyhat2_minus_nybar2": -1.0231815394945443e-12
+  },
+  "P2": {
+    "beta_star": 2.0,
+    "xbar": 3.6578309487995004,
+    "sum_x2": 169.91040897166374,
+    "E_bhat": 1.9998506385999395,
+    "E_btil": 1.9998564424071816,
+    "Var_bhat_theory": 0.005885454611357988,
+    "Var_btil_theory": 0.006228328259334409,
+    "Var_bhat_MC": 0.005914160462441309,
+    "Var_btil_MC": 0.006257049596857023,
+    "Var_bhat_over_Var_btil": 0.9449493293063743,
+    "identity_check": 5.684341886080802e-14
+  },
+  "P3": {
+    "generic(一般情形)": {
+      "bias": 0.6500054235001901,
+      "max_abs_X1tX2": 12.870782242617262
+    },
+    "orthogonal(X1'X2=0)": {
+      "bias": 8.847089727481716e-17,
+      "max_abs_X1tX2": 1.6653345369377348e-15
+    }
+  },
+  "P4": {
+    "E_hat_b_first_p_plus_1": [
+      0.4994,
+      0.9995,
+      -2.0034
+    ],
+    "bstar": [
+      0.5,
+      1.0,
+      -2.0
+    ],
+    "max_abs_bias_first_p_plus_1": 0.0034359307032980624,
+    "max_abs_bias_extra": [
+      0.0011,
+      0.0011
+    ],
+    "Var_extra_vs_theoretical_max_abs_diff": 0.0003944304985772189,
+    "Var_inflation_ratio_max": 1.006249149894539,
+    "Var_inflation_of_fitted_values_max": 6.599253744327527,
+    "E_yhat_identity_check": 2.220446049250313e-15
+  },
+  "P4_correlated_extra_vars": {
+    "description": "额外 2 个无关变量与原有变量强相关",
+    "R2_of_each_extra_var_on_others": [
+      0.7202,
+      0.6307
+    ],
+    "VIF": [
+      3.5741,
+      2.708
+    ],
+    "Var_inflation_ratio_theory_first_p_plus_1": [
+      1.0029,
+      2.849,
+      2.6761
+    ],
+    "Var_inflation_ratio_MC_first_p_plus_1": [
+      0.9849,
+      2.8078,
+      2.7145
+    ],
+    "max_abs_bias_first_p_plus_1": 0.0065957343909136545
+  }
+}

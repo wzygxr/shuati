@@ -1,0 +1,11 @@
+| variable | beta_on_standardized_x |
+| --- | --- |
+| illiteracy | -806822.0271 |
+| poverty | -5.2698e+06 |
+| deficient_infra | -1.7729e+07 |
+| school_dropout | 7.2001e+06 |
+| no_healthcare | 1.9390e+06 |
+| birth_mortal | -8.6285e+06 |
+| pop | 3.3582e+07 |
+| movie_theatres_per_cap | -1.6128e+07 |
+| doctors_per_cap | 1.1485e+07 |
