@@ -1,0 +1,217 @@
+name: Recover CY-Chem 2018 A Lykeiou sources
+
+on:
+  push:
+    branches:
+      - tmp-cychem-2018-q1-recovery-20261021
+    paths:
+      - '.github/workflows/recover-cychem-2018-q1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QUESTION_URL: https://sch.cy/sm/698/doc_olympiadas_a_lyk_2018.pdf
+      ARCHIVE_URL: https://chem.schools.ac.cy/index.php/el/diagonismoi-olympiades-pagkypria-olympiada-chimeias-themata-lyseis-a-b-lykeiou
+      LEGACY_URL: https://chemistry.org.cy/site-menu-86-%CE%98%CE%AD%CE%BC%CE%B1%CF%84%CE%B1_%CE%BA%CE%B1%CE%B9_%CE%BB%CF%8D%CF%83%CE%B5%CE%B9%CF%82-el.php
+    steps:
+      - name: Checkout temporary branch
+        uses: actions/checkout@v4
+
+      - name: Install PDF tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            ca-certificates curl file jq poppler-utils qpdf python3 zip
+
+      - name: Download and verify official question PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p recovery/question recovery/discovery recovery/downloaded
+          curl --fail --location --retry 5 --retry-all-errors \
+            --connect-timeout 30 --max-time 240 \
+            -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/155 Safari/537.36' \
+            "$QUESTION_URL" -o recovery/question/source.pdf
+          test -s recovery/question/source.pdf
+          file recovery/question/source.pdf | tee recovery/question/file.txt
+          head -c 5 recovery/question/source.pdf | grep -q '%PDF-'
+          pdfinfo recovery/question/source.pdf | tee recovery/question/pdfinfo.txt
+          qpdf --check recovery/question/source.pdf 2>&1 | tee recovery/question/qpdf-check.txt
+          sha256sum recovery/question/source.pdf > recovery/question/SHA256SUMS.txt
+
+      - name: Extract complete question text and page images
+        shell: bash
+        run: |
+          set -euo pipefail
+          pdf=recovery/question/source.pdf
+          pages=$(awk '/^Pages:/ {print $2}' recovery/question/pdfinfo.txt)
+          test "${pages:-0}" -gt 0
+          pdftotext -layout -enc UTF-8 "$pdf" recovery/question/full-layout.txt
+          pdftotext -raw -enc UTF-8 "$pdf" recovery/question/full-raw.txt
+          mkdir -p recovery/question/pages-text recovery/question/pages-png
+          for p in $(seq 1 "$pages"); do
+            n=$(printf '%02d' "$p")
+            pdftotext -f "$p" -l "$p" -layout -enc UTF-8 "$pdf" "recovery/question/pages-text/page_${n}.txt"
+            pdftoppm -f "$p" -l "$p" -singlefile -r 180 -png "$pdf" "recovery/question/pages-png/page_${n}"
+          done
+
+      - name: Discover and download official 2018 solution links
+        shell: bash
+        run: |
+          set -euo pipefail
+          ua='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/155 Safari/537.36'
+          for item in \
+            "archive|$ARCHIVE_URL" \
+            "legacy|$LEGACY_URL" \
+            "legacy_ascii|https://chemistry.org.cy/site-menu-86-Themata_kai_lyseis-el.php"; do
+            name=${item%%|*}; url=${item#*|}
+            curl --location --retry 3 --retry-all-errors --connect-timeout 20 --max-time 180 \
+              -A "$ua" "$url" -o "recovery/discovery/${name}.html" || true
+          done
+
+          python3 - <<'PY'
+          import html
+          import json
+          import re
+          import urllib.parse
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          class LinkParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.links=[]
+                  self.current=None
+                  self.text=[]
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower()=='a':
+                      d=dict(attrs)
+                      self.current=d.get('href')
+                      self.text=[]
+              def handle_data(self, data):
+                  if self.current is not None:
+                      self.text.append(data)
+              def handle_endtag(self, tag):
+                  if tag.lower()=='a' and self.current is not None:
+                      self.links.append((self.current, ' '.join(''.join(self.text).split())))
+                      self.current=None
+                      self.text=[]
+
+          bases={
+              'archive.html':'https://chem.schools.ac.cy/index.php/el/diagonismoi-olympiades-pagkypria-olympiada-chimeias-themata-lyseis-a-b-lykeiou',
+              'legacy.html':'https://chemistry.org.cy/site-menu-86-%CE%98%CE%AD%CE%BC%CE%B1%CF%84%CE%B1_%CE%BA%CE%B1%CE%B9_%CE%BB%CF%8D%CF%83%CE%B5%CE%B9%CF%82-el.php',
+              'legacy_ascii.html':'https://chemistry.org.cy/site-menu-86-Themata_kai_lyseis-el.php',
+          }
+          records=[]
+          for path in Path('recovery/discovery').glob('*.html'):
+              text=path.read_text('utf-8',errors='replace')
+              p=LinkParser(); p.feed(text)
+              base=bases.get(path.name,'')
+              for href,label in p.links:
+                  url=urllib.parse.urljoin(base,html.unescape(href))
+                  records.append({'source':path.name,'label':label,'url':url})
+          # Keep all links for audit; identify likely 2018 PDFs separately.
+          Path('recovery/discovery/all-links.json').write_text(json.dumps(records,ensure_ascii=False,indent=2),'utf-8')
+          likely=[]
+          for r in records:
+              s=(r['label']+' '+r['url']).lower()
+              if '2018' in s and ('.pdf' in s or 'λύσ' in s or 'ly' in s or 'a%27' in s):
+                  likely.append(r)
+          Path('recovery/discovery/likely-2018-links.json').write_text(json.dumps(likely,ensure_ascii=False,indent=2),'utf-8')
+          with Path('recovery/discovery/likely-2018-urls.txt').open('w',encoding='utf-8') as f:
+              seen=set()
+              for r in likely:
+                  if r['url'] not in seen:
+                      seen.add(r['url']); f.write(r['url']+'\n')
+          PY
+
+          # Probe links exposed by the official archive page.
+          i=0
+          if [ -s recovery/discovery/likely-2018-urls.txt ]; then
+            while IFS= read -r url; do
+              [ -n "$url" ] || continue
+              i=$((i+1)); n=$(printf '%02d' "$i")
+              curl --location --retry 3 --retry-all-errors --connect-timeout 20 --max-time 180 \
+                -A "$ua" "$url" -o "recovery/downloaded/archive_${n}.bin" || true
+              if [ -s "recovery/downloaded/archive_${n}.bin" ]; then
+                file "recovery/downloaded/archive_${n}.bin" > "recovery/downloaded/archive_${n}.file.txt" || true
+                printf '%s\n' "$url" > "recovery/downloaded/archive_${n}.url.txt"
+              fi
+            done < recovery/discovery/likely-2018-urls.txt
+          fi
+
+          # Probe conservative filename variants in the same official directory.
+          cat > recovery/discovery/candidate-solution-urls.txt <<'EOF'
+          https://sch.cy/sm/698/doc_olympiadas_a_lyk_2018_lyseis.pdf
+          https://sch.cy/sm/698/doc_olympiadas_a_lyk_2018_liseis.pdf
+          https://sch.cy/sm/698/doc_lyseis_olympiadas_a_lyk_2018.pdf
+          https://sch.cy/sm/698/lyseis_olympiadas_a_lyk_2018.pdf
+          https://sch.cy/sm/698/doc_olympiadas_a_lyk_2018_solutions.pdf
+          https://sch.cy/sm/698/doc_olympiadas_a_lyk_2018_apantiseis.pdf
+          https://sch.cy/sm/698/doc_olympiadas_a_lyk_2018_apanthseis.pdf
+          https://sch.cy/sm/698/solutions_olympiadas_a_lyk_2018.pdf
+          https://sch.cy/sm/698/doc_olympiadas_a_lyk_2018_answers.pdf
+          EOF
+          j=0
+          while IFS= read -r url; do
+            [ -n "$url" ] || continue
+            j=$((j+1)); n=$(printf '%02d' "$j")
+            curl --location --retry 2 --retry-all-errors --connect-timeout 15 --max-time 120 \
+              -A "$ua" "$url" -o "recovery/downloaded/candidate_${n}.bin" || true
+            if [ -s "recovery/downloaded/candidate_${n}.bin" ]; then
+              file "recovery/downloaded/candidate_${n}.bin" > "recovery/downloaded/candidate_${n}.file.txt" || true
+              printf '%s\n' "$url" > "recovery/downloaded/candidate_${n}.url.txt"
+            fi
+          done < recovery/discovery/candidate-solution-urls.txt
+
+          # Query the Wayback index for every historical PDF in this source folder.
+          curl --location --retry 3 --connect-timeout 20 --max-time 180 \
+            -A "$ua" \
+            'https://web.archive.org/cdx/search/cdx?url=sch.cy%2Fsm%2F698%2F*&output=json&filter=statuscode%3A200&filter=mimetype%3Aapplication%2Fpdf&fl=timestamp%2Coriginal%2Cstatuscode%2Cmimetype%2Cdigest&collapse=urlkey' \
+            -o recovery/discovery/wayback-folder.json || true
+
+          # Rename all valid recovered PDFs and extract their text for inspection.
+          k=0
+          shopt -s nullglob
+          for f in recovery/downloaded/*.bin; do
+            if head -c 5 "$f" | grep -q '%PDF-'; then
+              k=$((k+1)); n=$(printf '%02d' "$k")
+              cp "$f" "recovery/downloaded/recovered_${n}.pdf"
+              pdfinfo "recovery/downloaded/recovered_${n}.pdf" > "recovery/downloaded/recovered_${n}.pdfinfo.txt" || true
+              pdftotext -layout -enc UTF-8 "recovery/downloaded/recovered_${n}.pdf" "recovery/downloaded/recovered_${n}.txt" || true
+              sha256sum "recovery/downloaded/recovered_${n}.pdf" >> recovery/downloaded/SHA256SUMS.txt
+            fi
+          done
+          printf 'valid_recovered_pdfs=%s\n' "$k" | tee recovery/downloaded/summary.txt
+
+      - name: Package recovered source material
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > recovery/README.txt <<'EOF'
+          Temporary, read-only recovery bundle for the official 2018 Cyprus Chemistry Olympiad A Lykeiou paper.
+          question/source.pdf is the exact PDF downloaded from the official sch.cy URL supplied by the user.
+          question/pages-png and pages-text are page-by-page renderings/extractions for visual verification.
+          discovery and downloaded contain archive-page evidence and any separately recovered 2018 PDFs, including solution candidates.
+          No generated answer is included here.
+          EOF
+          find recovery -type f -print0 | sort -z | xargs -0 sha256sum > recovery/ALL_SHA256SUMS.txt
+          zip -9 -r cychem-2018-a-lyk-source-recovery.zip recovery
+
+      - name: Upload recovery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cychem-2018-a-lyk-source-recovery
+          path: |
+            recovery/**
+            cychem-2018-a-lyk-source-recovery.zip
+          if-no-files-found: error
+          retention-days: 2
