@@ -1,0 +1,103 @@
+name: Recover adjacent CY-Chem A Lykeiou sources
+
+on:
+  push:
+    branches:
+      - tmp-cychem-2018-q1-recovery-20261021
+    paths:
+      - '.github/workflows/recover-cychem-related.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recover-related:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      ARCHIVE_URL: https://chem.schools.ac.cy/index.php/el/diagonismoi-olympiades-pagkypria-olympiada-chimeias-themata-lyseis-lykeiou
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl file poppler-utils python3 zip
+      - name: Fetch official archive and select 2010-2019 A Lykeiou PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p adjacent/html adjacent/pdfs adjacent/text
+          ua='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/155 Safari/537.36'
+          curl --fail --location --retry 5 --retry-all-errors --connect-timeout 20 --max-time 180 -A "$ua" "$ARCHIVE_URL" -o adjacent/html/archive.html
+          python3 - <<'PY'
+          import html, json, re, urllib.parse
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          class P(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.cur=None; self.buf=[]; self.links=[]
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower()=='a':
+                      self.cur=dict(attrs).get('href'); self.buf=[]
+              def handle_data(self, data):
+                  if self.cur is not None: self.buf.append(data)
+              def handle_endtag(self, tag):
+                  if tag.lower()=='a' and self.cur is not None:
+                      self.links.append((self.cur,' '.join(''.join(self.buf).split())))
+                      self.cur=None; self.buf=[]
+
+          base='https://chem.schools.ac.cy/index.php/el/diagonismoi-olympiades-pagkypria-olympiada-chimeias-themata-lyseis-lykeiou'
+          text=Path('adjacent/html/archive.html').read_text('utf-8',errors='replace')
+          p=P(); p.feed(text)
+          rows=[]
+          for href,label in p.links:
+              url=urllib.parse.urljoin(base,html.unescape(href))
+              norm=' '.join(label.split())
+              m=re.search(r'\b(201[0-9])\b',norm)
+              if not m: continue
+              # Select only first-year Lyceum (A/Alpha) question and solution files.
+              if 'Λυκείου' not in norm: continue
+              if not re.search(r'(?:^|[-–—\s])Α\s*[\'΄’]?',norm): continue
+              if not ('.pdf' in url.lower() or 'Θέματα' in norm or 'Λύσεις' in norm): continue
+              rows.append({'year':int(m.group(1)),'label':norm,'url':url})
+          rows.sort(key=lambda r:(r['year'],r['label']))
+          Path('adjacent/html/selected.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2),'utf-8')
+          with Path('adjacent/html/selected.tsv').open('w',encoding='utf-8') as f:
+              for i,r in enumerate(rows,1):
+                  f.write(f"{i:02d}\t{r['year']}\t{r['label']}\t{r['url']}\n")
+          print('selected',len(rows))
+          PY
+          test -s adjacent/html/selected.tsv
+
+          while IFS=$'\t' read -r idx year label url; do
+            kind=other
+            [[ "$label" == *"Θέματα"* ]] && kind=questions
+            [[ "$label" == *"Λύσεις"* ]] && kind=solutions
+            stem="${year}_A_Lykeiou_${kind}_${idx}"
+            printf '%s\n%s\n' "$label" "$url" > "adjacent/pdfs/${stem}.source.txt"
+            curl --fail --location --retry 4 --retry-all-errors --connect-timeout 20 --max-time 180 -A "$ua" "$url" -o "adjacent/pdfs/${stem}.pdf" || continue
+            if ! head -c 5 "adjacent/pdfs/${stem}.pdf" | grep -q '%PDF-'; then
+              mv "adjacent/pdfs/${stem}.pdf" "adjacent/pdfs/${stem}.not-pdf"
+              continue
+            fi
+            file "adjacent/pdfs/${stem}.pdf" > "adjacent/pdfs/${stem}.file.txt"
+            pdfinfo "adjacent/pdfs/${stem}.pdf" > "adjacent/pdfs/${stem}.pdfinfo.txt" || true
+            pdftotext -layout -enc UTF-8 "adjacent/pdfs/${stem}.pdf" "adjacent/text/${stem}.txt"
+          done < adjacent/html/selected.tsv
+
+          grep -RniE 'Lewis|ηλεκτρονικ|δεσμ|Περιοδικ|ομοιοπολ|ιοντικ|σθένο' adjacent/text > adjacent/topic_hits.txt || true
+          find adjacent -type f -print0 | sort -z | xargs -0 sha256sum > adjacent/SHA256SUMS.txt
+          zip -9 -r cychem-adjacent-a-lykeiou.zip adjacent
+      - name: Upload adjacent source selector
+        uses: actions/upload-artifact@v4
+        with:
+          name: cychem-adjacent-a-lykeiou
+          path: |
+            adjacent/**
+            cychem-adjacent-a-lykeiou.zip
+          if-no-files-found: error
+          retention-days: 2
