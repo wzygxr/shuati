@@ -1,0 +1,98 @@
+{
+  "version": "v008",
+  "date": "2026-09-24",
+  "scope": "梁铨廷《物理光学》第4版第1--7章教材章末正式习题全书闭合",
+  "canonical_parent": "v007",
+  "counts": {
+    "formal_new": 38,
+    "variants_new": 114,
+    "training_new": 152,
+    "formal_cumulative": 210,
+    "variants_cumulative": 630,
+    "training_cumulative": 840,
+    "checks_total": 45655,
+    "checks_pass": 45655,
+    "checks_fail": 0
+  },
+  "documents": {
+    "markdown": {
+      "name": "梁铨廷_物理光学学习指导与题解_累计v008_第1至7章全书教材习题闭合.md",
+      "bytes": 559691,
+      "lines": 23678,
+      "sha256": "7d313e952ce2c0e9617455ad62d503d8ed7e6f03045d5c1b13f43997d9fcef1b"
+    },
+    "pdf": {
+      "name": "梁铨廷_物理光学学习指导与题解_累计v008_第1至7章全书教材习题闭合.pdf",
+      "bytes": 12854576,
+      "pages": 510,
+      "bookmarks": 2204,
+      "sha256": "8b72553470b2cc8862e52bc9debed5811352f85261a6f4ed717d17d590a67e56"
+    },
+    "increment_markdown": {
+      "name": "第7章_新增卷_v008.md",
+      "bytes": 89946,
+      "lines": 3392,
+      "sha256": "812b4c7f3510ee043227edd2f8f61e5a5313815b2d2c9ed0dd57d07711cfde87"
+    },
+    "increment_pdf": {
+      "name": "第7章_新增卷_v008.pdf",
+      "bytes": 1549568,
+      "pages": 83,
+      "sha256": "2e882c25ee229b3165bc57484e74c174c085407a04a05abf168361ea7e59e333"
+    },
+    "source_zip": {
+      "name": "梁铨廷_物理光学学习指导与题解_v008_源码与验收.zip",
+      "bytes": 25985871,
+      "files": 73,
+      "sha256": "429a9681d2139f0a183be098c4236c1bac21061980cea587675afc2f226a2a1f"
+    }
+  },
+  "qa": {
+    "pages": 510,
+    "strict_pypdf_pages": 510,
+    "pymupdf_pages": 510,
+    "outline_count": 2204,
+    "rendered_pages": 510,
+    "render_missing_pages": [],
+    "blank_alert_pages": [],
+    "edge_alert_pages": [],
+    "size_mismatch_pages": [],
+    "replacement_char_pages": [],
+    "text_oob_pages": [],
+    "historical_pixel_checks": 11,
+    "historical_pixel_pass": 11,
+    "historical_pixel_fail": [],
+    "pdfinfo_returncode": 0,
+    "ghostscript_returncode": 0,
+    "font_count": 42,
+    "font_not_embedded": [],
+    "xref_present": true,
+    "startxref_present": true,
+    "eof_count": 1,
+    "ends_with_eof": true,
+    "tail_bytes_after_eof": 0,
+    "overall_pass": true,
+    "qpdf": "unavailable; not claimed",
+    "chapter7_checks": {
+      "total": 45655,
+      "pass": 45655,
+      "fail": 0,
+      "formal_count": 38,
+      "variant_count": 114,
+      "image_refs": 22,
+      "failed_examples": []
+    }
+  },
+  "textbook_next_breakpoint": "教材正式习题清零",
+  "companion_next_breakpoint": "恢复209页原始字节后冻结独有例题、自测题、补充题与8套模拟题",
+  "drive_status": "final upload retry failed: HTTP 403 storageQuotaExceeded",
+  "library_status": "storage limit reached; not uploaded",
+  "github": {
+    "repository": "wzygxr/shuati",
+    "branch": "chatgpt/liang-optics-v008",
+    "pull_request": 27,
+    "pull_request_state": "open",
+    "pull_request_url": "https://github.com/wzygxr/shuati/pull/27",
+    "binary_note": "Complete Markdown/PDF/ZIP remain conversation artifacts; GitHub stores text indices and audit evidence."
+  }
+}

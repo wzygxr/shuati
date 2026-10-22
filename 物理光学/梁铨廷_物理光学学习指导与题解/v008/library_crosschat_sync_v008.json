@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-24",
+  "scope": "IPhO_光学金牌讲义_持续更新/01_题典累计版本",
+  "latest_readable_canonical": {
+    "version": "v050",
+    "scope": "蔡履中第3章3.1--3.15",
+    "next": "3.16"
+  },
+  "later_folder_names_seen": [
+    "v053_丁文革第1章例1.1至1.26闭合",
+    "v054_丁文革第2章例2.1至2.18闭合",
+    "v056_蔡履中第2章观察思考讨论题整栏闭合"
+  ],
+  "later_folder_direct_listing": "empty; no readable Markdown/PDF/ledger returned, therefore not counted as completion evidence",
+  "liang_duplicate_scan": "no readable later branch containing 梁铨廷第7章7.1--7.38 found before this build",
+  "policy": "folder name alone never counts as solved; require readable source, ledger, Markdown or PDF"
+}

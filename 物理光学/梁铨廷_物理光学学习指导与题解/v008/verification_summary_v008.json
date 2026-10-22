@@ -1,0 +1,9 @@
+{
+  "total": 45655,
+  "pass": 45655,
+  "fail": 0,
+  "formal_count": 38,
+  "variant_count": 114,
+  "image_refs": 22,
+  "failed_examples": []
+}
