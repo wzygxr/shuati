@@ -1,0 +1,18 @@
+{
+  "total_checks": 12693,
+  "pass": 12693,
+  "fail": 0,
+  "categories": {
+    "direct": {"total": 179, "pass": 179, "fail": 0},
+    "identity": {"total": 67, "pass": 67, "fail": 0},
+    "limit": {"total": 7, "pass": 7, "fail": 0},
+    "convention": {"total": 2, "pass": 2, "fail": 0},
+    "stress": {"total": 8240, "pass": 8240, "fail": 0},
+    "stress4": {"total": 4100, "pass": 4100, "fail": 0},
+    "structure": {"total": 98, "pass": 98, "fail": 0}
+  },
+  "chapter5_formal": 41,
+  "chapter5_variants": 123,
+  "image_refs_unique": 81,
+  "missing_images": []
+}
